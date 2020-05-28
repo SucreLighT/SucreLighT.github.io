@@ -1268,7 +1268,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #fff2c8;
+  background: #3cb383;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2689,9 +2689,3 @@ ul.breadcrumb li + li:last-child {
   white-space: nowrap;
 }
 /*这里的内容与custom.styl中应该是一样的效果 需要在next.yml中开启该style/
-#days {
-  display: block;
-  color: #07b39b;
-  font-size: 13px;
-  margin-top: 15px;
-}
