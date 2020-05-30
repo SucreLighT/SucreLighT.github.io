@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>welcome</title>
-    <url>/2020/05/28/welcome/</url>
-    <content><![CDATA[<h1><strong>&#x70ED;&#x70C8;&#x6B22;&#x8FCE;&#x5F20;&#x9648;&#x540C;&#x5FD7;&#x901A;&#x77E5;&#x8385;&#x4E34;&#x672C;&#x7AD9;&#x68C0;&#x67E5;&#x5DE5;&#x4F5C;&#xFF01;&#xFF01;&#xFF01;</strong></h1>
-<a id="more"></a>
-<p><img src="/2020/05/28/welcome/hahaha.jpg" alt="&#x70ED;&#x70C8;&#x6B22;&#x8FCE;"></p>
-]]></content>
-      <categories>
-        <category>杂记</category>
-      </categories>
-  </entry>
-  <entry>
     <title>Hexo+GitHub搭建博客</title>
     <url>/2020/05/27/Hexo-GitHub%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</url>
     <content><![CDATA[<p>&#x1F432;&#x4E00;&#x76F4;&#x4EE5;&#x6765;&#x60F3;&#x642D;&#x5EFA;&#x4E00;&#x4E2A;&#x81EA;&#x5DF1;&#x7684;&#x535A;&#x5BA2;&#xFF0C;&#x6700;&#x8FD1;&#x5728;&#x7F51;&#x4E0A;&#x770B;&#x4E86;&#x5F88;&#x591A;&#x63A8;&#x8350;&#x4F7F;&#x7528;Hexo+GitHub Pages&#x7684;&#x65B9;&#x5F0F;&#xFF0C;&#x81EA;&#x5DF1;&#x5C1D;&#x8BD5;&#x4E86;&#x4E00;&#x4E0B;&#xFF0C;&#x8FD9;&#x91CC;&#x5F00;&#x59CB;&#x8BB0;&#x5F55;&#x8BE5;&#x535A;&#x5BA2;&#x7684;&#x642D;&#x5EFA;&#x8FC7;&#x7A0B;&#x1F603;&#x1F603;&#x1F603;</p>
@@ -91,7 +80,7 @@
 </li>
 <li>
 <p>&#x5173;&#x4E8E;&#x56FE;&#x7247;&#x52A0;&#x8F7D;&#x7684;&#x95EE;&#x9898;&#x3002;&#x8BBE;&#x7F6E;&#x56FE;&#x7247;&#x70B9;&#x51FB;&#x653E;&#x5927;&#x7684;&#x63D2;&#x4EF6;&#x53EF;&#x4EE5;&#x81EA;&#x884C;&#x767E;&#x5EA6;&#xFF0C;&#x8FD9;&#x91CC;&#x4E0D;&#x505A;&#x4ECB;&#x7ECD;&#x3002;</p>
-<p>&#x2757;&#xFE0F; <strong>&#x6CE8;&#x610F;</strong> &#x2757;&#xFE0F; **&#x1F617;*&#x6211;&#x4F7F;&#x7528;&#x7684;&#x662F;Typora&#x5728;&#x672C;&#x5730;&#x8FDB;&#x884C;&#x7F16;&#x8F91;md&#x535A;&#x5BA2;&#x6587;&#x4EF6;&#xFF0C;&#x81EA;&#x5E26;&#x7684;&#x63D2;&#x5165;&#x56FE;&#x7247;&#x683C;&#x5F0F;&#x4E2D;&#x7684;&#x8DEF;&#x5F84;&#x662F;&#x65E0;&#x6CD5;&#x88AB;hexo&#x6B63;&#x786E;&#x89E3;&#x6790;&#x7684;&#x3002;&#x4F7F;&#x7528;<a href="https://hexo.io/zh-cn/docs/asset-folders" target="_blank" rel="noopener"><strong>&#x8D44;&#x6E90;&#x6587;&#x4EF6;&#x5939;</strong></a>&#x7684;&#x65B9;&#x5F0F;&#xFF0C;&#x5728;<code>config.yml</code> &#x6587;&#x4EF6;&#x4E2D;&#x7684; <code>post_asset_folder</code> &#x9009;&#x9879;&#x8BBE;&#x4E3A; <code>true</code> &#x6765;&#x6253;&#x5F00;&#x3002;&#x8BE5;&#x6A21;&#x5F0F;&#x4E0B;&#x521B;&#x5EFA;&#x65B0;&#x535A;&#x5BA2;&#x6587;&#x4EF6;<code>blog.md</code>&#x4E4B;&#x540E;&#xFF0C;&#x4F1A;&#x5728;&#x535A;&#x5BA2;&#x6587;&#x4EF6;&#x5F53;&#x524D;&#x76EE;&#x5F55;&#x4E0B;&#x81EA;&#x52A8;&#x521B;&#x5EFA;<code>/</code>blog&#x6587;&#x4EF6;&#x5939;&#x4F5C;&#x4E3A;&#x8D44;&#x6E90;&#x6587;&#x4EF6;&#x5939;&#xFF0C;&#x6587;&#x4EF6;&#x4E2D;&#x7684;&#x8D44;&#x6E90;&#xFF0C;&#x4F8B;&#x5982;&#x56FE;&#x7247;&#xFF0C;&#x53EF;&#x4EE5;&#x653E;&#x5728;&#x8BE5;&#x6587;&#x4EF6;&#x5939;&#x4E0B;&#xFF0C;&#x4E4B;&#x540E;&#x5728;&#x535A;&#x5BA2;&#x6587;&#x4EF6;&#x4E2D;&#x4F7F;&#x7528;<code>![](/example.jpg)</code>&#x5373;&#x53EF;&#x996E;&#x7528;&#x6539;&#x6587;&#x4EF6;&#x3002;&#x53EF;&#x4EE5;&#x53C2;&#x8003;&#x4E00;&#x4E0B; <a href="https://blog.csdn.net/qq_32767041/article/details/103283522" target="_blank" rel="noopener">Hexo &#x642D;&#x5EFA;&#x4E2A;&#x4EBA;&#x535A;&#x5BA2;&#xFF08;&#x4E94;&#xFF09;Hexo &#x8D44;&#x6E90;&#x6587;&#x4EF6;&#x5939;</a></p>
+<p>&#x2757;&#xFE0F; <strong>&#x6CE8;&#x610F;</strong> &#x2757;&#xFE0F; :&#x6211;&#x4F7F;&#x7528;&#x7684;&#x662F;Typora&#x5728;&#x672C;&#x5730;&#x8FDB;&#x884C;&#x7F16;&#x8F91;md&#x535A;&#x5BA2;&#x6587;&#x4EF6;&#xFF0C;&#x81EA;&#x5E26;&#x7684;&#x63D2;&#x5165;&#x56FE;&#x7247;&#x683C;&#x5F0F;&#x4E2D;&#x7684;&#x8DEF;&#x5F84;&#x662F;&#x65E0;&#x6CD5;&#x88AB;hexo&#x6B63;&#x786E;&#x89E3;&#x6790;&#x7684;&#x3002;&#x4F7F;&#x7528;<a href="https://hexo.io/zh-cn/docs/asset-folders" target="_blank" rel="noopener"><strong>&#x8D44;&#x6E90;&#x6587;&#x4EF6;&#x5939;</strong></a>&#x7684;&#x65B9;&#x5F0F;&#xFF0C;&#x5728;<code>config.yml</code> &#x6587;&#x4EF6;&#x4E2D;&#x7684; <code>post_asset_folder</code> &#x9009;&#x9879;&#x8BBE;&#x4E3A; <code>true</code> &#x6765;&#x6253;&#x5F00;&#x3002;&#x8BE5;&#x6A21;&#x5F0F;&#x4E0B;&#x521B;&#x5EFA;&#x65B0;&#x535A;&#x5BA2;&#x6587;&#x4EF6;<code>blog.md</code>&#x4E4B;&#x540E;&#xFF0C;&#x4F1A;&#x5728;&#x535A;&#x5BA2;&#x6587;&#x4EF6;&#x5F53;&#x524D;&#x76EE;&#x5F55;&#x4E0B;&#x81EA;&#x52A8;&#x521B;&#x5EFA;<code>/</code>blog&#x6587;&#x4EF6;&#x5939;&#x4F5C;&#x4E3A;&#x8D44;&#x6E90;&#x6587;&#x4EF6;&#x5939;&#xFF0C;&#x6587;&#x4EF6;&#x4E2D;&#x7684;&#x8D44;&#x6E90;&#xFF0C;&#x4F8B;&#x5982;&#x56FE;&#x7247;&#xFF0C;&#x53EF;&#x4EE5;&#x653E;&#x5728;&#x8BE5;&#x6587;&#x4EF6;&#x5939;&#x4E0B;&#xFF0C;&#x4E4B;&#x540E;&#x5728;&#x535A;&#x5BA2;&#x6587;&#x4EF6;&#x4E2D;&#x4F7F;&#x7528;<code>![](/example.jpg)</code>&#x5373;&#x53EF;&#x996E;&#x7528;&#x6539;&#x6587;&#x4EF6;&#x3002;&#x53EF;&#x4EE5;&#x53C2;&#x8003;&#x4E00;&#x4E0B; <a href="https://blog.csdn.net/qq_32767041/article/details/103283522" target="_blank" rel="noopener">Hexo &#x642D;&#x5EFA;&#x4E2A;&#x4EBA;&#x535A;&#x5BA2;&#xFF08;&#x4E94;&#xFF09;Hexo &#x8D44;&#x6E90;&#x6587;&#x4EF6;&#x5939;</a></p>
 </li>
 </ol>
 <p><a href="https://www.jianshu.com/p/271449df801f" target="_blank" rel="noopener">Hexo &#x6559;&#x7A0B;&#xFF1A;Hexo &#x535A;&#x5BA2;&#x90E8;&#x7F72;&#x5230;&#x817E;&#x8BAF;&#x4E91;&#x6559;&#x7A0B;</a></p>
@@ -99,6 +88,17 @@
 ]]></content>
       <categories>
         <category>博客搭建</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>welcome</title>
+    <url>/2020/05/28/welcome/</url>
+    <content><![CDATA[<h1><strong>&#x70ED;&#x70C8;&#x6B22;&#x8FCE;&#x5F20;&#x9648;&#x540C;&#x5FD7;&#x901A;&#x77E5;&#x8385;&#x4E34;&#x672C;&#x7AD9;&#x68C0;&#x67E5;&#x5DE5;&#x4F5C;&#xFF01;&#xFF01;&#xFF01;</strong></h1>
+<a id="more"></a>
+<p><img src="/2020/05/28/welcome/hahaha.jpg" alt="&#x70ED;&#x70C8;&#x6B22;&#x8FCE;"></p>
+]]></content>
+      <categories>
+        <category>杂记</category>
       </categories>
   </entry>
   <entry>
