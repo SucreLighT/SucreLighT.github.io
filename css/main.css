@@ -1271,7 +1271,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #fff;
+  background: #1711e8;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2481,7 +2481,7 @@ ul.breadcrumb li + li:last-child {
   }
 }
 .site-brand-container {
-  background: #222;
+  background-image: linear-gradient(#a55cd6, #eb4868, #ffad33);
 }
 @media (max-width: 991px) {
   .site-brand-container {
@@ -2888,16 +2888,35 @@ body {
   box-shadow: 1px 2px 8px 4px rgba(0,0,0,0.15);
   background: rgba(255,255,255,0.9);
 }
+.site-meta {
+  background: #fff;
+  background-size: cover;
+  background-color: transparent;
+}
+.site-title {
+  font-family: SimSun;
+  font-size: 2em;
+  font-weight: bold;
+  background-image: -webkit-linear-gradient(bottom, #f00, #fd8403, #ff0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 .site-subtitle {
   font-size: 1em;
   font-style: italic;
-  color: #6be61a;
+  background-image: -webkit-linear-gradient(bottom, #1ee, #6911ee, #c211ee);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
-.site-title {
-  font-family: STXingkai;
-  font-size: 2em;
-  font-weight: bold;
-  color: #0ff;
+code {
+  padding: 2px 4px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  color: #ff7600;
+  background: #fbf7f8;
+  border-radius: 3px;
+  font-size: 15px;
+  font-weight: 500;
 }
 .back-to-top {
   right: 60px;
@@ -2915,19 +2934,6 @@ body {
   bottom: unset;
   top: calc(100vh - 900px - 200px);
 }
-.post-body {
-  color: #333;
-}
-code {
-  padding: 2px 4px;
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-  color: #ff7600;
-  background: #fbf7f8;
-  border-radius: 3px;
-  font-size: 15px;
-  font-weight: 500;
-}
 .btn {
   padding: 3px 15px;
   color: #34495e !important;
@@ -2944,9 +2950,6 @@ code {
   color: #fff !important;
   border-color: #222;
   background: #34495e;
-}
-.highlight-container {
-  background: #7fb8ee;
 }
 .category-list a {
   color: #6f42c1;
@@ -3000,11 +3003,6 @@ code {
 .posts-collapse .post-title a,
 .posts-collapse .post-title span.exturl {
   font-size: small;
-}
-.site-meta {
-  background-image: linear-gradient(200deg, #e4a0a3, #3f51b5) !important;
-  background: #fff;
-  background-size: cover;
 }
 .tag-cloud-tags a:before {
   content: "🔖";
