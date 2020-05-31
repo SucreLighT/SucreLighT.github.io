@@ -123,7 +123,7 @@
 </code></pre>
 </li>
 <li>
-<p>&#x5728;<code>next\layout\_layout.swig</code>&#x6587;&#x4EF6;&#x4E2D;&#xFF0C;&#x5728;<code>head</code>&#x6807;&#x7B7E;&#x4E2D;&#x6DFB;&#x52A0;&#x5BF9;&#x8BE5;js&#x6587;&#x4EF6;&#x7684;&#x5F15;&#x7528;:</p>
+<p>&#x5728;<code>next/layout/_layout.swig</code>&#x6587;&#x4EF6;&#x4E2D;&#xFF0C;&#x5728;<code>head</code>&#x6807;&#x7B7E;&#x4E2D;&#x6DFB;&#x52A0;&#x5BF9;&#x8BE5;js&#x6587;&#x4EF6;&#x7684;&#x5F15;&#x7528;:</p>
 <pre><code class="language-js">    &lt;!-- &#x5F15;&#x5165;&#x7F51;&#x9875;&#x5954;&#x6E83;&#x6548;&#x679C; --&gt;
     &lt;script type=&quot;text/javascript&quot; src=&quot;/js/src/crash_cheat.js&quot;&gt;&lt;/script&gt;
 </code></pre>
