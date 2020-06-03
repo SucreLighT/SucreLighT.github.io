@@ -101,9 +101,35 @@
   <entry>
     <title>Java基础</title>
     <url>/article/f7ede91d.html/</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<p>Java&#x9762;&#x8BD5;&#x4E2D;&#x7684;&#x4E00;&#x4E9B;&#x57FA;&#x7840;&#x77E5;&#x8BC6;&#x70B9;</p>
+<a id="more"></a>
+<h1>&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x4E0E;&#x9762;&#x5411;&#x8FC7;&#x7A0B;</h1>
+<ul>
+<li>&#x9762;&#x5411;&#x8FC7;&#x7A0B;&#xFF1A;&#x6027;&#x80FD;&#x66F4;&#x9AD8;&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x5B9E;&#x4F8B;&#x5316;&#xFF0C;&#x5F00;&#x9500;&#x5C0F;&#xFF0C;&#x8D44;&#x6E90;&#x6D88;&#x8017;&#x5C0F;&#x3002;</li>
+<li>&#x9762;&#x5411;&#x5BF9;&#x8C61;&#xFF1A;&#x6613;&#x4E8E;&#x7EF4;&#x62A4;&#x3001;&#x9AD8;&#x590D;&#x7528;&#x6027;&#x548C;&#x9AD8;&#x6269;&#x5C55;&#x6027;&#x3002;<br>
+&#x2757;&#xFE0F; <strong>&#x6CE8;&#x610F;</strong> &#x2757;&#xFE0F;&#xFF1A;Java&#x6027;&#x80FD;&#x5DEE;&#x5E76;&#x4E0D;&#x662F;&#x56E0;&#x4E3A;&#x5B83;&#x662F;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x7684;&#x8BED;&#x8A00;&#xFF0C;&#x800C;&#x662F;&#x56E0;&#x4E3A;&#x5B83;&#x662F;&#x534A;&#x7F16;&#x8BD1;&#x8BED;&#x8A00;&#xFF0C;&#x6700;&#x7EC8;&#x7684;&#x4EE3;&#x7801;&#x5E76;&#x4E0D;&#x662F;&#x76F4;&#x63A5;&#x88AB;CPU&#x6267;&#x884C;&#x7684;&#x673A;&#x5668;&#x7801;&#x3002;</li>
+</ul>
+<h1>Java&#x8BED;&#x8A00;&#x7279;&#x6027;</h1>
+<ol>
+<li>&#x9762;&#x5411;&#x5BF9;&#x8C61;
+<ul>
+<li>&#x5C01;&#x88C5;&#xFF1A;</li>
+<li>&#x7EE7;&#x627F;&#xFF1A;</li>
+<li>&#x591A;&#x6001;&#xFF1A;</li>
+</ul>
+</li>
+<li>&#x5E73;&#x53F0;&#x65E0;&#x5173;&#x6027;<br>
+JVM&#x4FDD;&#x8BC1;&#xFF1A;</li>
+<li>&#x53EF;&#x9760;&#x6027;</li>
+<li>&#x5B89;&#x5168;&#x6027;</li>
+<li>&#x652F;&#x6301;&#x591A;&#x7EBF;&#x7A0B;</li>
+<li>&#x652F;&#x6301;&#x7F51;&#x7EDC;&#x7F16;&#x7A0B;</li>
+<li></li>
+</ol>
+]]></content>
       <categories>
-        <category>Java - 面试题</category>
+        <category>Java</category>
+        <category>面试题</category>
       </categories>
   </entry>
   <entry>
