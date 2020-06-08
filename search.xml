@@ -1,6 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Java基础</title>
+    <url>/article/f7ede91d.html/</url>
+    <content><![CDATA[<p>Java&#x9762;&#x8BD5;&#x4E2D;&#x7684;&#x4E00;&#x4E9B;&#x57FA;&#x7840;&#x77E5;&#x8BC6;&#x70B9;</p>
+<a id="more"></a>
+<h1>&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x4E0E;&#x9762;&#x5411;&#x8FC7;&#x7A0B;</h1>
+<ul>
+<li>&#x9762;&#x5411;&#x8FC7;&#x7A0B;&#xFF1A;&#x6027;&#x80FD;&#x66F4;&#x9AD8;&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x5B9E;&#x4F8B;&#x5316;&#xFF0C;&#x5F00;&#x9500;&#x5C0F;&#xFF0C;&#x8D44;&#x6E90;&#x6D88;&#x8017;&#x5C0F;&#x3002;</li>
+<li>&#x9762;&#x5411;&#x5BF9;&#x8C61;&#xFF1A;&#x6613;&#x4E8E;&#x7EF4;&#x62A4;&#x3001;&#x9AD8;&#x590D;&#x7528;&#x6027;&#x548C;&#x9AD8;&#x6269;&#x5C55;&#x6027;&#x3002;<br>
+&#x2757;&#xFE0F; <strong>&#x6CE8;&#x610F;</strong> &#x2757;&#xFE0F;&#xFF1A;Java&#x6027;&#x80FD;&#x5DEE;&#x5E76;&#x4E0D;&#x662F;&#x56E0;&#x4E3A;&#x5B83;&#x662F;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x7684;&#x8BED;&#x8A00;&#xFF0C;&#x800C;&#x662F;&#x56E0;&#x4E3A;&#x5B83;&#x662F;&#x534A;&#x7F16;&#x8BD1;&#x8BED;&#x8A00;&#xFF0C;&#x6700;&#x7EC8;&#x7684;&#x4EE3;&#x7801;&#x5E76;&#x4E0D;&#x662F;&#x76F4;&#x63A5;&#x88AB;CPU&#x6267;&#x884C;&#x7684;&#x673A;&#x5668;&#x7801;&#x3002;</li>
+</ul>
+<h1>Java&#x8BED;&#x8A00;&#x7279;&#x6027;</h1>
+<ol>
+<li>&#x9762;&#x5411;&#x5BF9;&#x8C61;
+<ul>
+<li>&#x5C01;&#x88C5;&#xFF1A;</li>
+<li>&#x7EE7;&#x627F;&#xFF1A;</li>
+<li>&#x591A;&#x6001;&#xFF1A;</li>
+</ul>
+</li>
+<li>&#x5E73;&#x53F0;&#x65E0;&#x5173;&#x6027;<br>
+JVM&#x4FDD;&#x8BC1;&#xFF1A;</li>
+<li>&#x53EF;&#x9760;&#x6027;</li>
+<li>&#x5B89;&#x5168;&#x6027;</li>
+<li>&#x652F;&#x6301;&#x591A;&#x7EBF;&#x7A0B;</li>
+<li>&#x652F;&#x6301;&#x7F51;&#x7EDC;&#x7F16;&#x7A0B;</li>
+<li></li>
+</ol>
+]]></content>
+      <categories>
+        <category>Java</category>
+        <category>面试题</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Hexo-GitHub搭建博客</title>
     <url>/article/51600800.html/</url>
     <content><![CDATA[<p>&#x1F432;&#x4E00;&#x76F4;&#x4EE5;&#x6765;&#x60F3;&#x642D;&#x5EFA;&#x4E00;&#x4E2A;&#x81EA;&#x5DF1;&#x7684;&#x535A;&#x5BA2;&#xFF0C;&#x6700;&#x8FD1;&#x5728;&#x7F51;&#x4E0A;&#x770B;&#x4E86;&#x5F88;&#x591A;&#x63A8;&#x8350;&#x4F7F;&#x7528;Hexo+GitHub Pages&#x7684;&#x65B9;&#x5F0F;&#xFF0C;&#x81EA;&#x5DF1;&#x5C1D;&#x8BD5;&#x4E86;&#x4E00;&#x4E0B;&#xFF0C;&#x8FD9;&#x91CC;&#x5F00;&#x59CB;&#x8BB0;&#x5F55;&#x8BE5;&#x535A;&#x5BA2;&#x7684;&#x642D;&#x5EFA;&#x8FC7;&#x7A0B;&#x1F603;&#x1F603;&#x1F603;</p>
@@ -99,37 +133,134 @@
       </categories>
   </entry>
   <entry>
-    <title>Java基础</title>
-    <url>/article/f7ede91d.html/</url>
-    <content><![CDATA[<p>Java&#x9762;&#x8BD5;&#x4E2D;&#x7684;&#x4E00;&#x4E9B;&#x57FA;&#x7840;&#x77E5;&#x8BC6;&#x70B9;</p>
+    <title>leetcode-并查集</title>
+    <url>/article/9e0f260f.html/</url>
+    <content><![CDATA[<p>&#x5E76;&#x67E5;&#x96C6;(Disjoint-Set)&#x662F;&#x4E00;&#x79CD;&#x53EF;&#x4EE5;&#x52A8;&#x6001;&#x7EF4;&#x62A4;&#x82E5;&#x5E72;&#x4E2A;&#x4E0D;&#x91CD;&#x53E0;&#x7684;&#x96C6;&#x5408;&#xFF0C;&#x5E76;&#x652F;&#x6301;&#x5408;&#x5E76;&#x4E0E;&#x67E5;&#x8BE2;&#x4E24;&#x79CD;&#x64CD;&#x4F5C;&#x7684;&#x4E00;&#x79CD;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x3002;</p>
 <a id="more"></a>
-<h1>&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x4E0E;&#x9762;&#x5411;&#x8FC7;&#x7A0B;</h1>
-<ul>
-<li>&#x9762;&#x5411;&#x8FC7;&#x7A0B;&#xFF1A;&#x6027;&#x80FD;&#x66F4;&#x9AD8;&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x5B9E;&#x4F8B;&#x5316;&#xFF0C;&#x5F00;&#x9500;&#x5C0F;&#xFF0C;&#x8D44;&#x6E90;&#x6D88;&#x8017;&#x5C0F;&#x3002;</li>
-<li>&#x9762;&#x5411;&#x5BF9;&#x8C61;&#xFF1A;&#x6613;&#x4E8E;&#x7EF4;&#x62A4;&#x3001;&#x9AD8;&#x590D;&#x7528;&#x6027;&#x548C;&#x9AD8;&#x6269;&#x5C55;&#x6027;&#x3002;<br>
-&#x2757;&#xFE0F; <strong>&#x6CE8;&#x610F;</strong> &#x2757;&#xFE0F;&#xFF1A;Java&#x6027;&#x80FD;&#x5DEE;&#x5E76;&#x4E0D;&#x662F;&#x56E0;&#x4E3A;&#x5B83;&#x662F;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x7684;&#x8BED;&#x8A00;&#xFF0C;&#x800C;&#x662F;&#x56E0;&#x4E3A;&#x5B83;&#x662F;&#x534A;&#x7F16;&#x8BD1;&#x8BED;&#x8A00;&#xFF0C;&#x6700;&#x7EC8;&#x7684;&#x4EE3;&#x7801;&#x5E76;&#x4E0D;&#x662F;&#x76F4;&#x63A5;&#x88AB;CPU&#x6267;&#x884C;&#x7684;&#x673A;&#x5668;&#x7801;&#x3002;</li>
-</ul>
-<h1>Java&#x8BED;&#x8A00;&#x7279;&#x6027;</h1>
+<p>&#x5728;leetcode&#x7684;<a href="https://leetcode-cn.com/problems/satisfiability-of-equality-equations/" target="_blank" rel="noopener">&#x7B49;&#x5F0F;&#x65B9;&#x7A0B;&#x7684;&#x53EF;&#x6EE1;&#x8DB3;&#x6027;</a>&#x4E86;&#x89E3;&#x5230;&#x5E76;&#x67E5;&#x96C6;&#x7684;&#x76F8;&#x5173;&#x77E5;&#x8BC6;&#xFF0C;&#x53EF;&#x4EE5;&#x5B66;&#x4E60;&#x4E00;&#x4E0B;B&#x7AD9;&#x6559;&#x7A0B;<a href="https://www.bilibili.com/video/BV13t411v7Fs" target="_blank" rel="noopener">&#x5E76;&#x67E5;&#x96C6;</a>&#x3002;</p>
+<p>&#x5E76;&#x67E5;&#x96C6;&#x662F;&#x4E00;&#x79CD;&#x6811;&#x5F62;&#x6570;&#x636E;&#x7ED3;&#x6784;&#xFF0C;&#x4E3B;&#x8981;&#x7528;&#x4E8E;&#x76F8;&#x4EA4;&#x96C6;&#x5408;&#x7684;&#x5408;&#x5E76;&#x548C;&#x67E5;&#x8BE2;&#xFF0C;&#x4F8B;&#x5982;&#x5728;&#x56FE;&#x4E2D;&#x5224;&#x65AD;&#x67D0;&#x4E9B;&#x9876;&#x70B9;&#x662F;&#x5426;&#x5728;&#x540C;&#x4E00;&#x4E2A;&#x8FDE;&#x901A;&#x5206;&#x91CF;&#x4E2D;&#xFF0C;&#x6216;&#x8005;&#x5224;&#x65AD;&#x56FE;&#x4E2D;&#x662F;&#x5426;&#x5B58;&#x5728;&#x73AF;&#x3002;</p>
+<h3 id="&#x4E3B;&#x8981;&#x64CD;&#x4F5C;"><a class="header-anchor" href="#&#x4E3B;&#x8981;&#x64CD;&#x4F5C;">&#xB6;</a>&#x4E3B;&#x8981;&#x64CD;&#x4F5C;</h3>
 <ol>
-<li>&#x9762;&#x5411;&#x5BF9;&#x8C61;
+<li>&#x521D;&#x59CB;&#x5316;&#xFF1A;&#x4EE5;&#x6570;&#x7EC4;&#x4E3A;&#x4F8B;&#xFF0C;&#x8BBE;&#x7F6E;parent&#x6570;&#x7EC4;&#x7528;&#x4E8E;&#x8BB0;&#x5F55;&#x5F53;&#x524D;&#x4E0B;&#x6807;&#x4F4D;&#x7F6E;&#x5BF9;&#x5E94;&#x5143;&#x7D20;&#x5176;&#x7236;&#x8282;&#x70B9;&#x7684;&#x4E0B;&#x6807;&#xFF0C;&#x4F8B;&#x5982;&#xFF0C;parent[i]=j&#x8868;&#x793A;j&#x662F;i&#x7684;&#x7236;&#x8282;&#x70B9;&#xFF0C;&#x521D;&#x59CB;&#x5316;parent&#x6570;&#x7EC4;&#xFF0C;&#x901A;&#x5E38;&#x521D;&#x59CB;&#x5316;&#x503C;&#x4E3A;&#x4E0B;&#x6807;&#x503C;&#x6216;&#x8005;&#x67D0;&#x4E00;&#x56FA;&#x5B9A;&#x503C;&#xFF1B;</li>
+<li>&#x67E5;&#x627E;&#x64CD;&#x4F5C;&#xFF1A;&#x67E5;&#x627E;&#x67D0;&#x4E00;&#x5143;&#x7D20;x&#x7684;&#x6839;&#x8282;&#x70B9;&#xFF0C;&#x9012;&#x5F52;&#x7684;&#x67E5;&#x627E;x&#x5BF9;&#x5E94;&#x7684;parent&#x6570;&#x7EC4;&#x7684;&#x503C;&#xFF0C;&#x76F4;&#x5230;parent&#x4E2D;&#x7684;&#x503C;&#x4E3A;&#x521D;&#x59CB;&#x5316;&#x503C;&#xFF1B;</li>
+<li>&#x5408;&#x5E76;&#x64CD;&#x4F5C;&#xFF0C;&#x5BF9;&#x4E8E;&#x4E24;&#x4E2A;&#x5143;&#x7D20;x&#x548C;y&#xFF0C;&#x9996;&#x5148;&#x67E5;&#x627E;&#x5176;&#x5404;&#x81EA;&#x6839;&#x8282;&#x70B9;&#xFF0C;&#x5982;&#x679C;&#x6839;&#x8282;&#x70B9;&#x76F8;&#x540C;&#xFF0C;&#x5219;&#x8BF4;&#x660E;&#x4E8C;&#x8005;&#x5728;&#x540C;&#x4E00;&#x5206;&#x7C7B;&#x4E2D;&#xFF0C;&#x65E0;&#x987B;&#x8FDB;&#x884C;&#x5408;&#x5E76;&#xFF0C;&#x53CD;&#x4E4B;&#x8BF4;&#x660E;&#x4E8C;&#x8005;&#x4E0D;&#x5728;&#x4E00;&#x4E2A;&#x5206;&#x652F;&#x4E2D;&#xFF0C;&#x9700;&#x8981;&#x8FDB;&#x884C;&#x5408;&#x5E76;&#xFF0C;&#x9ED8;&#x8BA4;&#x7684;&#x5408;&#x5E76;&#x65B9;&#x5F0F;&#x662F;&#x5C06;&#x4EFB;&#x610F;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#x7684;&#x7236;&#x8282;&#x70B9;&#x8BBE;&#x7F6E;&#x4E3A;&#x53E6;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#x5373;&#x53EF;&#x3002;</li>
+<li>&#x4F18;&#x5316;&#xFF1A;
 <ul>
-<li>&#x5C01;&#x88C5;&#xFF1A;</li>
-<li>&#x7EE7;&#x627F;&#xFF1A;</li>
-<li>&#x591A;&#x6001;&#xFF1A;</li>
+<li>&#x5982;&#x679C;&#x5B58;&#x5728;&#x957F;&#x5EA6;&#x4E3A;n&#x7684;&#x94FE;&#x5F0F;&#x7ED3;&#x6784;&#xFF0C;&#x5219;&#x5728;&#x67E5;&#x627E;&#x6839;&#x8282;&#x70B9;&#x7684;&#x8FC7;&#x7A0B;&#x4E2D;&#x9700;&#x8981;&#x904D;&#x5386;n&#x4E2A;&#x5143;&#x7D20;&#x3002;&#x5C06;&#x94FE;&#x5F0F;&#x7ED3;&#x6784;&#x8FDB;&#x884C;&#x8DEF;&#x5F84;&#x538B;&#x7F29; &#xFF0C;&#x5176;&#x6839;&#x8282;&#x70B9;&#x4F5C;&#x4E3A;&#x6839;&#x8282;&#x70B9;&#xFF0C;&#x5176;&#x4F59;n-1&#x4E2A;&#x5143;&#x7D20;&#x5747;&#x4E3A;&#x5B50;&#x8282;&#x70B9;&#xFF0C;&#x5219;&#x67E5;&#x627E;&#x8FC7;&#x7A0B;&#x53EA;&#x9700;&#x8981;&#x904D;&#x5386;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#x5373;&#x53EF;&#x3002;</li>
+<li>&#x5728;&#x5408;&#x5E76;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x5982;&#x679C;x&#x6240;&#x5728;&#x5206;&#x652F;&#x6DF1;&#x5EA6;&#x4E3A;Dx&#xFF0C;y&#x6240;&#x5728;&#x5206;&#x652F;&#x6DF1;&#x5EA6;&#x4E3A;Dy&#xFF0C;&#x5219;&#x9700;&#x8981;&#x6BD4;&#x8F83;&#x4E8C;&#x8005;&#x5927;&#x5C0F;&#xFF0C;&#x5C06;&#x6DF1;&#x5EA6;&#x5C0F;&#x7684;&#x8FDE;&#x63A5;&#x5230;&#x6DF1;&#x5EA6;&#x5927;&#x7684;&#x5206;&#x652F;&#x4E0A;&#xFF0C;&#x6700;&#x7EC8;&#x7684;&#x5206;&#x652F;&#x6DF1;&#x5EA6;&#x4E0D;&#x4F1A;&#x8D85;&#x8FC7;max&#xFF08;Dx&#xFF0C;Dy&#xFF09;&#xFF0C;&#x5F15;&#x5165;&#x8868;&#x793A;&#x79E9;&#x7684;&#x6570;&#x7EC4;rank[]&#x7528;&#x4E8E;&#x8BB0;&#x5F55;&#x6BCF;&#x4E2A;&#x5143;&#x7D20;&#x8DDD;&#x79BB;&#x6839;&#x8282;&#x70B9;&#x7684;&#x6DF1;&#x5EA6;&#x3002;</li>
 </ul>
 </li>
-<li>&#x5E73;&#x53F0;&#x65E0;&#x5173;&#x6027;<br>
-JVM&#x4FDD;&#x8BC1;&#xFF1A;</li>
-<li>&#x53EF;&#x9760;&#x6027;</li>
-<li>&#x5B89;&#x5168;&#x6027;</li>
-<li>&#x652F;&#x6301;&#x591A;&#x7EBF;&#x7A0B;</li>
-<li>&#x652F;&#x6301;&#x7F51;&#x7EDC;&#x7F16;&#x7A0B;</li>
-<li></li>
 </ol>
+<p>&#x4EE3;&#x7801;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="language-java">public class test {
+    static int vertices = 6;
+    /*
+        &#x521D;&#x59CB;&#x5316;parent&#x548C;rank
+     */
+    static void initialise(int parent[], int rank[]){
+        for(int i=0; i&lt;vertices; i++){
+            parent[i] = -1;
+            rank[i] = 0;
+        }
+    }
+    /*
+        &#x67E5;&#x627E;x&#x7684;&#x6839;&#x8282;&#x70B9;
+     */
+    static int find_root(int x, int parent[]){
+        int x_root = x;
+        while(parent[x_root] != -1){
+            x_root = parent[x_root];
+        }
+        return x_root;
+    }
+    /*
+        &#x6839;&#x636E;rank&#x5408;&#x5E76;&#x4E24;&#x4E2A;&#x8282;&#x70B9;
+        &#x5982;&#x679C;x y&#x7684;&#x6839;&#x8282;&#x70B9;&#x76F8;&#x540C;&#xFF0C;&#x5219;&#x8BF4;&#x660E;&#x5728;&#x540C;&#x4E00;&#x4E2A;&#x5206;&#x652F;&#x4E2D;&#xFF0C;&#x65E0;&#x987B;&#x5408;&#x5E76;
+        &#x5982;&#x679C;&#x4E0D;&#x76F8;&#x540C;&#xFF0C;&#x5C06;&#x5206;&#x652F;&#x5C42;&#x6570;&#x5C0F;&#x7684;&#x5408;&#x5E76;&#x5230;&#x5C42;&#x6570;&#x5927;&#x7684;&#x5206;&#x652F;&#x4E0A;
+     */
+    static int union_vertices(int x, int y, int parent[],int rank[]){
+        int x_root = find_root(x,parent);
+        int y_root = find_root(y,parent);
+        if(x_root == y_root){
+            return 0;
+        }else{
+            if(rank[x_root] &gt; rank[y_root]){
+                parent[y_root] = x_root;
+            }else if(rank[y_root] &gt; rank[x_root]){
+                parent[x_root] = y_root;
+            }else {
+                parent[x_root] = y_root;
+                rank[y_root]++;
+            }
+            return 1;
+        }
+    }
+    public static void main(String[] args) {
+        int[] parent = new int[vertices];
+        int[] rank = new int[vertices];
+        int edge[][]={
+            {0,1},{1,2},{1,3},{2,4},{3,4},{2,5}
+        };
+        initialise(parent,rank);
+        for(int i=0; i&lt;6; i++){
+            int x = edge[i][0];
+            int y = edge[i][1];
+            if(union_vertices(x,y,parent,rank) == 0){
+                System.out.println(&quot;cycle&quot;);
+                return;
+            }
+        }
+        System.out.println(&quot;no cycle&quot;);
+    }
+}
+</code></pre>
+<h3 id="leetcode&#x9898;&#x89E3;"><a class="header-anchor" href="#leetcode&#x9898;&#x89E3;">&#xB6;</a>leetcode&#x9898;&#x89E3;</h3>
+<pre><code class="language-java">class Solution {
+    public boolean equationsPossible(String[] equations) {
+        //&#x4F7F;&#x7528;&#x5E76;&#x67E5;&#x96C6;&#xFF0C;&#x5BF9;6&#x4E2A;&#x5B57;&#x6BCD;&#x8FDB;&#x884C;&#x5408;&#x5E76;&#x67E5;&#x627E;
+        int length = equations.length;
+        int[] parent = new int[26];
+        for (int i = 0; i &lt; 26; i++) {
+            parent[i] = i;
+        }
+        // ==&#x4E24;&#x8FB9;&#x7684;&#x5B57;&#x6BCD;&#x8FDB;&#x884C;&#x5408;&#x5E76;&#xFF0C;&#x8868;&#x793A;&#x5728;&#x4E00;&#x4E2A;&#x96C6;&#x5408;&#x4E2D;
+        for (String str : equations) {
+            if (str.charAt(1) == &apos;=&apos;) {
+                int index1 = str.charAt(0) - &apos;a&apos;;
+                int index2 = str.charAt(3) - &apos;a&apos;;
+                union(parent, index1, index2);
+            }
+        }
+        // !=&#x4E24;&#x8FB9;&#x7684;&#x5B57;&#x6BCD;&#xFF0C;&#x67E5;&#x627E;&#x5176;&#x5404;&#x81EA;&#x7684;&#x6839;&#x8282;&#x70B9;&#xFF0C;&#x5982;&#x679C;&#x76F8;&#x7B49;&#xFF0C;&#x8BF4;&#x660E;&#x8FD9;&#x4E24;&#x4E2A;&#x5B57;&#x6BCD;&#x7684;&#x503C;&#x76F8;&#x7B49;&#xFF0C;&#x8FD9;&#x4E0E;!=&#x77DB;&#x76FE;&#xFF0C;&#x76F4;&#x63A5;&#x8FD4;&#x56DE;false
+        for (String str : equations) {
+            if (str.charAt(1) == &apos;!&apos;) {
+                int index1 = str.charAt(0) - &apos;a&apos;;
+                int index2 = str.charAt(3) - &apos;a&apos;;
+                if (find(parent, index1) == find(parent, index2)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+// &#x76F4;&#x63A5;&#x5408;&#x5E76;&#x4E24;&#x4E2A;&#x5206;&#x652F;&#xFF0C;&#x4E0D;&#x8003;&#x8651;&#x79E9;&#x4EE5;&#x53CA;&#x5728;&#x540C;&#x4E00;&#x5206;&#x652F;&#x7684;&#x60C5;&#x51B5;
+// &#x5728;&#x540C;&#x4E00;&#x5206;&#x652F;&#x76F4;&#x63A5;&#x5408;&#x5E76;&#xFF0C;&#x4E0E;&#x521D;&#x59CB;&#x5316;&#x7684;parent[i]=i&#x4E00;&#x6837;
+    public void union(int[] parent, int index1, int index2) {
+        parent[find(parent, index1)] = find(parent, index2);
+    }
+
+    public int find(int[] parent, int index) {
+        while (parent[index] != index) {
+            parent[index] = parent[parent[index]];
+            index = parent[index];
+        }
+        return index;
+    }
+}
+</code></pre>
 ]]></content>
       <categories>
-        <category>Java</category>
-        <category>面试题</category>
+        <category>刷题笔记</category>
       </categories>
   </entry>
   <entry>

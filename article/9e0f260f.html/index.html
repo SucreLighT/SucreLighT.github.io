@@ -23,19 +23,19 @@
     var CONFIG = {"hostname":"tangtangsama.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="&amp;#x91C7;&amp;#x7528;hexo-abbrlink&amp;#x63D2;&amp;#x4EF6;&amp;#x4F18;&amp;#x5316;&amp;#x8DEF;&amp;#x5F84;&amp;#x4E2D;&amp;#x5B58;&amp;#x5728;&amp;#x4E2D;&amp;#x6587;&amp;#x65F6;&amp;#xFF0C;&amp;#x8DEF;&amp;#x5F84;&amp;#x8FC7;&amp;#x957F;&amp;#x7684;&amp;#x95EE;&amp;#x9898;&amp;#x3002;">
+  <meta name="description" content="&amp;#x5E76;&amp;#x67E5;&amp;#x96C6;(Disjoint-Set)&amp;#x662F;&amp;#x4E00;&amp;#x79CD;&amp;#x53EF;&amp;#x4EE5;&amp;#x52A8;&amp;#x6001;&amp;#x7EF4;&amp;#x62A4;&amp;#x82E5;&amp;#x5E72;&amp;#x4E2A;&amp;#x4E0D;&amp;#x91CD;&amp;#x53E0;&amp;#x7684;&amp;#x96C6;&amp;#x5408;&amp;#xFF0C;&amp;#x5E76;&amp;#">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo-NexT固定链接优化">
-<meta property="og:url" content="https://tangtangsama.github.io/article/4d2572a4.html/index.html">
+<meta property="og:title" content="leetcode-并查集">
+<meta property="og:url" content="https://tangtangsama.github.io/article/9e0f260f.html/index.html">
 <meta property="og:site_name" content="金陵小汤包">
-<meta property="og:description" content="&amp;#x91C7;&amp;#x7528;hexo-abbrlink&amp;#x63D2;&amp;#x4EF6;&amp;#x4F18;&amp;#x5316;&amp;#x8DEF;&amp;#x5F84;&amp;#x4E2D;&amp;#x5B58;&amp;#x5728;&amp;#x4E2D;&amp;#x6587;&amp;#x65F6;&amp;#xFF0C;&amp;#x8DEF;&amp;#x5F84;&amp;#x8FC7;&amp;#x957F;&amp;#x7684;&amp;#x95EE;&amp;#x9898;&amp;#x3002;">
+<meta property="og:description" content="&amp;#x5E76;&amp;#x67E5;&amp;#x96C6;(Disjoint-Set)&amp;#x662F;&amp;#x4E00;&amp;#x79CD;&amp;#x53EF;&amp;#x4EE5;&amp;#x52A8;&amp;#x6001;&amp;#x7EF4;&amp;#x62A4;&amp;#x82E5;&amp;#x5E72;&amp;#x4E2A;&amp;#x4E0D;&amp;#x91CD;&amp;#x53E0;&amp;#x7684;&amp;#x96C6;&amp;#x5408;&amp;#xFF0C;&amp;#x5E76;&amp;#">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-05-31T02:23:12.000Z">
-<meta property="article:modified_time" content="2020-05-31T02:39:41.960Z">
+<meta property="article:published_time" content="2020-06-08T04:45:05.000Z">
+<meta property="article:modified_time" content="2020-06-08T05:13:54.401Z">
 <meta property="article:author" content="金陵小汤包">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://tangtangsama.github.io/article/4d2572a4.html/">
+<link rel="canonical" href="https://tangtangsama.github.io/article/9e0f260f.html/">
 
 
 <script id="page-configurations">
@@ -48,7 +48,7 @@
   };
 </script>
 
-  <title>Hexo-NexT固定链接优化 | 金陵小汤包</title>
+  <title>leetcode-并查集 | 金陵小汤包</title>
   
 
 
@@ -204,7 +204,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://tangtangsama.github.io/article/4d2572a4.html/">
+    <link itemprop="mainEntityOfPage" href="https://tangtangsama.github.io/article/9e0f260f.html/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -217,7 +217,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Hexo-NexT固定链接优化
+          leetcode-并查集
         </h1>
 
         <div class="post-meta">
@@ -230,7 +230,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-05-31 10:23:12 / 修改时间：10:39:41" itemprop="dateCreated datePublished" datetime="2020-05-31T10:23:12+08:00">2020-05-31</time>
+              <time title="创建时间：2020-06-08 12:45:05 / 修改时间：13:13:54" itemprop="dateCreated datePublished" datetime="2020-06-08T12:45:05+08:00">2020-06-08</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -238,7 +238,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a>
+                  <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">刷题笔记</span></a>
                 </span>
             </span>
 
@@ -248,14 +248,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.6k</span>
+              <span>7.6k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
+              <span>7 分钟</span>
             </span>
 
         </div>
@@ -267,29 +267,129 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>&#x91C7;&#x7528;hexo-abbrlink&#x63D2;&#x4EF6;&#x4F18;&#x5316;&#x8DEF;&#x5F84;&#x4E2D;&#x5B58;&#x5728;&#x4E2D;&#x6587;&#x65F6;&#xFF0C;&#x8DEF;&#x5F84;&#x8FC7;&#x957F;&#x7684;&#x95EE;&#x9898;&#x3002;</p>
+        <p>&#x5E76;&#x67E5;&#x96C6;(Disjoint-Set)&#x662F;&#x4E00;&#x79CD;&#x53EF;&#x4EE5;&#x52A8;&#x6001;&#x7EF4;&#x62A4;&#x82E5;&#x5E72;&#x4E2A;&#x4E0D;&#x91CD;&#x53E0;&#x7684;&#x96C6;&#x5408;&#xFF0C;&#x5E76;&#x652F;&#x6301;&#x5408;&#x5E76;&#x4E0E;&#x67E5;&#x8BE2;&#x4E24;&#x79CD;&#x64CD;&#x4F5C;&#x7684;&#x4E00;&#x79CD;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x3002;</p>
 <a id="more"></a>
-<p>&#x5728;Hexo&#x7684;&#x7AD9;&#x70B9;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D;&#x6709;&#x5982;&#x4E0B;&#x663E;&#x793A;&#xFF1A;<br>
-<code>permalink: :year/:month/:day/:title/</code><br>
-&#x5373;&#x6587;&#x7AE0;&#x7684;&#x56FA;&#x5B9A;&#x94FE;&#x63A5;&#x5C06;&#x4F7F;&#x7528;&#x5E74;&#x6708;&#x65E5;&#x4EE5;&#x53CA;&#x6807;&#x9898;&#x7684;&#x5F62;&#x5F0F;&#xFF0C;&#x8FD9;&#x4F1A;&#x5B58;&#x5728;&#x4E24;&#x4E2A;&#x95EE;&#x9898;&#xFF1A;&#x4E00;&#x662F;&#x6587;&#x7AE0;&#x7684;&#x76EE;&#x5F55;&#x7ED3;&#x6784;&#x592A;&#x6DF1;&#xFF0C;&#x4E8C;&#x662F;&#x5F53;&#x6587;&#x7AE0;&#x6807;&#x9898;&#x4E2D;&#x6709;&#x4E2D;&#x6587;&#x65F6;&#xFF0C;&#x8BE5;&#x8DEF;&#x5F84;&#x4F1A;&#x53D8;&#x5F97;&#x5F88;&#x957F;&#x5F88;&#x590D;&#x6742;&#x3002;</p>
-<p>&#x4E3A;&#x4E86;&#x89E3;&#x51B3;&#x8FD9;&#x4E00;&#x95EE;&#x9898;&#xFF0C;&#x4F7F;&#x7528;hexo-abbrlink&#x63D2;&#x4EF6;&#x4F18;&#x5316;&#x56FA;&#x5B9A;&#x94FE;&#x63A5;&#x3002;</p>
+<p>&#x5728;leetcode&#x7684;<a href="https://leetcode-cn.com/problems/satisfiability-of-equality-equations/" target="_blank" rel="noopener">&#x7B49;&#x5F0F;&#x65B9;&#x7A0B;&#x7684;&#x53EF;&#x6EE1;&#x8DB3;&#x6027;</a>&#x4E86;&#x89E3;&#x5230;&#x5E76;&#x67E5;&#x96C6;&#x7684;&#x76F8;&#x5173;&#x77E5;&#x8BC6;&#xFF0C;&#x53EF;&#x4EE5;&#x5B66;&#x4E60;&#x4E00;&#x4E0B;B&#x7AD9;&#x6559;&#x7A0B;<a href="https://www.bilibili.com/video/BV13t411v7Fs" target="_blank" rel="noopener">&#x5E76;&#x67E5;&#x96C6;</a>&#x3002;</p>
+<p>&#x5E76;&#x67E5;&#x96C6;&#x662F;&#x4E00;&#x79CD;&#x6811;&#x5F62;&#x6570;&#x636E;&#x7ED3;&#x6784;&#xFF0C;&#x4E3B;&#x8981;&#x7528;&#x4E8E;&#x76F8;&#x4EA4;&#x96C6;&#x5408;&#x7684;&#x5408;&#x5E76;&#x548C;&#x67E5;&#x8BE2;&#xFF0C;&#x4F8B;&#x5982;&#x5728;&#x56FE;&#x4E2D;&#x5224;&#x65AD;&#x67D0;&#x4E9B;&#x9876;&#x70B9;&#x662F;&#x5426;&#x5728;&#x540C;&#x4E00;&#x4E2A;&#x8FDE;&#x901A;&#x5206;&#x91CF;&#x4E2D;&#xFF0C;&#x6216;&#x8005;&#x5224;&#x65AD;&#x56FE;&#x4E2D;&#x662F;&#x5426;&#x5B58;&#x5728;&#x73AF;&#x3002;</p>
+<h3 id="&#x4E3B;&#x8981;&#x64CD;&#x4F5C;"><a class="header-anchor" href="#&#x4E3B;&#x8981;&#x64CD;&#x4F5C;">&#xB6;</a>&#x4E3B;&#x8981;&#x64CD;&#x4F5C;</h3>
 <ol>
-<li>
-<p>&#x4F7F;&#x7528;<code>npm install hexo-abbrlink --save</code>&#x547D;&#x4EE4;&#x5B89;&#x88C5;&#x8BE5;&#x63D2;&#x4EF6;&#x3002;</p>
-</li>
-<li>
-<p>&#x5728;&#x7AD9;&#x70B9;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D;&#xFF0C;&#x4FEE;&#x6539;permalink&#x4E3A;&#xFF1A;</p>
-<pre><code class="language-yml">permalink: article/:abbrlink.html/
-abbrlink:
-  alg: crc32  #&#x7B97;&#x6CD5;&#xFF1A; crc16(default) and crc32
-  rep: hex   #&#x8FDB;&#x5236;&#xFF1A; dec(default) and hex
-</code></pre>
-<p>&#x8FD9;&#x91CC;&#x8981; &#x2757;&#xFE0F; <strong>&#x6CE8;&#x610F;</strong>&#x2757;&#xFE0F;&#xFF1A;permalink&#x540E;&#x81EA;&#x5B9A;&#x4E49;&#x4E00;&#x7EA7;&#x76EE;&#x5F55;article&#xFF0C;&#x4EE3;&#x66FF;&#x539F;&#x6765;&#x7684;&#x5E74;&#x6708;&#x65E5;&#x4E09;&#x7EA7;&#x76EE;&#x5F55;&#x3002;&#x6700;&#x540E;html&#x4E4B;&#x540E;&#x7684;/&#x4E00;&#x5B9A;&#x8981;&#x5E26;&#x4E0A;&#xFF0C;&#x56E0;&#x4E3A;&#x6211;&#x4F7F;&#x7528;&#x7684;&#x662F;&#x8D44;&#x6E90;&#x6587;&#x4EF6;&#x5939;&#xFF0C;&#x5728;&#x5F15;&#x7528;&#x56FE;&#x7247;&#x65F6;&#xFF0C;&#x5982;&#x679C;&#x8FD9;&#x91CC;&#x6CA1;&#x6709;/&#xFF0C;&#x540E;&#x9762;&#x8D44;&#x6E90;&#x6587;&#x4EF6;&#x5939;&#x7684;&#x5F15;&#x7528;&#x8DEF;&#x5F84;&#x4F1A;&#x51FA;&#x9519;&#x3002;</p>
-</li>
-<li>
-<p>&#x4E4B;&#x540E;&#x5728;&#x521B;&#x5EFA;&#x65B0;&#x6587;&#x4EF6;&#x4E4B;&#x540E;&#xFF0C;&#x6587;&#x4EF6;&#x7684;&#x5934;&#x90E8;&#x5C06;&#x4F1A;&#x52A0;&#x5165;abbrlink&#x5C5E;&#x6027;&#xFF0C;&#x6E32;&#x67D3;&#x7F51;&#x9875;&#x65F6;&#xFF0C;&#x4F1A;&#x81EA;&#x52A8;&#x4E3A;&#x8BE5;&#x6587;&#x6863;&#x751F;&#x6210;&#x4E00;&#x4E2A;&#x56FA;&#x5B9A;&#x94FE;&#x63A5;&#xFF0C;&#x683C;&#x5F0F;&#x5F62;&#x5982;&#xFF1A;/article/4d2572a4.html/</p>
+<li>&#x521D;&#x59CB;&#x5316;&#xFF1A;&#x4EE5;&#x6570;&#x7EC4;&#x4E3A;&#x4F8B;&#xFF0C;&#x8BBE;&#x7F6E;parent&#x6570;&#x7EC4;&#x7528;&#x4E8E;&#x8BB0;&#x5F55;&#x5F53;&#x524D;&#x4E0B;&#x6807;&#x4F4D;&#x7F6E;&#x5BF9;&#x5E94;&#x5143;&#x7D20;&#x5176;&#x7236;&#x8282;&#x70B9;&#x7684;&#x4E0B;&#x6807;&#xFF0C;&#x4F8B;&#x5982;&#xFF0C;parent[i]=j&#x8868;&#x793A;j&#x662F;i&#x7684;&#x7236;&#x8282;&#x70B9;&#xFF0C;&#x521D;&#x59CB;&#x5316;parent&#x6570;&#x7EC4;&#xFF0C;&#x901A;&#x5E38;&#x521D;&#x59CB;&#x5316;&#x503C;&#x4E3A;&#x4E0B;&#x6807;&#x503C;&#x6216;&#x8005;&#x67D0;&#x4E00;&#x56FA;&#x5B9A;&#x503C;&#xFF1B;</li>
+<li>&#x67E5;&#x627E;&#x64CD;&#x4F5C;&#xFF1A;&#x67E5;&#x627E;&#x67D0;&#x4E00;&#x5143;&#x7D20;x&#x7684;&#x6839;&#x8282;&#x70B9;&#xFF0C;&#x9012;&#x5F52;&#x7684;&#x67E5;&#x627E;x&#x5BF9;&#x5E94;&#x7684;parent&#x6570;&#x7EC4;&#x7684;&#x503C;&#xFF0C;&#x76F4;&#x5230;parent&#x4E2D;&#x7684;&#x503C;&#x4E3A;&#x521D;&#x59CB;&#x5316;&#x503C;&#xFF1B;</li>
+<li>&#x5408;&#x5E76;&#x64CD;&#x4F5C;&#xFF0C;&#x5BF9;&#x4E8E;&#x4E24;&#x4E2A;&#x5143;&#x7D20;x&#x548C;y&#xFF0C;&#x9996;&#x5148;&#x67E5;&#x627E;&#x5176;&#x5404;&#x81EA;&#x6839;&#x8282;&#x70B9;&#xFF0C;&#x5982;&#x679C;&#x6839;&#x8282;&#x70B9;&#x76F8;&#x540C;&#xFF0C;&#x5219;&#x8BF4;&#x660E;&#x4E8C;&#x8005;&#x5728;&#x540C;&#x4E00;&#x5206;&#x7C7B;&#x4E2D;&#xFF0C;&#x65E0;&#x987B;&#x8FDB;&#x884C;&#x5408;&#x5E76;&#xFF0C;&#x53CD;&#x4E4B;&#x8BF4;&#x660E;&#x4E8C;&#x8005;&#x4E0D;&#x5728;&#x4E00;&#x4E2A;&#x5206;&#x652F;&#x4E2D;&#xFF0C;&#x9700;&#x8981;&#x8FDB;&#x884C;&#x5408;&#x5E76;&#xFF0C;&#x9ED8;&#x8BA4;&#x7684;&#x5408;&#x5E76;&#x65B9;&#x5F0F;&#x662F;&#x5C06;&#x4EFB;&#x610F;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#x7684;&#x7236;&#x8282;&#x70B9;&#x8BBE;&#x7F6E;&#x4E3A;&#x53E6;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#x5373;&#x53EF;&#x3002;</li>
+<li>&#x4F18;&#x5316;&#xFF1A;
+<ul>
+<li>&#x5982;&#x679C;&#x5B58;&#x5728;&#x957F;&#x5EA6;&#x4E3A;n&#x7684;&#x94FE;&#x5F0F;&#x7ED3;&#x6784;&#xFF0C;&#x5219;&#x5728;&#x67E5;&#x627E;&#x6839;&#x8282;&#x70B9;&#x7684;&#x8FC7;&#x7A0B;&#x4E2D;&#x9700;&#x8981;&#x904D;&#x5386;n&#x4E2A;&#x5143;&#x7D20;&#x3002;&#x5C06;&#x94FE;&#x5F0F;&#x7ED3;&#x6784;&#x8FDB;&#x884C;&#x8DEF;&#x5F84;&#x538B;&#x7F29; &#xFF0C;&#x5176;&#x6839;&#x8282;&#x70B9;&#x4F5C;&#x4E3A;&#x6839;&#x8282;&#x70B9;&#xFF0C;&#x5176;&#x4F59;n-1&#x4E2A;&#x5143;&#x7D20;&#x5747;&#x4E3A;&#x5B50;&#x8282;&#x70B9;&#xFF0C;&#x5219;&#x67E5;&#x627E;&#x8FC7;&#x7A0B;&#x53EA;&#x9700;&#x8981;&#x904D;&#x5386;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#x5373;&#x53EF;&#x3002;</li>
+<li>&#x5728;&#x5408;&#x5E76;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x5982;&#x679C;x&#x6240;&#x5728;&#x5206;&#x652F;&#x6DF1;&#x5EA6;&#x4E3A;Dx&#xFF0C;y&#x6240;&#x5728;&#x5206;&#x652F;&#x6DF1;&#x5EA6;&#x4E3A;Dy&#xFF0C;&#x5219;&#x9700;&#x8981;&#x6BD4;&#x8F83;&#x4E8C;&#x8005;&#x5927;&#x5C0F;&#xFF0C;&#x5C06;&#x6DF1;&#x5EA6;&#x5C0F;&#x7684;&#x8FDE;&#x63A5;&#x5230;&#x6DF1;&#x5EA6;&#x5927;&#x7684;&#x5206;&#x652F;&#x4E0A;&#xFF0C;&#x6700;&#x7EC8;&#x7684;&#x5206;&#x652F;&#x6DF1;&#x5EA6;&#x4E0D;&#x4F1A;&#x8D85;&#x8FC7;max&#xFF08;Dx&#xFF0C;Dy&#xFF09;&#xFF0C;&#x5F15;&#x5165;&#x8868;&#x793A;&#x79E9;&#x7684;&#x6570;&#x7EC4;rank[]&#x7528;&#x4E8E;&#x8BB0;&#x5F55;&#x6BCF;&#x4E2A;&#x5143;&#x7D20;&#x8DDD;&#x79BB;&#x6839;&#x8282;&#x70B9;&#x7684;&#x6DF1;&#x5EA6;&#x3002;</li>
+</ul>
 </li>
 </ol>
+<p>&#x4EE3;&#x7801;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="language-java">public class test {
+    static int vertices = 6;
+    /*
+        &#x521D;&#x59CB;&#x5316;parent&#x548C;rank
+     */
+    static void initialise(int parent[], int rank[]){
+        for(int i=0; i&lt;vertices; i++){
+            parent[i] = -1;
+            rank[i] = 0;
+        }
+    }
+    /*
+        &#x67E5;&#x627E;x&#x7684;&#x6839;&#x8282;&#x70B9;
+     */
+    static int find_root(int x, int parent[]){
+        int x_root = x;
+        while(parent[x_root] != -1){
+            x_root = parent[x_root];
+        }
+        return x_root;
+    }
+    /*
+        &#x6839;&#x636E;rank&#x5408;&#x5E76;&#x4E24;&#x4E2A;&#x8282;&#x70B9;
+        &#x5982;&#x679C;x y&#x7684;&#x6839;&#x8282;&#x70B9;&#x76F8;&#x540C;&#xFF0C;&#x5219;&#x8BF4;&#x660E;&#x5728;&#x540C;&#x4E00;&#x4E2A;&#x5206;&#x652F;&#x4E2D;&#xFF0C;&#x65E0;&#x987B;&#x5408;&#x5E76;
+        &#x5982;&#x679C;&#x4E0D;&#x76F8;&#x540C;&#xFF0C;&#x5C06;&#x5206;&#x652F;&#x5C42;&#x6570;&#x5C0F;&#x7684;&#x5408;&#x5E76;&#x5230;&#x5C42;&#x6570;&#x5927;&#x7684;&#x5206;&#x652F;&#x4E0A;
+     */
+    static int union_vertices(int x, int y, int parent[],int rank[]){
+        int x_root = find_root(x,parent);
+        int y_root = find_root(y,parent);
+        if(x_root == y_root){
+            return 0;
+        }else{
+            if(rank[x_root] &gt; rank[y_root]){
+                parent[y_root] = x_root;
+            }else if(rank[y_root] &gt; rank[x_root]){
+                parent[x_root] = y_root;
+            }else {
+                parent[x_root] = y_root;
+                rank[y_root]++;
+            }
+            return 1;
+        }
+    }
+    public static void main(String[] args) {
+        int[] parent = new int[vertices];
+        int[] rank = new int[vertices];
+        int edge[][]={
+            {0,1},{1,2},{1,3},{2,4},{3,4},{2,5}
+        };
+        initialise(parent,rank);
+        for(int i=0; i&lt;6; i++){
+            int x = edge[i][0];
+            int y = edge[i][1];
+            if(union_vertices(x,y,parent,rank) == 0){
+                System.out.println(&quot;cycle&quot;);
+                return;
+            }
+        }
+        System.out.println(&quot;no cycle&quot;);
+    }
+}
+</code></pre>
+<h3 id="leetcode&#x9898;&#x89E3;"><a class="header-anchor" href="#leetcode&#x9898;&#x89E3;">&#xB6;</a>leetcode&#x9898;&#x89E3;</h3>
+<pre><code class="language-java">class Solution {
+    public boolean equationsPossible(String[] equations) {
+        //&#x4F7F;&#x7528;&#x5E76;&#x67E5;&#x96C6;&#xFF0C;&#x5BF9;6&#x4E2A;&#x5B57;&#x6BCD;&#x8FDB;&#x884C;&#x5408;&#x5E76;&#x67E5;&#x627E;
+        int length = equations.length;
+        int[] parent = new int[26];
+        for (int i = 0; i &lt; 26; i++) {
+            parent[i] = i;
+        }
+        // ==&#x4E24;&#x8FB9;&#x7684;&#x5B57;&#x6BCD;&#x8FDB;&#x884C;&#x5408;&#x5E76;&#xFF0C;&#x8868;&#x793A;&#x5728;&#x4E00;&#x4E2A;&#x96C6;&#x5408;&#x4E2D;
+        for (String str : equations) {
+            if (str.charAt(1) == &apos;=&apos;) {
+                int index1 = str.charAt(0) - &apos;a&apos;;
+                int index2 = str.charAt(3) - &apos;a&apos;;
+                union(parent, index1, index2);
+            }
+        }
+        // !=&#x4E24;&#x8FB9;&#x7684;&#x5B57;&#x6BCD;&#xFF0C;&#x67E5;&#x627E;&#x5176;&#x5404;&#x81EA;&#x7684;&#x6839;&#x8282;&#x70B9;&#xFF0C;&#x5982;&#x679C;&#x76F8;&#x7B49;&#xFF0C;&#x8BF4;&#x660E;&#x8FD9;&#x4E24;&#x4E2A;&#x5B57;&#x6BCD;&#x7684;&#x503C;&#x76F8;&#x7B49;&#xFF0C;&#x8FD9;&#x4E0E;!=&#x77DB;&#x76FE;&#xFF0C;&#x76F4;&#x63A5;&#x8FD4;&#x56DE;false
+        for (String str : equations) {
+            if (str.charAt(1) == &apos;!&apos;) {
+                int index1 = str.charAt(0) - &apos;a&apos;;
+                int index2 = str.charAt(3) - &apos;a&apos;;
+                if (find(parent, index1) == find(parent, index2)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+// &#x76F4;&#x63A5;&#x5408;&#x5E76;&#x4E24;&#x4E2A;&#x5206;&#x652F;&#xFF0C;&#x4E0D;&#x8003;&#x8651;&#x79E9;&#x4EE5;&#x53CA;&#x5728;&#x540C;&#x4E00;&#x5206;&#x652F;&#x7684;&#x60C5;&#x51B5;
+// &#x5728;&#x540C;&#x4E00;&#x5206;&#x652F;&#x76F4;&#x63A5;&#x5408;&#x5E76;&#xFF0C;&#x4E0E;&#x521D;&#x59CB;&#x5316;&#x7684;parent[i]=i&#x4E00;&#x6837;
+    public void union(int[] parent, int index1, int index2) {
+        parent[find(parent, index1)] = find(parent, index2);
+    }
+
+    public int find(int[] parent, int index) {
+        while (parent[index] != index) {
+            parent[index] = parent[parent[index]];
+            index = parent[index];
+        }
+        return index;
+    }
+}
+</code></pre>
 
     </div>
 
@@ -316,12 +416,12 @@ abbrlink:
   <!-- JS库 sweetalert 可修改路径 -->
   <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <p><span>本文标题:</span><a href="/article/4d2572a4.html/">Hexo-NexT固定链接优化</a></p>
+  <p><span>本文标题:</span><a href="/article/9e0f260f.html/">leetcode-并查集</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 金陵小汤包 的个人博客">金陵小汤包</a></p>
-  <p><span>发布时间:</span>2020年05月31日 - 10:23:12</p>
-  <p><span>最后更新:</span>2020年05月31日 - 10:39:41</p>
-  <p><span>原始链接:</span><a href="/article/4d2572a4.html/" title="Hexo-NexT固定链接优化">https://tangtangsama.github.io/article/4d2572a4.html/</a>
-    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://tangtangsama.github.io/article/4d2572a4.html/"  aria-label="复制成功！"></i></span>
+  <p><span>发布时间:</span>2020年06月08日 - 12:45:05</p>
+  <p><span>最后更新:</span>2020年06月08日 - 13:13:54</p>
+  <p><span>原始链接:</span><a href="/article/9e0f260f.html/" title="leetcode-并查集">https://tangtangsama.github.io/article/9e0f260f.html/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://tangtangsama.github.io/article/9e0f260f.html/"  aria-label="复制成功！"></i></span>
   </p>
   <p>非商业性使用-转载请保留原文链接及作者。</p>
 </div>
@@ -367,13 +467,10 @@ abbrlink:
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/article/95f06cdc.html/" rel="prev" title="Hexo-NexT主题添加网页崩溃效果">
-      <i class="fa fa-chevron-left"></i> Hexo-NexT主题添加网页崩溃效果
+    <a href="/article/f7ede91d.html/" rel="prev" title="Java基础">
+      <i class="fa fa-chevron-left"></i> Java基础
     </a></div>
-      <div class="post-nav-item">
-    <a href="/article/d6798dd0.html/" rel="next" title="Java变量在内存中的存储位置">
-      Java变量在内存中的存储位置 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
