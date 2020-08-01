@@ -99,6 +99,274 @@
       </categories>
   </entry>
   <entry>
+    <title>JavaWeb之Ajax、Json</title>
+    <url>/article/986e7432.html/</url>
+    <content><![CDATA[<p>JavaWeb&#x5B66;&#x4E60;&#x4E2D;&#x5173;&#x4E8E;AJAX&#x548C;JSON&#x7684;&#x76F8;&#x5173;&#x77E5;&#x8BC6;</p>
+<a id="more"></a>
+<h2 id="Ajax"><a class="header-anchor" href="#Ajax">&#xB6;</a>Ajax</h2>
+<ol>
+<li>
+<p>&#x6982;&#x5FF5;&#xFF1A;AJAX = Asynchronous JavaScript and XML&#xFF08;&#x5F02;&#x6B65;&#x7684; JavaScript &#x548C; XML&#xFF09;</p>
+<ul>
+<li>&#x540C;&#x6B65;&#xFF1A;&#x5BA2;&#x6237;&#x7AEF;&#x5FC5;&#x987B;&#x7B49;&#x5F85;&#x670D;&#x52A1;&#x5668;&#x7AEF;&#x7684;&#x54CD;&#x5E94;&#x3002;&#x5728;&#x7B49;&#x5F85;&#x7684;&#x671F;&#x95F4;&#x5BA2;&#x6237;&#x7AEF;&#x4E0D;&#x80FD;&#x505A;&#x5176;&#x4ED6;&#x64CD;&#x4F5C;&#x3002;</li>
+<li>&#x5F02;&#x6B65;&#xFF1A;&#x5BA2;&#x6237;&#x7AEF;&#x4E0D;&#x9700;&#x8981;&#x7B49;&#x5F85;&#x670D;&#x52A1;&#x5668;&#x7AEF;&#x7684;&#x54CD;&#x5E94;&#x3002;&#x5728;&#x670D;&#x52A1;&#x5668;&#x5904;&#x7406;&#x8BF7;&#x6C42;&#x7684;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x5BA2;&#x6237;&#x7AEF;&#x53EF;&#x4EE5;&#x8FDB;&#x884C;&#x5176;&#x4ED6;&#x7684;&#x64CD;&#x4F5C;&#x3002;</li>
+<li>Ajax&#x6280;&#x672F;&#x80FD;&#x5728;&#x65E0;&#x9700;&#x91CD;&#x65B0;&#x52A0;&#x8F7D;&#x6574;&#x4E2A;&#x7F51;&#x9875;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x66F4;&#x65B0;&#x90E8;&#x5206;&#x7F51;&#x9875;&#xFF0C;&#x4F7F;&#x7F51;&#x9875;&#x5B9E;&#x73B0;&#x5F02;&#x6B65;&#x66F4;&#x65B0;&#x3002;</li>
+</ul>
+</li>
+<li>
+<p>&#x5B9E;&#x73B0;&#x65B9;&#x5F0F;</p>
+<ul>
+<li>
+<p>&#x539F;&#x751F;JS&#x65B9;&#x5F0F;</p>
+<ol>
+<li>
+<p>&#x521B;&#x5EFA;&#x6838;&#x5FC3;&#x5BF9;&#x8C61;xmlhttp</p>
+<pre><code>var xmlhttp;
+if (window.XMLHttpRequest)
+{// code for IE7+, Firefox, Chrome, Opera, Safari
+    xmlhttp=new XMLHttpRequest();
+}
+else
+{// code for IE6, IE5
+    xmlhttp=new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);
+}
+</code></pre>
+</li>
+<li>
+<p>&#x4F7F;&#x7528;open&#x65B9;&#x6CD5;&#x5EFA;&#x7ACB;&#x8FDE;&#x63A5;<br>
+&#x53C2;&#x6570;&#xFF1A;</p>
+<ul>
+<li>&#x8BF7;&#x6C42;&#x65B9;&#x5F0F;&#xFF1A;GET&#x3001;POST
+<ul>
+<li>get&#x65B9;&#x5F0F;&#xFF0C;&#x8BF7;&#x6C42;&#x53C2;&#x6570;&#x5728;URL&#x540E;&#x8FB9;&#x62FC;&#x63A5;&#x3002;send&#x65B9;&#x6CD5;&#x4E3A;&#x7A7A;&#x53C2;&#x3002;</li>
+<li>post&#x65B9;&#x5F0F;&#xFF0C;&#x8BF7;&#x6C42;&#x53C2;&#x6570;&#x5728;send&#x65B9;&#x6CD5;&#x4E2D;&#x5B9A;&#x4E49;&#x3002;</li>
+</ul>
+</li>
+<li>&#x8BF7;&#x6C42;&#x7684;URL&#x3002;</li>
+<li>&#x540C;&#x6B65;&#x6216;&#x5F02;&#x6B65;&#x8BF7;&#x6C42;&#xFF1A;true&#xFF08;&#x5F02;&#x6B65;&#xFF09;&#x6216; false&#xFF08;&#x540C;&#x6B65;&#xFF09;&#x3002;</li>
+<li>&#x4F8B;&#x5982;&#xFF1A;<code>xmlhttp.open(&quot;GET&quot;,&quot;ajaxServlet?username=tom&quot;,true);</code></li>
+</ul>
+</li>
+<li>
+<p>&#x4F7F;&#x7528;send&#x65B9;&#x6CD5;&#x53D1;&#x9001;&#x8BF7;&#x6C42;</p>
+</li>
+<li>
+<p>&#x63A5;&#x53D7;&#x5E76;&#x5904;&#x7406;&#x6765;&#x81EA;&#x670D;&#x52A1;&#x5668;&#x7684;&#x54CD;&#x5E94;&#x7ED3;&#x679C;</p>
+<ul>
+<li>&#x4F7F;&#x7528;XMLHttpRequest&#x5BF9;&#x8C61;&#x7684;responseText&#x6216;responseXML&#x5C5E;&#x6027;&#x63A5;&#x53D7;&#x7ED3;&#x679C;&#x3002;</li>
+<li>&#x5F53;&#x670D;&#x52A1;&#x5668;&#x54CD;&#x5E94;&#x6210;&#x529F;&#x540E;&#x518D;&#x83B7;&#x53D6;</li>
+<li>&#x5F53;xmlhttp&#x5BF9;&#x8C61;&#x7684;&#x5C31;&#x7EEA;&#x72B6;&#x6001;&#x6539;&#x53D8;&#x65F6;&#xFF0C;&#x89E6;&#x53D1;&#x4E8B;&#x4EF6;onreadystatechange&#x3002;</li>
+</ul>
+<pre><code>xmlhttp.onreadystatechange=function()
+{
+    //&#x5224;&#x65AD;readyState&#x5C31;&#x7EEA;&#x72B6;&#x6001;&#x662F;&#x5426;&#x4E3A;4&#xFF0C;&#x5224;&#x65AD;status&#x54CD;&#x5E94;&#x72B6;&#x6001;&#x7801;&#x662F;&#x5426;&#x4E3A;200
+    if (xmlhttp.readyState==4 &amp;&amp; xmlhttp.status==200)
+    {
+       //&#x83B7;&#x53D6;&#x670D;&#x52A1;&#x5668;&#x7684;&#x54CD;&#x5E94;&#x7ED3;&#x679C;
+        var responseText = xmlhttp.responseText;
+        alert(responseText);
+    }
+}
+</code></pre>
+</li>
+</ol>
+</li>
+<li>
+<p>JQ&#x4E2D;&#x4F7F;&#x7528;Ajax</p>
+<ol>
+<li>
+<p><code>$.ajax()</code></p>
+<ul>
+<li>
+<p>&#x8BED;&#x6CD5;&#xFF1A;<code>$.ajax({&#x952E;&#x503C;&#x5BF9;});</code></p>
+</li>
+<li>
+<p>&#x952E;&#x503C;&#x5BF9;&#x4E3B;&#x8981;&#x5305;&#x62EC;&#xFF1A;</p>
+<ul>
+<li>url&#xFF1A;&#x8BBE;&#x7F6E;&#x8BF7;&#x6C42;&#x8DEF;&#x5F84;&#xFF0C;&#x5FC5;&#x9009;&#x9879;&#x3002;</li>
+<li>type&#xFF1A;&#x8BF7;&#x6C42;&#x65B9;&#x5F0F;&#xFF0C;&#x9ED8;&#x8BA4;&#x4E3A;GET&#x3002;</li>
+<li>data&#xFF1A;&#x53D1;&#x9001;&#x5230;&#x670D;&#x52A1;&#x5668;&#x7684;&#x6570;&#x636E;&#x3002;</li>
+<li>&#x56DE;&#x8C03;&#x51FD;&#x6570;&#xFF1A;&#x4E3B;&#x8981;&#x6709;beforeSend&#x3001;error&#x3001;dataFilter&#x3001;success&#x3001;complete&#x3002;</li>
+</ul>
+<pre><code>$.ajax({
+    url:&quot;ajaxServlet1111&quot; , // &#x8BF7;&#x6C42;&#x8DEF;&#x5F84;
+    type:&quot;POST&quot; , //&#x8BF7;&#x6C42;&#x65B9;&#x5F0F;
+    //data: &quot;username=jack&amp;age=23&quot;,//&#x8BF7;&#x6C42;&#x53C2;&#x6570;
+    data:{&quot;username&quot;:&quot;jack&quot;,&quot;age&quot;:23},
+    success:function (data) {
+        alert(data);
+    },//&#x54CD;&#x5E94;&#x6210;&#x529F;&#x540E;&#x7684;&#x56DE;&#x8C03;&#x51FD;&#x6570;
+    error:function () {
+        alert(&quot;&#x51FA;&#x9519;&#x5566;...&quot;)
+    },//&#x8868;&#x793A;&#x5982;&#x679C;&#x8BF7;&#x6C42;&#x54CD;&#x5E94;&#x51FA;&#x73B0;&#x9519;&#x8BEF;&#xFF0C;&#x4F1A;&#x6267;&#x884C;&#x7684;&#x56DE;&#x8C03;&#x51FD;&#x6570;
+
+    dataType:&quot;text&quot;//&#x8BBE;&#x7F6E;&#x63A5;&#x53D7;&#x5230;&#x7684;&#x54CD;&#x5E94;&#x6570;&#x636E;&#x7684;&#x683C;&#x5F0F;
+});
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><code>$.get()</code>&#xFF1A;&#x53D1;&#x9001;GET&#x7C7B;&#x578B;&#x8BF7;&#x6C42;</p>
+<ul>
+<li>&#x8BED;&#x6CD5;&#xFF1A;<code>$.get(url, [data], [callback], [type])</code>
+<ul>
+<li>&#x53C2;&#x6570;&#xFF1A;
+<ul>
+<li>url&#xFF1A;&#x8BF7;&#x6C42;&#x8DEF;&#x5F84;</li>
+<li>data&#xFF1A;&#x8BF7;&#x6C42;&#x53C2;&#x6570;</li>
+<li>callback&#xFF1A;&#x56DE;&#x8C03;&#x51FD;&#x6570;</li>
+<li>type&#xFF1A;&#x54CD;&#x5E94;&#x7ED3;&#x679C;&#x7684;&#x7C7B;&#x578B;</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><code>$.post()</code>&#xFF1A;&#x53D1;&#x9001;post&#x8BF7;&#x6C42;</p>
+<ul>
+<li>&#x8BED;&#x6CD5;&#xFF1A;<code>$.post(url, [data], [callback], [type])</code>
+<ul>
+<li>&#x53C2;&#x6570;&#xFF1A;
+<ul>
+<li>url&#xFF1A;&#x8BF7;&#x6C42;&#x8DEF;&#x5F84;</li>
+<li>data&#xFF1A;&#x8BF7;&#x6C42;&#x53C2;&#x6570;</li>
+<li>callback&#xFF1A;&#x56DE;&#x8C03;&#x51FD;&#x6570;</li>
+<li>type&#xFF1A;&#x54CD;&#x5E94;&#x7ED3;&#x679C;&#x7684;&#x7C7B;&#x578B;</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="Json"><a class="header-anchor" href="#Json">&#xB6;</a>Json</h2>
+<ol>
+<li>
+<p>&#x6982;&#x5FF5;&#xFF1A;JSON=JavaScript Object Notation(JavaScript &#x5BF9;&#x8C61;&#x8868;&#x793A;&#x6CD5;)</p>
+<ul>
+<li>JSON&#x662F;&#x5B58;&#x50A8;&#x548C;&#x4EA4;&#x6362;&#x6587;&#x672C;&#x4FE1;&#x606F;&#x7684;&#x8BED;&#x6CD5;&#xFF0C;&#x7C7B;&#x4F3C; XML&#xFF0C;&#x4F46;&#x6BD4;XML&#x66F4;&#x5C0F;&#x3001;&#x66F4;&#x5FEB;&#xFF0C;&#x66F4;&#x6613;&#x89E3;&#x6790;&#x3002;</li>
+</ul>
+</li>
+<li>
+<p>&#x8BED;&#x6CD5;</p>
+<ol>
+<li>&#x57FA;&#x672C;&#x8BED;&#x6CD5;&#xFF0C;JSON &#x8BED;&#x6CD5;&#x662F; JavaScript &#x5BF9;&#x8C61;&#x8868;&#x793A;&#x8BED;&#x6CD5;&#x7684;&#x5B50;&#x96C6;&#x3002;
+<ul>
+<li>&#x6570;&#x636E;&#x5728;&#x540D;&#x79F0;/&#x503C;&#x5BF9;&#x4E2D;&#xFF1A;json&#x6570;&#x636E;&#x662F;&#x7531;&#x952E;&#x503C;&#x5BF9;&#x6784;&#x6210;&#x7684;
+<ul>
+<li>&#x952E;&#x7528;&#x5F15;&#x53F7;(&#x5355;&#x53CC;&#x90FD;&#x884C;)&#x5F15;&#x8D77;&#x6765;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x4E0D;&#x4F7F;&#x7528;&#x5F15;&#x53F7;</li>
+<li>&#x503C;&#x5F97;&#x53D6;&#x503C;&#x7C7B;&#x578B;&#xFF1A;
+<ol>
+<li>&#x6570;&#x5B57;&#xFF08;&#x6574;&#x6570;&#x6216;&#x6D6E;&#x70B9;&#x6570;&#xFF09;</li>
+<li>&#x5B57;&#x7B26;&#x4E32;&#xFF08;&#x5728;&#x53CC;&#x5F15;&#x53F7;&#x4E2D;&#xFF09;</li>
+<li>&#x903B;&#x8F91;&#x503C;&#xFF08;true &#x6216; false&#xFF09;</li>
+<li>&#x6570;&#x7EC4;&#xFF08;&#x5728;&#x65B9;&#x62EC;&#x53F7;&#x4E2D;&#xFF09;	{&#x201C;persons&#x201D;:[{},{}]}</li>
+<li>&#x5BF9;&#x8C61;&#xFF08;&#x5728;&#x82B1;&#x62EC;&#x53F7;&#x4E2D;&#xFF09; {&#x201C;address&#x201D;:{&#x201C;province&#x201D;&#xFF1A;&#x201C;&#x9655;&#x897F;&#x201D;&#x2026;}}</li>
+<li>null</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>&#x6570;&#x636E;&#x7531;&#x9017;&#x53F7;&#x5206;&#x9694;&#xFF1A;&#x591A;&#x4E2A;&#x952E;&#x503C;&#x5BF9;&#x7531;&#x9017;&#x53F7;&#x5206;&#x9694;</li>
+<li>&#x82B1;&#x62EC;&#x53F7;&#x4FDD;&#x5B58;&#x5BF9;&#x8C61;&#xFF1A;&#x4F7F;&#x7528;{}&#x5B9A;&#x4E49;json&#x683C;&#x5F0F;</li>
+<li>&#x65B9;&#x62EC;&#x53F7;&#x4FDD;&#x5B58;&#x6570;&#x7EC4;&#xFF1A;[]</li>
+</ul>
+</li>
+<li>&#x83B7;&#x53D6;&#x6570;&#x636E;:
+<ul>
+<li>json&#x5BF9;&#x8C61;.&#x952E;&#x540D;</li>
+<li>json&#x5BF9;&#x8C61;[&#x201C;&#x952E;&#x540D;&#x201D;]</li>
+<li>&#x6570;&#x7EC4;&#x5BF9;&#x8C61;[&#x7D22;&#x5F15;]</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p>JSON&#x6570;&#x636E;&#x548C;Java&#x5BF9;&#x8C61;&#x7684;&#x76F8;&#x4E92;&#x8F6C;&#x6362;</p>
+<ul>
+<li>Java&#x5BF9;&#x8C61;&#x8F6C;&#x6362;JSON
+<ol>
+<li>&#x4F7F;&#x7528;&#x6B65;&#x9AA4;&#xFF1A;
+<ol>
+<li>&#x5BFC;&#x5165;jackson&#x7684;&#x76F8;&#x5173;jar&#x5305;</li>
+<li>&#x521B;&#x5EFA;Jackson&#x6838;&#x5FC3;&#x5BF9;&#x8C61; ObjectMapper</li>
+<li>&#x8C03;&#x7528;ObjectMapper&#x7684;&#x76F8;&#x5173;&#x65B9;&#x6CD5;&#x8FDB;&#x884C;&#x8F6C;&#x6362;
+<ol>
+<li>&#x8F6C;&#x6362;&#x65B9;&#x6CD5;&#xFF1A;
+<ul>
+<li>writeValue(&#x53C2;&#x6570;1&#xFF0C;obj):<br>
+&#x53C2;&#x6570;1&#xFF1A;<br>
+File&#xFF1A;&#x5C06;obj&#x5BF9;&#x8C61;&#x8F6C;&#x6362;&#x4E3A;JSON&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x5E76;&#x4FDD;&#x5B58;&#x5230;&#x6307;&#x5B9A;&#x7684;&#x6587;&#x4EF6;&#x4E2D;<br>
+Writer&#xFF1A;&#x5C06;obj&#x5BF9;&#x8C61;&#x8F6C;&#x6362;&#x4E3A;JSON&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x5E76;&#x5C06;json&#x6570;&#x636E;&#x586B;&#x5145;&#x5230;&#x5B57;&#x7B26;&#x8F93;&#x51FA;&#x6D41;&#x4E2D;<br>
+OutputStream&#xFF1A;&#x5C06;obj&#x5BF9;&#x8C61;&#x8F6C;&#x6362;&#x4E3A;JSON&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x5E76;&#x5C06;json&#x6570;&#x636E;&#x586B;&#x5145;&#x5230;&#x5B57;&#x8282;&#x8F93;&#x51FA;&#x6D41;&#x4E2D;</li>
+<li>writeValueAsString(obj):&#x5C06;&#x5BF9;&#x8C61;&#x8F6C;&#x4E3A;json&#x5B57;&#x7B26;&#x4E32;</li>
+</ul>
+</li>
+<li>&#x6CE8;&#x89E3;&#xFF1A;
+<ol>
+<li>@JsonIgnore&#xFF1A;&#x6392;&#x9664;&#x5C5E;&#x6027;&#xFF0C;&#x4E0D;&#x4F1A;&#x88AB;&#x8F6C;&#x6362;&#x6210;&#x5B57;&#x7B26;&#x4E32;&#x3002;</li>
+<li>@JsonFormat&#xFF1A;&#x5C5E;&#x6027;&#x683C;&#x5F0F;&#x5316;&#xFF0C;&#x8BBE;&#x7F6E;&#x5728;&#x5C5E;&#x6027;&#x5B9A;&#x4E49;&#x7684;&#x4E0A;&#x4E00;&#x884C;&#x3002;
+<ul>
+<li>@JsonFormat(pattern = &#x201C;yyyy-MM-dd&#x201D;)</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>JSON&#x8F6C;&#x4E3A;Java&#x5BF9;&#x8C61;
+<ol>
+<li>&#x5BFC;&#x5165;jackson&#x7684;&#x76F8;&#x5173;jar&#x5305;</li>
+<li>&#x521B;&#x5EFA;Jackson&#x6838;&#x5FC3;&#x5BF9;&#x8C61; ObjectMapper</li>
+<li>&#x8C03;&#x7528;ObjectMapper&#x7684;&#x76F8;&#x5173;&#x65B9;&#x6CD5;&#x8FDB;&#x884C;&#x8F6C;&#x6362;
+<ul>
+<li>readValue(json&#x5B57;&#x7B26;&#x4E32;&#x6570;&#x636E;,Class)</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p>JSON &#x4E0E; XML</p>
+<ul>
+<li>
+<p>JSON &#x4E0E; XML &#x7684;&#x76F8;&#x540C;&#x4E4B;&#x5904;&#xFF1A;<br>
+JSON &#x548C; XML &#x6570;&#x636E;&#x90FD;&#x662F; &#x201C;&#x81EA;&#x6211;&#x63CF;&#x8FF0;&#x201D; &#xFF0C;&#x90FD;&#x6613;&#x4E8E;&#x7406;&#x89E3;&#x3002;<br>
+JSON &#x548C; XML &#x6570;&#x636E;&#x90FD;&#x662F;&#x6709;&#x5C42;&#x6B21;&#x7684;&#x7ED3;&#x6784;<br>
+JSON &#x548C; XML &#x6570;&#x636E;&#x53EF;&#x4EE5;&#x88AB;&#x5927;&#x591A;&#x6570;&#x7F16;&#x7A0B;&#x8BED;&#x8A00;&#x4F7F;&#x7528;</p>
+</li>
+<li>
+<p>JSON &#x4E0E; XML &#x7684;&#x4E0D;&#x540C;&#x4E4B;&#x5904;&#xFF1A;<br>
+JSON &#x4E0D;&#x9700;&#x8981;&#x7ED3;&#x675F;&#x6807;&#x7B7E;<br>
+JSON &#x66F4;&#x52A0;&#x7B80;&#x77ED;<br>
+JSON &#x8BFB;&#x5199;&#x901F;&#x5EA6;&#x66F4;&#x5FEB;<br>
+JSON &#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x6570;&#x7EC4;</p>
+</li>
+<li>
+<p>&#x6700;&#x5927;&#x7684;&#x4E0D;&#x540C;&#x662F;&#xFF1A;XML &#x9700;&#x8981;&#x4F7F;&#x7528; XML &#x89E3;&#x6790;&#x5668;&#x6765;&#x89E3;&#x6790;&#xFF0C;JSON &#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x6807;&#x51C6;&#x7684; JavaScript &#x51FD;&#x6570;&#x6765;&#x89E3;&#x6790;&#x3002;</p>
+<p>JSON.parse(): &#x5C06;&#x4E00;&#x4E2A; JSON &#x5B57;&#x7B26;&#x4E32;&#x8F6C;&#x6362;&#x4E3A; JavaScript &#x5BF9;&#x8C61;&#x3002;<br>
+JSON.stringify(): &#x4E8E;&#x5C06; JavaScript &#x503C;&#x8F6C;&#x6362;&#x4E3A; JSON &#x5B57;&#x7B26;&#x4E32;&#x3002;</p>
+</li>
+</ul>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Java开发笔记</category>
+      </categories>
+  </entry>
+  <entry>
     <title>JavaWeb之Jquery</title>
     <url>/article/d827f78b.html/</url>
     <content><![CDATA[<p>JavaWeb&#x5B66;&#x4E60;&#x4E2D;&#x5173;&#x4E8E;Jquery&#x7684;&#x76F8;&#x5173;&#x77E5;&#x8BC6;</p>
