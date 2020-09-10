@@ -662,7 +662,17 @@ public class UserServlet extends BaseServlet {
 </code></pre>
 </li>
 <li>
-<p>&#x521B;&#x5EFA;&#x5B9E;&#x4F53;&#x7C7B;&#x4EE5;&#x53CA;&#x5BF9;&#x5E94;&#x7684;dao&#x7C7B;&#xFF0C;&#x5982;User&#x7C7B;&#x548C;UserDao&#x7C7B;</p>
+<p>&#x521B;&#x5EFA;&#x5B9E;&#x4F53;&#x7C7B;&#x4EE5;&#x53CA;&#x5BF9;&#x5E94;&#x7684;Dao&#x63A5;&#x53E3;&#xFF0C;&#x5982;User&#x7C7B;&#x548C;UserMapper&#x63A5;&#x53E3;</p>
+<pre><code class="language-java">public interface UserMapper {
+    /**
+     * &#x6839;&#x636E;id&#x67E5;&#x8BE2;&#x4E00;&#x4E2A;&#x7528;&#x6237;
+     *
+     * @param userID
+     * @return User
+     */
+    User findById(Integer id);
+}
+</code></pre>
 </li>
 <li>
 <p>&#x5728;resources&#x6587;&#x4EF6;&#x5939;&#x4E0B;&#x521B;&#x5EFA;MyBatis&#x4E3B;&#x914D;&#x7F6E;&#x6587;&#x4EF6;SqlMapConfig.xml</p>
@@ -702,9 +712,12 @@ public class UserServlet extends BaseServlet {
 &lt;!DOCTYPE mapper
         PUBLIC &quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;
         &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
-&lt;mapper namespace=&quot;cn.sucrelt.dao.UserDao&quot; resultType=&quot;cn.sucrelt.domain.User&quot;&gt;
-    &lt;select id=&quot;findAll&quot;&gt;
-        select * from user;
+&lt;mapper namespace=&quot;cn.sucrelt.dao.UserMapper&quot; resultType=&quot;cn.sucrelt.domain.User&quot;&gt;
+    &lt;!--&#x6839;&#x636E;id&#x67E5;&#x8BE2;&#x4E00;&#x4E2A;&#x7528;&#x6237;&#x4FE1;&#x606F;--&gt;
+    &lt;select id=&quot;findById&quot; parameterType=&quot;Integer&quot; resultMap=&quot;userMap&quot;&gt;
+        select *
+        from user
+        where id = #{id};
     &lt;/select&gt;
 &lt;/mapper&gt;
 </code></pre>
@@ -719,9 +732,9 @@ SqlSessionFactory factory = builder.build(in);
 //3.&#x4F7F;&#x7528;&#x5DE5;&#x5382;&#x751F;&#x4EA7;SqlSession&#x5BF9;&#x8C61;
 SqlSession session = factory.openSession();
 //4.&#x4F7F;&#x7528;SqlSession&#x5BF9;&#x8C61;&#x521B;&#x5EFA;Dao&#x63A5;&#x53E3;&#x7684;&#x4EE3;&#x7406;&#x5BF9;&#x8C61;
-UserDao userDao = session.getMapper(UserDao.class);
+UserMapper userMapper = session.getMapper(UserMapper.class);
 //5.&#x4F7F;&#x7528;&#x4EE3;&#x7406;&#x5BF9;&#x8C61;&#x6267;&#x884C;&#x65B9;&#x6CD5;
-List&lt;User&gt; users = userDao.findAll();
+List&lt;User&gt; users = userMapper.findAll();
 for (User user :
         users) {
     System.out.println(user);
@@ -751,7 +764,7 @@ in.close();
 <li>&#x628A;&#x5BF9;&#x8C61;&#x7684;&#x521B;&#x5EFA;&#x7EC6;&#x8282;&#x9690;&#x85CF;&#xFF0C;&#x4F7F;&#x4F7F;&#x7528;&#x8005;&#x76F4;&#x63A5;&#x8C03;&#x7528;&#x65B9;&#x6CD5;&#x5373;&#x53EF;&#x62FF;&#x5230;&#x590D;&#x6742;&#x5BF9;&#x8C61;&#x3002;</li>
 </ul>
 </li>
-<li>session.getMapper(UserDao.class);&#x4F7F;&#x7528;&#x4EE3;&#x7406;&#x6A21;&#x5F0F;
+<li>session.getMapper(UserMapper.class);&#x4F7F;&#x7528;&#x4EE3;&#x7406;&#x6A21;&#x5F0F;
 <ul>
 <li>&#x4F7F;&#x7528;&#x53E6;&#x4E00;&#x4E2A;&#x7C7B;&#x5B9E;&#x73B0;&#x5E76;&#x589E;&#x5F3A;&#x4E00;&#x4E2A;&#x7C7B;&#x7684;&#x529F;&#x80FD;&#x3002;</li>
 <li>&#x2B50;&#xFE0F;getMapper&#x65B9;&#x6CD5;&#x7684;&#x672C;&#x8D28;&#xFF1A;&#x4F7F;&#x7528;Proxy.newProxyInstance()&#x65B9;&#x6CD5;&#x751F;&#x6210;&#x4EE3;&#x7406;&#x5BF9;&#x8C61;MapperProxy&#x7C7B;&#xFF0C;&#x8BE5;&#x7C7B;&#x6700;&#x7EC8;&#x4F1A;&#x751F;&#x6210;&#x4E00;&#x4E2A;MappedMethod&#x5BF9;&#x8C61;,&#x7136;&#x540E;&#x6267;&#x884C;&#x5176;execute()&#x65B9;&#x6CD5;,&#x5C06;&#x5F53;&#x524D;&#x7684;sqlSession&#x548C;&#x65B9;&#x6CD5;&#x53C2;&#x6570;&#x4F20;&#x5165;&#x6267;&#x884C;sql&#xFF0C;&#x6700;&#x7EC8;&#x8FD8;&#x662F;&#x8C03;&#x7528;&#x4E86;sqlSession&#x76F8;&#x5E94;&#x7684;&#x65B9;&#x6CD5;&#x8FDB;&#x884C;&#x7684;&#x67E5;&#x8BE2;&#xFF0C;&#x6BD4;&#x5982;&#x8BF4;&#x6700;&#x5E38;&#x7528;&#x7684;&#x8FD4;&#x56DE;&#x591A;&#x4E2A;&#x503C;&#x5C31;&#x662F;&#x8C03;&#x7528;&#x4E86;sqlSession&#x7684;selectList()&#x65B9;&#x6CD5;&#x5B8C;&#x6210;&#x67E5;&#x8BE2;&#x3002;</li>
@@ -766,6 +779,21 @@ in.close();
 <li>&#x6620;&#x5C04;&#x6587;&#x4EF6;&#x4E2D;mapper&#x6807;&#x7B7E;&#x7684;namespace&#x5C5E;&#x6027;&#x7684;&#x53D6;&#x503C;&#x4E3A;&#x5BF9;&#x5E94;Dao&#x63A5;&#x53E3;&#x7684;&#x5168;&#x9650;&#x5B9A;&#x7C7B;&#x540D;&#x3002;</li>
 <li>&#x6620;&#x5C04;&#x6587;&#x4EF6;&#x4E2D;&#x64CD;&#x4F5C;&#x914D;&#x7F6E;&#x6807;&#x7B7E;&#xFF08;select&#xFF09;&#x7684;id&#x5C5E;&#x6027;&#x7684;&#x53D6;&#x503C;&#x4E3A;Dao&#x63A5;&#x53E3;&#x7684;&#x65B9;&#x6CD5;&#x540D;&#x3002;</li>
 <li>&#x6620;&#x5C04;&#x6587;&#x4EF6;&#x4E2D;&#x64CD;&#x4F5C;&#x914D;&#x7F6E;&#x6807;&#x7B7E;&#x7684;resultType&#x5C5E;&#x6027;&#xFF0C;&#x8868;&#x793A;&#x8FD4;&#x56DE;&#x7684;&#x5C01;&#x88C5;&#x5BF9;&#x8C61;&#x7684;&#x7C7B;&#x578B;&#x3002;</li>
+</ul>
+</li>
+<li>
+<p><strong>&#x2B50;&#xFE0F;Dao&#x63A5;&#x53E3;&#x7684;&#x539F;&#x7406;</strong></p>
+<ul>
+<li>
+<p>Dao&#x63A5;&#x53E3;&#xFF0C;Mapper&#x63A5;&#x53E3;&#xFF0C;&#x63A5;&#x53E3;&#x7684;&#x5168;&#x9650;&#x540D;&#xFF0C;&#x5C31;&#x662F;&#x6620;&#x5C04;&#x2F42;&#x4EF6;&#x4E2D;&#x7684;namespace&#x7684;&#x503C;&#xFF0C;&#x63A5;&#x53E3;&#x7684;&#x2F45;&#x6CD5;&#x540D;&#xFF0C;&#x5C31;&#x662F;&#x6620;&#x5C04;&#x2F42;&#x4EF6;&#x4E2D;&#x5BF9;&#x5E94;&#x64CD;&#x4F5C;&#x6807;&#x7B7E;&#xFF08;&#x5982;select&#xFF09;&#x7684;id&#x503C;&#xFF0C;&#x63A5;&#x53E3;&#x2F45;&#x6CD5;&#x5185;&#x7684;&#x53C2;&#x6570;&#xFF0C;&#x5C31;&#x662F;&#x4F20;&#x9012;&#x7ED9;sql&#x7684;&#x53C2;&#x6570;&#x3002;</p>
+</li>
+<li>
+<p>Mapper&#x63A5;&#x53E3;&#x662F;&#x6CA1;&#x6709;&#x5B9E;&#x73B0;&#x7C7B;&#x7684;&#xFF0C;&#x5F53;&#x8C03;&#x2F64;&#x63A5;&#x53E3;&#x2F45;&#x6CD5;&#x65F6;&#xFF0C;&#x63A5;&#x53E3;&#x5168;&#x9650;&#x540D;+&#x2F45;&#x6CD5;&#x540D;&#x62FC;&#x63A5;&#x5B57;&#x7B26;&#x4E32;&#x4F5C;&#x4E3A;key&#x503C;&#xFF0C;&#x53EF;&#x552F;&#x2F00;&#x5B9A;&#x4F4D;&#x2F00;&#x4E2A;&#x64CD;&#x4F5C;&#x6807;&#x7B7E;&#xFF08;select&#xFF0C;insert&#xFF0C;update&#xFF0C;delete&#x7B49;&#xFF09;&#x3002;</p>
+</li>
+<li>
+<p>Dao&#x63A5;&#x53E3;&#x2FA5;&#x7684;&#x2F45;&#x6CD5;&#xFF0C;&#x662F;&#x4E0D;&#x80FD;&#x91CD;&#x8F7D;&#x7684;&#xFF0C;&#x56E0;&#x4E3A;&#x662F;&#x5168;&#x9650;&#x540D;+&#x2F45;&#x6CD5;&#x540D;&#x7684;&#x4FDD;&#x5B58;&#x548C;&#x5BFB;&#x627E;&#x7B56;&#x7565;&#x3002;</p>
+<p>Dao&#x63A5;&#x53E3;&#x7684;&#x2F2F;&#x4F5C;&#x539F;&#x7406;&#x662F;JDK&#x52A8;&#x6001;&#x4EE3;&#x7406;&#xFF0C;Mybatis&#x8FD0;&#x2F8F;&#x65F6;&#x4F1A;&#x4F7F;&#x2F64;JDK&#x52A8;&#x6001;&#x4EE3;&#x7406;&#x4E3A;Dao&#x63A5;&#x53E3;&#x2F63;&#x6210;&#x4EE3;&#x7406;proxy&#x5BF9;&#x8C61;&#xFF0C;&#x4EE3;&#x7406;&#x5BF9;&#x8C61;proxy&#x4F1A;&#x62E6;&#x622A;&#x63A5;&#x53E3;&#x2F45;&#x6CD5;&#xFF0C;&#x8F6C;&#x2F7D;&#x6267;&#x2F8F;&#x6620;&#x5C04;&#x6587;&#x4EF6;&#x4E2D;&#x7684;sql&#xFF0C;&#x7136;&#x540E;&#x5C06;sql&#x6267;&#x2F8F;&#x7ED3;&#x679C;&#x8FD4;&#x56DE;&#x3002;</p>
+</li>
 </ul>
 </li>
 <li>
