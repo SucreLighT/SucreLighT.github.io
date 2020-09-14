@@ -635,7 +635,151 @@ public class UserServlet extends BaseServlet {
 </li>
 <li>&#x4F7F;&#x7528;&#x5DE5;&#x5382;&#x6A21;&#x5F0F;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#x89E3;&#x8026;&#xFF1A;&#x5728;&#x83B7;&#x53D6;&#x5BF9;&#x8C61;&#x65F6;&#xFF0C;&#x4E0D;&#x518D;&#x662F;&#x4F7F;&#x7528;new&#x5173;&#x952E;&#x5B57;&#x7684;&#x4E3B;&#x52A8;&#x521B;&#x5EFA;&#xFF0C;&#x800C;&#x662F;&#x901A;&#x8FC7;&#x5DE5;&#x5382;&#x7C7B;&#x88AB;&#x52A8;&#x83B7;&#x53D6;&#x5BF9;&#x8C61;&#x3002;<strong>&#x8FD9;&#x79CD;&#x88AB;&#x52A8;&#x63A5;&#x6536;&#x7684;&#x65B9;&#x5F0F;&#x83B7;&#x53D6;&#x5BF9;&#x8C61;&#x7684;&#x601D;&#x60F3;&#x5C31;&#x662F;&#x63A7;&#x5236;&#x53CD;&#x8F6C;IOC</strong>&#x3002;</li>
 </ol>
-<h2 id="Spring&#x5F00;&#x53D1;"><a class="header-anchor" href="#Spring&#x5F00;&#x53D1;">&#xB6;</a>Spring&#x5F00;&#x53D1;</h2>
+<h2 id="Spring-IOC"><a class="header-anchor" href="#Spring-IOC">&#xB6;</a>Spring-IOC</h2>
+<h3 id="1-&#x6301;&#x4E45;&#x5C42;&#x548C;&#x4E1A;&#x52A1;&#x5C42;&#x51C6;&#x5907;"><a class="header-anchor" href="#1-&#x6301;&#x4E45;&#x5C42;&#x548C;&#x4E1A;&#x52A1;&#x5C42;&#x51C6;&#x5907;">&#xB6;</a>1.&#x6301;&#x4E45;&#x5C42;&#x548C;&#x4E1A;&#x52A1;&#x5C42;&#x51C6;&#x5907;</h3>
+<h4 id="&#x6301;&#x4E45;&#x5C42;Dao"><a class="header-anchor" href="#&#x6301;&#x4E45;&#x5C42;Dao">&#xB6;</a>&#x6301;&#x4E45;&#x5C42;Dao</h4>
+<ol>
+<li>
+<p>AccountDao</p>
+<pre><code class="language-java">/**
+ * &#x8D26;&#x6237;&#x7684;&#x6301;&#x4E45;&#x5C42;&#x63A5;&#x53E3;
+ */
+public interface AccountDao {
+
+    /**
+     * &#x6A21;&#x62DF;&#x4FDD;&#x5B58;&#x8D26;&#x6237;
+     */
+    void saveAccount();
+}
+</code></pre>
+</li>
+<li>
+<p>AccountDaoImpl</p>
+<pre><code class="language-java">/**
+ * &#x8D26;&#x6237;&#x7684;&#x6301;&#x4E45;&#x5C42;&#x5B9E;&#x73B0;&#x7C7B;
+ */
+public class AccountDaoImpl implements AccountDao {
+
+    public  void saveAccount(){
+
+        System.out.println(&quot;&#x4FDD;&#x5B58;&#x4E86;&#x8D26;&#x6237;&quot;);
+    }
+}
+</code></pre>
+</li>
+</ol>
+<h4 id="&#x4E1A;&#x52A1;&#x5C42;Service"><a class="header-anchor" href="#&#x4E1A;&#x52A1;&#x5C42;Service">&#xB6;</a>&#x4E1A;&#x52A1;&#x5C42;Service</h4>
+<ol>
+<li>
+<p>AccountService</p>
+<pre><code class="language-java">/**
+ * &#x8D26;&#x6237;&#x4E1A;&#x52A1;&#x5C42;&#x7684;&#x63A5;&#x53E3;
+ */
+public interface AccountService {
+
+    /**
+     * &#x6A21;&#x62DF;&#x4FDD;&#x5B58;&#x8D26;&#x6237;
+     */
+    void saveAccount();
+}
+</code></pre>
+</li>
+<li>
+<p>AccountServiceImpl</p>
+<pre><code class="language-java">/**
+ * &#x8D26;&#x6237;&#x7684;&#x4E1A;&#x52A1;&#x5C42;&#x5B9E;&#x73B0;&#x7C7B;
+ */
+public class AccountServiceImpl implements AccountService {
+
+    private AccountDao accountDao = new AccountDaoImpl();
+
+    public void saveAccount() {
+        accountDao.saveAccount();
+    }
+}
+</code></pre>
+</li>
+</ol>
+<h3 id="2-&#x57FA;&#x4E8E;XML&#x7684;IOC&#x5165;&#x95E8;"><a class="header-anchor" href="#2-&#x57FA;&#x4E8E;XML&#x7684;IOC&#x5165;&#x95E8;">&#xB6;</a>2.&#x57FA;&#x4E8E;XML&#x7684;IOC&#x5165;&#x95E8;</h3>
+<ol>
+<li>
+<p>&#x5728;pom&#x6587;&#x4EF6;&#x4E2D;&#x5BFC;&#x5165;maven&#x4F9D;&#x8D56;</p>
+<pre><code class="language-xml">&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-context&lt;/artifactId&gt;
+    &lt;version&gt;5.0.2.RELEASE&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+</li>
+<li>
+<p>&#x521B;&#x5EFA;&#x914D;&#x7F6E;&#x6587;&#x4EF6;bean.xml&#xFF0C;&#x5728;&#x5B98;&#x7F51;&#x4E2D;&#x627E;&#x5230;&#x914D;&#x7F6E;&#x6A21;&#x7248;</p>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+       xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+       xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd&quot;&gt;
+
+&lt;bean id=&quot;accountService&quot; class=&quot;cn.sucrelt.service.impl.AccountServiceImpl&quot;&gt;
+    &lt;!-- collaborators and configuration for this bean go here --&gt;
+&lt;/bean&gt;
+
+&lt;bean id=&quot;accountDao&quot; class=&quot;cn.sucrelt.dao.impl.AccountDaoImpl&quot;&gt;
+&lt;/bean&gt;
+
+&lt;/beans&gt;
+</code></pre>
+<p><strong>bean&#x6807;&#x7B7E;</strong>&#xFF1A;&#x7528;&#x4E8E;&#x914D;&#x7F6E;&#x8BA9;spring&#x521B;&#x5EFA;&#x5BF9;&#x8C61;&#xFF0C;&#x5E76;&#x4E14;&#x5B58;&#x5165;ioc&#x5BB9;&#x5668;&#x4E4B;&#x4E2D;&#x3002;</p>
+<ul>
+<li>id&#x5C5E;&#x6027;&#xFF1A;&#x5BF9;&#x8C61;&#x7684;&#x552F;&#x4E00;&#x6807;&#x8BC6;&#x3002;</li>
+<li>class&#x5C5E;&#x6027;&#xFF1A;&#x6307;&#x5B9A;&#x8981;&#x521B;&#x5EFA;&#x5BF9;&#x8C61;&#x7684;&#x5168;&#x9650;&#x5B9A;&#x7C7B;&#x540D;&#x3002;</li>
+</ul>
+</li>
+<li>
+<p>&#x4F7F;&#x7528;spring&#x7BA1;&#x7406;</p>
+<pre><code class="language-java">/**
+ * &#x6A21;&#x62DF;&#x4E00;&#x4E2A;&#x8868;&#x73B0;&#x5C42;&#xFF0C;&#x7528;&#x4E8E;&#x8C03;&#x7528;&#x4E1A;&#x52A1;&#x5C42;
+ */
+public class Client {
+    /**
+     * &#x83B7;&#x53D6;Spring&#x7684;IOC&#x6838;&#x5FC3;&#x5BB9;&#x5668;&#xFF0C;&#x5E76;&#x6839;&#x636E;id&#x83B7;&#x53D6;&#x5BF9;&#x8C61;
+     *
+     * @param args
+     */
+    public static void main(String[] args) {
+        //1.&#x83B7;&#x53D6;&#x6838;&#x5FC3;&#x5BB9;&#x5668;&#x5BF9;&#x8C61;
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext(&quot;bean.xml&quot;);
+
+        //2.&#x6839;&#x636E;id&#x83B7;&#x53D6;Bean&#x5BF9;&#x8C61;
+        AccountService accountService = (AccountService) applicationContext.getBean(&quot;accountService&quot;);
+        AccountDao accountDao = applicationContext.getBean(&quot;accountDao&quot;, AccountDao.class);
+
+        System.out.println(accountService);
+        System.out.println(accountDao);
+    }
+}
+</code></pre>
+</li>
+</ol>
+<h3 id="3-IOC&#x76F8;&#x5173;&#x7C7B;&#x7684;&#x7EC6;&#x8282;"><a class="header-anchor" href="#3-IOC&#x76F8;&#x5173;&#x7C7B;&#x7684;&#x7EC6;&#x8282;">&#xB6;</a>3.IOC&#x76F8;&#x5173;&#x7C7B;&#x7684;&#x7EC6;&#x8282;</h3>
+<ol>
+<li>
+<p>ApplicationContext&#x7684;&#x4E09;&#x4E2A;&#x5E38;&#x7528;&#x5B9E;&#x73B0;&#x7C7B;&#x3002;</p>
+<p>&#x57FA;&#x4E8E;xml&#x914D;&#x7F6E;&#xFF1A;</p>
+<p><code>ClassPathXmlApplicationContext</code>&#xFF1A;&#x52A0;&#x8F7D;&#x7C7B;&#x8DEF;&#x5F84;&#x4E0B;&#x7684;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF0C;&#x63A8;&#x8350;&#x4F7F;&#x7528;&#xFF01;</p>
+<p><code>FileSystemXmlApplicationContext</code>&#xFF1A;&#x52A0;&#x8F7D;&#x78C1;&#x76D8;&#x4EFB;&#x610F;&#x8DEF;&#x5F84;&#x4E0B;&#x7684;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF0C;&#x5FC5;&#x987B;&#x6709;&#x8BBF;&#x95EE;&#x6743;&#x9650;&#x3002;</p>
+<p>&#x57FA;&#x4E8E;&#x6CE8;&#x89E3;&#x914D;&#x7F6E;&#xFF1A;</p>
+<p><code>AnnotationConfigApplicationContext</code>&#xFF1A;&#x8BFB;&#x53D6;&#x6CE8;&#x89E3;&#x521B;&#x5EFA;&#x5BB9;&#x5668;&#x3002;</p>
+</li>
+<li>
+<p>BeanFactory&#x548C;ApplicationContext</p>
+<ul>
+<li>BeanFactory&#x662F;Spring &#x5BB9;&#x5668;&#x4E2D;&#x7684;&#x9876;&#x5C42;&#x63A5;&#x53E3;&#xFF0C;ApplicationContext &#x662F;&#x5B83;&#x7684;&#x5B50;&#x63A5;&#x53E3;&#x3002;</li>
+<li>BeanFactory &#x548C;ApplicationContext &#x7684;&#x521B;&#x5EFA;&#x5BF9;&#x8C61;&#x7684;&#x65F6;&#x95F4;&#x70B9;&#x4E0D;&#x4E00;&#x6837;&#x3002;<br>
+ApplicationContext&#xFF1A;&#x76F4;&#x63A5;&#x52A0;&#x8F7D;&#xFF0C;&#x53EA;&#x8981;&#x4E00;&#x8BFB;&#x53D6;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF0C;&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;&#x5C31;&#x4F1A;&#x521B;&#x5EFA;&#x5BF9;&#x8C61;&#x3002;&#x9002;&#x7528;&#x4E8E;&#x5355;&#x4F8B;&#x5BF9;&#x8C61;&#x3002;&#x63A8;&#x8350;&#x4F7F;&#x7528;&#x3002;<br>
+BeanFactory&#xFF1A;&#x5EF6;&#x8FDF;&#x52A0;&#x8F7D;&#xFF0C;&#x6839;&#x636E;id&#x83B7;&#x53D6;&#x5BF9;&#x8C61;&#x65F6;&#x521B;&#x5EFA;&#x5BF9;&#x8C61;&#x3002;&#x9002;&#x7528;&#x4E8E;&#x591A;&#x4F8B;&#x5BF9;&#x8C61;&#x3002;</li>
+</ul>
+</li>
+</ol>
 ]]></content>
       <categories>
         <category>Java开发笔记</category>
