@@ -780,6 +780,99 @@ BeanFactory&#xFF1A;&#x5EF6;&#x8FDF;&#x52A0;&#x8F7D;&#xFF0C;&#x6839;&#x636E;id&#x
 </ul>
 </li>
 </ol>
+<h3 id="4-Bean&#x6807;&#x7B7E;"><a class="header-anchor" href="#4-Bean&#x6807;&#x7B7E;">&#xB6;</a>4.Bean&#x6807;&#x7B7E;</h3>
+<h4 id="1-&#x5B9E;&#x4F8B;&#x5316;bean&#x7684;&#x65B9;&#x5F0F;"><a class="header-anchor" href="#1-&#x5B9E;&#x4F8B;&#x5316;bean&#x7684;&#x65B9;&#x5F0F;">&#xB6;</a>1.&#x5B9E;&#x4F8B;&#x5316;bean&#x7684;&#x65B9;&#x5F0F;</h4>
+<ul>
+<li>
+<p>&#x4F7F;&#x7528;<strong>&#x9ED8;&#x8BA4;&#x6784;&#x9020;&#x51FD;&#x6570;</strong>&#x521B;&#x5EFA;&#xFF1A;&#x5728;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D;&#x4F7F;&#x7528;bean&#x6807;&#x7B7E;&#x5E76;&#x4F7F;&#x7528;id&#x548C;class&#x5C5E;&#x6027;&#x540E;&#x4E14;&#x6CA1;&#x6709;&#x5176;&#x4ED6;&#x5C5E;&#x6027;&#x548C;&#x6807;&#x7B7E;&#x65F6;&#xFF0C;&#x4F7F;&#x7528;&#x7684;&#x5C31;&#x662F;&#x8BE5;&#x65B9;&#x5F0F;&#x3002;&#x5982;&#x679C;&#x7C7B;&#x4E2D;&#x6CA1;&#x6709;&#x9ED8;&#x8BA4;&#x6784;&#x9020;&#x51FD;&#x6570;&#xFF0C;bean&#x5BF9;&#x8C61;&#x5C06;&#x521B;&#x5EFA;&#x5931;&#x8D25;&#x3002;</p>
+<pre><code class="language-xml">&lt;!--spring&#x914D;&#x7F6E;&#x6587;&#x4EF6;--&gt;
+&lt;bean id=&quot;accountService&quot; class=&quot;cn.sucrelt.service.impl.AccountServiceImpl&quot;&gt;&lt;/bean&gt;
+</code></pre>
+<pre><code class="language-java">//bean&#x5B9E;&#x4F53;&#x7C7B;&#x4E2D;&#x9700;&#x8981;&#x6709;&#x9ED8;&#x8BA4;&#x6784;&#x9020;&#x51FD;&#x6570;
+public class AccountServiceImpl implements AccountService {
+
+    public AccountServiceImpl(){
+        System.out.println(&quot;service&#x5BF9;&#x8C61;&#x521B;&#x5EFA;&#x4E86;&#x3002;&#x3002;&#x3002;&quot;);
+    }
+}
+</code></pre>
+</li>
+<li>
+<p>&#x4F7F;&#x7528;<strong>&#x5DE5;&#x5382;&#x7C7B;&#x4E2D;&#x7684;&#x9759;&#x6001;&#x65B9;&#x6CD5;</strong>&#x521B;&#x5EFA;&#x5BF9;&#x8C61;&#xFF0C;&#x5373;&#x4F7F;&#x7528;&#x67D0;&#x4E2A;&#x7C7B;&#x4E2D;&#x7684;&#x9759;&#x6001;&#x65B9;&#x6CD5;&#x521B;&#x5EFA;&#x5BF9;&#x8C61;&#x5E76;&#x5B58;&#x5165;spring&#x5BB9;&#x5668;&#x4E2D;&#x3002;</p>
+<pre><code class="language-xml">&lt;!--spring&#x914D;&#x7F6E;&#x6587;&#x4EF6;--&gt;
+&lt;bean id=&quot;accountService&quot; class=&quot;cn.sucrelt.factory.StaticFactory&quot; factory-method=&quot;getAccountService&quot;&gt;&lt;/bean&gt;
+</code></pre>
+<pre><code class="language-java">//&#x5B58;&#x5728;&#x4E00;&#x4E2A;&#x5BF9;&#x5E94;&#x7684;&#x5DE5;&#x5382;&#x7C7B;&#xFF0C;&#x5176;&#x4E2D;&#x5305;&#x542B;&#x751F;&#x6210;&#x8BE5;&#x5BF9;&#x8C61;&#x7684;&#x9759;&#x6001;&#x65B9;&#x6CD5;
+public class StaticFactory {
+    public static AccountService getAccountService() {
+        return new AccountServiceImpl();
+    }
+}
+</code></pre>
+<p>&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D;&#x6807;&#x7B7E;&#xFF1A;</p>
+<ul>
+<li>id&#x5C5E;&#x6027;&#xFF1A;&#x6307;&#x5B9A;bean&#x7684;id</li>
+<li>class&#x5C5E;&#x6027;&#xFF1A;&#x6307;&#x5B9A;&#x9759;&#x6001;&#x5DE5;&#x5382;&#x7684;&#x5168;&#x9650;&#x5B9A;&#x7C7B;&#x540D;</li>
+<li>factory-method&#x5C5E;&#x6027;&#xFF1A;&#x6307;&#x5B9A;&#x751F;&#x4EA7;&#x5BF9;&#x8C61;&#x7684;&#x9759;&#x6001;&#x65B9;&#x6CD5;</li>
+</ul>
+</li>
+<li>
+<p>&#x4F7F;&#x7528;<strong>&#x666E;&#x901A;&#x5DE5;&#x5382;&#x7C7B;&#x4E2D;&#x7684;&#x65B9;&#x6CD5;</strong>&#x521B;&#x5EFA;&#x5BF9;&#x8C61;&#x5E76;&#x5B58;&#x5165;spring&#x5BB9;&#x5668;&#x4E2D;&#x3002;</p>
+<pre><code class="language-java">&lt;!--spring&#x914D;&#x7F6E;&#x6587;&#x4EF6;--&gt;
+&lt;bean id=&quot;instancFactory&quot; class=&quot;cn.sucrelt.factory.InstanceFactory&quot;&gt;&lt;/bean&gt;
+&lt;bean id=&quot;accountService&quot; factory-bean=&quot;instancFactory&quot; factory-method=&quot;getAccountService&quot;&gt;&lt;/bean&gt;
+</code></pre>
+<pre><code class="language-java">//&#x5B58;&#x5728;&#x4E00;&#x4E2A;&#x5BF9;&#x5E94;&#x7684;&#x5DE5;&#x5382;&#x7C7B;&#xFF0C;&#x5176;&#x4E2D;&#x5305;&#x542B;&#x751F;&#x6210;&#x8BE5;&#x5BF9;&#x8C61;&#x7684;&#x65B9;&#x6CD5;
+public class InstanceFactory {
+    public AccountService getAccountService() {
+        return new AccountServiceImpl();
+    }
+}
+</code></pre>
+<p>&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D;&#x6807;&#x7B7E;&#xFF1A;</p>
+<ul>
+<li>factory-bean&#x5C5E;&#x6027;&#xFF1A;&#x7528;&#x4E8E;&#x6307;&#x5B9A;&#x5B9E;&#x4F8B;&#x5DE5;&#x5382;bean&#x7684;id</li>
+<li>factory-method&#x5C5E;&#x6027;&#xFF1A;&#x7528;&#x4E8E;&#x6307;&#x5B9A;&#x5B9E;&#x4F8B;&#x5DE5;&#x5382;&#x4E2D;&#x521B;&#x5EFA;&#x5BF9;&#x8C61;&#x7684;&#x65B9;&#x6CD5;</li>
+</ul>
+</li>
+<li>
+<p><strong>&#x6CE8;&#x610F;</strong>&#xFF1A;&#x5728;&#x4E00;&#x4E9B;&#x60C5;&#x51B5;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x4F7F;&#x7528;&#x7B2C;&#x4E09;&#x65B9;&#x7684;jar&#x5305;&#x4E2D;&#x7684;&#x7C7B;&#x4F5C;&#x4E3A;bean&#x5BF9;&#x8C61;&#xFF0C;&#x6216;&#x8005;&#x4F7F;&#x7528;&#x67D0;&#x4E2A;&#x65B9;&#x6CD5;&#x7684;&#x8FD4;&#x56DE;&#x503C;&#x5BF9;&#x5E94;&#x7684;&#x7C7B;&#x4F5C;&#x4E3A;bean&#x5BF9;&#x8C61;&#xFF0C;&#x540E;&#x4E24;&#x79CD;&#x901A;&#x8FC7;&#x5DE5;&#x5382;&#x4E2D;&#x7684;&#x65B9;&#x6CD5;&#x5B9E;&#x4F8B;&#x5316;bean&#x5BF9;&#x8C61;&#x7684;&#x65B9;&#x5F0F;&#x63D0;&#x4F9B;&#x4E86;&#x8FD9;&#x79CD;&#x64CD;&#x4F5C;&#x3002;</p>
+</li>
+</ul>
+<h4 id="2-bean&#x6807;&#x7B7E;&#x7684;&#x4F5C;&#x7528;&#x8303;&#x56F4;&#x4E0E;&#x751F;&#x547D;&#x5468;&#x671F;"><a class="header-anchor" href="#2-bean&#x6807;&#x7B7E;&#x7684;&#x4F5C;&#x7528;&#x8303;&#x56F4;&#x4E0E;&#x751F;&#x547D;&#x5468;&#x671F;">&#xB6;</a>2.bean&#x6807;&#x7B7E;&#x7684;&#x4F5C;&#x7528;&#x8303;&#x56F4;&#x4E0E;&#x751F;&#x547D;&#x5468;&#x671F;</h4>
+<ol>
+<li>
+<p>scope&#xFF1A;&#x6307;&#x5B9A;&#x5BF9;&#x8C61;&#x7684;&#x4F5C;&#x7528;&#x8303;&#x56F4;&#x3002;</p>
+<ul>
+<li>singleton &#xFF1A;&#x9ED8;&#x8BA4;&#x503C;&#xFF0C;&#x5355;&#x4F8B;&#x7684;&#x3002;</li>
+<li>prototype &#xFF1A;&#x591A;&#x4F8B;&#x7684;&#x3002;</li>
+<li>request &#xFF1A;WEB&#x9879;&#x76EE;&#x4E2D;&#xFF0C;Spring&#x521B;&#x5EFA;&#x4E00;&#x4E2A;Bean&#x7684;&#x5BF9;&#x8C61;&#xFF0C;&#x5C06;&#x5BF9;&#x8C61;&#x5B58;&#x5165;&#x5230;request&#x57DF;&#x4E2D;&#x3002;</li>
+<li>session &#xFF1A;WEB&#x9879;&#x76EE;&#x4E2D;&#xFF0C;Spring&#x521B;&#x5EFA;&#x4E00;&#x4E2A;Bean&#x7684;&#x5BF9;&#x8C61;&#xFF0C;&#x5C06;&#x5BF9;&#x8C61;&#x5B58;&#x5165;&#x5230;session&#x57DF;&#x4E2D;&#x3002;</li>
+<li>global-session &#xFF1A;WEB&#x9879;&#x76EE;&#x4E2D;&#xFF0C;&#x5E94;&#x7528;&#x5728;Portlet&#x73AF;&#x5883;&#xFF08;&#x96C6;&#x7FA4;&#x73AF;&#x5883;&#x7684;&#x4F1A;&#x8BDD;&#x8303;&#x56F4;&#xFF09;&#x3002;&#x5982;&#x679C;&#x6CA1;&#x6709;Portlet&#x73AF;&#x5883;&#x90A3;&#x4E48;globalSession&#x76F8;&#x5F53;&#x4E8E;session&#x3002;</li>
+</ul>
+</li>
+<li>
+<p>&#x751F;&#x547D;&#x5468;&#x671F;</p>
+<ul>
+<li>
+<p>&#x5355;&#x4F8B;&#x5BF9;&#x8C61;&#xFF1A;scope=&quot;singleton&quot;&#x4E00;&#x4E2A;&#x5E94;&#x7528;&#x53EA;&#x6709;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x7684;&#x5B9E;&#x4F8B;&#x3002;&#x5B83;&#x7684;&#x4F5C;&#x7528;&#x8303;&#x56F4;&#x5C31;&#x662F;&#x6574;&#x4E2A;&#x5F15;&#x7528;&#x3002;</p>
+<ul>
+<li>&#x5BF9;&#x8C61;&#x51FA;&#x751F;&#xFF1A;&#x5F53;&#x5E94;&#x7528;&#x52A0;&#x8F7D;&#xFF0C;&#x521B;&#x5EFA;&#x5BB9;&#x5668;&#x65F6;&#xFF0C;&#x5BF9;&#x8C61;&#x5C31;&#x88AB;&#x521B;&#x5EFA;&#x4E86;&#x3002;</li>
+<li>&#x5BF9;&#x8C61;&#x6D3B;&#x7740;&#xFF1A;&#x53EA;&#x8981;&#x5BB9;&#x5668;&#x5728;&#xFF0C;&#x5BF9;&#x8C61;&#x4E00;&#x76F4;&#x6D3B;&#x7740;&#x3002;</li>
+<li>&#x5BF9;&#x8C61;&#x6B7B;&#x4EA1;&#xFF1A;&#x5F53;&#x5E94;&#x7528;&#x5378;&#x8F7D;&#xFF0C;&#x9500;&#x6BC1;&#x5BB9;&#x5668;&#x65F6;&#xFF0C;&#x5BF9;&#x8C61;&#x5C31;&#x88AB;&#x9500;&#x6BC1;&#x4E86;&#x3002;</li>
+</ul>
+</li>
+<li>
+<p>&#x591A;&#x4F8B;&#x5BF9;&#x8C61;&#xFF1A;scope=&#x201C;prototype&#x201D; &#x6BCF;&#x6B21;&#x8BBF;&#x95EE;&#x5BF9;&#x8C61;&#x65F6;&#xFF0C;&#x90FD;&#x4F1A;&#x91CD;&#x65B0;&#x521B;&#x5EFA;&#x5BF9;&#x8C61;&#x5B9E;&#x4F8B;&#x3002;</p>
+<ul>
+<li>&#x5BF9;&#x8C61;&#x51FA;&#x751F;&#xFF1A;&#x5F53;&#x4F7F;&#x7528;&#x5BF9;&#x8C61;&#x65F6;&#xFF0C;&#x521B;&#x5EFA;&#x65B0;&#x7684;&#x5BF9;&#x8C61;&#x5B9E;&#x4F8B;&#x3002;</li>
+<li>&#x5BF9;&#x8C61;&#x6D3B;&#x7740;&#xFF1A;&#x53EA;&#x8981;&#x5BF9;&#x8C61;&#x5728;&#x4F7F;&#x7528;&#x4E2D;&#xFF0C;&#x5C31;&#x4E00;&#x76F4;&#x6D3B;&#x7740;&#x3002;</li>
+<li>&#x5BF9;&#x8C61;&#x6B7B;&#x4EA1;&#xFF1A;&#x5F53;&#x5BF9;&#x8C61;&#x957F;&#x65F6;&#x95F4;&#x4E0D;&#x7528;&#x65F6;&#xFF0C;&#x88AB;java&#x7684;&#x5783;&#x573E;&#x56DE;&#x6536;&#x5668;&#x56DE;&#x6536;&#x4E86;&#x3002;</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
 ]]></content>
       <categories>
         <category>Java开发笔记</category>
