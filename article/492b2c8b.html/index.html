@@ -31,7 +31,7 @@
 <meta property="og:description" content="JavaWeb&amp;#x5B66;&amp;#x4E60;&amp;#x4E2D;&amp;#x5173;&amp;#x4E8E;Spring&amp;#x7684;&amp;#x76F8;&amp;#x5173;&amp;#x77E5;&amp;#x8BC6; &amp;#x1F4AF;&amp;#x1F4A4;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-09-11T07:56:23.000Z">
-<meta property="article:modified_time" content="2020-09-16T06:54:01.787Z">
+<meta property="article:modified_time" content="2020-09-17T08:18:16.903Z">
 <meta property="article:author" content="Hoshino汤包">
 <meta name="twitter:card" content="summary">
 
@@ -236,7 +236,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-09-16 14:54:01" itemprop="dateModified" datetime="2020-09-16T14:54:01+08:00">2020-09-16</time>
+                <time title="修改时间：2020-09-17 16:18:16" itemprop="dateModified" datetime="2020-09-17T16:18:16+08:00">2020-09-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -254,14 +254,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>26k</span>
+              <span>32k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>24 分钟</span>
+              <span>29 分钟</span>
             </span>
 
         </div>
@@ -672,6 +672,111 @@ public class InstanceFactory {
 </code></pre>
 </li>
 </ol>
+<h2 id="&#x57FA;&#x4E8E;&#x6CE8;&#x89E3;&#x7684;Spring-IOC"><a class="header-anchor" href="#&#x57FA;&#x4E8E;&#x6CE8;&#x89E3;&#x7684;Spring-IOC">&#xB6;</a>&#x57FA;&#x4E8E;&#x6CE8;&#x89E3;&#x7684;Spring-IOC</h2>
+<h3 id="1-&#x5E38;&#x7528;&#x6CE8;&#x89E3;"><a class="header-anchor" href="#1-&#x5E38;&#x7528;&#x6CE8;&#x89E3;">&#xB6;</a>1.&#x5E38;&#x7528;&#x6CE8;&#x89E3;</h3>
+<h4 id="1-&#x7528;&#x4E8E;&#x521B;&#x5EFA;&#x5BF9;&#x8C61;"><a class="header-anchor" href="#1-&#x7528;&#x4E8E;&#x521B;&#x5EFA;&#x5BF9;&#x8C61;">&#xB6;</a>1.&#x7528;&#x4E8E;&#x521B;&#x5EFA;&#x5BF9;&#x8C61;</h4>
+<ul>
+<li>
+<p>&#x4F5C;&#x7528;&#x7C7B;&#x4F3C;&#x4E8E;XML&#x6587;&#x4EF6;&#x4E2D;bean&#x6807;&#x7B7E;&#x5B9E;&#x73B0;&#x7684;&#x529F;&#x80FD;</p>
+</li>
+<li>
+<p>@Component</p>
+<pre><code class="language-java">@Component(&quot;accountService&quot;)
+public class AccountServiceImpl implements AccountService {
+...
+}
+</code></pre>
+<p>&#x76F8;&#x5F53;&#x4E8E;</p>
+<pre><code class="language-xml">&lt;bean id=&quot;accountService&quot; class=&quot;cn.sucrelt.service.impl.AccountServiceImpl&quot;&gt;&lt;/bean&gt;
+</code></pre>
+<p>Component&#x6CE8;&#x89E3;&#x7528;&#x4E8E;&#x544A;&#x8BC9;Spring&#x521B;&#x5EFA;&#x8BE5;&#x7C7B;&#x5BF9;&#x5E94;&#x7684;bean&#x5BF9;&#x8C61;&#x5230;Spring&#x5BB9;&#x5668;&#x4E2D;&#xFF0C;spring&#x5BB9;&#x5668;&#x4E2D;&#x4EE5;map&#x7ED3;&#x6784;&#x5B58;&#x50A8;&#x5BF9;&#x8C61;&#xFF0C;&#x5373;key-value&#xFF0C;&#x5B58;&#x50A8;bean&#x5BF9;&#x8C61;&#x65F6;value&#x4E3A;&#x8BE5;&#x7C7B;&#x7684;&#x7C7B;&#x540D;&#xFF0C;key&#x503C;&#x9ED8;&#x8BA4;&#x4E3A;&#x7C7B;&#x540D;&#x9996;&#x5B57;&#x6BCD;&#x5C0F;&#x5199;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x5728;Component&#x6CE8;&#x89E3;&#x4E2D;&#x53EF;&#x6307;&#x5B9A;key&#x503C;&#x3002;</p>
+</li>
+<li>
+<p>@Controller&#xFF1A;&#x4E00;&#x822C;&#x7528;&#x4E8E;&#x8868;&#x73B0;&#x5C42;&#x7684;&#x6CE8;&#x89E3;&#x3002;</p>
+</li>
+<li>
+<p>@Service&#xFF1A;&#x4E00;&#x822C;&#x7528;&#x4E8E;&#x4E1A;&#x52A1;&#x5C42;&#x7684;&#x6CE8;&#x89E3;&#x3002;</p>
+</li>
+<li>
+<p>@Repository&#xFF1A;&#x4E00;&#x822C;&#x7528;&#x4E8E;&#x6301;&#x4E45;&#x5C42;&#x7684;&#x6CE8;&#x89E3;&#x3002;</p>
+</li>
+<li>
+<p>&#x4EE5;&#x4E0A;&#x4E09;&#x4E2A;&#x6CE8;&#x89E3;&#x90FD;&#x662F;&#x9488;&#x5BF9;Component&#x7684;&#x884D;&#x751F;&#x6CE8;&#x89E3;&#xFF0C;&#x4ED6;&#x4EEC;&#x7684;&#x4F5C;&#x7528;&#x53CA;&#x5C5E;&#x6027;&#x90FD;&#x662F;&#x4E00;&#x6837;&#xFF0C; &#x53EA;&#x4E0D;&#x8FC7;&#x662F;&#x63D0;&#x4F9B;&#x4E86;&#x66F4;&#x52A0;&#x660E;&#x786E;&#x7684;&#x8BED;&#x4E49;&#x5316;&#x3002;</p>
+<p>&#x4E0A;&#x9762;&#x7684;Component&#x6CE8;&#x89E3;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x4EE5;&#x4E0B;Service&#x6CE8;&#x89E3;&#x4EE3;&#x66FF;</p>
+<pre><code class="language-java">@Service(&quot;accountService&quot;)
+public class AccountServiceImpl implements AccountService {
+}
+</code></pre>
+</li>
+</ul>
+<h4 id="2-&#x7528;&#x4E8E;&#x6CE8;&#x5165;&#x6570;&#x636E;"><a class="header-anchor" href="#2-&#x7528;&#x4E8E;&#x6CE8;&#x5165;&#x6570;&#x636E;">&#xB6;</a>2.&#x7528;&#x4E8E;&#x6CE8;&#x5165;&#x6570;&#x636E;</h4>
+<ul>
+<li>
+<p>&#x4F5C;&#x7528;&#x7C7B;&#x4F3C;&#x4E8E;XML&#x6587;&#x4EF6;&#x4E2D;bean&#x6807;&#x7B7E;&#x4E2D;&#x7684;property&#x6807;&#x7B7E;&#x7684;&#x529F;&#x80FD;</p>
+</li>
+<li>
+<p><strong>&#x6CE8;&#x610F;</strong>&#xFF1A;&#x5F53;&#x4F7F;&#x7528;&#x6CE8;&#x89E3;&#x6CE8;&#x5165;&#x5C5E;&#x6027;&#x65F6;&#xFF0C;set&#x65B9;&#x6CD5;&#x53EF;&#x4EE5;&#x7701;&#x7565;&#xFF1B;&#x96C6;&#x5408;&#x6570;&#x636E;&#x7684;&#x6CE8;&#x5165;&#x53EA;&#x80FD;&#x4F7F;&#x7528;xml&#x914D;&#x7F6E;&#x3002;</p>
+</li>
+<li>
+<p>@Autowired&#xFF0C;&#x53EF;&#x4EE5;&#x6CE8;&#x5165;&#x7C7B;&#x6210;&#x5458;&#x548C;&#x65B9;&#x6CD5;&#x7684;&#x53C2;&#x6570;</p>
+<pre><code class="language-java">public class AccountServiceImpl implements AccountService {
+
+    @Autowired
+    private AccountDao accountDao;
+
+    public void saveAccount() {
+        accountDao.saveAccount();
+    }
+}
+</code></pre>
+<p>&#x76F8;&#x5F53;&#x4E8E;</p>
+<pre><code class="language-xml">&lt;bean id=&quot;accountDao&quot; class=&quot;cn.sucrelt.service.impl.AccountDaoImlp&quot;&gt;&lt;/bean&gt;
+
+&lt;bean id=&quot;accountService&quot; class=&quot;cn.sucrelt.service.impl.AccountServiceImpl&quot;&gt;
+    &lt;property name=&quot;accountDao&quot; ref=&quot;accountDao&quot;&gt;&lt;/property&gt;
+&lt;/bean&gt;
+</code></pre>
+<p>Autowired&#x6CE8;&#x89E3;&#x53EA;&#x80FD;&#x6CE8;&#x5165;bean&#x7C7B;&#x578B;&#xFF0C;&#x81EA;&#x52A8;&#x6309;&#x7167;&#x7C7B;&#x578B;&#x6CE8;&#x5165;&#x3002;&#x9996;&#x5148;&#x5728;Spring&#x5BB9;&#x5668;&#x4E2D;&#x6309;&#x7167;&#x6570;&#x636E;&#x7C7B;&#x578B;&#xFF08;AccountDao&#xFF09;&#x67E5;&#x627E;&#x5BF9;&#x5E94;&#x7684;bean&#x5BF9;&#x8C61;&#x5E76;&#x8FDB;&#x884C;&#x6CE8;&#x5165;&#xFF0C;&#x5F53;&#x6709;&#x591A;&#x4E2A;&#x7C7B;&#x578B;&#x5339;&#x914D;&#x65F6;&#xFF0C;&#x4F7F;&#x7528;&#x8981;&#x6CE8;&#x5165;&#x7684;&#x5BF9;&#x8C61;&#x53D8;&#x91CF;&#x540D;&#x79F0;&#xFF08;accountDao&#xFF09;&#x4F5C;&#x4E3A;bean&#x7684;id&#xFF0C;&#x5728;Spring&#x5BB9;&#x5668;&#x67E5;&#x627E;&#xFF0C;&#x627E;&#x5230;&#x4E86;&#x4E5F;&#x53EF;&#x4EE5;&#x6CE8;&#x5165;&#x6210;&#x529F;&#xFF0C;&#x627E;&#x4E0D;&#x5230;&#x5C31;&#x62A5;&#x9519;&#x3002;</p>
+</li>
+<li>
+<p>@Qualifier(&#x201C;bean&#x7684;id&#x201D;)</p>
+<p>&#x5728;&#x81EA;&#x52A8;&#x6309;&#x7167;&#x7C7B;&#x578B;&#x6CE8;&#x5165;&#x7684;&#x57FA;&#x7840;&#x4E4B;&#x4E0A;&#xFF0C;&#x518D;&#x6309;&#x7167;&#x540D;&#x79F0;&#x6CE8;&#x5165;&#x3002;&#x5B83;&#x5728;&#x7ED9;&#x7C7B;&#x6210;&#x5458;&#x6CE8;&#x5165;&#x65F6;&#x4E0D;&#x80FD;&#x72EC;&#x7ACB;&#x4F7F;&#x7528;&#xFF0C;&#x5FC5;&#x987B;&#x548C;@Autowire&#x4E00;&#x8D77;&#x4F7F;&#x7528;&#xFF1B;&#x4F46;&#x662F;&#x7ED9;&#x65B9;&#x6CD5;&#x53C2;&#x6570;&#x6CE8;&#x5165;&#x65F6;&#xFF0C;&#x53EF;&#x4EE5;&#x72EC;&#x7ACB;&#x4F7F;&#x7528;&#x3002;</p>
+</li>
+<li>
+<p>@Resource(name=&#x201C;bean&#x7684;id&#x201D;)&#xFF0C;&#x76F4;&#x63A5;&#x6309;&#x7167;Bean&#x7684;id&#x6CE8;&#x5165;&#x3002;</p>
+</li>
+<li>
+<p>@Value(value=&quot;&quot;)&#xFF0C;&#x6CE8;&#x5165;&#x57FA;&#x672C;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x548C;String&#x7C7B;&#x578B;&#x6570;&#x636E;&#x7684;</p>
+</li>
+</ul>
+<p>3.&#x7528;&#x4E8E;&#x6539;&#x53D8;&#x4F5C;&#x7528;&#x8303;&#x56F4;</p>
+<ul>
+<li>
+<p>&#x4F5C;&#x7528;&#x7C7B;&#x4F3C;&#x4E8E;bean&#x6807;&#x7B7E;&#x4E2D;&#x7684;scope&#x5C5E;&#x6027;&#x7684;&#x529F;&#x80FD;</p>
+</li>
+<li>
+<p>@Scope(value=&quot;&quot;)</p>
+<p>&#x76F8;&#x5F53;&#x4E8E;</p>
+<pre><code class="language-xml">&lt;bean id=&quot;&quot; class=&quot;&quot; scope=&quot;&quot;&gt;&lt;/bean&gt;
+</code></pre>
+<p>value&#xFF1A;&#x6307;&#x5B9A;&#x8303;&#x56F4;&#x7684;&#x503C;&#x3002; &#x53D6;&#x503C;&#xFF1A;singleton prototype request session globalsession</p>
+</li>
+</ul>
+<h4 id="4-&#x4E0E;&#x751F;&#x547D;&#x5468;&#x671F;&#x76F8;&#x5173;"><a class="header-anchor" href="#4-&#x4E0E;&#x751F;&#x547D;&#x5468;&#x671F;&#x76F8;&#x5173;">&#xB6;</a>4.&#x4E0E;&#x751F;&#x547D;&#x5468;&#x671F;&#x76F8;&#x5173;</h4>
+<ul>
+<li>
+<p>&#x4F5C;&#x7528;&#x7C7B;&#x4F3C;&#x4E8E;bean&#x6807;&#x7B7E;&#x4E2D;&#x7684;init-method&#x548C;destroy-method&#x5C5E;&#x6027;&#x7684;&#x529F;&#x80FD;</p>
+<p>&#x76F8;&#x5F53;&#x4E8E;</p>
+<pre><code class="language-xml">&lt;bean id=&quot;&quot; class=&quot;&quot; init-method=&quot;&quot; destroy-method=&quot;&quot; /&gt;&lt;/bean&gt;
+</code></pre>
+</li>
+<li>
+<p>@PostConstruct&#xFF1A;&#x7528;&#x4E8E;&#x6307;&#x5B9A;&#x521D;&#x59CB;&#x5316;&#x65B9;&#x6CD5;&#x3002;</p>
+</li>
+<li>
+<p>@PreDestroy&#xFF1A;&#x7528;&#x4E8E;&#x6307;&#x5B9A;&#x9500;&#x6BC1;&#x65B9;&#x6CD5;&#x3002;</p>
+</li>
+</ul>
 
     </div>
 
@@ -701,7 +806,7 @@ public class InstanceFactory {
   <p><span>本文标题:</span><a href="/article/492b2c8b.html/">JavaWeb之Spring</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 Hoshino汤包 的个人博客">Hoshino汤包</a></p>
   <p><span>发布时间:</span>2020年09月11日 - 15:56:23</p>
-  <p><span>最后更新:</span>2020年09月16日 - 14:54:01</p>
+  <p><span>最后更新:</span>2020年09月17日 - 16:18:16</p>
   <p><span>原始链接:</span><a href="/article/492b2c8b.html/" title="JavaWeb之Spring">https://tangtangsama.github.io/article/492b2c8b.html/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://tangtangsama.github.io/article/492b2c8b.html/"  aria-label="复制成功！"></i></span>
   </p>
@@ -898,13 +1003,13 @@ public class InstanceFactory {
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">271k</span>
+    <span title="站点总字数">276k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">4:06</span>
+    <span title="站点阅读时长">4:11</span>
 </div>
 
 <div id="days"></div>
