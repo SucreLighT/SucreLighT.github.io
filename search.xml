@@ -1082,7 +1082,7 @@ public class AccountServiceImpl implements AccountService {
 <p>@Value(value=&quot;&quot;)&#xFF0C;&#x6CE8;&#x5165;&#x57FA;&#x672C;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x548C;String&#x7C7B;&#x578B;&#x6570;&#x636E;&#x7684;</p>
 </li>
 </ul>
-<p>3.&#x7528;&#x4E8E;&#x6539;&#x53D8;&#x4F5C;&#x7528;&#x8303;&#x56F4;</p>
+<h4 id="3-&#x7528;&#x4E8E;&#x6539;&#x53D8;&#x4F5C;&#x7528;&#x8303;&#x56F4;"><a class="header-anchor" href="#3-&#x7528;&#x4E8E;&#x6539;&#x53D8;&#x4F5C;&#x7528;&#x8303;&#x56F4;">&#xB6;</a>3.&#x7528;&#x4E8E;&#x6539;&#x53D8;&#x4F5C;&#x7528;&#x8303;&#x56F4;</h4>
 <ul>
 <li>
 <p>&#x4F5C;&#x7528;&#x7C7B;&#x4F3C;&#x4E8E;bean&#x6807;&#x7B7E;&#x4E2D;&#x7684;scope&#x5C5E;&#x6027;&#x7684;&#x529F;&#x80FD;</p>
@@ -1110,6 +1110,194 @@ public class AccountServiceImpl implements AccountService {
 <p>@PreDestroy&#xFF1A;&#x7528;&#x4E8E;&#x6307;&#x5B9A;&#x9500;&#x6BC1;&#x65B9;&#x6CD5;&#x3002;</p>
 </li>
 </ul>
+<h3 id="2-&#x65B0;&#x6CE8;&#x89E3;"><a class="header-anchor" href="#2-&#x65B0;&#x6CE8;&#x89E3;">&#xB6;</a>2.&#x65B0;&#x6CE8;&#x89E3;</h3>
+<p>&#x4F7F;&#x7528;&#x6CE8;&#x89E3;&#x5F00;&#x53D1;&#x540E;&#xFF0C;&#x867D;&#x7136;&#x53EF;&#x4EE5;&#x5C06;&#x9879;&#x76EE;&#x4E2D;&#x7684;&#x7C7B;&#x4EE5;&#x6CE8;&#x89E3;&#x7684;&#x65B9;&#x5F0F;&#x521B;&#x5EFA;&#x5230;spring&#x5BB9;&#x5668;&#x4E2D;&#xFF0C;&#x800C;&#x4E0D;&#x9002;&#x7528;bean&#x6807;&#x7B7E;&#xFF0C;&#x4F46;&#x662F;&#x7B2C;&#x4E09;&#x65B9;&#x5E93;&#x7684;&#x7C7B;&#xFF0C;&#x4F9D;&#x65E7;&#x9700;&#x8981;&#x914D;&#x7F6E;bean.xml&#x4EE5;&#x53CA;&#x4F7F;&#x7528;bean&#x521B;&#x5EFA;&#x3002;&#x6B64;&#x65F6;bean.xml&#x6587;&#x4EF6;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+       xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+       xmlns:context=&quot;http://www.springframework.org/schema/context&quot;
+       xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd&quot;&gt;
+
+    &lt;!--&#x4F7F;&#x7528;&#x6CE8;&#x89E3;&#x5F00;&#x53D1;--&gt;
+    &lt;context:component-scan base-package=&quot;cn.sucrelt&quot;&gt;&lt;/context:component-scan&gt;
+    &lt;!-- &#x914D;&#x7F6E;QueryRunner--&gt;
+    &lt;bean id=&quot;runner&quot; class=&quot;org.apache.commons.dbutils.QueryRunner&quot; scope=&quot;prototype&quot;&gt;
+        &lt;!-- &#x6CE8;&#x5165;&#x6570;&#x636E;&#x6E90; --&gt;
+        &lt;constructor-arg name=&quot;ds&quot; ref=&quot;dataSoucre&quot;&gt;&lt;/constructor-arg&gt;
+    &lt;/bean&gt;
+    &lt;bean id=&quot;dataSoucre&quot; class=&quot;com.mchange.v2.c3p0.ComboPooledDataSource&quot;&gt;
+        &lt;property name=&quot;driverClass&quot; value=&quot;com.mysql.jdbc.Driver&quot;&gt;&lt;/property&gt;
+        &lt;property name=&quot;jdbcUrl&quot;
+                  value=&quot;jdbc:mysql://localhost:3306/springioc?characterEncoding=UTF-8&amp;amp;serverTimezone=GMT&quot;&gt;&lt;/property&gt;
+        &lt;property name=&quot;user&quot; value=&quot;root&quot;&gt;&lt;/property&gt;
+        &lt;property name=&quot;password&quot; value=&quot;123456&quot;&gt;&lt;/property&gt;
+    &lt;/bean&gt;
+
+&lt;/beans&gt;
+</code></pre>
+<p>&#x4F7F;&#x7528;&#x4EE5;&#x4E0B;&#x65B0;&#x6CE8;&#x89E3;&#x6D88;&#x9664;&#x8BE5;bean.xml&#x6587;&#x4EF6;&#x3002;</p>
+<h4 id="1-Configuration"><a class="header-anchor" href="#1-Configuration">&#xB6;</a>1.@Configuration</h4>
+<p>&#x7528;&#x4E8E;&#x6307;&#x5B9A;&#x5F53;&#x524D;&#x7C7B;&#x662F;&#x4E00;&#x4E2A;spring&#x914D;&#x7F6E;&#x7C7B;&#xFF0C;&#x5F53;&#x521B;&#x5EFA;&#x5BB9;&#x5668;&#x65F6;&#x4F1A;&#x4ECE;&#x8BE5;&#x7C7B;&#x4E0A;&#x52A0;&#x8F7D;&#x6CE8;&#x89E3;&#xFF0C;&#x8BE5;&#x7C7B;&#x5373;&#x76F8;&#x5F53;&#x4E8E;bean.xml&#x6587;&#x4EF6;&#x3002;</p>
+<pre><code class="language-java">@Configuration
+public class SpringConfiguration {
+    ...
+}
+</code></pre>
+<p><strong>&#x76F8;&#x5E94;&#x5730;</strong>&#xFF0C;&#x83B7;&#x53D6;&#x5BB9;&#x5668;&#x65F6;&#x9700;&#x8981;&#x4F7F;&#x7528;<code>AnnotationApplicationContext(&#x6709;@Configuration&#x6CE8;&#x89E3;&#x7684;&#x7C7B;.class)</code>&#x3002;&#x5176;&#x5B9E;&#xFF0C;&#x5F53;&#x914D;&#x7F6E;&#x7C7B;&#x4F5C;&#x4E3A;&#x8BE5;<code>AnnotationApplicationContext</code>&#x65B9;&#x6CD5;&#x7684;&#x53C2;&#x6570;&#x65F6;&#xFF0C;&#x8BE5;&#x6CE8;&#x89E3;&#x53EF;&#x4EE5;&#x7701;&#x7565;&#x4E0D;&#x5199;&#x3002;</p>
+<pre><code class="language-java">ApplicationContext applicationContext = new AnnotationConfigApplicationContext(SpringConfiguration.class);
+AccountService accountService = applicationContext.getBean(&quot;accountService&quot;, AccountService.class);
+</code></pre>
+<h4 id="2-ComponentScan"><a class="header-anchor" href="#2-ComponentScan">&#xB6;</a>2.@ComponentScan</h4>
+<p>&#x653E;&#x5728;&#x914D;&#x7F6E;&#x7C7B;&#x4E0A;&#xFF0C;&#x7528;&#x4E8E;&#x6307;&#x5B9A;spring&#x5728;&#x521B;&#x5EFA;&#x5BB9;&#x5668;&#x65F6;&#x8981;&#x626B;&#x63CF;&#x7684;&#x5305;&#xFF0C;&#x5176;&#x4E2D;&#x53C2;&#x6570;&#x4E3A;&#x9ED8;&#x8BA4;&#x7684;value&#x6216;&#x8005;basePackages&#xFF0C;&#x503C;&#x4E3A;&#x521B;&#x5EFA;&#x5BB9;&#x5668;&#x65F6;&#x8981;&#x626B;&#x63CF;&#x7684;&#x5305;&#x540D;&#x3002;</p>
+<pre><code class="language-java">@Configuration
+@ComponentScan(basePackages = &quot;cn.sucrelt&quot;)
+public class SpringConfiguration {
+}
+</code></pre>
+<p>&#x76F8;&#x5F53;&#x4E8E;bean.xml&#x4E2D;&#x7684;</p>
+<pre><code class="language-xml">&lt;context:component-scan base-package=&quot;cn.sucrelt&quot;&gt;&lt;/context:component-scan&gt;
+</code></pre>
+<h4 id="3-Bean"><a class="header-anchor" href="#3-Bean">&#xB6;</a>3.@Bean</h4>
+<p>&#x8BE5;&#x6CE8;&#x89E3;&#x53EA;&#x80FD;&#x5199;&#x5728;&#x65B9;&#x6CD5;&#x4E0A;&#xFF0C;&#x8868;&#x660E;&#x4F7F;&#x7528;&#x6B64;&#x65B9;&#x6CD5;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#xFF0C;&#x5E76;&#x4E14;&#x653E;&#x5165;spring&#x5BB9;&#x5668;&#x3002;&#x5176;&#x4E2D;name&#x5C5E;&#x6027;&#x7528;&#x4E8E;&#x6307;&#x5B9A;bean&#x7684;id&#x3002;&#x5F53;&#x4E0D;&#x5199;&#x65F6;&#xFF0C;&#x9ED8;&#x8BA4;&#x503C;&#x662F;&#x5F53;&#x524D;&#x65B9;&#x6CD5;&#x7684;&#x540D;&#x79F0;&#x3002;&#x5F53;&#x4F7F;&#x7528;&#x8BE5;&#x6CE8;&#x89E3;&#x914D;&#x7F6E;&#x65B9;&#x6CD5;&#x65F6;&#xFF0C;&#x5982;&#x679C;&#x65B9;&#x6CD5;&#x6709;&#x53C2;&#x6570;&#xFF0C;spring&#x6846;&#x67B6;&#x4F1A;&#x53BB;&#x5BB9;&#x5668;&#x4E2D;&#x67E5;&#x627E;&#x6709;&#x6CA1;&#x6709;&#x53EF;&#x7528;&#x7684;bean&#x5BF9;&#x8C61;&#xFF0C;&#x67E5;&#x627E;&#x7684;&#x65B9;&#x5F0F;&#x548C;Autowired&#x6CE8;&#x89E3;&#x7684;&#x4F5C;&#x7528;&#x662F;&#x4E00;&#x6837;&#x7684;&#x3002;</p>
+<pre><code class="language-java">@Bean(name = &quot;runner&quot;)
+@Scope(&quot;prototype&quot;)
+public QueryRunner createQueryRunner(DataSource dateSource) {
+    return new QueryRunner(dateSource);
+}
+
+@Bean(name = &quot;dataSource&quot;)
+public DataSource createDataSource() {
+    try {
+        ComboPooledDataSource ds = new ComboPooledDataSource();
+        ds.setDriverClass(&quot;com.mysql.jdbc.Driver&quot;);
+        ds.setJdbcUrl(&quot;jdbc:mysql://localhost:3306/springioc?characterEncoding=UTF-8&amp;amp;serverTimezone=GMT&quot;);
+        ds.setUser(&quot;root&quot;);
+        ds.setPassword(&quot;123456&quot;);
+        return ds;
+    } catch (Exception e) {
+        throw new RuntimeException(e);
+    }
+}
+</code></pre>
+<p>&#x76F8;&#x5F53;&#x4E8E;bean.xml&#x4E2D;&#x7684;</p>
+<pre><code class="language-xml">&lt;!-- &#x914D;&#x7F6E;QueryRunner--&gt;
+&lt;bean id=&quot;runner&quot; class=&quot;org.apache.commons.dbutils.QueryRunner&quot; scope=&quot;prototype&quot;&gt;
+    &lt;!-- &#x6CE8;&#x5165;&#x6570;&#x636E;&#x6E90; --&gt;
+    &lt;constructor-arg name=&quot;ds&quot; ref=&quot;dataSoucre&quot;&gt;&lt;/constructor-arg&gt;
+&lt;/bean&gt;
+&lt;bean id=&quot;dataSoucre&quot; class=&quot;com.mchange.v2.c3p0.ComboPooledDataSource&quot;&gt;
+    &lt;property name=&quot;driverClass&quot; value=&quot;com.mysql.jdbc.Driver&quot;&gt;&lt;/property&gt;
+    &lt;property name=&quot;jdbcUrl&quot;
+              value=&quot;jdbc:mysql://localhost:3306/springioc?characterEncoding=UTF-8&amp;amp;serverTimezone=GMT&quot;&gt;&lt;/property&gt;
+    &lt;property name=&quot;user&quot; value=&quot;root&quot;&gt;&lt;/property&gt;
+    &lt;property name=&quot;password&quot; value=&quot;123456&quot;&gt;&lt;/property&gt;
+&lt;/bean&gt;
+</code></pre>
+<h4 id="4-Import&#x2013;&#x591A;&#x4E2A;&#x914D;&#x7F6E;&#x7C7B;"><a class="header-anchor" href="#4-Import&#x2013;&#x591A;&#x4E2A;&#x914D;&#x7F6E;&#x7C7B;">&#xB6;</a>4.@Import&#x2013;&#x591A;&#x4E2A;&#x914D;&#x7F6E;&#x7C7B;</h4>
+<p>&#x53EF;&#x4EE5;&#x5C06;&#x4E0A;&#x8FF0;&#x7684;&#x914D;&#x7F6E;&#x7C7B;&#x62C6;&#x5206;&#x6210;&#x4E00;&#x4E2A;&#x6570;&#x636E;&#x5E93;&#x914D;&#x7F6E;&#x7C7B;JdbcConfig&#xFF0C;SpringConfiguration&#x4F5C;&#x4E3A;&#x4E00;&#x4E2A;&#x603B;&#x7684;&#x914D;&#x7F6E;&#x7C7B;&#x3002;</p>
+<p>&#x603B;&#x914D;&#x7F6E;&#x7C7B;&#xFF1A;</p>
+<pre><code class="language-java">@Configuration
+@ComponentScan(basePackages = {&quot;cn.sucrelt&quot;})
+public class SpringConfiguration {
+}
+</code></pre>
+<p>&#x6570;&#x636E;&#x5E93;&#x914D;&#x7F6E;&#x7C7B;&#xFF1A;</p>
+<pre><code class="language-java">@Configuration
+public class JdbcConfig {
+    /**
+     * &#x521B;&#x5EFA;QueryRunner&#x5BF9;&#x8C61;
+     *
+     * @param dateSource
+     * @return
+     */
+    @Bean(name = &quot;runner&quot;)
+    @Scope(&quot;prototype&quot;)
+    public QueryRunner createQueryRunner(DataSource dateSource) {
+        return new QueryRunner(dateSource);
+    }
+
+    @Bean(name = &quot;dataSource&quot;)
+    public DataSource createDataSource() {
+        try {
+            ComboPooledDataSource ds = new ComboPooledDataSource();
+            ds.setDriverClass(&quot;com.mysql.jdbc.Driver&quot;);
+            ds.setJdbcUrl(&quot;jdbc:mysql://localhost:3306/springioc?characterEncoding=UTF-8&amp;amp;serverTimezone=GMT&quot;);
+            ds.setUser(&quot;root&quot;);
+            ds.setPassword(&quot;123456&quot;);
+            return ds;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+}
+</code></pre>
+<p>&#x7136;&#x800C;&#xFF0C;&#x6B64;&#x65F6;&#x6267;&#x884C;&#x5C06;&#x4F1A;&#x62A5;&#x9519;&#xFF0C;&#x539F;&#x56E0;&#x5728;&#x4E8E;JdbcConfig&#x8FD9;&#x4E2A;&#x7C7B;&#x5E76;&#x6CA1;&#x6709;&#x88AB;&#x626B;&#x63CF;&#xFF0C;&#x5176;&#x4E2D;&#x7684;&#x76F8;&#x5173;&#x65B9;&#x6CD5;&#x5E76;&#x6CA1;&#x6709;&#x521B;&#x5EFA;&#x5230;spring&#x5BB9;&#x5668;&#x4E2D;&#x3002;&#x6709;&#x5982;&#x4E0B;&#x89E3;&#x51B3;&#x65B9;&#x6CD5;&#xFF1A;</p>
+<ol>
+<li>
+<p>&#x5728;&#x603B;&#x914D;&#x7F6E;&#x7C7B;&#x7684;ComponentScan&#x6CE8;&#x89E3;&#x4E2D;&#x589E;&#x52A0;&#x914D;&#x7F6E;&#x7C7B;&#x7684;&#x626B;&#x63CF;&#x5305;</p>
+<pre><code class="language-java">@Configuration
+@ComponentScan(basePackages = {&quot;cn.sucrelt&quot;,&quot;config&quot;})
+public class SpringConfiguration {
+}
+</code></pre>
+</li>
+<li>
+<p>&#x5728;&#x4F7F;&#x7528;<code>AnnotationConfigApplicationContext</code>&#x83B7;&#x53D6;&#x5BB9;&#x5668;&#x65F6;&#x5176;&#x4E2D;&#x53C2;&#x6570;&#x52A0;&#x4E0A;<code>JdbcConfig.class</code>&#x3002;</p>
+<pre><code class="language-java">ApplicationContext applicationContext = new AnnotationConfigApplicationContext(SpringConfiguration.class,
+        JdbcConfig.class);
+</code></pre>
+<p>&#x8BE5;&#x65B9;&#x6CD5;&#x4E0D;&#x63A8;&#x8350;&#xFF0C;&#x56E0;&#x4E3A;SpringConfiguration&#x548C;JdbcConfig&#x5E94;&#x8BE5;&#x662F;&#x4E0A;&#x4E0B;&#x7EA7;&#x7684;&#x5173;&#x7CFB;&#xFF0C;&#x8FD9;&#x79CD;&#x65B9;&#x5F0F;&#x5448;&#x73B0;&#x7684;&#x662F;&#x5E76;&#x5217;&#x7684;&#x5173;&#x7CFB;&#x3002;</p>
+</li>
+<li>
+<p>&#x4F7F;&#x7528;**@Import&#x6CE8;&#x89E3;**</p>
+<pre><code class="language-java">@Configuration
+@ComponentScan(basePackages = &quot;cn.sucrelt&quot;)
+@Import(JdbcConfig.class)
+public class SpringConfiguration {
+}
+</code></pre>
+<p>&#x8BE5;&#x6CE8;&#x89E3;&#x7528;&#x4E8E;&#x5F15;&#x5165;&#x5176;&#x4ED6;&#x914D;&#x7F6E;&#x7C7B;&#xFF0C;&#x5373;&#x5C06;&#x5C0F;&#x7684;&#x914D;&#x7F6E;&#x7C7B;&#x5168;&#x90E8;&#x52A0;&#x8F7D;&#x5230;&#x4E3B;&#x914D;&#x7F6E;&#x7C7B;&#x4E2D;&#xFF0C;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#x5206;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x914D;&#x7F6E;&#x7684;&#x65B9;&#x6CD5;&#x3002;</p>
+</li>
+</ol>
+<h4 id="5-PropertySource"><a class="header-anchor" href="#5-PropertySource">&#xB6;</a>5.@PropertySource</h4>
+<p>&#x7528;&#x4E8E;&#x52A0;&#x8F7D;.properties&#x6587;&#x4EF6;&#x4E2D;&#x7684;&#x914D;&#x7F6E;&#x3002;&#x5982;&#x914D;&#x7F6E;&#x6570;&#x636E;&#x6E90;&#x65F6;&#xFF0C;&#x53EF;&#x4EE5;&#x628A;&#x8FDE;&#x63A5;&#x6570;&#x636E;&#x5E93;&#x7684;&#x4FE1;&#x606F;&#x5199;&#x5230;properties&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x6B64;&#x6CE8;&#x89E3;&#x6307;&#x5B9A;properties&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x7684;&#x4F4D;&#x7F6E;&#x3002;</p>
+<p>&#x5728;<code>JdbcConfig</code>&#x7C7B;&#x4E2D;&#xFF0C;&#x5B9A;&#x4E49;&#x6210;&#x5458;&#x53D8;&#x91CF;&#x83B7;&#x53D6;Jdbc&#x76F8;&#x5173;&#x4FE1;&#x606F;&#xFF0C;&#x5E76;&#x4F7F;&#x7528;<code>@Value</code>&#x8FDB;&#x884C;&#x6CE8;&#x89E3;&#xFF0C;&#x5728;&#x8BE5;&#x7C7B;&#x4E0A;&#x65B9;&#x4F7F;&#x7528;<code>@PropertySource</code>&#x6CE8;&#x89E3;&#x6307;&#x5B9A;&#x83B7;&#x53D6;Jdbc&#x914D;&#x7F6E;&#x4FE1;&#x606F;&#x7684;&#x6587;&#x4EF6;&#x4F4D;&#x7F6E;&#xFF0C;&#x5982;&#x679C;&#x662F;&#x5728;&#x7C7B;&#x8DEF;&#x5F84;&#x4E0B;&#xFF0C;&#x9700;&#x8981;&#x5199;&#x4E0A;classpath&#x3002;</p>
+<pre><code class="language-java">@Configuration
+@PropertySource(&quot;classpath:jdbcConfig.properties&quot;)
+public class JdbcConfig {
+    @Value(&quot;${jdbc.driver}&quot;)
+    private String driver;
+    @Value(&quot;${jdbc.url}&quot;)
+    private String url;
+    @Value(&quot;${jdbc.username}&quot;)
+    private String username;
+    @Value(&quot;${jdbc.password}&quot;)
+    private String password;
+    
+    @Bean(name = &quot;runner&quot;)
+    @Scope(&quot;prototype&quot;)
+    public QueryRunner createQueryRunner(DataSource dateSource) {
+        return new QueryRunner(dateSource);
+    }
+
+    @Bean(name = &quot;dataSource&quot;)
+    public DataSource createDataSource() {
+        try {
+            ComboPooledDataSource ds = new ComboPooledDataSource();
+            ds.setDriverClass(driver);
+            ds.setJdbcUrl(url);
+            ds.setUser(username);
+            ds.setPassword(password);
+            return ds;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+}
+</code></pre>
 ]]></content>
       <categories>
         <category>Java开发笔记</category>
