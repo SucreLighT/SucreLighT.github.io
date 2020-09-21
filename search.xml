@@ -1298,6 +1298,51 @@ public class JdbcConfig {
     }
 }
 </code></pre>
+<h2 id="Spring&#x6574;&#x5408;Junit"><a class="header-anchor" href="#Spring&#x6574;&#x5408;Junit">&#xB6;</a>Spring&#x6574;&#x5408;Junit</h2>
+<p>&#x5728;&#x6D4B;&#x8BD5;&#x7C7B;&#x4E2D;&#xFF0C;&#x6BCF;&#x4E2A;&#x6D4B;&#x8BD5;&#x65B9;&#x6CD5;&#x90FD;&#x6709;&#x4EE5;&#x4E0B;&#x4E24;&#x884C;&#x4EE3;&#x7801;&#xFF0C;&#x5728;&#x7F16;&#x5199;&#x6D4B;&#x8BD5;&#x65F6;&#x90FD;&#x9700;&#x8981;&#x624B;&#x52A8;&#x521B;&#x5EFA;&#x5BB9;&#x5668;&#xFF1A;</p>
+<pre><code class="language-java">ApplicationContext applicationContext = new AnnotationConfigApplicationContext(SpringConfiguration.class);
+AccountService accountService = applicationContext.getBean(&quot;accountService&quot;, AccountService.class);
+</code></pre>
+<p>&#x5C06;Junit&#x6574;&#x5408;&#x5230;spring&#x4E2D;&#xFF0C;&#x5728;&#x7F16;&#x5199;&#x6D4B;&#x8BD5;&#x7C7B;&#x65F6;&#x7A0B;&#x5E8F;&#x81EA;&#x52A8;&#x5E2E;&#x6211;&#x4EEC;&#x521B;&#x5EFA;&#x5BB9;&#x5668;&#x3002;&#x65E0;&#x987B;&#x624B;&#x52A8;&#x521B;&#x5EFA;&#x3002;</p>
+<h3 id="1-&#x5BFC;&#x5165;&#x4F9D;&#x8D56;"><a class="header-anchor" href="#1-&#x5BFC;&#x5165;&#x4F9D;&#x8D56;">&#xB6;</a>1.&#x5BFC;&#x5165;&#x4F9D;&#x8D56;</h3>
+<p>&#x5728;pom&#x6587;&#x4EF6;&#x4E2D;&#x5F15;&#x5165;&#x4F9D;&#x8D56;spring-test&#xFF0C;&#x7528;&#x4E8E;&#x6574;&#x5408;spring&#x548C;Junit</p>
+<pre><code class="language-xml">&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-test&lt;/artifactId&gt;
+    &lt;version&gt;5.0.2.RELEASE&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+<h3 id="2-RunWith"><a class="header-anchor" href="#2-RunWith">&#xB6;</a>2.@RunWith</h3>
+<p>&#x5728;&#x6D4B;&#x8BD5;&#x7C7B;&#x4E0A;&#x65B9;&#x4F7F;&#x7528;<code>@RunWith</code>&#x6CE8;&#x89E3;&#x66FF;&#x6362;&#x539F;&#x6709;&#x8FD0;&#x884C;&#x5668;&#xFF0C;&#x5176;&#x4E2D;&#x53C2;&#x6570;&#x4E3A;<code>SpringJUnit4ClassRunner.class</code>&#x3002;</p>
+<h3 id="3-ContextConfiguration"><a class="header-anchor" href="#3-ContextConfiguration">&#xB6;</a>3.@ContextConfiguration</h3>
+<p>&#x4F7F;&#x7528;<code>@ContextConfiguration</code>&#x6307;&#x5B9A;spring&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x7684;&#x4F4D;&#x7F6E;&#xFF0C;&#x5176;&#x4E2D;&#x5C5E;&#x6027;&#xFF1A;</p>
+<ul>
+<li>
+<p>locations&#x5C5E;&#x6027;&#xFF1A;&#x7528;&#x4E8E;&#x6307;&#x5B9A;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x7684;&#x4F4D;&#x7F6E;&#x3002;&#x5982;&#x679C;&#x662F;&#x7C7B;&#x8DEF;&#x5F84;&#x4E0B;&#xFF0C;&#x9700;&#x8981;&#x7528;<code>classpath:</code>&#x3002;</p>
+</li>
+<li>
+<p>classes&#x5C5E;&#x6027;&#xFF1A;&#x7528;&#x4E8E;&#x6307;&#x5B9A;&#x6CE8;&#x89E3;&#x7684;&#x7C7B;&#x3002;&#x5F53;&#x4E0D;&#x4F7F;&#x7528;xml&#x914D;&#x7F6E;&#x65F6;&#xFF0C;&#x9700;&#x8981;&#x7528;&#x6B64;&#x5C5E;&#x6027;&#x6307;&#x5B9A;&#x6CE8;&#x89E3;&#x7C7B;&#x7684;&#x4F4D;&#x7F6E;&#x3002;</p>
+</li>
+</ul>
+<h3 id="4-Autowired"><a class="header-anchor" href="#4-Autowired">&#xB6;</a>4.@Autowired</h3>
+<p>&#x4F7F;&#x7528;<code>@Autowired</code>&#x7ED9;&#x6D4B;&#x8BD5;&#x7C7B;&#x4E2D;&#x7684;&#x53D8;&#x91CF;&#x6CE8;&#x5165;&#x6570;&#x636E;</p>
+<pre><code class="language-java">@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = SpringConfiguration.class)
+public class AccountServiceTest {
+
+    @Autowired
+    private AccountService accountService;
+    
+    @Test
+    public void testFindAllAccount() {
+        List&lt;Account&gt; accounts = accountService.findAllAccount();
+        for (Account account :
+                accounts) {
+            System.out.println(account.toString());
+        }
+    }   
+}
+</code></pre>
 ]]></content>
       <categories>
         <category>Java开发笔记</category>
