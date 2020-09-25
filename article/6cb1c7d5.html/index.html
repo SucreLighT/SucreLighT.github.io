@@ -31,7 +31,7 @@
 <meta property="og:description" content="JavaWeb&amp;#x5B66;&amp;#x4E60;&amp;#x4E2D;&amp;#x5173;&amp;#x4E8E;Spring-AOP&amp;#x7684;&amp;#x76F8;&amp;#x5173;&amp;#x77E5;&amp;#x8BC6; &amp;#x1F4AF;&amp;#x1F4A4;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-09-23T08:32:49.000Z">
-<meta property="article:modified_time" content="2020-09-23T08:34:24.385Z">
+<meta property="article:modified_time" content="2020-09-25T01:54:06.075Z">
 <meta property="article:author" content="Hoshino汤包">
 <meta name="twitter:card" content="summary">
 
@@ -228,10 +228,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-09-23 16:32:49 / 修改时间：16:34:24" itemprop="dateCreated datePublished" datetime="2020-09-23T16:32:49+08:00">2020-09-23</time>
+              <time title="创建时间：2020-09-23 16:32:49" itemprop="dateCreated datePublished" datetime="2020-09-23T16:32:49+08:00">2020-09-23</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-25 09:54:06" itemprop="dateModified" datetime="2020-09-25T09:54:06+08:00">2020-09-25</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -248,14 +254,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>24k</span>
+              <span>38k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>22 分钟</span>
+              <span>35 分钟</span>
             </span>
 
         </div>
@@ -270,7 +276,7 @@
         <p>JavaWeb&#x5B66;&#x4E60;&#x4E2D;&#x5173;&#x4E8E;Spring-AOP&#x7684;&#x76F8;&#x5173;&#x77E5;&#x8BC6; &#x1F4AF;&#x1F4A4;</p>
 <a id="more"></a>
 <h1>Spring AOP</h1>
-<p>AOP&#xFF1A;&#x5168;&#x79F0;&#x662F;Aspect Oriented Programming&#xFF0C;&#x5373;&#xFF1A;&#x9762;&#x5411;&#x5207;&#x9762;&#x7F16;&#x7A0B;&#x3002;&#x7B80;&#x5355;&#x7684;&#x8BF4;&#x5C31;&#x662F;&#x628A;&#x7A0B;&#x5E8F;&#x91CD;&#x590D;&#x7684;&#x4EE3;&#x7801;&#x62BD;&#x53D6;&#x51FA;&#x6765;&#xFF0C;&#x5728;&#x9700;&#x8981;&#x6267;&#x884C;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x4F7F;&#x7528;&#x52A8;&#x6001;&#x4EE3;&#x7406;&#x7684;&#x6280;&#x672F;&#xFF0C;&#x5728;&#x4E0D;&#x4FEE;&#x6539;&#x6E90;&#x7801;&#x7684;&#x57FA;&#x7840;&#x4E0A;&#xFF0C;&#x5BF9;&#x5DF2;&#x6709;&#x65B9;&#x6CD5;&#x8FDB;&#x884C;&#x589E;&#x5F3A;&#x3002;</p>
+<p>AOP&#xFF1A;&#x5168;&#x79F0;&#x662F;Aspect Oriented Programming&#xFF0C;&#x5373;&#xFF1A;&#x9762;&#x5411;&#x5207;&#x9762;&#x7F16;&#x7A0B;&#x3002;&#x7B80;&#x5355;&#x7684;&#x8BF4;&#x5C31;&#x662F;&#x628A;&#x7A0B;&#x5E8F;&#x91CD;&#x590D;&#x7684;&#x4EE3;&#x7801;&#x62BD;&#x53D6;&#x51FA;&#x6765;&#xFF0C;&#x5728;&#x9700;&#x8981;&#x6267;&#x884C;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x4F7F;&#x7528;<strong>&#x52A8;&#x6001;&#x4EE3;&#x7406;</strong>&#x7684;&#x6280;&#x672F;&#xFF0C;&#x5728;&#x4E0D;&#x4FEE;&#x6539;&#x6E90;&#x7801;&#x7684;&#x57FA;&#x7840;&#x4E0A;&#xFF0C;&#x5BF9;&#x5DF2;&#x6709;&#x65B9;&#x6CD5;&#x8FDB;&#x884C;&#x589E;&#x5F3A;&#x3002;</p>
 <ul>
 <li>&#x4F5C;&#x7528;&#xFF1A; &#x5728;&#x7A0B;&#x5E8F;&#x8FD0;&#x884C;&#x671F;&#x95F4;&#xFF0C;&#x4E0D;&#x4FEE;&#x6539;&#x6E90;&#x7801;&#x5BF9;&#x5DF2;&#x6709;&#x65B9;&#x6CD5;&#x8FDB;&#x884C;&#x589E;&#x5F3A;&#x3002;</li>
 <li>&#x4F18;&#x52BF;&#xFF1A; &#x51CF;&#x5C11;&#x91CD;&#x590D;&#x4EE3;&#x7801;&#xFF0C;&#x63D0;&#x9AD8;&#x5F00;&#x53D1;&#x6548;&#x7387;&#xFF0C;&#x7EF4;&#x62A4;&#x65B9;&#x4FBF;&#x3002;</li>
@@ -478,7 +484,7 @@
 <p>&#x4F7F;&#x7528;Proxy&#x7C7B;&#x4E2D;&#x7684;newProxyInstance&#x65B9;&#x6CD5;</p>
 </li>
 <li>
-<p>&#x521B;&#x5EFA;&#x4EE3;&#x7406;&#x5BF9;&#x8C61;&#x7684;&#x8981;&#x6C42;&#xFF1A;&#x88AB;&#x4EE3;&#x7406;&#x7C7B;&#x4E2D;&#x81F3;&#x5C11;&#x5B9E;&#x73B0;&#x4E86;&#x4E00;&#x4E2A;&#x63A5;&#x53E3;&#xFF0C;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x5219;&#x4E0D;&#x80FD;&#x4F7F;&#x7528;&#x3002;</p>
+<p>&#x521B;&#x5EFA;&#x4EE3;&#x7406;&#x5BF9;&#x8C61;&#x7684;<strong>&#x8981;&#x6C42;&#xFF1A;&#x88AB;&#x4EE3;&#x7406;&#x7C7B;&#x4E2D;&#x81F3;&#x5C11;&#x5B9E;&#x73B0;&#x4E86;&#x4E00;&#x4E2A;&#x63A5;&#x53E3;</strong>&#xFF0C;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x5219;&#x4E0D;&#x80FD;&#x4F7F;&#x7528;&#x3002;</p>
 </li>
 <li>
 <p>newProxyInstance&#x7684;&#x53C2;&#x6570;&#xFF1A;</p>
@@ -564,7 +570,7 @@
 <p>&#x4F7F;&#x7528;&#x7B2C;&#x4E09;&#x65B9;&#x5E93;cglib&#x4E2D;&#x7684;Enhancer&#x7C7B;&#x4E2D;&#x7684;create&#x65B9;&#x6CD5;&#x3002;</p>
 </li>
 <li>
-<p>&#x521B;&#x5EFA;&#x4EE3;&#x7406;&#x5BF9;&#x8C61;&#x7684;&#x8981;&#x6C42;&#xFF1A;&#x88AB;&#x4EE3;&#x7406;&#x7C7B;&#x4E0D;&#x80FD;&#x662F;&#x6700;&#x7EC8;&#x7C7B;&#xFF08;final&#xFF09;&#x3002;</p>
+<p>&#x521B;&#x5EFA;&#x4EE3;&#x7406;&#x5BF9;&#x8C61;&#x7684;<strong>&#x8981;&#x6C42;&#xFF1A;&#x88AB;&#x4EE3;&#x7406;&#x7C7B;&#x4E0D;&#x80FD;&#x662F;&#x6700;&#x7EC8;&#x7C7B;&#xFF08;final&#xFF09;</strong>&#x3002;</p>
 </li>
 <li>
 <p>create&#x7684;&#x53C2;&#x6570;&#xFF1A;</p>
@@ -735,6 +741,219 @@
 </code></pre>
 </li>
 </ol>
+<h2 id="AOP&#x76F8;&#x5173;&#x6982;&#x5FF5;"><a class="header-anchor" href="#AOP&#x76F8;&#x5173;&#x6982;&#x5FF5;">&#xB6;</a>AOP&#x76F8;&#x5173;&#x6982;&#x5FF5;</h2>
+<ol>
+<li>
+<p>Joinpoint(&#x8FDE;&#x63A5;&#x70B9;)&#xFF1A;&#x6240;&#x8C13;&#x8FDE;&#x63A5;&#x70B9;&#x662F;&#x6307;&#x90A3;&#x4E9B;&#x88AB;<strong>&#x62E6;&#x622A;&#x5230;&#x7684;&#x70B9;</strong>&#x3002;&#x5728;spring&#x4E2D;,&#x8FD9;&#x4E9B;&#x70B9;&#x6307;&#x7684;&#x662F;&#x65B9;&#x6CD5;&#xFF0C;&#x56E0;&#x4E3A;spring&#x53EA;&#x652F;&#x6301;&#x65B9;&#x6CD5;&#x7C7B;&#x578B;&#x7684;&#x8FDE;&#x63A5;&#x70B9;&#x3002;</p>
+</li>
+<li>
+<p>Pointcut(&#x5207;&#x5165;&#x70B9;)&#xFF1A;&#x6240;&#x8C13;&#x5207;&#x5165;&#x70B9;&#x662F;&#x6307;&#x6211;&#x4EEC;&#x8981;&#x5BF9;&#x54EA;&#x4E9B;Joinpoint&#x8FDB;&#x884C;&#x62E6;&#x622A;&#x7684;&#x5B9A;&#x4E49;&#xFF0C;&#x5B9E;&#x9645;&#x4E0A;&#x5C31;&#x662F;<strong>&#x88AB;&#x589E;&#x5F3A;&#x7684;&#x65B9;&#x6CD5;</strong>&#x3002;&#x8FDE;&#x63A5;&#x70B9;&#x4E0D;&#x4E00;&#x5B9A;&#x662F;&#x5207;&#x5165;&#x70B9;&#xFF0C;&#x56E0;&#x4E3A;&#x4E0D;&#x4E00;&#x5B9A;&#x505A;&#x4E86;&#x65B9;&#x6CD5;&#x7684;&#x589E;&#x5F3A;&#x3002;</p>
+</li>
+<li>
+<p>Advice(&#x901A;&#x77E5;/&#x589E;&#x5F3A;)&#xFF1A;&#x6240;&#x8C13;&#x901A;&#x77E5;&#x662F;&#x6307;&#x62E6;&#x622A;&#x5230;Joinpoint&#x4E4B;&#x540E;&#x6240;&#x8981;&#x505A;&#x7684;&#x4E8B;&#x60C5;&#x3002;&#x5373;&#x5728;&#x7279;&#x5B9A;&#x7684;&#x5207;&#x5165;&#x70B9;&#x4E0A;<strong>&#x6267;&#x884C;&#x7684;&#x589E;&#x5F3A;&#x5904;&#x7406;</strong>&#x3002;</p>
+<ul>
+<li>&#x901A;&#x77E5;&#x7684;&#x7C7B;&#x578B;&#xFF1A;&#x524D;&#x7F6E;&#x901A;&#x77E5;&#xFF0C;&#x540E;&#x7F6E;&#x901A;&#x77E5;&#xFF0C;&#x5F02;&#x5E38;&#x901A;&#x77E5;&#xFF0C;&#x6700;&#x7EC8;&#x901A;&#x77E5;&#xFF0C;&#x73AF;&#x7ED5;&#x901A;&#x77E5;&#x3002;</li>
+</ul>
+</li>
+<li>
+<p>Introduction(&#x5F15;&#x4ECB;)&#xFF1A;&#x5F15;&#x4ECB;&#x662F;&#x4E00;&#x79CD;&#x7279;&#x6B8A;&#x7684;&#x901A;&#x77E5;&#x3002;&#x5728;&#x4E0D;&#x4FEE;&#x6539;&#x7C7B;&#x4EE3;&#x7801;&#x7684;&#x524D;&#x63D0;&#x4E0B;&#xFF0C;Introduction&#x53EF;&#x4EE5;&#x5728;&#x8FD0;&#x884C;&#x671F;&#x4E3A;&#x7C7B;&#x52A8;&#x6001;&#x5730;&#x6DFB;&#x52A0;&#x4E00;&#x4E9B;&#x65B9;&#x6CD5;&#x6216;Field&#x3002;</p>
+</li>
+<li>
+<p>Target(&#x76EE;&#x6807;&#x5BF9;&#x8C61;)&#xFF1A;&#x88AB;&#x4EE3;&#x7406;&#x7684;&#x76EE;&#x6807;&#x5BF9;&#x8C61;&#x3002;</p>
+</li>
+<li>
+<p>Weaving(&#x7EC7;&#x5165;)&#xFF1A;&#x662F;&#x6307;&#x628A;&#x589E;&#x5F3A;&#x7684;&#x529F;&#x80FD;&#x52A0;&#x5165;&#x5230;&#x76EE;&#x6807;&#x5BF9;&#x8C61;&#x6765;&#x521B;&#x5EFA;&#x65B0;&#x7684;&#x4EE3;&#x7406;&#x5BF9;&#x8C61;&#x7684;&#x8FC7;&#x7A0B;&#x3002;spring&#x91C7;&#x7528;<strong>&#x52A8;&#x6001;&#x4EE3;&#x7406;&#x7EC7;&#x5165;</strong>&#xFF0C;&#x800C;AspectJ&#x91C7;&#x7528;&#x7F16;&#x8BD1;&#x671F;&#x7EC7;&#x5165;&#x548C;&#x7C7B;&#x88C5;&#x8F7D;&#x671F;&#x7EC7;&#x5165;&#x3002;</p>
+</li>
+<li>
+<p>Proxy(&#x4EE3;&#x7406;)&#xFF1A;&#x4E00;&#x4E2A;&#x7C7B;&#x88AB;AOP&#x7EC7;&#x5165;&#x589E;&#x5F3A;&#x540E;&#xFF0C;&#x5C31;&#x4EA7;&#x751F;&#x4E00;&#x4E2A;<strong>&#x7ED3;&#x679C;&#x4EE3;&#x7406;&#x7C7B;</strong>&#x3002;</p>
+</li>
+<li>
+<p>Aspect(&#x5207;&#x9762;)&#xFF1A;&#x662F;&#x5207;&#x5165;&#x70B9;&#x548C;&#x901A;&#x77E5;&#xFF08;&#x5F15;&#x4ECB;&#xFF09;&#x7684;&#x7ED3;&#x5408;&#x3002;</p>
+</li>
+</ol>
+<h2 id="&#x57FA;&#x4E8E;xml&#x7684;AOP"><a class="header-anchor" href="#&#x57FA;&#x4E8E;xml&#x7684;AOP">&#xB6;</a>&#x57FA;&#x4E8E;xml&#x7684;AOP</h2>
+<h3 id="1-bean-xml&#x4E2D;&#x7684;&#x914D;&#x7F6E;"><a class="header-anchor" href="#1-bean-xml&#x4E2D;&#x7684;&#x914D;&#x7F6E;">&#xB6;</a>1.bean.xml&#x4E2D;&#x7684;&#x914D;&#x7F6E;</h3>
+<ol>
+<li>
+<p><code>aop:config</code>&#xFF1A;&#x7528;&#x4E8E;&#x58F0;&#x660E;&#x5F00;&#x59CB;aop&#x7684;&#x914D;&#x7F6E;&#x3002;</p>
+</li>
+<li>
+<p><code>aop:aspect</code> &#xFF1A;&#x7528;&#x4E8E;&#x914D;&#x7F6E;&#x5207;&#x9762;&#x3002;</p>
+<ul>
+<li>id&#x5C5E;&#x6027;&#xFF1A;&#x7ED9;&#x5207;&#x9762;&#x63D0;&#x4F9B;&#x4E00;&#x4E2A;&#x552F;&#x4E00;&#x6807;&#x8BC6;&#x3002;</li>
+<li>ref&#x5C5E;&#x6027;&#xFF1A;&#x5F15;&#x7528;&#x914D;&#x7F6E;&#x597D;&#x7684;&#x901A;&#x77E5;&#x7C7B;bean&#x7684;id&#xFF0C;&#x5373;&#x5305;&#x542B;&#x589E;&#x5F3A;&#x65B9;&#x6CD5;&#x7684;&#x7C7B;&#x7684;bean&#x7684;ID&#x3002;</li>
+</ul>
+</li>
+<li>
+<p>&#x5728;<code>aop:aspect</code>&#x6807;&#x7B7E;&#x5185;&#x90E8;&#x4F7F;&#x7528;&#x5BF9;&#x5E94;&#x6807;&#x7B7E;&#x6765;<strong>&#x914D;&#x7F6E;&#x901A;&#x77E5;</strong>&#x7684;&#x7C7B;&#x578B;&#x3002;</p>
+<ol>
+<li>
+<p><code>aop:before</code>&#xFF1A;&#x8868;&#x793A;&#x524D;&#x7F6E;&#x901A;&#x77E5;&#xFF0C;&#x5728;&#x5207;&#x5165;&#x70B9;&#x65B9;&#x6CD5;&#x6267;&#x884C;&#x524D;&#x6267;&#x884C;&#x3002;</p>
+<ul>
+<li>method&#x5C5E;&#x6027;&#xFF1A;&#x6307;&#x5B9A;&#x7C7B;&#x4E2D;&#x4F5C;&#x4E3A;&#x524D;&#x7F6E;&#x901A;&#x77E5;&#x7684;&#x65B9;&#x6CD5;&#x3002;</li>
+<li>ponitcut-ref&#x5C5E;&#x6027;&#xFF1A;&#x7528;&#x4E8E;&#x6307;&#x5B9A;&#x5207;&#x5165;&#x70B9;&#x7684;&#x8868;&#x8FBE;&#x5F0F;&#x7684;&#x5F15;&#x7528; &#x3002;</li>
+<li>poinitcut&#x5C5E;&#x6027;&#xFF1A;&#x7528;&#x4E8E;&#x6307;&#x5B9A;&#x5207;&#x5165;&#x70B9;&#x8868;&#x8FBE;&#x5F0F;&#xFF0C;&#x542B;&#x4E49;&#x662F;&#x6307;&#x5BF9;&#x4E1A;&#x52A1;&#x5C42;&#x4E2D;&#x54EA;&#x4E9B;&#x65B9;&#x6CD5;&#x8FDB;&#x884C;&#x589E;&#x5F3A;&#x3002;</li>
+</ul>
+</li>
+<li>
+<p><code>aop:after-returning</code>&#xFF1A;&#x8868;&#x793A;&#x540E;&#x7F6E;&#x901A;&#x77E5;&#xFF0C;&#x5728;&#x5207;&#x5165;&#x70B9;&#x65B9;&#x6CD5;&#x6B63;&#x5E38;&#x6267;&#x884C;&#x540E;&#x6267;&#x884C;&#x3002;</p>
+<ul>
+<li>method&#x5C5E;&#x6027;&#xFF0C;ponitcut-ref&#x5C5E;&#x6027;&#xFF0C;poinitcut&#x5C5E;&#x6027;&#x3002;</li>
+<li>&#x5207;&#x5165;&#x70B9;&#x65B9;&#x6CD5;&#x6B63;&#x5E38;&#x6267;&#x884C;&#x4E4B;&#x540E;&#x3002;<strong>&#x5B83;&#x548C;&#x5F02;&#x5E38;&#x901A;&#x77E5;&#x53EA;&#x80FD;&#x6709;&#x4E00;&#x4E2A;&#x6267;&#x884C;</strong>&#x3002;</li>
+</ul>
+</li>
+<li>
+<p><code>aop:after-throwing</code>&#xFF1A;&#x8868;&#x793A;&#x5F02;&#x5E38;&#x901A;&#x77E5;&#xFF0C;&#x5728;&#x5207;&#x5165;&#x70B9;&#x65B9;&#x6CD5;&#x6267;&#x884C;&#x53D1;&#x751F;&#x5F02;&#x5E38;&#x65F6;&#x6267;&#x884C;&#x3002;</p>
+<ul>
+<li>method&#x5C5E;&#x6027;&#xFF0C;ponitcut-ref&#x5C5E;&#x6027;&#xFF0C;poinitcut&#x5C5E;&#x6027;&#x3002;</li>
+</ul>
+</li>
+<li>
+<p><code>aop:after</code>&#xFF1A;&#x8868;&#x793A;&#x6700;&#x7EC8;&#x901A;&#x77E5;&#xFF0C;&#x65E0;&#x8BBA;&#x5207;&#x5165;&#x70B9;&#x65B9;&#x6CD5;&#x662F;&#x5426;&#x6B63;&#x5E38;&#x6267;&#x884C;&#xFF0C;&#x6700;&#x7EC8;&#x901A;&#x77E5;&#x90FD;&#x5728;&#x6700;&#x540E;&#x6267;&#x884C;&#x3002;</p>
+<ul>
+<li>method&#x5C5E;&#x6027;&#xFF0C;ponitcut-ref&#x5C5E;&#x6027;&#xFF0C;poinitcut&#x5C5E;&#x6027;&#x3002;</li>
+<li>&#x65E0;&#x8BBA;&#x5207;&#x5165;&#x70B9;&#x65B9;&#x6CD5;&#x6267;&#x884C;&#x65F6;&#x662F;&#x5426;&#x6709;&#x5F02;&#x5E38;&#xFF0C;&#x5B83;&#x90FD;&#x4F1A;&#x5728;&#x5176;&#x540E;&#x9762;&#x6267;&#x884C;&#x3002;</li>
+</ul>
+</li>
+<li>
+<p><code>aop:pointcut</code>&#xFF1A;&#x7528;&#x4E8E;&#x5B9A;&#x4E49;&#x5207;&#x5165;&#x70B9;&#x8868;&#x8FBE;&#x5F0F;&#x3002;</p>
+<ul>
+<li>id&#x5C5E;&#x6027;&#xFF1A;&#x6307;&#x5B9A;&#x8868;&#x8FBE;&#x5F0F;&#x7684;&#x552F;&#x4E00;&#x6807;&#x8BC6;&#x3002;</li>
+<li>expression&#x5C5E;&#x6027;&#xFF1A;&#x6307;&#x5B9A;&#x8868;&#x8FBE;&#x5F0F;&#x5185;&#x5BB9;&#x3002;</li>
+<li>&#x8BE5;&#x6807;&#x7B7E;&#x53EF;&#x4EE5;&#x653E;&#x5728;<code>aop:aspect</code>&#x6807;&#x7B7E;&#x5916;&#x9762;&#xFF0C;&#x6B64;&#x65F6;<strong>&#x6240;&#x6709;&#x5207;&#x9762;&#x90FD;&#x53EF;&#x4F7F;&#x7528;</strong>&#x3002;</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="2-&#x5207;&#x5165;&#x70B9;&#x8868;&#x8FBE;&#x5F0F;"><a class="header-anchor" href="#2-&#x5207;&#x5165;&#x70B9;&#x8868;&#x8FBE;&#x5F0F;">&#xB6;</a>2.&#x5207;&#x5165;&#x70B9;&#x8868;&#x8FBE;&#x5F0F;</h3>
+<pre><code>1. &#x8868;&#x8FBE;&#x5F0F;&#x6267;&#x884C;&#xFF1A;`execution(&#x8868;&#x8FBE;&#x5F0F;)`
+2. &#x5207;&#x5165;&#x70B9;&#x8868;&#x8FBE;&#x5F0F;&#x8BED;&#x6CD5;&#xFF1A;`execution([&#x4FEE;&#x9970;&#x7B26;] &#x8FD4;&#x56DE;&#x503C;&#x7C7B;&#x578B; &#x5305;&#x540D;.&#x7C7B;&#x540D;.&#x65B9;&#x6CD5;&#x540D;(&#x53C2;&#x6570;))`
+3. &#x5168;&#x5339;&#x914D;&#x65B9;&#x5F0F;&#xFF1A;`public void cn.sucrelt.service.impl.AccountServiceImpl.saveAccount(cn.sucrelt.domain.Account)`
+4. &#x8BBF;&#x95EE;&#x4FEE;&#x9970;&#x7B26;&#x53EF;&#x4EE5;&#x7701;&#x7565;&#xFF0C;&#x8FD4;&#x56DE;&#x503C;&#x7528;*&#x8868;&#x793A;&#x4EFB;&#x610F;&#x8FD4;&#x56DE;&#x503C;*
+5. *&#x5305;&#x540D;&#x7528;*&#x8868;&#x793A;&#x4EFB;&#x610F;&#x5305;&#xFF0C;&#x7528;..&#x8868;&#x793A;&#x5F53;&#x524D;&#x5305;&#x53CA;&#x5176;&#x5B50;&#x5305;
+6. &#x53C2;&#x6570;&#x5217;&#x8868;&#x4F7F;&#x7528;*&#x8868;&#x793A;&#x4EFB;&#x610F;&#x53C2;&#x6570;&#xFF0C;&#x4F46;&#x4E0D;&#x80FD;&#x662F;&#x7A7A;&#x53C2;&#xFF1B;&#x4F7F;&#x7528;..&#x8868;&#x793A;&#x6709;&#x65E0;&#x53C2;&#x6570;&#x5747;&#x53EF;*
+7. &#x5168;&#x901A;&#x914D;&#x65B9;&#x5F0F;&#xFF1A;`* *..*.*(..)`
+8. &#x901A;&#x5E38;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x6211;&#x4EEC;&#x90FD;&#x662F;&#x5BF9;&#x4E1A;&#x52A1;&#x5C42;&#x7684;&#x65B9;&#x6CD5;&#x8FDB;&#x884C;&#x589E;&#x5F3A;&#xFF0C;&#x6240;&#x4EE5;**&#x5207;&#x5165;&#x70B9;&#x8868;&#x8FBE;&#x5F0F;**&#x90FD;&#x662F;&#x5207;&#x5230;&#x4E1A;&#x52A1;&#x5C42;&#x5B9E;&#x73B0;&#x7C7B;&#xFF1A;`execution(* cn.sucrelt.service.impl.*.*(..))`
+</code></pre>
+<h3 id="3-&#x6848;&#x4F8B;"><a class="header-anchor" href="#3-&#x6848;&#x4F8B;">&#xB6;</a>3.&#x6848;&#x4F8B;</h3>
+<p>Logger&#x7C7B;&#x4E2D;&#x7528;&#x4E8E;&#x6A21;&#x62DF;&#x51E0;&#x79CD;&#x7C7B;&#x578B;&#x7684;&#x901A;&#x77E5;</p>
+<pre><code class="language-java">public class Logger {
+    /**
+     * &#x524D;&#x7F6E;&#x901A;&#x77E5;
+     */
+    public void beforePrintLog() {
+        System.out.println(&quot;&#x524D;&#x7F6E;&#x901A;&#x77E5;beforePrintLog&#x5F00;&#x59CB;&#x8BB0;&#x5F55;&#x65E5;&#x5FD7;...&quot;);
+    }
+    /**
+     * &#x540E;&#x7F6E;&#x901A;&#x77E5;
+     */
+    public void afterReturningPrintLog() {
+        System.out.println(&quot;&#x540E;&#x7F6E;&#x901A;&#x77E5;afterReturningPrintLog&#x5F00;&#x59CB;&#x8BB0;&#x5F55;&#x65E5;&#x5FD7;...&quot;);
+    }
+    /**
+     * &#x5F02;&#x5E38;&#x901A;&#x77E5;
+     */
+    public void afterThrowingPrintLog() {
+        System.out.println(&quot;&#x5F02;&#x5E38;&#x901A;&#x77E5;afterThrowingPrintLog&#x5F00;&#x59CB;&#x8BB0;&#x5F55;&#x65E5;&#x5FD7;...&quot;);
+    }
+    /**
+     * &#x6700;&#x7EC8;&#x901A;&#x77E5;
+     */
+    public void afterPrintLog() {
+        System.out.println(&quot;&#x6700;&#x7EC8;&#x901A;&#x77E5;afterPrintLog&#x5F00;&#x59CB;&#x8BB0;&#x5F55;&#x65E5;&#x5FD7;...&quot;);
+    }
+}
+</code></pre>
+<p>&#x5728;bean.xml&#x4E2D;&#x914D;&#x7F6E;Logger&#x7C7B;&#x4EE5;&#x53CA;&#x5207;&#x9762;</p>
+<pre><code class="language-xml">&lt;!--&#x914D;&#x7F6E;Logger&#x7C7B;--&gt;
+&lt;bean id=&quot;logger&quot; class=&quot;cn.sucrelt.aoputils.Logger&quot;/&gt;
+&lt;!--&#x914D;&#x7F6E;AOP--&gt;
+&lt;!--&#x914D;&#x7F6E;&#x5207;&#x9762;--&gt;
+&lt;aop:config&gt;
+    &lt;aop:aspect id=&quot;logAdvice&quot; ref=&quot;logger&quot;&gt;
+        &lt;!--&#x914D;&#x7F6E;&#x5207;&#x5165;&#x70B9;&#x8868;&#x8FBE;&#x5F0F;--&gt;
+        &lt;aop:pointcut id=&quot;pt1&quot; expression=&quot;execution(* cn.sucrelt.aopservice.impl.*.*(..))&quot;/&gt;
+
+        &lt;aop:before method=&quot;beforePrintLog&quot; pointcut-ref=&quot;pt1&quot;/&gt;
+        &lt;aop:after-returning method=&quot;afterReturningPrintLog&quot; pointcut-ref=&quot;pt1&quot;/&gt;
+        &lt;aop:after-throwing method=&quot;afterThrowingPrintLog&quot; pointcut-ref=&quot;pt1&quot;/&gt;
+        &lt;aop:after method=&quot;afterPrintLog&quot; pointcut-ref=&quot;pt1&quot;/&gt;
+        &lt;aop:around method=&quot;aroundPrintLog&quot; pointcut-ref=&quot;pt1&quot;/&gt;
+    &lt;/aop:aspect&gt;
+&lt;/aop:config&gt;
+</code></pre>
+<p>&#x6267;&#x884C;&#x4E1A;&#x52A1;&#x5C42;&#x65B9;&#x6CD5;saveAccount&#x7ED3;&#x679C;</p>
+<pre><code class="language-java">&#x524D;&#x7F6E;&#x901A;&#x77E5;beforePrintLog&#x5F00;&#x59CB;&#x8BB0;&#x5F55;&#x65E5;&#x5FD7;...
+&#x6267;&#x884C;&#x4E86;&#x4FDD;&#x5B58;
+&#x540E;&#x7F6E;&#x901A;&#x77E5;afterReturningPrintLog&#x5F00;&#x59CB;&#x8BB0;&#x5F55;&#x65E5;&#x5FD7;...
+&#x6700;&#x7EC8;&#x901A;&#x77E5;afterPrintLog&#x5F00;&#x59CB;&#x8BB0;&#x5F55;&#x65E5;&#x5FD7;...
+</code></pre>
+<h3 id="4-&#x73AF;&#x7ED5;&#x901A;&#x77E5;"><a class="header-anchor" href="#4-&#x73AF;&#x7ED5;&#x901A;&#x77E5;">&#xB6;</a>4.&#x73AF;&#x7ED5;&#x901A;&#x77E5;</h3>
+<ol>
+<li>
+<p>&#x95EE;&#x9898;&#xFF1A;&#x5F53;&#x914D;&#x7F6E;&#x73AF;&#x7ED5;&#x901A;&#x77E5;&#x540E;&#xFF0C;&#x6267;&#x884C;&#x4E1A;&#x52A1;&#x5C42;&#x65B9;&#x6CD5;&#x65F6;&#xFF0C;&#x73AF;&#x7ED5;&#x901A;&#x77E5;&#x65B9;&#x6CD5;&#x6267;&#x884C;&#xFF0C;&#x4F46;&#x539F;&#x6709;&#x7684;&#x5207;&#x5165;&#x70B9;&#x65B9;&#x6CD5;&#x6CA1;&#x6709;&#x6267;&#x884C;&#xFF0C;&#x5BF9;&#x4E8E;&#x6BD4;&#x52A8;&#x6001;&#x4EE3;&#x7406;&#x4E2D;&#xFF0C;&#x5B58;&#x5728;invoke&#x65B9;&#x6CD5;&#x7528;&#x4E8E;&#x660E;&#x786E;&#x7684;&#x6267;&#x884C;&#x5207;&#x5165;&#x70B9;&#x65B9;&#x6CD5;&#x3002;</p>
+</li>
+<li>
+<p>&#x89E3;&#x51B3;&#xFF1A;Spring&#x6846;&#x67B6;&#x4E2D;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x4E2A;&#x63A5;&#x53E3;ProceedingJoinPoint&#xFF0C;&#x5176;&#x4E2D;&#x6709;&#x4E00;&#x4E2A;proceed()&#x65B9;&#x6CD5;&#xFF0C;&#x7528;&#x4E8E;&#x660E;&#x786E;&#x8C03;&#x7528;&#x5207;&#x5165;&#x70B9;&#x65B9;&#x6CD5;&#xFF0C;&#x8BE5;&#x63A5;&#x53E3;&#x53EF;&#x4EE5;&#x4F5C;&#x4E3A;&#x73AF;&#x7ED5;&#x901A;&#x77E5;&#x7684;&#x65B9;&#x6CD5;&#x53C2;&#x6570;&#x3002;</p>
+</li>
+<li>
+<p>&#x901A;&#x5E38;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x73AF;&#x7ED5;&#x901A;&#x77E5;&#x90FD;&#x662F;&#x72EC;&#x7ACB;&#x4F7F;&#x7528;&#x7684;&#xFF0C;&#x76F8;&#x5F53;&#x4E8E;&#x52A8;&#x6001;&#x4EE3;&#x7406;&#x4E2D;&#x7684;invoke&#x65B9;&#x6CD5;</p>
+<pre><code class="language-java">/**
+ * &#x73AF;&#x7ED5;&#x901A;&#x77E5;
+ */
+public Object aroundPrintLog(ProceedingJoinPoint pjp) {
+    Object rtValue = null;
+    try {
+        Object[] args = pjp.getArgs();
+        System.out.println(&quot;&#x73AF;&#x7ED5;&#x901A;&#x77E5;aroundPrintLog&#x5F00;&#x59CB;&#x8BB0;&#x5F55;&#x65E5;&#x5FD7;...&#x524D;&#x7F6E;&quot;);
+        rtValue = pjp.proceed(args);
+        System.out.println(&quot;&#x73AF;&#x7ED5;&#x901A;&#x77E5;aroundPrintLog&#x5F00;&#x59CB;&#x8BB0;&#x5F55;&#x65E5;&#x5FD7;...&#x540E;&#x7F6E;&quot;);
+        return rtValue;
+    } catch (Throwable throwable) {
+        System.out.println(&quot;&#x73AF;&#x7ED5;&#x901A;&#x77E5;aroundPrintLog&#x5F00;&#x59CB;&#x8BB0;&#x5F55;&#x65E5;&#x5FD7;...&#x5F02;&#x5E38;&quot;);
+        throw new RuntimeException(throwable);
+    }finally {
+        System.out.println(&quot;&#x73AF;&#x7ED5;&#x901A;&#x77E5;aroundPrintLog&#x5F00;&#x59CB;&#x8BB0;&#x5F55;&#x65E5;&#x5FD7;...&#x6700;&#x7EC8;&quot;);
+    }
+}
+</code></pre>
+<p>bean.xml</p>
+<pre><code class="language-xml">&lt;aop:config&gt;
+        &lt;aop:aspect id=&quot;logAdvice&quot; ref=&quot;logger&quot;&gt;
+            &lt;!--&#x914D;&#x7F6E;&#x5207;&#x5165;&#x70B9;&#x8868;&#x8FBE;&#x5F0F;--&gt;
+            &lt;aop:pointcut id=&quot;pt1&quot; expression=&quot;execution(* cn.sucrelt.aopservice.impl.*.*(..))&quot;/&gt;
+            &lt;aop:around method=&quot;aroundPrintLog&quot; pointcut-ref=&quot;pt1&quot;/&gt;
+        &lt;/aop:aspect&gt;
+    &lt;/aop:config&gt;
+</code></pre>
+</li>
+</ol>
+<h2 id="&#x57FA;&#x4E8E;&#x6CE8;&#x89E3;&#x7684;AOP"><a class="header-anchor" href="#&#x57FA;&#x4E8E;&#x6CE8;&#x89E3;&#x7684;AOP">&#xB6;</a>&#x57FA;&#x4E8E;&#x6CE8;&#x89E3;&#x7684;AOP</h2>
+<ol>
+<li>
+<p>&#x901A;&#x77E5;&#x7C7B;Logger&#x4F7F;&#x7528;&#x6CE8;&#x89E3;@Component(&#x201C;logAdvice&#x201D;)&#x914D;&#x7F6E;&#xFF0C;&#x540C;&#x65F6;&#x5728;&#x5176;&#x4E0A;&#x65B9;&#x4F7F;&#x7528;@Aspect&#x58F0;&#x660E;&#x8BE5;&#x7C7B;&#x4E3A;&#x4E00;&#x4E2A;&#x5207;&#x9762;&#x3002;</p>
+</li>
+<li>
+<p>&#x5728;&#x7C7B;&#x4E2D;&#x589E;&#x5F3A;&#x7684;&#x901A;&#x77E5;&#x65B9;&#x6CD5;&#x4E0A;&#x4F7F;&#x7528;&#x76F8;&#x5E94;&#x7684;&#x6CE8;&#x89E3;&#x8FDB;&#x884C;&#x914D;&#x7F6E;&#x8BF4;&#x660E;&#xFF0C;&#x62EC;&#x53F7;&#x4E2D;&#x7684;&#x53C2;&#x6570;&#x4E3A;&#x5207;&#x5165;&#x70B9;&#x8868;&#x8FBE;&#x5F0F;&#x3002;</p>
+<ul>
+<li>@Before(&#x201C;pt1()&#x201D;)&#x524D;&#x7F6E;&#x901A;&#x77E5;</li>
+<li>@AfterReturning&#x540E;&#x7F6E;&#x901A;&#x77E5;</li>
+<li>@AfterThrowing&#x5F02;&#x5E38;&#x901A;&#x77E5;</li>
+<li>@After&#x6700;&#x7EC8;&#x901A;&#x77E5;</li>
+<li>@Around&#x73AF;&#x7ED5;&#x901A;&#x77E5;</li>
+</ul>
+</li>
+<li>
+<p>&#x5728;bean.xml&#x6587;&#x4EF6;&#x4E2D;&#x4F7F;&#x7528;<code>&lt;aop:aspectj-autoproxy/&gt;</code>&#x5F00;&#x542F;&#x5BF9;&#x6CE8;&#x89E3;&#x7684;&#x652F;&#x6301;&#x3002;</p>
+</li>
+<li>
+<p>&#x914D;&#x7F6E;&#x5207;&#x5165;&#x70B9;&#x8868;&#x8FBE;&#x5F0F;</p>
+<pre><code class="language-java">@Pointcut(&quot;(* cn.sucrelt.aopservice.impl.*.*(..))&quot;) 
+private void pt1() {}
+</code></pre>
+</li>
+</ol>
 
     </div>
 
@@ -764,7 +983,7 @@
   <p><span>本文标题:</span><a href="/article/6cb1c7d5.html/">JavaWeb之Spring-AOP</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 Hoshino汤包 的个人博客">Hoshino汤包</a></p>
   <p><span>发布时间:</span>2020年09月23日 - 16:32:49</p>
-  <p><span>最后更新:</span>2020年09月23日 - 16:34:24</p>
+  <p><span>最后更新:</span>2020年09月25日 - 09:54:06</p>
   <p><span>原始链接:</span><a href="/article/6cb1c7d5.html/" title="JavaWeb之Spring-AOP">https://tangtangsama.github.io/article/6cb1c7d5.html/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://tangtangsama.github.io/article/6cb1c7d5.html/"  aria-label="复制成功！"></i></span>
   </p>
@@ -961,13 +1180,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">314k</span>
+    <span title="站点总字数">328k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">4:46</span>
+    <span title="站点阅读时长">4:58</span>
 </div>
 
 <div id="days"></div>
