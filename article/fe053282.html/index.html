@@ -31,7 +31,7 @@
 <meta property="og:description" content="JavaWeb&amp;#x5B66;&amp;#x4E60;&amp;#x4E2D;&amp;#x5173;&amp;#x4E8E;Spring-AOP&amp;#x7684;&amp;#x76F8;&amp;#x5173;&amp;#x77E5;&amp;#x8BC6; &amp;#x1F4AF;&amp;#x1F4A4;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-10-15T07:53:41.000Z">
-<meta property="article:modified_time" content="2020-10-19T10:15:54.101Z">
+<meta property="article:modified_time" content="2020-10-22T03:37:07.414Z">
 <meta property="article:author" content="Hoshino汤包">
 <meta name="twitter:card" content="summary">
 
@@ -236,7 +236,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-10-19 18:15:54" itemprop="dateModified" datetime="2020-10-19T18:15:54+08:00">2020-10-19</time>
+                <time title="修改时间：2020-10-22 11:37:07" itemprop="dateModified" datetime="2020-10-22T11:37:07+08:00">2020-10-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -254,14 +254,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>7.9k</span>
+              <span>13k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>7 分钟</span>
+              <span>12 分钟</span>
             </span>
 
         </div>
@@ -388,6 +388,72 @@ System.out.println(count);
 <h4 id="3-&#x5BF9;&#x6BD4;"><a class="header-anchor" href="#3-&#x5BF9;&#x6BD4;">&#xB6;</a>3.&#x5BF9;&#x6BD4;</h4>
 <p>&#x7B2C;&#x4E00;&#x79CD;&#x65B9;&#x5F0F;&#x5728;Dao&#x7C7B;&#x4E2D;&#x5B9A;&#x4E49;JdbcTemplate&#x7684;&#x65B9;&#x5F0F;&#xFF0C;&#x9002;&#x7528;&#x4E8E;&#x6240;&#x6709;&#x914D;&#x7F6E;&#x65B9;&#x5F0F;&#xFF08;xml&#x548C;&#x6CE8;&#x89E3;&#x90FD;&#x53EF;&#x4EE5;&#xFF09;&#x3002;</p>
 <p>&#x7B2C;&#x4E8C;&#x79CD;&#x8BA9;Dao&#x7EE7;&#x627F;JdbcDaoSupport&#x7684;&#x65B9;&#x5F0F;&#xFF0C;&#x53EA;&#x80FD;&#x7528;&#x4E8E;&#x57FA;&#x4E8E;XML&#x7684;&#x65B9;&#x5F0F;&#xFF0C;&#x6CE8;&#x89E3;&#x7528;&#x4E0D;&#x4E86;&#xFF0C;&#x56E0;&#x4E3A;&#x6CE8;&#x89E3;&#x914D;&#x7F6E;&#x65F6;&#xFF0C;&#x65E0;&#x6CD5;&#x5728;AccountDaoImpl2&#x7C7B;&#x4E2D;&#x81EA;&#x52A8;&#x6CE8;&#x5165;dataSource&#x3002;</p>
+<h2 id="Spring&#x4E2D;&#x7684;&#x4E8B;&#x52A1;&#x63A7;&#x5236;"><a class="header-anchor" href="#Spring&#x4E2D;&#x7684;&#x4E8B;&#x52A1;&#x63A7;&#x5236;">&#xB6;</a>Spring&#x4E2D;&#x7684;&#x4E8B;&#x52A1;&#x63A7;&#x5236;</h2>
+<h3 id="&#x57FA;&#x4E8E;xml&#x7684;&#x4E8B;&#x52A1;&#x63A7;&#x5236;&#x914D;&#x7F6E;"><a class="header-anchor" href="#&#x57FA;&#x4E8E;xml&#x7684;&#x4E8B;&#x52A1;&#x63A7;&#x5236;&#x914D;&#x7F6E;">&#xB6;</a>&#x57FA;&#x4E8E;xml&#x7684;&#x4E8B;&#x52A1;&#x63A7;&#x5236;&#x914D;&#x7F6E;</h3>
+<h4 id="1-&#x914D;&#x7F6E;&#x4E8B;&#x52A1;&#x7BA1;&#x7406;&#x5668;"><a class="header-anchor" href="#1-&#x914D;&#x7F6E;&#x4E8B;&#x52A1;&#x7BA1;&#x7406;&#x5668;">&#xB6;</a>1.&#x914D;&#x7F6E;&#x4E8B;&#x52A1;&#x7BA1;&#x7406;&#x5668;</h4>
+<pre><code class="language-xml">&lt;!-- &#x914D;&#x7F6E;&#x4E8B;&#x52A1;&#x7BA1;&#x7406;&#x5668; --&gt;
+&lt;bean id=&quot;transactionManager&quot; class=&quot;org.springframework.jdbc.datasource.DataSourceTransactionManager&quot;&gt;
+    &lt;property name=&quot;dataSource&quot; ref=&quot;dataSource&quot;/&gt;
+&lt;/bean&gt;	
+</code></pre>
+<h4 id="2-&#x914D;&#x7F6E;&#x4E8B;&#x52A1;&#x901A;&#x77E5;"><a class="header-anchor" href="#2-&#x914D;&#x7F6E;&#x4E8B;&#x52A1;&#x901A;&#x77E5;">&#xB6;</a>2.&#x914D;&#x7F6E;&#x4E8B;&#x52A1;&#x901A;&#x77E5;</h4>
+<ol>
+<li>&#x9700;&#x8981;&#x5728;bean&#x6587;&#x4EF6;&#x5F00;&#x59CB;&#x5BFC;&#x5165;&#x4E8B;&#x52A1;&#x7684;&#x76F8;&#x5173;&#x7EA6;&#x675F;&#x4EE5;&#x53CA;aop&#x7684;&#x7EA6;&#x675F;</li>
+</ol>
+<pre><code class="language-xml">&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+       xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+       xmlns:aop=&quot;http://www.springframework.org/schema/aop&quot;
+       xmlns:tx=&quot;http://www.springframework.org/schema/tx&quot;
+       xsi:schemaLocation=&quot;
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd&quot;&gt;
+</code></pre>
+<ol start="2">
+<li>
+<p>&#x4F7F;&#x7528;<code>tx:advice</code>&#x6807;&#x7B7E;&#x914D;&#x7F6E;&#x4E8B;&#x52A1;&#x901A;&#x77E5;</p>
+<p>&#x8BE5;&#x6807;&#x7B7E;&#x7684;&#x5C5E;&#x6027;&#xFF1A;</p>
+<ul>
+<li>id&#xFF1A;&#x4E8B;&#x52A1;&#x7684;&#x552F;&#x4E00;&#x6807;&#x8BC6;</li>
+<li>transaction-manager&#xFF1A;&#x7ED9;&#x4E8B;&#x52A1;&#x901A;&#x77E5;&#x4E2D;&#x4F20;&#x5165;&#x4E00;&#x4E2A;&#x4E8B;&#x52A1;&#x7BA1;&#x7406;&#x5668;</li>
+</ul>
+</li>
+</ol>
+<pre><code class="language-xml">&lt;!-- &#x914D;&#x7F6E;&#x4E8B;&#x52A1;&#x7684;&#x901A;&#x77E5;--&gt;
+&lt;tx:advice id=&quot;transactionAdvice&quot; transaction-manager=&quot;transactionManager&quot;&gt;
+    &lt;!-- &#x914D;&#x7F6E;&#x4E8B;&#x52A1;&#x7684;&#x5C5E;&#x6027;--&gt;
+    &lt;tx:attributes&gt;
+        &lt;tx:method name=&quot;*&quot; propagation=&quot;REQUIRED&quot; read-only=&quot;false&quot;/&gt;
+        &lt;tx:method name=&quot;find*&quot; propagation=&quot;SUPPORTS&quot; read-only=&quot;true&quot;/&gt;
+    &lt;/tx:attributes&gt;
+&lt;/tx:advice&gt;
+</code></pre>
+<ol start="3">
+<li>&#x5728;<code>tx:advice</code>&#x6807;&#x7B7E;&#x5185;&#x90E8;&#x4F7F;&#x7528;<code>tx:attributes</code>&#x914D;&#x7F6E;&#x4E8B;&#x52A1;&#x5C5E;&#x6027;
+<ul>
+<li>isolation&#xFF1A;&#x7528;&#x4E8E;&#x6307;&#x5B9A;&#x4E8B;&#x52A1;&#x7684;&#x9694;&#x79BB;&#x7EA7;&#x522B;&#x3002;&#x9ED8;&#x8BA4;&#x503C;&#x662F;DEFAULT&#xFF0C;&#x8868;&#x793A;&#x4F7F;&#x7528;&#x6570;&#x636E;&#x5E93;&#x7684;&#x9ED8;&#x8BA4;&#x9694;&#x79BB;&#x7EA7;&#x522B;&#x3002;</li>
+<li>propagation&#xFF1A;&#x7528;&#x4E8E;&#x6307;&#x5B9A;&#x4E8B;&#x52A1;&#x7684;&#x4F20;&#x64AD;&#x884C;&#x4E3A;&#x3002;&#x9ED8;&#x8BA4;&#x503C;&#x662F;REQUIRED&#xFF0C;<strong>&#x7528;&#x4E8E;&#x589E;&#x5220;&#x6539;</strong>&#xFF0C;&#x8868;&#x793A;&#x4E00;&#x5B9A;&#x4F1A;&#x6709;&#x4E8B;&#x52A1;&#x3002;<strong>&#x67E5;&#x8BE2;&#x65B9;&#x6CD5;</strong>&#x53EF;&#x4EE5;&#x9009;&#x62E9;SUPPORTS&#x3002;</li>
+<li>read-only&#xFF1A;&#x7528;&#x4E8E;&#x6307;&#x5B9A;&#x4E8B;&#x52A1;&#x662F;&#x5426;&#x53EA;&#x8BFB;&#x3002;<strong>&#x53EA;&#x6709;&#x67E5;&#x8BE2;&#x65B9;&#x6CD5;&#x624D;&#x80FD;&#x8BBE;&#x7F6E;&#x4E3A;true</strong>&#x3002;&#x9ED8;&#x8BA4;&#x503C;&#x662F;false&#xFF0C;&#x8868;&#x793A;&#x8BFB;&#x5199;&#x3002;</li>
+<li>timeout&#xFF1A;&#x7528;&#x4E8E;&#x6307;&#x5B9A;&#x4E8B;&#x52A1;&#x7684;&#x8D85;&#x65F6;&#x65F6;&#x95F4;&#xFF0C;&#x9ED8;&#x8BA4;&#x503C;&#x662F;-1&#xFF0C;&#x8868;&#x793A;&#x6C38;&#x4E0D;&#x8D85;&#x65F6;&#x3002;&#x5982;&#x679C;&#x6307;&#x5B9A;&#x4E86;&#x6570;&#x503C;&#xFF0C;&#x4EE5;&#x79D2;&#x4E3A;&#x5355;&#x4F4D;&#x3002;</li>
+<li>rollback-for&#xFF1A;&#x7528;&#x4E8E;&#x6307;&#x5B9A;&#x4E00;&#x4E2A;&#x5F02;&#x5E38;&#xFF0C;&#x5F53;&#x4EA7;&#x751F;&#x8BE5;&#x5F02;&#x5E38;&#x65F6;&#xFF0C;&#x4E8B;&#x52A1;&#x56DE;&#x6EDA;&#xFF0C;&#x4EA7;&#x751F;&#x5176;&#x4ED6;&#x5F02;&#x5E38;&#x65F6;&#xFF0C;&#x4E8B;&#x52A1;&#x4E0D;&#x56DE;&#x6EDA;&#x3002;&#x6CA1;&#x6709;&#x9ED8;&#x8BA4;&#x503C;&#x3002;&#x8868;&#x793A;&#x4EFB;&#x4F55;&#x5F02;&#x5E38;&#x90FD;&#x56DE;&#x6EDA;&#x3002;</li>
+<li>no-rollback-for&#xFF1A;&#x7528;&#x4E8E;&#x6307;&#x5B9A;&#x4E00;&#x4E2A;&#x5F02;&#x5E38;&#xFF0C;&#x5F53;&#x4EA7;&#x751F;&#x8BE5;&#x5F02;&#x5E38;&#x65F6;&#xFF0C;&#x4E8B;&#x52A1;&#x4E0D;&#x56DE;&#x6EDA;&#xFF0C;&#x4EA7;&#x751F;&#x5176;&#x4ED6;&#x5F02;&#x5E38;&#x65F6;&#x4E8B;&#x52A1;&#x56DE;&#x6EDA;&#x3002;&#x6CA1;&#x6709;&#x9ED8;&#x8BA4;&#x503C;&#x3002;&#x8868;&#x793A;&#x4EFB;&#x4F55;&#x5F02;&#x5E38;&#x90FD;&#x56DE;&#x6EDA;&#x3002;</li>
+</ul>
+</li>
+</ol>
+<h4 id="3-&#x914D;&#x7F6E;aop"><a class="header-anchor" href="#3-&#x914D;&#x7F6E;aop">&#xB6;</a>3.&#x914D;&#x7F6E;aop</h4>
+<pre><code class="language-xml">&lt;!-- &#x914D;&#x7F6E;aop--&gt;
+&lt;aop:config&gt;
+    &lt;!-- &#x914D;&#x7F6E;&#x5207;&#x5165;&#x70B9;&#x8868;&#x8FBE;&#x5F0F;--&gt;
+    &lt;aop:pointcut id=&quot;pt1&quot; expression=&quot;execution(* cn.sucrelt.service.impl.*.*(..))&quot;/&gt;
+    &lt;!--&#x5EFA;&#x7ACB;&#x5207;&#x5165;&#x70B9;&#x8868;&#x8FBE;&#x5F0F;&#x548C;&#x4E8B;&#x52A1;&#x901A;&#x77E5;&#x7684;&#x5BF9;&#x5E94;&#x5173;&#x7CFB;
+        &#x8868;&#x793A;&#x5728;&#x6EE1;&#x8DB3;&#x5207;&#x5165;&#x70B9;&#x8868;&#x8FBE;&#x5F0F;pointcut-ref&#x65F6;&#xFF0C;&#x6267;&#x884C;&#x901A;&#x77E5;advice-ref
+        --&gt;
+    &lt;aop:advisor advice-ref=&quot;transactionAdvice&quot; pointcut-ref=&quot;pt1&quot;/&gt;
+&lt;/aop:config&gt;
+</code></pre>
 
     </div>
 
@@ -417,7 +483,7 @@ System.out.println(count);
   <p><span>本文标题:</span><a href="/article/fe053282.html/">JavaWeb之Spring-Jdbc</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 Hoshino汤包 的个人博客">Hoshino汤包</a></p>
   <p><span>发布时间:</span>2020年10月15日 - 15:53:41</p>
-  <p><span>最后更新:</span>2020年10月19日 - 18:15:54</p>
+  <p><span>最后更新:</span>2020年10月22日 - 11:37:07</p>
   <p><span>原始链接:</span><a href="/article/fe053282.html/" title="JavaWeb之Spring-Jdbc">https://tangtangsama.github.io/article/fe053282.html/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://tangtangsama.github.io/article/fe053282.html/"  aria-label="复制成功！"></i></span>
   </p>
@@ -614,13 +680,13 @@ System.out.println(count);
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">336k</span>
+    <span title="站点总字数">341k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">5:06</span>
+    <span title="站点阅读时长">5:10</span>
 </div>
 
 <div id="days"></div>
