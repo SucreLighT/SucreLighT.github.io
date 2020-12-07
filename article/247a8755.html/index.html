@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/./images/apple-touch-icon-next1.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/./images/favicon-32x32-next1.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/./images/favicon-16x16-next1.png">
+  <link rel="mask-icon" href="/./images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-flash.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"tangtangsama.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="JavaWeb&amp;#x5B66;&amp;#x4E60;&amp;#x4E2D;&amp;#x5173;&amp;#x4E8E;SpringBootJPA&amp;#x7684;&amp;#x76F8;&amp;#x5173;&amp;#x77E5;&amp;#x8BC6; &amp;#x1F4AF;&amp;#x1F4A4;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaWeb之SpringBootJPA">
+<meta property="og:url" content="https://tangtangsama.github.io/article/247a8755.html/index.html">
+<meta property="og:site_name" content="Hoshino汤包">
+<meta property="og:description" content="JavaWeb&amp;#x5B66;&amp;#x4E60;&amp;#x4E2D;&amp;#x5173;&amp;#x4E8E;SpringBootJPA&amp;#x7684;&amp;#x76F8;&amp;#x5173;&amp;#x77E5;&amp;#x8BC6; &amp;#x1F4AF;&amp;#x1F4A4;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-12-07T14:00:26.000Z">
+<meta property="article:modified_time" content="2020-12-07T14:01:22.465Z">
+<meta property="article:author" content="Hoshino汤包">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://tangtangsama.github.io/article/247a8755.html/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>JavaWeb之SpringBootJPA | Hoshino汤包</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css"/>
+    <script src="/live2d-widget/autoload.js"></script>
+
+    <!-- 引入网页奔溃效果 -->
+    <script type="text/javascript" src="/js/src/crash_cheat.js"></script>
+    
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Hoshino汤包</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Stay hungry. Stay foolish.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">5</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">24</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/tangtangsama" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://tangtangsama.github.io/article/247a8755.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hoshino汤包">
+      <meta itemprop="description" content="醉后不知天在水，满船清梦压星河。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hoshino汤包">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JavaWeb之SpringBootJPA
+        </h1>
+
+        <div class="post-meta">
+        
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-12-07 22:00:26 / 修改时间：22:01:22" itemprop="dateCreated datePublished" datetime="2020-12-07T22:00:26+08:00">2020-12-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">Java开发笔记</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>15k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>13 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>JavaWeb&#x5B66;&#x4E60;&#x4E2D;&#x5173;&#x4E8E;SpringBootJPA&#x7684;&#x76F8;&#x5173;&#x77E5;&#x8BC6; &#x1F4AF;&#x1F4A4;</p>
+<a id="more"></a>
+<h1>Spring Data JPA</h1>
+<h2 id="ORM"><a class="header-anchor" href="#ORM">&#xB6;</a>ORM</h2>
+<h3 id="1-ORM"><a class="header-anchor" href="#1-ORM">&#xB6;</a>1. ORM</h3>
+<p>ORM&#xFF08;Object-Relational Mapping&#xFF09;&#x5BF9;&#x8C61;&#x5173;&#x7CFB;&#x6620;&#x5C04;&#xFF0C;&#x5EFA;&#x7ACB;&#x5B9E;&#x4F53;&#x7C7B;&#x4E0E;&#x6570;&#x636E;&#x5E93;&#x8868;&#x4E4B;&#x95F4;&#x7684;&#x8054;&#x7CFB;&#xFF0C;&#x4ECE;&#x800C;&#x5B9E;&#x73B0;&#x64CD;&#x4F5C;&#x5B9E;&#x4F53;&#x7C7B;&#x5BF9;&#x8C61;&#x5C31;&#x7B49;&#x4E8E;&#x64CD;&#x4F5C;&#x6570;&#x636E;&#x5E93;&#x8868;&#x7684;&#x76EE;&#x7684;&#x3002;</p>
+<p>&#x5E94;&#x7528;&#x573A;&#x666F;&#x5206;&#x6790;&#xFF1A;</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">&#x5B9E;&#x4F53;&#x7C7B;</th>
+<th style="text-align:center">&#x6570;&#x636E;&#x5E93;&#x8868;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">User</td>
+<td style="text-align:center">t_user</td>
+</tr>
+<tr>
+<td style="text-align:center">Integer userId</td>
+<td style="text-align:center">id</td>
+</tr>
+<tr>
+<td style="text-align:center">String userName</td>
+<td style="text-align:center">name</td>
+</tr>
+<tr>
+<td style="text-align:center">String userAddress</td>
+<td style="text-align:center">address</td>
+</tr>
+</tbody>
+</table>
+<p>&#x5728;&#x5B9E;&#x73B0;&#x4E00;&#x4E2A;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x65F6;&#xFF0C;&#x5F80;&#x5F80;&#x4F1A;&#x8BBE;&#x8BA1;&#x5F88;&#x591A;&#x5173;&#x4E8E;&#x6570;&#x636E;&#x5E93;&#x6301;&#x4E45;&#x5C42;&#x7684;&#x4EE3;&#x7801;&#xFF0C;&#x4ECE;&#x6570;&#x636E;&#x5E93;&#x8FDB;&#x884C;&#x589E;&#x5220;&#x6539;&#x67E5;&#xFF0C;&#x8FD9;&#x4E9B;&#x4EE3;&#x7801;&#x5927;&#x591A;&#x91CD;&#x590D;&#x7E41;&#x7410;&#xFF0C;ORM&#x53EF;&#x4EE5;&#x5927;&#x5927;&#x51CF;&#x5C11;&#x91CD;&#x590D;&#x4EE3;&#x7801;&#x3002;</p>
+<p>&#x6BD4;&#x5982;&#xFF0C;&#x901A;&#x8FC7;<code>obj.save(user)</code>&#x7684;&#x64CD;&#x4F5C;&#x5B9E;&#x73B0;&#x5B58;&#x50A8;&#x7528;&#x6237;&#x7684;&#x529F;&#x80FD;&#x3002;&#x5728;&#x62FC;&#x63A5;Sql&#x65F6;&#xFF0C;<code>String  sql = insert into ____values____</code>&#xFF0C;&#x8FD9;&#x662F;&#x901A;&#x7528;&#x7684;Sql&#x6A21;&#x677F;&#xFF0C;&#x5F53;&#x5B9E;&#x4F53;&#x7C7B;&#x4E0E;&#x6570;&#x636E;&#x5E93;&#x8868;&#x5EFA;&#x7ACB;&#x8054;&#x7CFB;&#x65F6;&#xFF0C;user&#x4E2D;&#x5B58;&#x5728;&#x4E09;&#x4E2A;&#x5C5E;&#x6027;&#xFF0C;save&#x65B9;&#x6CD5;&#x83B7;&#x5F97;&#x5B9E;&#x4F53;&#x7C7B;&#x540D;user&#x548C;&#x5176;&#x4E2D;&#x7684;&#x5C5E;&#x6027;&#xFF0C;&#x540C;&#x65F6;&#x7531;ORM&#x6846;&#x67B6;&#x6620;&#x5C04;&#x5F97;&#x5230;&#x4E0E;&#x4E4B;&#x76F8;&#x5173;&#x8054;&#x7684;&#x6570;&#x636E;&#x5E93;&#x8868;&#xFF0C;&#x4ECE;&#x800C;&#x5728;&#x65B9;&#x6CD5;&#x4E2D;&#x5B9E;&#x73B0;Sql&#x7684;&#x81EA;&#x52A8;&#x62FC;&#x63A5;&#x3002;</p>
+<h3 id="2-Hibernate"><a class="header-anchor" href="#2-Hibernate">&#xB6;</a>2. Hibernate</h3>
+<p>Hibernate&#x662F;&#x4E00;&#x4E2A;&#x5F00;&#x6E90;&#x7684;ORM<strong>&#x6846;&#x67B6;</strong>&#xFF0C;&#x5B83;&#x5BF9;JDBC&#x8FDB;&#x884C;&#x4E86;&#x5BF9;&#x8C61;&#x5C01;&#x88C5;&#xFF0C;&#x5B83;&#x5C06;POJO&#x4E0E;&#x6570;&#x636E;&#x5E93;&#x8868;&#x5EFA;&#x7ACB;&#x6620;&#x5C04;&#x5173;&#x7CFB;&#xFF0C;&#x662F;&#x4E00;&#x4E2A;&#x5168;&#x81EA;&#x52A8;&#x7684;ORM&#x6846;&#x67B6;&#xFF0C;&#x53EF;&#x4EE5;&#x81EA;&#x52A8;&#x751F;&#x6210;SQL&#x8BED;&#x53E5;&#xFF0C;&#x81EA;&#x52A8;&#x6267;&#x884C;&#x3002;</p>
+<h3 id="3-JPA"><a class="header-anchor" href="#3-JPA">&#xB6;</a>3. JPA</h3>
+<ol>
+<li>JPA&#x7684;&#x5168;&#x79F0;&#x662F;Java Persistence API&#xFF0C; &#x5373;Java &#x6301;&#x4E45;&#x5316;API&#xFF0C;&#x662F;SUN&#x516C;&#x53F8;&#x63A8;&#x51FA;&#x7684;&#x4E00;&#x5957;&#x57FA;&#x4E8E;ORM&#x7684;<strong>&#x89C4;&#x8303;</strong>&#xFF0C;&#x5185;&#x90E8;&#x662F;&#x7531;&#x4E00;&#x7CFB;&#x5217;&#x7684;&#x63A5;&#x53E3;&#x548C;&#x62BD;&#x8C61;&#x7C7B;&#x6784;&#x6210;&#x3002;JPA&#x901A;&#x8FC7;&#x6CE8;&#x89E3;&#x63CF;&#x8FF0;&#x5BF9;&#x8C61;&#x548C;&#x8868;&#x7684;&#x6620;&#x5C04;&#x5173;&#x7CFB;&#xFF0C;&#x5E76;&#x5C06;&#x8FD0;&#x884C;&#x671F;&#x7684;&#x5B9E;&#x4F53;&#x5BF9;&#x8C61;&#x6301;&#x4E45;&#x5316;&#x5230;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x3002;</li>
+<li><strong>JPA&#x89C4;&#x8303;&#x672C;&#x8D28;&#x4E0A;&#x662F;&#x4E00;&#x79CD;ORM&#x89C4;&#x8303;</strong>&#xFF0C;&#x800C;&#x4E0D;&#x662F;ORM&#x6846;&#x67B6;&#xFF0C;&#x56E0;&#x4E3A;JPA&#x5E76;&#x672A;&#x63D0;&#x4F9B;ORM&#x5B9E;&#x73B0;&#xFF0C;&#x5B83;&#x53EA;&#x662F;&#x5236;&#x8BA2;&#x4E86;&#x4E00;&#x4E9B;&#x89C4;&#x8303;&#xFF0C;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x4E9B;&#x7F16;&#x7A0B;&#x7684;API&#x63A5;&#x53E3;&#xFF0C;&#x5177;&#x4F53;&#x5B9E;&#x73B0;&#x5219;&#x7531;&#x670D;&#x52A1;&#x5382;&#x5546;&#x6765;&#x63D0;&#x4F9B;&#x5B9E;&#x73B0;&#x3002;</li>
+<li>JPA&#x548C;Hibernate&#x7684;&#x5173;&#x7CFB;&#x5C31;&#x50CF;JDBC&#x548C;JDBC&#x9A71;&#x52A8;&#x7684;&#x5173;&#x7CFB;&#xFF0C;JPA&#x662F;&#x89C4;&#x8303;&#xFF0C;Hibernate&#x9664;&#x4E86;&#x4F5C;&#x4E3A;ORM&#x6846;&#x67B6;&#x4E4B;&#x5916;&#xFF0C;&#x5B83;&#x4E5F;&#x662F;&#x4E00;&#x79CD;JPA&#x5B9E;&#x73B0;&#x3002;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#xFF0C;&#x5982;&#x679C;&#x4F7F;&#x7528;JPA&#x89C4;&#x8303;&#x8FDB;&#x884C;&#x6570;&#x636E;&#x5E93;&#x64CD;&#x4F5C;&#xFF0C;&#x5E95;&#x5C42;&#x9700;&#x8981;Hibernate&#x4F5C;&#x4E3A;&#x5176;&#x5B9E;&#x73B0;&#x7C7B;&#x5B8C;&#x6210;&#x6570;&#x636E;&#x6301;&#x4E45;&#x5316;&#x5DE5;&#x4F5C;&#x3002;</li>
+</ol>
+<h2 id="JPA&#x5165;&#x95E8;&#x2013;&#x4FDD;&#x5B58;&#x7528;&#x6237;&#x4FE1;&#x606F;"><a class="header-anchor" href="#JPA&#x5165;&#x95E8;&#x2013;&#x4FDD;&#x5B58;&#x7528;&#x6237;&#x4FE1;&#x606F;">&#xB6;</a>JPA&#x5165;&#x95E8;&#x2013;&#x4FDD;&#x5B58;&#x7528;&#x6237;&#x4FE1;&#x606F;</h2>
+<h3 id="1-pom-xml&#x4E2D;&#x5BFC;&#x5165;&#x4F9D;&#x8D56;"><a class="header-anchor" href="#1-pom-xml&#x4E2D;&#x5BFC;&#x5165;&#x4F9D;&#x8D56;">&#xB6;</a>1. pom.xml&#x4E2D;&#x5BFC;&#x5165;&#x4F9D;&#x8D56;</h3>
+<pre><code class="language-xml">    &lt;properties&gt;
+        &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
+        &lt;project.hibernate.version&gt;5.0.7.Final&lt;/project.hibernate.version&gt;
+    &lt;/properties&gt;
+    &lt;dependencies&gt;
+        &lt;!-- junit --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;junit&lt;/groupId&gt;
+            &lt;artifactId&gt;junit&lt;/artifactId&gt;
+            &lt;version&gt;4.12&lt;/version&gt;
+            &lt;scope&gt;test&lt;/scope&gt;
+        &lt;/dependency&gt;
+        &lt;!-- hibernate&#x5BF9;jpa&#x7684;&#x652F;&#x6301;&#x5305; --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.hibernate&lt;/groupId&gt;
+            &lt;artifactId&gt;hibernate-entitymanager&lt;/artifactId&gt;
+            &lt;version&gt;${project.hibernate.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;!-- c3p0 --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.hibernate&lt;/groupId&gt;
+            &lt;artifactId&gt;hibernate-c3p0&lt;/artifactId&gt;
+            &lt;version&gt;${project.hibernate.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;!-- log&#x65E5;&#x5FD7; --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;log4j&lt;/groupId&gt;
+            &lt;artifactId&gt;log4j&lt;/artifactId&gt;
+            &lt;version&gt;1.2.17&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;!-- Mysql --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;mysql&lt;/groupId&gt;
+            &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+            &lt;version&gt;5.1.6&lt;/version&gt;
+        &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+&lt;/project&gt;
+</code></pre>
+<h3 id="2-&#x5728;&#x5B9E;&#x4F53;&#x7C7B;&#x4E2D;&#x4F7F;&#x7528;&#x6CE8;&#x89E3;&#x5EFA;&#x7ACB;&#x4E0E;&#x6570;&#x636E;&#x5E93;&#x8868;&#x7684;&#x6620;&#x5C04;"><a class="header-anchor" href="#2-&#x5728;&#x5B9E;&#x4F53;&#x7C7B;&#x4E2D;&#x4F7F;&#x7528;&#x6CE8;&#x89E3;&#x5EFA;&#x7ACB;&#x4E0E;&#x6570;&#x636E;&#x5E93;&#x8868;&#x7684;&#x6620;&#x5C04;">&#xB6;</a>2. &#x5728;&#x5B9E;&#x4F53;&#x7C7B;&#x4E2D;&#x4F7F;&#x7528;&#x6CE8;&#x89E3;&#x5EFA;&#x7ACB;&#x4E0E;&#x6570;&#x636E;&#x5E93;&#x8868;&#x7684;&#x6620;&#x5C04;</h3>
+<pre><code class="language-java">@Entity
+@Table(name = &quot;cst_customer&quot;)
+public class Customer {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = &quot;cust_id&quot;)
+    private Long custId; //&#x5BA2;&#x6237;&#x7684;&#x4E3B;&#x952E;
+    
+    @Column(name = &quot;cust_name&quot;)
+    private String custName;//&#x5BA2;&#x6237;&#x540D;&#x79F0;
+    @Column(name=&quot;cust_source&quot;)
+    private String custSource;//&#x5BA2;&#x6237;&#x6765;&#x6E90;
+    @Column(name=&quot;cust_level&quot;)
+    private String custLevel;//&#x5BA2;&#x6237;&#x7EA7;&#x522B;
+    @Column(name=&quot;cust_industry&quot;)
+    private String custIndustry;//&#x5BA2;&#x6237;&#x6240;&#x5C5E;&#x884C;&#x4E1A;
+    @Column(name=&quot;cust_phone&quot;)
+    private String custPhone;//&#x5BA2;&#x6237;&#x7684;&#x8054;&#x7CFB;&#x65B9;&#x5F0F;
+    @Column(name=&quot;cust_address&quot;)
+    private String custAddress;//&#x5BA2;&#x6237;&#x5730;&#x5740;
+    ...
+}
+</code></pre>
+<ul>
+<li>&#x5B9E;&#x4F53;&#x7C7B;&#x4E0E;&#x8868;&#x7684;&#x6620;&#x5C04;&#x5173;&#x7CFB;
+<ul>
+<li>@Entity&#xFF1A;&#x58F0;&#x660E;&#x5B9E;&#x4F53;&#x7C7B;&#x3002;</li>
+<li>@Table&#xFF1A;&#x914D;&#x7F6E;&#x5B9E;&#x4F53;&#x7C7B;&#x548C;&#x8868;&#x7684;&#x6620;&#x5C04;&#x5173;&#x7CFB;&#xFF0C;name&#x5C5E;&#x6027; : &#x914D;&#x7F6E;&#x6570;&#x636E;&#x5E93;&#x8868;&#x7684;&#x540D;&#x79F0;&#x3002;</li>
+</ul>
+</li>
+<li>&#x5B9E;&#x4F53;&#x7C7B;&#x4E2D;&#x5C5E;&#x6027;&#x548C;&#x8868;&#x4E2D;&#x5B57;&#x6BB5;&#x7684;&#x6620;&#x5C04;&#x5173;&#x7CFB;
+<ul>
+<li>@Id&#xFF1A;&#x58F0;&#x660E;&#x4E3B;&#x952E;</li>
+<li>@GeneratedValue&#xFF1A;&#x914D;&#x7F6E;&#x4E3B;&#x952E;&#x7684;&#x751F;&#x6210;&#x7B56;&#x7565;&#x3002;
+<ul>
+<li>strategy=GenerationType.IDENTITY &#xFF1A;&#x81EA;&#x589E;&#xFF0C;&#x5E95;&#x5C42;&#x6570;&#x636E;&#x5E93;&#x8981;&#x652F;&#x6301;&#x81EA;&#x589E;&#x957F;&#x7684;&#x65B9;&#x5F0F;&#xFF0C;&#x5982;mysql&#x3002;</li>
+<li>strategy=GenerationType.SEQUENCE : &#x5E8F;&#x5217;&#xFF0C;&#x5E95;&#x5C42;&#x6570;&#x636E;&#x5E93;&#x5FC5;&#x987B;&#x652F;&#x6301;&#x5E8F;&#x5217;&#xFF0C;&#x5982;oracle&#x3002;</li>
+<li>&#x5176;&#x4F59;&#x4E24;&#x79CD;&#x4E0D;&#x5E38;&#x7528;&#x3002;</li>
+</ul>
+</li>
+<li>@Column&#xFF1A;&#x914D;&#x7F6E;&#x5C5E;&#x6027;&#x548C;&#x5B57;&#x6BB5;&#x7684;&#x6620;&#x5C04;&#x5173;&#x7CFB;&#xFF0C;name&#x5C5E;&#x6027;&#xFF1A;&#x6570;&#x636E;&#x5E93;&#x8868;&#x4E2D;&#x5B57;&#x6BB5;&#x7684;&#x540D;&#x79F0;&#x3002;</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-&#x914D;&#x7F6E;JPA&#x7684;&#x6838;&#x5FC3;&#x914D;&#x7F6E;&#x6587;&#x4EF6;"><a class="header-anchor" href="#3-&#x914D;&#x7F6E;JPA&#x7684;&#x6838;&#x5FC3;&#x914D;&#x7F6E;&#x6587;&#x4EF6;">&#xB6;</a>3. &#x914D;&#x7F6E;JPA&#x7684;&#x6838;&#x5FC3;&#x914D;&#x7F6E;&#x6587;&#x4EF6;</h3>
+<p>&#x5728;java&#x5DE5;&#x7A0B;&#x7684;src&#x8DEF;&#x5F84;&#x4E0B;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x540D;&#x4E3A;META-INF&#x7684;&#x6587;&#x4EF6;&#x5939;&#xFF0C;&#x5728;&#x6B64;&#x6587;&#x4EF6;&#x5939;&#x4E0B;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x540D;&#x4E3A;persistence.xml&#x7684;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x3002;</p>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;persistence xmlns=&quot;http://java.sun.com/xml/ns/persistence&quot; version=&quot;2.0&quot;&gt;
+    &lt;persistence-unit name=&quot;myJpa&quot; transaction-type=&quot;RESOURCE_LOCAL&quot;&gt;
+        &lt;!--jpa&#x7684;&#x5B9E;&#x73B0;&#x65B9;&#x5F0F; --&gt;
+        &lt;provider&gt;org.hibernate.jpa.HibernatePersistenceProvider&lt;/provider&gt;
+
+        &lt;!--&#x914D;&#x7F6E;jpa&#x5B9E;&#x73B0;&#x65B9;&#x7684;&#x914D;&#x7F6E;&#x4FE1;&#x606F;--&gt;
+        &lt;properties&gt;
+            &lt;property name=&quot;javax.persistence.jdbc.user&quot; value=&quot;root&quot;/&gt;
+            &lt;property name=&quot;javax.persistence.jdbc.password&quot; value=&quot;111111&quot;/&gt;
+            &lt;property name=&quot;javax.persistence.jdbc.driver&quot; value=&quot;com.mysql.jdbc.Driver&quot;/&gt;
+            &lt;property name=&quot;javax.persistence.jdbc.url&quot; value=&quot;jdbc:mysql:///jpa&quot;/&gt;
+            &lt;property name=&quot;hibernate.show_sql&quot; value=&quot;true&quot; /&gt;
+            &lt;property name=&quot;hibernate.hbm2ddl.auto&quot; value=&quot;update&quot; /&gt;
+        &lt;/properties&gt;
+    &lt;/persistence-unit&gt;
+&lt;/persistence&gt;
+</code></pre>
+<ul>
+<li>persistence-unit&#x914D;&#x7F6E;&#x6301;&#x4E45;&#x5316;&#x5355;&#x5143;&#x3002;
+<ul>
+<li>name&#xFF1A;&#x6301;&#x4E45;&#x5316;&#x5355;&#x5143;&#x540D;&#x79F0;</li>
+<li>transaction-type&#xFF1A;&#x4E8B;&#x52A1;&#x7BA1;&#x7406;&#x7684;&#x65B9;&#x5F0F;
+<ul>
+<li>JTA&#xFF1A;&#x5206;&#x5E03;&#x5F0F;&#x4E8B;&#x52A1;&#x7BA1;&#x7406;</li>
+<li>RESOURCE_LOCAL&#xFF1A;&#x672C;&#x5730;&#x4E8B;&#x52A1;&#x7BA1;&#x7406;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>provider&#x6807;&#x7B7E;&#x7528;&#x4E8E;&#x914D;&#x7F6E;JPA&#x7684;&#x5B9E;&#x73B0;&#x65B9;&#x5F0F;&#xFF0C;&#x4F7F;&#x7528;&#x7684;Hibernate&#x7684;&#x5E95;&#x5C42;&#x5B9E;&#x73B0;&#x3002;</li>
+<li>properties&#x6807;&#x7B7E;&#x914D;&#x7F6E;&#x6570;&#x636E;&#x5E93;&#x548C;Hibernate&#x76F8;&#x5173;&#x4FE1;&#x606F;&#x3002;
+<ul>
+<li>hibernate.show_sql&#xFF1A;&#x663E;&#x793A;sql&#xFF0C;&#x53D6;&#x503C;&#x4E3A;true&#x65F6;&#x5728;&#x7A0B;&#x5E8F;&#x6267;&#x884C;&#x65F6;&#xFF0C;&#x63A7;&#x5236;&#x53F0;&#x5C06;&#x4F1A;&#x8F93;&#x51FA;Hibernate&#x62FC;&#x63A5;&#x7684;Sql&#x3002;</li>
+<li>hibernate.hbm2ddl.auto&#xFF1A;&#x81EA;&#x52A8;&#x521B;&#x5EFA;&#x6570;&#x636E;&#x5E93;&#x8868;
+<ul>
+<li>create&#xFF1A;&#x7A0B;&#x5E8F;&#x8FD0;&#x884C;&#x65F6;&#x521B;&#x5EFA;&#x6570;&#x636E;&#x5E93;&#x8868;&#xFF08;&#x5982;&#x679C;&#x6709;&#x8868;&#xFF0C;&#x5148;&#x5220;&#x9664;&#x8868;&#x518D;&#x521B;&#x5EFA;&#xFF09;&#x3002;</li>
+<li>update&#xFF1A;&#x7A0B;&#x5E8F;&#x8FD0;&#x884C;&#x65F6;&#x521B;&#x5EFA;&#x8868;&#xFF08;&#x5982;&#x679C;&#x6709;&#x8868;&#xFF0C;&#x4E0D;&#x4F1A;&#x521B;&#x5EFA;&#x8868;&#xFF09;&#x3002;</li>
+<li>none&#xFF1A;&#x4E0D;&#x4F1A;&#x521B;&#x5EFA;&#x8868;&#x3002;</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-&#x6D4B;&#x8BD5;JPA"><a class="header-anchor" href="#4-&#x6D4B;&#x8BD5;JPA">&#xB6;</a>4. &#x6D4B;&#x8BD5;JPA</h3>
+<pre><code class="language-java">public class JpaTest {
+
+    @Test
+    public void testSave() {
+		//1.&#x52A0;&#x8F7D;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x521B;&#x5EFA;&#x5DE5;&#x5382;&#xFF08;&#x5B9E;&#x4F53;&#x7BA1;&#x7406;&#x5668;&#x5DE5;&#x5382;&#xFF09;&#x5BF9;&#x8C61;
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory(&quot;myJpa&quot;);
+		//2.&#x901A;&#x8FC7;&#x5B9E;&#x4F53;&#x7BA1;&#x7406;&#x5668;&#x5DE5;&#x5382;&#x83B7;&#x53D6;&#x5B9E;&#x4F53;&#x7BA1;&#x7406;&#x5668;
+		EntityManager em = factory.createEntityManager();
+        //3.&#x83B7;&#x53D6;&#x4E8B;&#x52A1;&#x5BF9;&#x8C61;&#xFF0C;&#x5F00;&#x542F;&#x4E8B;&#x52A1;
+        EntityTransaction tx = em.getTransaction(); 
+        tx.begin();
+        //4.&#x5B8C;&#x6210;&#x589E;&#x5220;&#x6539;&#x67E5;&#x64CD;&#x4F5C;&#xFF1A;&#x4FDD;&#x5B58;&#x4E00;&#x4E2A;&#x5BA2;&#x6237;&#x5230;&#x6570;&#x636E;&#x5E93;&#x4E2D;
+        Customer customer = new Customer();
+        customer.setCustName(&quot;&#x5F20;&#x4E09;&quot;);
+        customer.setCustIndustry(&quot;&#x6559;&#x80B2;&quot;);
+        //&#x4FDD;&#x5B58;
+        em.persist(customer);
+        //5.&#x63D0;&#x4EA4;&#x4E8B;&#x52A1;
+        tx.commit();
+        //6.&#x91CA;&#x653E;&#x8D44;&#x6E90;&#xFF0C;&#x5148;&#x521B;&#x5EFA;&#x7684;&#x540E;&#x5173;&#x95ED;&#xFF0C;&#x540E;&#x521B;&#x5EFA;&#x7684;&#x5148;&#x5173;&#x95ED;
+        em.close();
+		factory.close();
+    }
+}
+</code></pre>
+<p>JPA&#x64CD;&#x4F5C;&#x7684;&#x64CD;&#x4F5C;&#x6B65;&#x9AA4;</p>
+<ol>
+<li>&#x8C03;&#x7528;<code>Persisitence</code>&#x7C7B;&#x7684;&#x9759;&#x6001;&#x65B9;&#x6CD5;<code>createEntityMnagerFactory</code>&#xFF0C;&#x52A0;&#x8F7D;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x5E76;&#x521B;&#x5EFA;&#x5B9E;&#x4F53;&#x7BA1;&#x7406;&#x5668;&#x5DE5;&#x5382;<code>EntityManagerFactory</code> &#xFF0C;&#x5176;&#x4E2D;&#x53C2;&#x6570;&#x540D;&#x4E3A;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D;&#x914D;&#x7F6E;&#x7684;&#x6301;&#x4E45;&#x5316;&#x5355;&#x5143;&#x540D;&#x79F0;&#x3002;
+<ul>
+<li>&#x5728;&#x521B;&#x5EFA;<code>EntityManagerFactory</code>&#x7684;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x5185;&#x90E8;&#x7EF4;&#x62A4;&#x4E86;&#x6570;&#x636E;&#x5E93;&#x4FE1;&#x606F;&#x3001;&#x7F13;&#x5B58;&#x4FE1;&#x606F;&#x3001;&#x5B9E;&#x4F53;&#x7BA1;&#x7406;&#x5668;&#x5BF9;&#x8C61;&#x5E76;&#x6839;&#x636E;&#x914D;&#x7F6E;&#x521B;&#x5EFA;&#x6570;&#x636E;&#x5E93;&#x8868;&#x3002;&#x56E0;&#x6B64;&#xFF0C;&#x8BE5;&#x5BF9;&#x8C61;&#x6BD4;&#x8F83;&#x6D6A;&#x8D39;&#x8D44;&#x6E90;&#x3002;</li>
+<li><code>EntityManagerFactory</code>&#x5BF9;&#x8C61;&#x662F;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x7684;&#x5BF9;&#x8C61;&#xFF0C;&#x4E3A;&#x4E86;&#x89E3;&#x51B3;&#x5176;&#x8D44;&#x6E90;&#x5F00;&#x9500;&#x5927;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x53EF;&#x4EE5;<strong>&#x4F7F;&#x7528;&#x9759;&#x6001;&#x4EE3;&#x7801;&#x5757;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x516C;&#x7528;&#x7684;</strong><code>EntityManagerFactory</code>&#x5BF9;&#x8C61;&#x3002;</li>
+</ul>
+</li>
+<li>&#x6839;&#x636E;&#x5B9E;&#x4F53;&#x7BA1;&#x7406;&#x5668;&#x5DE5;&#x5382;<code>EntityManagerFactory</code> &#xFF0C;&#x8C03;&#x7528;&#x5176;&#x65B9;&#x6CD5;<code>createEntityManager</code>&#x521B;&#x5EFA;&#x5B9E;&#x4F53;&#x7BA1;&#x7406;&#x5668;<code>EntityManager</code>&#x3002;</li>
+<li><code>EntityManager</code>&#x5BF9;&#x8C61;&#x521B;&#x5EFA;&#x4E8B;&#x52A1;&#x5E76;&#x5F00;&#x542F;&#x4E8B;&#x52A1;&#x3002;
+<ul>
+<li><code>EntityManager</code>&#x662F;&#x5B8C;&#x6210;&#x6301;&#x4E45;&#x5316;&#x64CD;&#x4F5C;&#x7684;&#x6838;&#x5FC3;&#x5BF9;&#x8C61;,&#x5B9E;&#x4F53;&#x7C7B;&#x4F5C;&#x4E3A;&#x666E;&#x901A; java&#x5BF9;&#x8C61;&#xFF0C;&#x53EA;&#x6709;&#x5728;&#x8C03;&#x7528; <code>EntityManager</code>&#x5C06;&#x5176;&#x6301;&#x4E45;&#x5316;&#x540E;&#x624D;&#x4F1A;&#x53D8;&#x6210;&#x6301;&#x4E45;&#x5316;&#x5BF9;&#x8C61;&#x3002;</li>
+<li>&#x4E3B;&#x8981;&#x65B9;&#x6CD5;&#xFF1A;
+<ul>
+<li>persist&#xFF1A;&#x4FDD;&#x5B58;</li>
+<li>merge &#xFF1A; &#x66F4;&#x65B0;&#x64CD;&#x4F5C;</li>
+<li>remove &#xFF1A; &#x5220;&#x9664;&#x64CD;&#x4F5C;</li>
+<li>find/getReference &#xFF1A; &#x6839;&#x636E;id&#x67E5;&#x8BE2;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>&#x589E;&#x5220;&#x6539;&#x67E5;&#x64CD;&#x4F5C;</li>
+<li>&#x63D0;&#x4EA4;&#x4E8B;&#x52A1;</li>
+<li>&#x91CA;&#x653E;&#x8D44;&#x6E90;</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+
+    <div align="center">
+        
+          <div>
+    
+        <div class="read-over">-------------------本文结束 <i class="fa fa-paw"></i> 感谢您的阅读-------------------</div>
+    
+</div>
+        
+      </div>
+    <div>
+        
+          
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/article/247a8755.html/">JavaWeb之SpringBootJPA</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 Hoshino汤包 的个人博客">Hoshino汤包</a></p>
+  <p><span>发布时间:</span>2020年12月07日 - 22:00:26</p>
+  <p><span>最后更新:</span>2020年12月07日 - 22:01:22</p>
+  <p><span>原始链接:</span><a href="/article/247a8755.html/" title="JavaWeb之SpringBootJPA">https://tangtangsama.github.io/article/247a8755.html/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://tangtangsama.github.io/article/247a8755.html/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p>非商业性使用-转载请保留原文链接及作者。</p>
+</div>
+<script>
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({
+          title: "",
+          text: '复制成功',
+          icon: "success",
+          showConfirmButton: true
+          });
+    });
+    });
+</script>
+
+        
+    </div>
+        <div class="reward-container">
+  <div>感谢您的支持和鼓励！</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="Hoshino汤包 WeChat">
+        <p>WeChat</p>
+      </div>
+
+  </div>
+</div>
+
+
+      
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/article/dca918a2.html/" rel="prev" title="JavaWeb之SSM">
+      <i class="fa fa-chevron-left"></i> JavaWeb之SSM
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Hoshino汤包"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">Hoshino汤包</p>
+  <div class="site-description" itemprop="description">醉后不知天在水，满船清梦压星河。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/tangtangsama" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;tangtangsama" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:sucre@nuaa.edu.com" title="E-Mail → mailto:sucre@nuaa.edu.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.baidu.com/" title="https:&#x2F;&#x2F;www.baidu.com&#x2F;" rel="noopener" target="_blank">Baidu</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://github.com/" title="https:&#x2F;&#x2F;github.com&#x2F;" rel="noopener" target="_blank">Github</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+      <div id="">
+  <canvas id="canvas" style="width:60%;">
+</div>
+
+<!--粒子时钟js-->
+<script type="text/javascript" src="/js/src/canvas-dance-time.js"></script>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">版权所属：sucre</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">441k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">6:41</span>
+</div>
+
+<div id="days"></div>
+<script>
+function show_date_time(){
+    window.setTimeout("show_date_time()", 1000);
+    BirthDay=new Date("05/20/2020 15:13:14");
+    today=new Date();
+    timeold=(today.getTime()-BirthDay.getTime());
+    sectimeold=timeold/1000
+    secondsold=Math.floor(sectimeold);
+    msPerDay=24*60*60*1000
+    e_daysold=timeold/msPerDay
+    daysold=Math.floor(e_daysold);
+    e_hrsold=(e_daysold-daysold)*24;
+    hrsold=setzero(Math.floor(e_hrsold));
+    e_minsold=(e_hrsold-hrsold)*60;
+    minsold=setzero(Math.floor((e_hrsold-hrsold)*60));
+    seconds=setzero(Math.floor((e_minsold-minsold)*60));
+    document.getElementById('days').innerHTML="本站点已运行 "+daysold+" 天 "+hrsold+" 小时 "+minsold+" 分 "+seconds+" 秒";
+}
+function setzero(i) {
+    if (i<10) {
+        i="0" + i
+    };
+    return i;
+}
+show_date_time();
+</script>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+   
+
+  <script async src="/js/cursor/love.min.js"></script>
+
+</body>
+
+</html>
+
