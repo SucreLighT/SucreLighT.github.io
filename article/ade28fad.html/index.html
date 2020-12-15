@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/./images/apple-touch-icon-next1.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/./images/favicon-32x32-next1.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/./images/favicon-16x16-next1.png">
+  <link rel="mask-icon" href="/./images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-flash.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"tangtangsama.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="JavaWeb&amp;#x4E2D;&amp;#x5173;&amp;#x4E8E;JSP&amp;#x3001;EL&amp;#x8868;&amp;#x8FBE;&amp;#x5F0F;&amp;#x548C;JSTL&amp;#x8868;&amp;#x8FBE;&amp;#x5F0F;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaWeb之JSP、EL、JSTL">
+<meta property="og:url" content="https://tangtangsama.github.io/article/ade28fad.html/index.html">
+<meta property="og:site_name" content="Hoshino汤包">
+<meta property="og:description" content="JavaWeb&amp;#x4E2D;&amp;#x5173;&amp;#x4E8E;JSP&amp;#x3001;EL&amp;#x8868;&amp;#x8FBE;&amp;#x5F0F;&amp;#x548C;JSTL&amp;#x8868;&amp;#x8FBE;&amp;#x5F0F;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-08-01T02:25:12.000Z">
+<meta property="article:modified_time" content="2020-08-01T02:27:52.708Z">
+<meta property="article:author" content="Hoshino汤包">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://tangtangsama.github.io/article/ade28fad.html/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>JavaWeb之JSP、EL、JSTL | Hoshino汤包</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css"/>
+    <script src="/live2d-widget/autoload.js"></script>
+
+    <!-- 引入网页奔溃效果 -->
+    <script type="text/javascript" src="/js/src/crash_cheat.js"></script>
+    
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Hoshino汤包</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Stay hungry. Stay foolish.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">5</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">27</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/tangtangsama" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://tangtangsama.github.io/article/ade28fad.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hoshino汤包">
+      <meta itemprop="description" content="醉后不知天在水，满船清梦压星河。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hoshino汤包">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JavaWeb之JSP、EL、JSTL
+        </h1>
+
+        <div class="post-meta">
+        
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-01 10:25:12 / 修改时间：10:27:52" itemprop="dateCreated datePublished" datetime="2020-08-01T10:25:12+08:00">2020-08-01</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">Java开发笔记</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>8.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>7 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>JavaWeb&#x4E2D;&#x5173;&#x4E8E;JSP&#x3001;EL&#x8868;&#x8FBE;&#x5F0F;&#x548C;JSTL&#x8868;&#x8FBE;&#x5F0F;</p>
+<a id="more"></a>
+<h2 id="JSP"><a class="header-anchor" href="#JSP">&#xB6;</a>JSP</h2>
+<ol>
+<li>
+<p>JSP&#x6587;&#x4EF6;&#x5728;&#x8C03;&#x7528;&#x65F6;&#xFF0C;&#x4F1A;&#x88AB;&#x8F6C;&#x6362;&#x6210;.java&#x6587;&#x4EF6;&#x7136;&#x540E;&#x7F16;&#x8BD1;&#x6210;&#x4E3A;&#x5B57;&#x8282;&#x7801;&#x6587;&#x4EF6;&#xFF0C;&#x4E4B;&#x540E;&#x8FD4;&#x56DE;&#x7ED9;&#x5BA2;&#x6237;&#x7AEF;</p>
+</li>
+<li>
+<p>JSP&#x672C;&#x8D28;&#x4E0A;&#x662F;&#x4E00;&#x4E2A;Servlet&#x7C7B;&#xFF0C;&#x5BF9;&#x5E94;&#x7684;.java&#x6587;&#x4EF6;&#x7EE7;&#x627F;&#x4E86;HttpJspBase&#x8FD9;&#x4E2A;&#x7C7B;&#xFF0C;&#x8BE5;&#x7C7B;&#x7EE7;&#x627F;&#x4E86;HttpServlet</p>
+</li>
+<li>
+<p>JSP&#x5B9A;&#x4E49;java&#x4EE3;&#x7801;&#x7684;&#x65B9;&#x5F0F;</p>
+<ul>
+<li><code>&lt;%  &#x4EE3;&#x7801; %&gt;</code>&#xFF1A;&#x5B9A;&#x4E49;&#x7684;java&#x4EE3;&#x7801;&#xFF0C;&#x5728;service&#x65B9;&#x6CD5;&#x4E2D;&#x3002;service&#x65B9;&#x6CD5;&#x4E2D;&#x53EF;&#x4EE5;&#x5B9A;&#x4E49;&#x4EC0;&#x4E48;&#xFF0C;&#x8BE5;&#x811A;&#x672C;&#x4E2D;&#x5C31;&#x53EF;&#x4EE5;&#x5B9A;&#x4E49;&#x4EC0;&#x4E48;&#x3002;</li>
+<li><code>&lt;%! &#x4EE3;&#x7801; %&gt;</code>&#xFF1A;&#x5B9A;&#x4E49;&#x7684;java&#x4EE3;&#x7801;&#xFF0C;&#x5728;jsp&#x8F6C;&#x6362;&#x540E;&#x7684;java&#x7C7B;&#x7684;&#x6210;&#x5458;&#x4F4D;&#x7F6E;&#xFF0C;&#x6210;&#x5458;&#x53D8;&#x91CF;&#x3001;&#x6210;&#x5458;&#x65B9;&#x6CD5;&#x3001;&#x4EE3;&#x7801;&#x5757;&#xFF0C;&#x7528;&#x5F97;&#x5C11;&#x3002;</li>
+<li><code>&lt;%= &#x4EE3;&#x7801; %&gt;</code>&#xFF1A;&#x5B9A;&#x4E49;&#x7684;java&#x4EE3;&#x7801;&#xFF0C;&#x4F1A;&#x8F93;&#x51FA;&#x5230;&#x9875;&#x9762;&#x4E0A;&#x3002;&#x8F93;&#x51FA;&#x8BED;&#x53E5;&#x4E2D;&#x53EF;&#x4EE5;&#x5B9A;&#x4E49;&#x4EC0;&#x4E48;&#xFF0C;&#x8BE5;&#x811A;&#x672C;&#x4E2D;&#x5C31;&#x53EF;&#x4EE5;&#x5B9A;&#x4E49;&#x4EC0;&#x4E48;&#x3002;</li>
+</ul>
+</li>
+<li>
+<p>JSP&#x4E2D;&#x7684;&#x6307;&#x4EE4;</p>
+<ul>
+<li>&#x683C;&#x5F0F;&#xFF1A;&lt;%@ &#x6307;&#x4EE4;&#x540D;&#x79F0; &#x5C5E;&#x6027;&#x540D;1=&#x5C5E;&#x6027;&#x503C;1 &#x5C5E;&#x6027;&#x540D;2=&#x5C5E;&#x6027;&#x503C;2 &#x2026; %&gt;</li>
+<li>page&#xFF1A;&#x914D;&#x7F6E;JSP&#x9875;&#x9762;</li>
+<li>contentType&#xFF1A;&#x7B49;&#x540C;&#x4E8E;response.setContentType()&#xFF0C;&#x7528;&#x4E8E;&#x8BBE;&#x7F6E;&#x54CD;&#x5E94;&#x4F53;&#x7684;mime&#x7C7B;&#x578B;&#x4EE5;&#x53CA;&#x5B57;&#x7B26;&#x96C6;&#x3002;</li>
+<li>import&#xFF1A;&#x5BFC;&#x5305;&#x3002;</li>
+<li>errorPage&#xFF1A;&#x9875;&#x9762;&#x5F02;&#x5E38;&#x65F6;&#x81EA;&#x52A8;&#x8DF3;&#x8F6C;&#x5230;&#x6307;&#x5B9A;&#x9875;&#x9762;&#x3002;</li>
+<li>isErrorPage&#xFF1A;&#x6807;&#x8BC6;&#x5F53;&#x524D;&#x4E5F;&#x662F;&#x662F;&#x5426;&#x662F;&#x9519;&#x8BEF;&#x9875;&#x9762;&#x3002;&#x53EA;&#x6709;&#x662F;&#x65F6;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x5185;&#x7F6E;&#x5BF9;&#x8C61;exception&#x3002;</li>
+<li>include&#xFF1A;&#x9875;&#x9762;&#x5305;&#x542B;</li>
+<li>taglib&#xFF1A;&#x5BFC;&#x5165;&#x8D44;&#x6E90;  &lt;%@ taglib prefix=&#x201C;c&#x201D; uri=&#x201C;<a href="http://java.sun.com/jsp/jstl/core" target="_blank" rel="noopener">http://java.sun.com/jsp/jstl/core</a>&#x201D; %&gt;
+<ul>
+<li>prefix&#xFF1A;&#x524D;&#x7F00;&#xFF0C;&#x81EA;&#x5B9A;&#x4E49;&#x7684;&#x6807;&#x7B7E;&#x540D;&#xFF0C;uri&#xFF1A;&#x8D44;&#x6E90;&#x8DEF;&#x5F84;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>JSP&#x4E2D;&#x7684;&#x6CE8;&#x91CA;</p>
+<ul>
+<li><code>&lt;!--  --&gt;</code>:&#x53EA;&#x80FD;&#x6CE8;&#x91CA;html&#x4EE3;&#x7801;&#x7247;&#x6BB5;</li>
+<li><code>&lt;%-- --%&gt;</code>&#xFF1A;&#x53EF;&#x4EE5;&#x6CE8;&#x91CA;&#x6240;&#x6709;,&#x63A8;&#x8350;&#x4F7F;&#x7528;</li>
+</ul>
+</li>
+<li>
+<p>JSP&#x4E2D;&#x7684;&#x5185;&#x7F6E;&#x5BF9;&#x8C61;&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x521B;&#x5EFA;&#x548C;&#x83B7;&#x53D6;&#xFF0C;&#x76F4;&#x63A5;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#xFF0C;&#x524D;&#x56DB;&#x4E2A;&#x4E3A;&#x57DF;&#x5BF9;&#x8C61;</p>
+<ul>
+<li>
+<p>&#x53D8;&#x91CF;&#x540D;-&#x771F;&#x5B9E;&#x7C7B;&#x578B;-&#x4F5C;&#x7528;</p>
+<ul>
+<li>pageContext-PageContext-&#x5F53;&#x524D;&#x9875;&#x9762;&#x5171;&#x4EAB;&#x6570;&#x636E;&#xFF0C;&#x8FD8;&#x53EF;&#x4EE5;&#x83B7;&#x53D6;&#x5176;&#x4ED6;&#x516B;&#x4E2A;&#x5185;&#x7F6E;&#x5BF9;&#x8C61;</li>
+<li>request-HttpServletRequest-&#x4E00;&#x6B21;&#x8BF7;&#x6C42;&#x8BBF;&#x95EE;&#x7684;&#x591A;&#x4E2A;&#x8D44;&#x6E90;(&#x8F6C;&#x53D1;)</li>
+<li>session-HttpSession-&#x4E00;&#x6B21;&#x4F1A;&#x8BDD;&#x7684;&#x591A;&#x4E2A;&#x8BF7;&#x6C42;&#x95F4;</li>
+<li>application-ServletContext-&#x6240;&#x6709;&#x7528;&#x6237;&#x95F4;&#x5171;&#x4EAB;&#x6570;&#x636E;</li>
+<li>response-HttpServletResponse-&#x54CD;&#x5E94;&#x5BF9;&#x8C61;</li>
+<li>page-Object-&#x5F53;&#x524D;&#x9875;&#x9762;(Servlet)&#x7684;&#x5BF9;&#x8C61;  this</li>
+<li>out-JspWriter-&#x8F93;&#x51FA;&#x5BF9;&#x8C61;&#xFF0C;&#x6570;&#x636E;&#x8F93;&#x51FA;&#x5230;&#x9875;&#x9762;&#x4E0A;</li>
+<li>config-ServletConfig-Servlet&#x7684;&#x914D;&#x7F6E;&#x5BF9;&#x8C61;</li>
+<li>exception-Throwable-&#x5F02;&#x5E38;&#x5BF9;&#x8C61;</li>
+</ul>
+</li>
+<li>
+<p><code>response.getWriter()</code>&#x548C;<code>out.write()</code>&#x7684;&#x533A;&#x522B;&#xFF1A;<br>
+&#x5728;tomcat&#x670D;&#x52A1;&#x5668;&#x771F;&#x6B63;&#x7ED9;&#x5BA2;&#x6237;&#x7AEF;&#x505A;&#x51FA;&#x54CD;&#x5E94;&#x4E4B;&#x524D;&#xFF0C;&#x4F1A;&#x5148;&#x627E;response&#x7F13;&#x51B2;&#x533A;&#x6570;&#x636E;&#xFF0C;&#x518D;&#x627E;out&#x7F13;&#x51B2;&#x533A;&#x6570;&#x636E;&#x3002;<br>
+response.getWriter()&#x6570;&#x636E;&#x8F93;&#x51FA;&#x6C38;&#x8FDC;&#x5728;out.write()&#x4E4B;&#x524D;</p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="EL&#x8868;&#x8FBE;&#x5F0F;"><a class="header-anchor" href="#EL&#x8868;&#x8FBE;&#x5F0F;">&#xB6;</a>EL&#x8868;&#x8FBE;&#x5F0F;</h2>
+<ol>
+<li>&#x7528;&#x4E8E;&#x5728;JSP&#x754C;&#x9762;&#x4E2D;&#x7B80;&#x5316;java&#x4EE3;&#x7801;&#x7684;&#x7F16;&#x5199;</li>
+<li>&#x8BED;&#x6CD5;&#x683C;&#x5F0F;&#xFF1A;${&#x8868;&#x8FBE;&#x5F0F;}</li>
+<li>&#x5982;&#x679C;&#x8981;&#x5FFD;&#x7565;EL&#x8868;&#x8FBE;&#x5F0F;&#xFF1A;
+<ul>
+<li>&#x5728;JSP&#x7684;page&#x6307;&#x4EE4;&#x4E2D;&#x8BBE;&#x7F6E;isELIgnored=&#x201C;true&#x201D;</li>
+<li>&#x4F7F;&#x7528;&#x53CD;&#x659C;&#x6760;&#x8F6C;&#x4E49;&#x6765;&#x5FFD;&#x7565;&#x5355;&#x4E2A;&#x8868;&#x8FBE;&#x5F0F;&#xFF1A;${&#x8868;&#x8FBE;&#x5F0F;}</li>
+</ul>
+</li>
+<li>&#x8FD0;&#x7B97;&#x7B26;&#xFF1A;
+<ul>
+<li><code>+ - * / div % mod</code></li>
+<li><code>&gt; &lt; &gt;= &lt;= == !=</code></li>
+<li><code>&amp;&amp; || ! and or not</code></li>
+<li>&#x7A7A;&#x8FD0;&#x7B97;&#x7B26;empty&#xFF1A;&#x5224;&#x65AD;&#x5B57;&#x7B26;&#x4E32;&#x3001;&#x96C6;&#x5408;&#x6216;&#x6570;&#x7EC4;&#x5BF9;&#x8C61;&#x662F;&#x5426;&#x4E3A;null&#x6216;&#x8005;&#x957F;&#x5EA6;&#x4E3A;0&#x3002;</li>
+</ul>
+</li>
+<li>EL&#x8868;&#x8FBE;&#x5F0F;&#x53EA;&#x80FD;&#x4ECE;&#x56DB;&#x4E2A;&#x57DF;&#x5BF9;&#x8C61;&#x4E2D;&#x83B7;&#x53D6;&#x503C;&#x3002;
+<ul>
+<li>&#x8BED;&#x6CD5;&#xFF1A;${&#x57DF;&#x540D;&#x79F0;.&#x952E;&#x540D;}</li>
+<li>&#x4F8B;&#x5982;&#xFF1A;&#x5728;request&#x57DF;&#x4E2D;&#x5B58;&#x50A8;&#x4E86;name=&#x5F20;&#x4E09;&#xFF0C;&#x83B7;&#x53D6;&#xFF1A;${<a href="http://requestScope.name" target="_blank" rel="noopener">requestScope.name</a>}</li>
+<li>&#x5982;&#x679C;&#x83B7;&#x53D6;&#x7684;&#x952E;&#x540D;&#x4E0D;&#x5B58;&#x5728;&#xFF0C;&#x5219;&#x4F1A;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x7A7A;&#x5B57;&#x7B26;&#x4E32;</li>
+<li>&#x76F4;&#x63A5;&#x4F7F;&#x7528;${&#x952E;&#x540D;}&#x83B7;&#x53D6;&#xFF0C;&#x8868;&#x793A;&#x4F9D;&#x6B21;&#x4ECE;&#x6700;&#x5C0F;&#x7684;&#x57DF;&#x4E2D;&#x67E5;&#x627E;&#x8BE5;&#x952E;&#x540D;&#xFF0C;&#x76F4;&#x5230;&#x627E;&#x5230;&#x4F4D;&#x7F6E;&#x3002;</li>
+<li>&#x83B7;&#x53D6;&#x5BF9;&#x8C61;&#x7684;&#x503C;${&#x57DF;&#x540D;&#x79F0;.&#x952E;&#x540D;.&#x5C5E;&#x6027;&#x540D;}&#x5176;&#x672C;&#x8D28;&#x4E0A;&#x4F1A;&#x53BB;&#x8C03;&#x7528;&#x5C5E;&#x6027;&#x7684;getter&#x65B9;&#x6CD5;&#xFF0C;&#x5982;&#x679C;&#x4E0D;&#x5B58;&#x5728;getter&#x65B9;&#x6CD5;&#x5219;&#x65E0;&#x6CD5;&#x83B7;&#x53D6;&#x3002;</li>
+<li>&#x83B7;&#x53D6;List&#x96C6;&#x5408;&#x4E2D;&#x7684;&#x503C;&#xFF1A;${&#x57DF;&#x540D;&#x79F0;.&#x952E;&#x540D;[&#x7D22;&#x5F15;]}</li>
+<li>&#x83B7;&#x53D6;Map&#x96C6;&#x5408;&#x4E2D;&#x7684;&#x503C;&#xFF1A;${&#x57DF;&#x540D;&#x79F0;.&#x952E;&#x540D;.key&#x540D;&#x79F0;}&#x6216;&#x8005;${&#x57DF;&#x540D;&#x79F0;.&#x952E;&#x540D;[&#x201C;key&#x540D;&#x79F0;&#x201D;]}</li>
+</ul>
+</li>
+</ol>
+<h2 id="JSTL-JSP&#x6807;&#x51C6;&#x6807;&#x7B7E;&#x5E93;"><a class="header-anchor" href="#JSTL-JSP&#x6807;&#x51C6;&#x6807;&#x7B7E;&#x5E93;">&#xB6;</a>JSTL JSP&#x6807;&#x51C6;&#x6807;&#x7B7E;&#x5E93;</h2>
+<ol>
+<li>
+<p>&#x7B80;&#x5316;&#x548C;&#x66FF;&#x6362;JSP&#x9875;&#x9762;&#x4E0A;&#x7684;java&#x4EE3;&#x7801;</p>
+</li>
+<li>
+<p>&#x4F7F;&#x7528;&#x6B65;&#x9AA4;&#xFF1A;</p>
+<ul>
+<li>&#x5BFC;&#x5165;jstl&#x76F8;&#x5173;jar&#x5305;</li>
+<li>&#x5F15;&#x5165;&#x6807;&#x7B7E;&#x5E93;&#xFF1A;taglib&#x6307;&#x4EE4;&#xFF1A;  <code>&lt;%@ taglib %&gt;</code></li>
+<li>&#x4F7F;&#x7528;&#x6807;&#x7B7E;</li>
+</ul>
+</li>
+<li>
+<p>if&#x6807;&#x7B7E; &#x76F8;&#x5F53;&#x4E8E;if&#x8BED;&#x53E5;</p>
+<ul>
+<li>test&#x5FC5;&#x987B;&#x5C5E;&#x6027;&#xFF0C;&#x63A5;&#x53D7;boolean&#x8868;&#x8FBE;&#x5F0F;&#xFF0C;&#x5982;&#x679C;&#x4E3A;true&#x5219;&#x663E;&#x793A;&#x6807;&#x7B7E;&#x4F53;&#x5185;&#x5BB9;</li>
+</ul>
+</li>
+<li>
+<p>choose:&#x76F8;&#x5F53;&#x4E8E;java&#x4EE3;&#x7801;&#x7684;switch&#x8BED;&#x53E5;</p>
+<ul>
+<li>&#x4F7F;&#x7528;choose&#x6807;&#x7B7E;&#x58F0;&#x660E;         			&#x76F8;&#x5F53;&#x4E8E;switch&#x58F0;&#x660E;</li>
+<li>&#x4F7F;&#x7528;when&#x6807;&#x7B7E;&#x505A;&#x5224;&#x65AD;         			&#x76F8;&#x5F53;&#x4E8E;case</li>
+<li>&#x4F7F;&#x7528;otherwise&#x6807;&#x7B7E;&#x505A;&#x5176;&#x4ED6;&#x60C5;&#x51B5;&#x7684;&#x58F0;&#x660E;    	&#x76F8;&#x5F53;&#x4E8E;default</li>
+</ul>
+</li>
+<li>
+<p>foreach:&#x76F8;&#x5F53;&#x4E8E;java&#x4EE3;&#x7801;&#x7684;for&#x8BED;&#x53E5;</p>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+
+    <div align="center">
+        
+          <div>
+    
+        <div class="read-over">-------------------本文结束 <i class="fa fa-paw"></i> 感谢您的阅读-------------------</div>
+    
+</div>
+        
+      </div>
+    <div>
+        
+          
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/article/ade28fad.html/">JavaWeb之JSP、EL、JSTL</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 Hoshino汤包 的个人博客">Hoshino汤包</a></p>
+  <p><span>发布时间:</span>2020年08月01日 - 10:25:12</p>
+  <p><span>最后更新:</span>2020年08月01日 - 10:27:52</p>
+  <p><span>原始链接:</span><a href="/article/ade28fad.html/" title="JavaWeb之JSP、EL、JSTL">https://tangtangsama.github.io/article/ade28fad.html/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://tangtangsama.github.io/article/ade28fad.html/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p>非商业性使用-转载请保留原文链接及作者。</p>
+</div>
+<script>
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({
+          title: "",
+          text: '复制成功',
+          icon: "success",
+          showConfirmButton: true
+          });
+    });
+    });
+</script>
+
+        
+    </div>
+        <div class="reward-container">
+  <div>感谢您的支持和鼓励！</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="Hoshino汤包 WeChat">
+        <p>WeChat</p>
+      </div>
+
+  </div>
+</div>
+
+
+      
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/article/741b6993.html/" rel="prev" title="JavaWeb之Filter和Listener">
+      <i class="fa fa-chevron-left"></i> JavaWeb之Filter和Listener
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/article/d827f78b.html/" rel="next" title="JavaWeb之Jquery">
+      JavaWeb之Jquery <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Hoshino汤包"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">Hoshino汤包</p>
+  <div class="site-description" itemprop="description">醉后不知天在水，满船清梦压星河。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/tangtangsama" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;tangtangsama" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:sucre@nuaa.edu.com" title="E-Mail → mailto:sucre@nuaa.edu.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.baidu.com/" title="https:&#x2F;&#x2F;www.baidu.com&#x2F;" rel="noopener" target="_blank">Baidu</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://github.com/" title="https:&#x2F;&#x2F;github.com&#x2F;" rel="noopener" target="_blank">Github</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+      <div id="">
+  <canvas id="canvas" style="width:60%;">
+</div>
+
+<!--粒子时钟js-->
+<script type="text/javascript" src="/js/src/canvas-dance-time.js"></script>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">版权所属：sucre</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">544k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">8:15</span>
+</div>
+
+<div id="days"></div>
+<script>
+function show_date_time(){
+    window.setTimeout("show_date_time()", 1000);
+    BirthDay=new Date("05/20/2020 15:13:14");
+    today=new Date();
+    timeold=(today.getTime()-BirthDay.getTime());
+    sectimeold=timeold/1000
+    secondsold=Math.floor(sectimeold);
+    msPerDay=24*60*60*1000
+    e_daysold=timeold/msPerDay
+    daysold=Math.floor(e_daysold);
+    e_hrsold=(e_daysold-daysold)*24;
+    hrsold=setzero(Math.floor(e_hrsold));
+    e_minsold=(e_hrsold-hrsold)*60;
+    minsold=setzero(Math.floor((e_hrsold-hrsold)*60));
+    seconds=setzero(Math.floor((e_minsold-minsold)*60));
+    document.getElementById('days').innerHTML="本站点已运行 "+daysold+" 天 "+hrsold+" 小时 "+minsold+" 分 "+seconds+" 秒";
+}
+function setzero(i) {
+    if (i<10) {
+        i="0" + i
+    };
+    return i;
+}
+show_date_time();
+</script>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+   
+
+  <script async src="/js/cursor/love.min.js"></script>
+
+</body>
+
+</html>
+

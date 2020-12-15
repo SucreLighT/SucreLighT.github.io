@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/./images/apple-touch-icon-next1.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/./images/favicon-32x32-next1.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/./images/favicon-16x16-next1.png">
+  <link rel="mask-icon" href="/./images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-flash.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"tangtangsama.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="JavaWeb&amp;#x5B66;&amp;#x4E60;&amp;#x4E2D;&amp;#x5173;&amp;#x4E8E;&amp;#x6574;&amp;#x5408;SSM&amp;#x7684;&amp;#x76F8;&amp;#x5173;&amp;#x77E5;&amp;#x8BC6; &amp;#x1F4AF;&amp;#x1F4A4;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaWeb之SSM">
+<meta property="og:url" content="https://tangtangsama.github.io/article/dca918a2.html/index.html">
+<meta property="og:site_name" content="Hoshino汤包">
+<meta property="og:description" content="JavaWeb&amp;#x5B66;&amp;#x4E60;&amp;#x4E2D;&amp;#x5173;&amp;#x4E8E;&amp;#x6574;&amp;#x5408;SSM&amp;#x7684;&amp;#x76F8;&amp;#x5173;&amp;#x77E5;&amp;#x8BC6; &amp;#x1F4AF;&amp;#x1F4A4;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-12-05T10:14:17.000Z">
+<meta property="article:modified_time" content="2020-12-05T10:16:11.628Z">
+<meta property="article:author" content="Hoshino汤包">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://tangtangsama.github.io/article/dca918a2.html/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>JavaWeb之SSM | Hoshino汤包</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css"/>
+    <script src="/live2d-widget/autoload.js"></script>
+
+    <!-- 引入网页奔溃效果 -->
+    <script type="text/javascript" src="/js/src/crash_cheat.js"></script>
+    
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Hoshino汤包</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Stay hungry. Stay foolish.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">5</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">27</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/tangtangsama" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://tangtangsama.github.io/article/dca918a2.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hoshino汤包">
+      <meta itemprop="description" content="醉后不知天在水，满船清梦压星河。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hoshino汤包">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JavaWeb之SSM
+        </h1>
+
+        <div class="post-meta">
+        
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-12-05 18:14:17 / 修改时间：18:16:11" itemprop="dateCreated datePublished" datetime="2020-12-05T18:14:17+08:00">2020-12-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">Java开发笔记</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>22k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>20 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>JavaWeb&#x5B66;&#x4E60;&#x4E2D;&#x5173;&#x4E8E;&#x6574;&#x5408;SSM&#x7684;&#x76F8;&#x5173;&#x77E5;&#x8BC6; &#x1F4AF;&#x1F4A4;</p>
+<a id="more"></a>
+<h1>SSM&#x6574;&#x5408;</h1>
+<p>&#x91C7;&#x7528;Spring&#x6574;&#x5408;MyBatis&#x4EE5;&#x53CA;SpringMVC&#x7684;&#x65B9;&#x5F0F;&#xFF0C;&#x4F7F;&#x7528;XML+&#x6CE8;&#x89E3;&#x7684;&#x914D;&#x7F6E;&#x65B9;&#x5F0F;&#x3002;</p>
+<h2 id="1-&#x51C6;&#x5907;&#x5DE5;&#x4F5C;"><a class="header-anchor" href="#1-&#x51C6;&#x5907;&#x5DE5;&#x4F5C;">&#xB6;</a>1. &#x51C6;&#x5907;&#x5DE5;&#x4F5C;</h2>
+<h3 id="1-&#x521B;&#x5EFA;&#x6570;&#x636E;&#x5E93;&#x8868;"><a class="header-anchor" href="#1-&#x521B;&#x5EFA;&#x6570;&#x636E;&#x5E93;&#x8868;">&#xB6;</a>1. &#x521B;&#x5EFA;&#x6570;&#x636E;&#x5E93;&#x8868;</h3>
+<pre><code class="language-sql">create database ssm;
+use ssm;
+create table account(
+    id int primary key auto_increment,
+    name varchar(20),
+    money double
+);
+</code></pre>
+<h3 id="2-&#x521B;&#x5EFA;maven&#x5DE5;&#x7A0B;&#x5E76;&#x5BFC;&#x5165;&#x4F9D;&#x8D56;"><a class="header-anchor" href="#2-&#x521B;&#x5EFA;maven&#x5DE5;&#x7A0B;&#x5E76;&#x5BFC;&#x5165;&#x4F9D;&#x8D56;">&#xB6;</a>2. &#x521B;&#x5EFA;maven&#x5DE5;&#x7A0B;&#x5E76;&#x5BFC;&#x5165;&#x4F9D;&#x8D56;</h3>
+<pre><code class="language-xml">&lt;properties&gt;
+        &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
+        &lt;maven.compiler.source&gt;1.8&lt;/maven.compiler.source&gt;
+        &lt;maven.compiler.target&gt;1.8&lt;/maven.compiler.target&gt;
+        &lt;spring.version&gt;5.0.2.RELEASE&lt;/spring.version&gt;
+        &lt;slf4j.version&gt;1.6.6&lt;/slf4j.version&gt;
+        &lt;log4j.version&gt;1.2.12&lt;/log4j.version&gt;
+        &lt;mysql.version&gt;5.1.6&lt;/mysql.version&gt;
+        &lt;mybatis.version&gt;3.4.5&lt;/mybatis.version&gt;
+    &lt;/properties&gt;
+
+    &lt;dependencies&gt;
+        &lt;!-- spring --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.aspectj&lt;/groupId&gt;
+            &lt;artifactId&gt;aspectjweaver&lt;/artifactId&gt;
+            &lt;version&gt;1.6.8&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-aop&lt;/artifactId&gt;
+            &lt;version&gt;${spring.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-context&lt;/artifactId&gt;
+            &lt;version&gt;${spring.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-web&lt;/artifactId&gt;
+            &lt;version&gt;${spring.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-webmvc&lt;/artifactId&gt;
+            &lt;version&gt;${spring.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-test&lt;/artifactId&gt;
+            &lt;version&gt;${spring.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-tx&lt;/artifactId&gt;
+            &lt;version&gt;${spring.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-jdbc&lt;/artifactId&gt;
+            &lt;version&gt;${spring.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+
+        &lt;!-- &#x5355;&#x5143;&#x6D4B;&#x8BD5; --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;junit&lt;/groupId&gt;
+            &lt;artifactId&gt;junit&lt;/artifactId&gt;
+            &lt;version&gt;4.12&lt;/version&gt;
+            &lt;scope&gt;compile&lt;/scope&gt;
+        &lt;/dependency&gt;
+        &lt;!-- &#x6570;&#x636E;&#x5E93;&#x9A71;&#x52A8; --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;mysql&lt;/groupId&gt;
+            &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+            &lt;version&gt;${mysql.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;!-- servlet --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;javax.servlet&lt;/groupId&gt;
+            &lt;artifactId&gt;servlet-api&lt;/artifactId&gt;
+            &lt;version&gt;2.5&lt;/version&gt;
+            &lt;scope&gt;provided&lt;/scope&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;javax.servlet.jsp&lt;/groupId&gt;
+            &lt;artifactId&gt;jsp-api&lt;/artifactId&gt;
+            &lt;version&gt;2.0&lt;/version&gt;
+            &lt;scope&gt;provided&lt;/scope&gt;
+        &lt;/dependency&gt;
+        &lt;!-- el&#x8868;&#x8FBE;&#x5F0F; --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;jstl&lt;/groupId&gt;
+            &lt;artifactId&gt;jstl&lt;/artifactId&gt;
+            &lt;version&gt;1.2&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;!-- log start --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;log4j&lt;/groupId&gt;
+            &lt;artifactId&gt;log4j&lt;/artifactId&gt;
+            &lt;version&gt;${log4j.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.slf4j&lt;/groupId&gt;
+            &lt;artifactId&gt;slf4j-api&lt;/artifactId&gt;
+            &lt;version&gt;${slf4j.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.slf4j&lt;/groupId&gt;
+            &lt;artifactId&gt;slf4j-log4j12&lt;/artifactId&gt;
+            &lt;version&gt;${slf4j.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;!-- log end --&gt;
+
+        &lt;!-- mybatis --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.mybatis&lt;/groupId&gt;
+            &lt;artifactId&gt;mybatis&lt;/artifactId&gt;
+            &lt;version&gt;${mybatis.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;!-- Spring&#x6574;&#x5408;mybatis--&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.mybatis&lt;/groupId&gt;
+            &lt;artifactId&gt;mybatis-spring&lt;/artifactId&gt;
+            &lt;version&gt;1.3.0&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;!-- &#x6570;&#x636E;&#x5E93;&#x8FDE;&#x63A5;&#x6C60; --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;c3p0&lt;/groupId&gt;
+            &lt;artifactId&gt;c3p0&lt;/artifactId&gt;
+            &lt;version&gt;0.9.1.2&lt;/version&gt;
+            &lt;type&gt;jar&lt;/type&gt;
+            &lt;scope&gt;compile&lt;/scope&gt;
+        &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+</code></pre>
+<h3 id="3-&#x7F16;&#x5199;&#x5B9E;&#x4F53;&#x7C7B;"><a class="header-anchor" href="#3-&#x7F16;&#x5199;&#x5B9E;&#x4F53;&#x7C7B;">&#xB6;</a>3. &#x7F16;&#x5199;&#x5B9E;&#x4F53;&#x7C7B;</h3>
+<pre><code class="language-java">public class Account implements Serializable {
+    private Integer id;
+    private String name;
+    private Double money;
+    @Override
+    public String toString() {
+        return &quot;Account{&quot; +
+                &quot;id=&quot; + id +
+                &quot;, name=&apos;&quot; + name + &apos;\&apos;&apos; +
+                &quot;, money=&quot; + money +
+                &apos;}&apos;;
+    }
+    public Integer getId() {
+        return id;
+    }
+    public void setId(Integer id) {
+        this.id = id;
+    }
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public Double getMoney() {
+        return money;
+    }
+    public void setMoney(Double money) {
+        this.money = money;
+    }
+}
+</code></pre>
+<h3 id="4-&#x6301;&#x4E45;&#x5C42;&#x63A5;&#x53E3;"><a class="header-anchor" href="#4-&#x6301;&#x4E45;&#x5C42;&#x63A5;&#x53E3;">&#xB6;</a>4. &#x6301;&#x4E45;&#x5C42;&#x63A5;&#x53E3;</h3>
+<p>&#x56E0;&#x4E3A;&#x4F7F;&#x7528;&#x4E86;mybatis&#x6846;&#x67B6;&#xFF0C;dao&#x4E2D;&#x4E0D;&#x9700;&#x8981;&#x63D0;&#x4F9B;&#x5B9E;&#x73B0;&#x7C7B;&#xFF0C;&#x4F1A;&#x7531;mybatis&#x751F;&#x6210;&#x4EE3;&#x7406;&#x5BF9;&#x8C61;&#x53BB;&#x5B9E;&#x73B0;&#x3002;</p>
+<pre><code class="language-java">public interface AccountDao {
+    /**
+     * &#x67E5;&#x8BE2;&#x6240;&#x6709;&#x8D26;&#x6237;
+     *
+     * @return
+     */
+    public List&lt;Account&gt; findAll();
+    /**
+     * &#x4FDD;&#x5B58;&#x8D26;&#x6237;&#x4FE1;&#x606F;
+     *
+     * @param account
+     */
+    public void saveAccount(Account account);
+}
+</code></pre>
+<h3 id="5-&#x4E1A;&#x52A1;&#x5C42;&#x63A5;&#x53E3;&#x53CA;&#x5B9E;&#x73B0;&#x7C7B;"><a class="header-anchor" href="#5-&#x4E1A;&#x52A1;&#x5C42;&#x63A5;&#x53E3;&#x53CA;&#x5B9E;&#x73B0;&#x7C7B;">&#xB6;</a>5. &#x4E1A;&#x52A1;&#x5C42;&#x63A5;&#x53E3;&#x53CA;&#x5B9E;&#x73B0;&#x7C7B;</h3>
+<p>AccountService</p>
+<pre><code class="language-java">public interface AccountService {
+    /**
+     * &#x67E5;&#x8BE2;&#x6240;&#x6709;&#x8D26;&#x6237;
+     *
+     * @return
+     */
+    public List&lt;Account&gt; findAll();
+    /**
+     * &#x4FDD;&#x5B58;&#x8D26;&#x6237;&#x4FE1;&#x606F;
+     *
+     * @param account
+     */
+    public void saveAccount(Account account);
+}
+</code></pre>
+<p>AccountServiceImpl</p>
+<pre><code class="language-java">public class AccountServiceImpl implements AccountService {
+    @Override
+    public List&lt;Account&gt; findAll() {
+        System.out.println(&quot;&#x4E1A;&#x52A1;&#x5C42;&#xFF1A;&#x67E5;&#x8BE2;&#x6240;&#x6709;&#x8D26;&#x6237;...&quot;);
+        return null;
+    }
+    @Override
+    public void saveAccount(Account account) {
+        System.out.println(&quot;&#x4E1A;&#x52A1;&#x5C42;&#xFF1A;&#x4FDD;&#x5B58;&#x8D26;&#x6237;&#x4FE1;&#x606F;...&quot;);
+    }
+}
+</code></pre>
+<h2 id="2-Spring&#x914D;&#x7F6E;"><a class="header-anchor" href="#2-Spring&#x914D;&#x7F6E;">&#xB6;</a>2. Spring&#x914D;&#x7F6E;</h2>
+<h3 id="1-&#x521B;&#x5EFA;&#x914D;&#x7F6E;&#x6587;&#x4EF6;"><a class="header-anchor" href="#1-&#x521B;&#x5EFA;&#x914D;&#x7F6E;&#x6587;&#x4EF6;">&#xB6;</a>1.&#x521B;&#x5EFA;&#x914D;&#x7F6E;&#x6587;&#x4EF6;</h3>
+<p>&#x5728;resources&#x76EE;&#x5F55;&#x4E0B;&#x521B;&#x5EFA;Spring&#x7684;&#x914D;&#x7F6E;&#x6587;&#x4EF6;<code>applicationContext.xml</code>&#x3002;</p>
+<p><strong>&#x7531;&#x4E8E;&#x8868;&#x73B0;&#x5C42;&#x91C7;&#x7528;&#x4E86;SpringMVC&#x7684;&#x6846;&#x67B6;&#x53BB;&#x5B9E;&#x73B0;&#xFF0C;&#x6240;&#x4EE5;&#x4E0D;&#x9700;&#x8981;&#x5728;Spring&#x4E2D;&#x914D;&#x7F6E;web&#x5C42;&#x6CE8;&#x89E3;&#xFF0C;&#x9700;&#x8981;&#x5FFD;&#x7565;&#x8FD9;&#x4E00;&#x90E8;&#x5206;&#x3002;</strong></p>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+       xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+       xmlns:context=&quot;http://www.springframework.org/schema/context&quot;
+       xmlns:aop=&quot;http://www.springframework.org/schema/aop&quot;
+       xmlns:tx=&quot;http://www.springframework.org/schema/tx&quot;
+       xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd
+http://www.springframework.org/schema/aop
+http://www.springframework.org/schema/aop/spring-aop.xsd
+http://www.springframework.org/schema/tx
+http://www.springframework.org/schema/tx/spring-tx.xsd&quot;&gt;
+    &lt;!-- &#x5F00;&#x542F;&#x6CE8;&#x89E3;&#x626B;&#x63CF;&#xFF0C;&#x8981;&#x626B;&#x63CF;&#x7684;&#x662F;service&#x548C;dao&#x5C42;&#x7684;&#x6CE8;&#x89E3;&#xFF0C;&#x8981;&#x5FFD;&#x7565;web&#x5C42;&#x6CE8;&#x89E3;&#xFF0C;&#x56E0;&#x4E3A;web&#x5C42;&#x8BA9;SpringMVC&#x6846;&#x67B6;&#x53BB;&#x7BA1;&#x7406; --&gt;
+    &lt;context:component-scan base-package=&quot;cn.sucrelt&quot;&gt;
+        &lt;!-- &#x914D;&#x7F6E;&#x8981;&#x5FFD;&#x7565;&#x7684;&#x6CE8;&#x89E3; --&gt;
+        &lt;context:exclude-filter type=&quot;annotation&quot;
+                                expression=&quot;org.springframework.stereotype.Controller&quot;/&gt;
+    &lt;/context:component-scan&gt;
+&lt;/beans&gt;
+</code></pre>
+<h3 id="2-&#x4E1A;&#x52A1;&#x5C42;&#x5B9E;&#x73B0;&#x7C7B;&#x52A0;&#x5165;Spring&#x5BB9;&#x5668;&#x4E2D;"><a class="header-anchor" href="#2-&#x4E1A;&#x52A1;&#x5C42;&#x5B9E;&#x73B0;&#x7C7B;&#x52A0;&#x5165;Spring&#x5BB9;&#x5668;&#x4E2D;">&#xB6;</a>2. &#x4E1A;&#x52A1;&#x5C42;&#x5B9E;&#x73B0;&#x7C7B;&#x52A0;&#x5165;Spring&#x5BB9;&#x5668;&#x4E2D;</h3>
+<p>&#x5C06;<code>AccountServiceImpl</code>&#x901A;&#x8FC7;&#x6CE8;&#x89E3;&#x52A0;&#x5165;&#x5230;Spring&#x5BB9;&#x5668;&#x4E2D;</p>
+<pre><code class="language-java">@Service(&quot;accountService&quot;)
+public class AccountServiceImpl implements AccountService {
+...
+}
+</code></pre>
+<h3 id="3-&#x6D4B;&#x8BD5;"><a class="header-anchor" href="#3-&#x6D4B;&#x8BD5;">&#xB6;</a>3. &#x6D4B;&#x8BD5;</h3>
+<pre><code class="language-java">public class TestSpring {
+    @Test
+    public void run1() {
+        //&#x52A0;&#x8F7D;&#x914D;&#x7F6E;&#x6587;&#x4EF6;
+        ApplicationContext ac = new ClassPathXmlApplicationContext(&quot;classpath:applicationContext.xml&quot;);
+        //&#x83B7;&#x53D6;&#x5BF9;&#x8C61;
+        AccountService accountService = (AccountService) ac.getBean(&quot;accountService&quot;);
+        //&#x8C03;&#x7528;&#x65B9;&#x6CD5;
+        accountService.findAll();
+    }
+}
+</code></pre>
+<p>&#x6D4B;&#x8BD5;&#x7ED3;&#x679C;&#xFF1A;&#x63A7;&#x5236;&#x53F0;&#x663E;&#x793A;&#x6267;&#x884C;&#x4E86;&#x4E1A;&#x52A1;&#x5C42;&#x7684;&#x65B9;&#x6CD5;&#x3002;</p>
+<h2 id="3-&#x6574;&#x5408;SpringMVC"><a class="header-anchor" href="#3-&#x6574;&#x5408;SpringMVC">&#xB6;</a>3. &#x6574;&#x5408;SpringMVC</h2>
+<h3 id="1-&#x76EE;&#x7684;"><a class="header-anchor" href="#1-&#x76EE;&#x7684;">&#xB6;</a>1. &#x76EE;&#x7684;</h3>
+<ol>
+<li>&#x9996;&#x5148;&#x642D;&#x5EFA;SpringMVC&#x6846;&#x67B6;&#xFF0C;&#x5305;&#x62EC;&#x914D;&#x7F6E;<code>web.xml</code>&#x3001;<code>springmvc.xml</code>&#x6587;&#x4EF6;&#xFF0C;&#x7F16;&#x5199;<code>AccountController</code>&#x63A7;&#x5236;&#x5668;&#x7C7B;&#xFF08;&#x4E5F;&#x662F;web&#x8868;&#x73B0;&#x5C42;&#xFF09;&#x3001;&#x4EE5;&#x53CA;&#x54CD;&#x5E94;&#x7684;&#x524D;&#x7AEF;&#x8BF7;&#x6C42;&#x754C;&#x9762;<code>index.jsp</code>&#x548C;&#x6700;&#x540E;&#x8DF3;&#x8F6C;&#x754C;&#x9762;<code>list.jsp</code>&#x3002;</li>
+<li><strong>&#x6574;&#x5408;&#x7684;&#x76EE;&#x7684;&#x662F;&#x4F7F;&#x7528;controller&#x63A7;&#x5236;&#x5668;&#x7C7B;&#x4F5C;&#x4E3A;web&#x5C42;&#xFF0C;&#x5373;&#x80FD;&#x591F;&#x5728;controller&#x4E2D;&#x8C03;&#x7528;service&#x65B9;&#x6CD5;</strong>&#x3002;</li>
+</ol>
+<h3 id="2-&#x5206;&#x6790;"><a class="header-anchor" href="#2-&#x5206;&#x6790;">&#xB6;</a>2.&#x5206;&#x6790;</h3>
+<p>&#x670D;&#x52A1;&#x5668;&#x542F;&#x52A8;&#x4E4B;&#x540E;&#xFF0C;&#x4F1A;&#x52A0;&#x8F7D;&#x914D;&#x7F6E;&#x6587;&#x4EF6;<code>web.xml</code>&#xFF0C;&#x5176;&#x4E2D;&#x52A0;&#x8F7D;&#x524D;&#x7AEF;&#x63A7;&#x5236;&#x5668;&#x4ECE;&#x800C;&#x52A0;&#x8F7D;springmvc&#x7684;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF0C;&#x4F46;&#x662F;spring&#x7684;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x6CA1;&#x80FD;&#x52A0;&#x8F7D;&#xFF0C;&#x6240;&#x4EE5;<strong>&#x9700;&#x8981;&#x5728;<code>web.xml</code>&#x4E2D;&#x4F7F;&#x7528;&#x914D;&#x7F6E;&#x76D1;&#x542C;&#x5668;&#xFF0C;&#x7528;&#x4E8E;&#x52A0;&#x8F7D;spring&#x7684;&#x914D;&#x7F6E;&#x6587;&#x4EF6;<code>applicationContext.xml</code>&#x3002;</strong></p>
+<h3 id="3-&#x914D;&#x7F6E;&#x76D1;&#x542C;&#x5668;"><a class="header-anchor" href="#3-&#x914D;&#x7F6E;&#x76D1;&#x542C;&#x5668;">&#xB6;</a>3. &#x914D;&#x7F6E;&#x76D1;&#x542C;&#x5668;</h3>
+<p>&#x5728;&#x9879;&#x76EE;&#x542F;&#x52A8;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5C31;&#x53BB;&#x52A0;&#x8F7D;applicationContext.xml&#x7684;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF0C;&#x5728;web.xml&#x4E2D;&#x914D;&#x7F6E;<code>ContextLoaderListener</code>&#x76D1;&#x542C;&#x5668;&#xFF08;&#x8BE5;&#x76D1;&#x542C;&#x5668;&#x53EA;&#x80FD;&#x52A0;&#x8F7D;WEB-INF&#x76EE;&#x5F55;&#x4E0B;&#x7684;applicationContext.xml&#x7684;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF09;&#xFF0C;&#x6240;&#x4EE5;&#x9700;&#x8981;&#x8BBE;&#x7F6E;&#x52A0;&#x8F7D;&#x7C7B;&#x8DEF;&#x5F84;&#x4E0B;&#x7684;&#x6587;&#x4EF6;&#x3002;</p>
+<p><strong>&#x5F53;&#x52A0;&#x8F7D;&#x4E86;spring&#x7684;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x540E;&#xFF0C;&#x5C31;&#x4F1A;&#x542F;&#x52A8;spring&#x6CE8;&#x89E3;&#x7684;&#x626B;&#x63CF;&#xFF0C;&#x5728;&#x4E4B;&#x540E;&#x63A7;&#x5236;&#x5668;&#x4E2D;&#x4F7F;&#x7528;&#x6CE8;&#x89E3;&#x81EA;&#x52A8;&#x6CE8;&#x5165;service&#x5BF9;&#x8C61;&#x4FBF;&#x4F1A;&#x751F;&#x6548;&#x3002;</strong></p>
+<pre><code class="language-xml">&lt;!-- &#x914D;&#x7F6E;&#x76D1;&#x542C;&#x5668;&#xFF0C;&#x7528;&#x4E8E;&#x52A0;&#x8F7D;spring&#x7684;&#x914D;&#x7F6E;&#x6587;&#x4EF6;applicationContext.xml --&gt;
+&lt;listener&gt;
+    &lt;listener-class&gt;org.springframework.web.context.ContextLoaderListener&lt;/listener-class&gt;
+&lt;/listener&gt;
+&lt;context-param&gt;
+    &lt;param-name&gt;contextConfigLocation&lt;/param-name&gt;
+    &lt;param-value&gt;classpath:applicationContext.xml&lt;/param-value&gt;
+&lt;/context-param&gt;
+</code></pre>
+<h3 id="4-&#x5728;&#x63A7;&#x5236;&#x5668;&#x4E2D;&#x8C03;&#x7528;service&#x65B9;&#x6CD5;"><a class="header-anchor" href="#4-&#x5728;&#x63A7;&#x5236;&#x5668;&#x4E2D;&#x8C03;&#x7528;service&#x65B9;&#x6CD5;">&#xB6;</a>4. &#x5728;&#x63A7;&#x5236;&#x5668;&#x4E2D;&#x8C03;&#x7528;service&#x65B9;&#x6CD5;</h3>
+<p>&#x5728;&#x63A7;&#x5236;&#x5668;&#x4E2D;&#x8C03;&#x7528;service&#x65B9;&#x6CD5;&#xFF0C;&#x5B9E;&#x73B0;Spring&#x548C;SpringMVC&#x7684;&#x6574;&#x5408;&#xFF0C;service&#x65B9;&#x6CD5;&#x8FDB;&#x884C;&#x81EA;&#x52A8;&#x6CE8;&#x5165;&#x3002;</p>
+<pre><code class="language-java">@Controller
+@RequestMapping(&quot;/account&quot;)
+public class AccountController {
+    @Autowired
+    private AccountService accountService;
+
+    @RequestMapping(&quot;/findAll&quot;)
+    public String findAll() {
+        System.out.println(&quot;&#x8868;&#x73B0;&#x5C42;&#xFF1A;&#x67E5;&#x8BE2;&#x6240;&#x6709;&#x8D26;&#x6237;&#x4FE1;&#x606F;...&quot;);
+        accountService.findAll();
+        return &quot;list&quot;;
+    }
+}
+</code></pre>
+<h3 id="5-&#x6D4B;&#x8BD5;"><a class="header-anchor" href="#5-&#x6D4B;&#x8BD5;">&#xB6;</a>5. &#x6D4B;&#x8BD5;</h3>
+<p>&#x901A;&#x8FC7;index.jsp&#x8BF7;&#x6C42;</p>
+<pre><code class="language-jsp">    &lt;body&gt;
+        &lt;a href=&quot;account/findAll&quot;&gt;&#x6D4B;&#x8BD5;Spring+SpringMVC&lt;/a&gt;
+    &lt;/body&gt;
+</code></pre>
+<p>&#x6D4B;&#x8BD5;&#x7ED3;&#x679C;&#xFF1A;&#x8BF7;&#x6C42;&#x5230;&#x8FBE;web&#x5C42;&#xFF0C;&#x5373;SpringMVC&#x6846;&#x67B6;&#x4E2D;&#x7684;&#x524D;&#x7AEF;&#x63A7;&#x5236;&#x5668;&#xFF0C;&#x6267;&#x884C;&#x8868;&#x73B0;&#x5C42;&#x65B9;&#x6CD5;&#xFF0C;&#x5176;&#x4E2D;&#x8C03;&#x7528;&#x4E86;<code>accountService.findAll()</code>&#xFF0C;&#x4FBF;&#x8FDB;&#x5165;Spring&#x6846;&#x67B6;&#x4E2D;&#x7684;&#x4E1A;&#x52A1;&#x5C42;&#xFF0C;&#x6267;&#x884C;&#x4E1A;&#x52A1;&#x5C42;&#x65B9;&#x6CD5;&#x3002;&#x63A7;&#x5236;&#x53F0;&#x8F93;&#x51FA;&#x4E3A;&#xFF1A;</p>
+<pre><code class="language-java">&#x8868;&#x73B0;&#x5C42;&#xFF1A;&#x67E5;&#x8BE2;&#x6240;&#x6709;&#x8D26;&#x6237;&#x4FE1;&#x606F;...
+&#x4E1A;&#x52A1;&#x5C42;&#xFF1A;&#x67E5;&#x8BE2;&#x6240;&#x6709;&#x8D26;&#x6237;...
+</code></pre>
+<h2 id="4-&#x914D;&#x7F6E;MyBatis"><a class="header-anchor" href="#4-&#x914D;&#x7F6E;MyBatis">&#xB6;</a>4. &#x914D;&#x7F6E;MyBatis</h2>
+<p>&#x4E2A;&#x4E2D;&#x7EC6;&#x8282;&#x53C2;&#x8003;MyBatis&#x7684;&#x6587;&#x6863;&#x3002;</p>
+<h3 id="1-&#x7F16;&#x5199;MyBatis&#x914D;&#x7F6E;&#x6587;&#x4EF6;"><a class="header-anchor" href="#1-&#x7F16;&#x5199;MyBatis&#x914D;&#x7F6E;&#x6587;&#x4EF6;">&#xB6;</a>1. &#x7F16;&#x5199;MyBatis&#x914D;&#x7F6E;&#x6587;&#x4EF6;</h3>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE configuration
+        PUBLIC &quot;-//mybatis.org//DTD Config 3.0//EN&quot;
+        &quot;http://mybatis.org/dtd/mybatis-3-config.dtd&quot;&gt;
+&lt;configuration&gt;
+    &lt;!-- &#x914D;&#x7F6E;&#x73AF;&#x5883; --&gt;
+    &lt;environments default=&quot;mysql&quot;&gt;
+        &lt;environment id=&quot;mysql&quot;&gt;
+            &lt;transactionManager type=&quot;JDBC&quot;/&gt;
+            &lt;dataSource type=&quot;POOLED&quot;&gt;
+                &lt;property name=&quot;driver&quot; value=&quot;com.mysql.jdbc.Driver&quot;/&gt;
+                &lt;property name=&quot;url&quot; value=&quot;jdbc:mysql://localhost:3306/ssm?characterEncoding=UTF-8&amp;amp;serverTimezone=GMT&quot;/&gt;
+                &lt;property name=&quot;username&quot; value=&quot;root&quot;/&gt;
+                &lt;property name=&quot;password&quot; value=&quot;123456&quot;/&gt;
+            &lt;/dataSource&gt;
+        &lt;/environment&gt;
+    &lt;/environments&gt;
+    &lt;!-- &#x5F15;&#x5165;&#x6620;&#x5C04;&#x7684;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF0C;&#x4F7F;&#x7528;&#x7684;&#x662F;&#x6CE8;&#x89E3;&#xFF0C;&#x5F15;&#x5165;&#x5BF9;&#x5E94;dao&#x7C7B; --&gt;
+    &lt;mappers&gt;
+        &lt;!--&#x8BE5;&#x5305;&#x4E0B;&#x7684;&#x6240;&#x6709;dao&#x63A5;&#x53E3;&#x90FD;&#x53EF;&#x7528;--&gt;
+        &lt;package name=&quot;cn.sucrelt.dao&quot;/&gt;
+    &lt;/mappers&gt;
+&lt;/configuration&gt;
+</code></pre>
+<h3 id="2-&#x6CE8;&#x89E3;&#x914D;&#x7F6E;dao&#x7C7B;"><a class="header-anchor" href="#2-&#x6CE8;&#x89E3;&#x914D;&#x7F6E;dao&#x7C7B;">&#xB6;</a>2. &#x6CE8;&#x89E3;&#x914D;&#x7F6E;dao&#x7C7B;</h3>
+<pre><code class="language-java">public interface AccountDao {
+
+    @Select(&quot;select * from account&quot;)
+    public List&lt;Account&gt; findAll();
+
+    @Insert(&quot;insert into account (name, money) values (#{name}, #{money})&quot;)
+    public void saveAccount(Account account);
+}
+</code></pre>
+<h2 id="5-&#x6574;&#x5408;MyBatis"><a class="header-anchor" href="#5-&#x6574;&#x5408;MyBatis">&#xB6;</a>5. &#x6574;&#x5408;MyBatis</h2>
+<h3 id="1-&#x5206;&#x6790;"><a class="header-anchor" href="#1-&#x5206;&#x6790;">&#xB6;</a>1. &#x5206;&#x6790;</h3>
+<p>service&#x4F7F;&#x7528;Spring&#x6846;&#x67B6;&#x5B9E;&#x73B0;&#xFF0C;service&#x7684;&#x7C7B;&#x5B58;&#x5165;&#x5230;Spring&#x7684;IOC&#x5BB9;&#x5668;&#x4E2D;&#xFF0C;&#x7531;&#x4E8E;MyBatis&#x4F7F;&#x7528;&#x4EE3;&#x7406;&#x5BF9;&#x8C61;&#x5B9E;&#x73B0;dao&#x529F;&#x80FD;&#xFF0C;&#x6574;&#x5408;&#x7684;&#x76EE;&#x7684;&#x5C31;&#x662F;<strong>&#x8981;&#x8BA9;&#x4EE3;&#x7406;&#x5BF9;&#x8C61;&#x4E5F;&#x52A0;&#x5165;&#x5230;Spring&#x5BB9;&#x5668;&#x4E2D;&#xFF0C;&#x4ECE;&#x800C;&#x88AB;service&#x5BF9;&#x8C61;&#x8C03;&#x7528;</strong>&#x3002;</p>
+<h3 id="2-&#x914D;&#x7F6E;applicationContext-xml"><a class="header-anchor" href="#2-&#x914D;&#x7F6E;applicationContext-xml">&#xB6;</a>2. &#x914D;&#x7F6E;applicationContext.xml</h3>
+<p>&#x628A;SqlMapConfig.xml&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D;&#x7684;&#x5185;&#x5BB9;&#x914D;&#x7F6E;&#x5230;applicationContext.xml&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D;&#xFF0C;&#x9664;&#x4E86;&#x73AF;&#x5883;&#x548C;&#x6620;&#x5C04;&#x7684;&#x914D;&#x7F6E;&#x5916;&#xFF0C;&#x8FD8;&#x8981;<strong>&#x914D;&#x7F6E;SqlSession&#x7684;&#x5DE5;&#x5382;</strong>&#xFF0C;&#x4ECE;&#x800C;&#x5C06;&#x4EE3;&#x7406;&#x5BF9;&#x8C61;&#x52A0;&#x5165;&#x5230;Spring&#x5BB9;&#x5668;&#x4E2D;&#x3002;</p>
+<p>&#x539F;&#x6709;&#x7684;SqlMapConfig.xml&#x53EF;&#x4EE5;&#x5220;&#x9664;&#x3002;</p>
+<pre><code class="language-xml"> &lt;!-- &#x6574;&#x5408;Mybatis --&gt;
+    &lt;!-- &#x914D;&#x7F6E;&#x8FDE;&#x63A5;&#x6C60;&#x5BF9;&#x8C61; --&gt;
+    &lt;bean id=&quot;dataSource&quot;
+          class=&quot;org.springframework.jdbc.datasource.DriverManagerDataSource&quot;&gt;
+        &lt;property name=&quot;driverClassName&quot; value=&quot;com.mysql.jdbc.Driver&quot;/&gt;
+        &lt;property name=&quot;url&quot; value=&quot;jdbc:mysql://localhost:3306/ssm?characterEncoding=UTF-8&amp;amp;serverTimezone=GMT&quot;/&gt;
+        &lt;property name=&quot;username&quot; value=&quot;root&quot;/&gt;
+        &lt;property name=&quot;password&quot; value=&quot;123456&quot;/&gt;
+    &lt;/bean&gt;
+    &lt;!-- &#x914D;&#x7F6E;SqlSession&#x7684;&#x5DE5;&#x5382; --&gt;
+    &lt;bean id=&quot;sqlSessionFactory&quot; class=&quot;org.mybatis.spring.SqlSessionFactoryBean&quot;&gt;
+        &lt;property name=&quot;dataSource&quot; ref=&quot;dataSource&quot;/&gt;
+    &lt;/bean&gt;
+    &lt;!-- &#x914D;&#x7F6E;&#x626B;&#x63CF;dao&#x7684;&#x5305; --&gt;
+    &lt;bean id=&quot;mapperScanner&quot; class=&quot;org.mybatis.spring.mapper.MapperScannerConfigurer&quot;&gt;
+        &lt;property name=&quot;basePackage&quot; value=&quot;cn.sucrelt.dao&quot;/&gt;
+    &lt;/bean&gt;
+</code></pre>
+<h3 id="3-&#x4FEE;&#x6539;service&#x548C;dao"><a class="header-anchor" href="#3-&#x4FEE;&#x6539;service&#x548C;dao">&#xB6;</a>3. &#x4FEE;&#x6539;service&#x548C;dao</h3>
+<ol>
+<li>
+<p>dao&#x7C7B;&#x4E0A;&#x52A0;&#x4E0A;<code>@Repository</code>&#x6CE8;&#x89E3;</p>
+<pre><code class="language-java">@Repository
+public interface AccountDao {
+
+    @Select(&quot;select * from account&quot;)
+    public List&lt;Account&gt; findAll();
+
+    @Insert(&quot;insert into account (name, money) values (#{name}, #{money})&quot;)
+    public void saveAccount(Account account);
+}
+</code></pre>
+</li>
+<li>
+<p>service&#x5B9E;&#x73B0;&#x7C7B;&#x4E2D;&#x81EA;&#x52A8;&#x6CE8;&#x5165;dao&#x7C7B;&#x5E76;&#x8C03;&#x7528;&#x5176;&#x4E2D;&#x65B9;&#x6CD5;</p>
+<pre><code class="language-java">@Service(&quot;accountService&quot;)
+public class AccountServiceImpl implements AccountService {
+    @Autowired
+    private AccountDao accountDao;
+    @Override
+    public List&lt;Account&gt; findAll() {
+        System.out.println(&quot;&#x4E1A;&#x52A1;&#x5C42;&#xFF1A;&#x67E5;&#x8BE2;&#x6240;&#x6709;&#x8D26;&#x6237;...&quot;);
+        return accountDao.findAll();
+    }
+    @Override
+    public void saveAccount(Account account) {
+        System.out.println(&quot;&#x4E1A;&#x52A1;&#x5C42;&#xFF1A;&#x4FDD;&#x5B58;&#x8D26;&#x6237;&#x4FE1;&#x606F;...&quot;);
+        accountDao.saveAccount(account);
+    }
+}
+</code></pre>
+</li>
+</ol>
+<h3 id="4-&#x6D4B;&#x8BD5;"><a class="header-anchor" href="#4-&#x6D4B;&#x8BD5;">&#xB6;</a>4.&#x6D4B;&#x8BD5;</h3>
+<p>&#x4FEE;&#x6539;&#x63A7;&#x5236;&#x5668;&#x548C;&#x524D;&#x7AEF;&#x4EE3;&#x7801;&#x8FDB;&#x884C;&#x6D4B;&#x8BD5;</p>
+<p>&#x63A7;&#x5236;&#x5668;&#xFF1A;</p>
+<pre><code class="language-java">@Controller
+@RequestMapping(&quot;/account&quot;)
+public class AccountController {
+    @Autowired
+    private AccountService accountService;
+    
+    @RequestMapping(&quot;/findAll&quot;)
+    public String findAll(Model model) {
+        System.out.println(&quot;&#x8868;&#x73B0;&#x5C42;&#xFF1A;&#x67E5;&#x8BE2;&#x6240;&#x6709;&#x8D26;&#x6237;&#x4FE1;&#x606F;...&quot;);
+        List&lt;Account&gt; list = accountService.findAll();
+        for (Account account : list) {
+            System.out.println(account);
+        }
+        model.addAttribute(&quot;list&quot;, list);
+        return &quot;list&quot;;
+    }
+}
+</code></pre>
+<p>index.jsp</p>
+<pre><code class="language-jsp">&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; %&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Title&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;a href=&quot;account/findAll&quot;&gt;&#x6D4B;&#x8BD5;Spring+SpringMVC&lt;/a&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>list.jsp</p>
+<pre><code class="language-jsp">&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; isELIgnored=&quot;false&quot; %&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Title&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h3&gt;&#x663E;&#x793A;&#x67E5;&#x8BE2;&#x7684;&#x6240;&#x6709;&#x7528;&#x6237;&lt;/h3&gt;&gt;
+        ${list}
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h3 id="5-&#x6DFB;&#x52A0;&#x4E8B;&#x52A1;&#x7BA1;&#x7406;"><a class="header-anchor" href="#5-&#x6DFB;&#x52A0;&#x4E8B;&#x52A1;&#x7BA1;&#x7406;">&#xB6;</a>5. &#x6DFB;&#x52A0;&#x4E8B;&#x52A1;&#x7BA1;&#x7406;</h3>
+<p>&#x6574;&#x5408;MyBatis&#x7684;&#x4E8B;&#x52A1;&#x7BA1;&#x7406;&#x540C;&#x6837;&#x4E5F;&#x914D;&#x7F6E;&#x5728;applicationContext.xml&#x4E2D;&#x3002;</p>
+<pre><code class="language-xml">  &lt;!--&#x914D;&#x7F6E;&#x4E8B;&#x52A1;&#x901A;&#x77E5;--&gt;
+    &lt;tx:advice id=&quot;txAdvice&quot; transaction-manager=&quot;transactionManager&quot;&gt;
+        &lt;tx:attributes&gt;
+            &lt;tx:method name=&quot;find*&quot; read-only=&quot;true&quot;/&gt;
+            &lt;tx:method name=&quot;*&quot; isolation=&quot;DEFAULT&quot;/&gt;
+        &lt;/tx:attributes&gt;
+    &lt;/tx:advice&gt;
+
+    &lt;!--&#x914D;&#x7F6E;AOP&#x589E;&#x5F3A;--&gt;
+    &lt;aop:config&gt;
+        &lt;aop:advisor advice-ref=&quot;txAdvice&quot; pointcut=&quot;execution(* cn.sucrelt.service.impl.*ServiceImpl.*(..))&quot;/&gt;
+    &lt;/aop:config&gt;
+</code></pre>
+<h2 id="6-&#x6574;&#x5408;&#x6D41;&#x7A0B;&#x5206;&#x6790;"><a class="header-anchor" href="#6-&#x6574;&#x5408;&#x6D41;&#x7A0B;&#x5206;&#x6790;">&#xB6;</a>6. &#x6574;&#x5408;&#x6D41;&#x7A0B;&#x5206;&#x6790;</h2>
+<ol>
+<li>&#x524D;&#x7AEF;&#x754C;&#x9762;&#x53D1;&#x9001;&#x8BF7;&#x6C42;&#x5230;&#x63A7;&#x5236;&#x5668;&#xFF1B;</li>
+<li>&#x63A7;&#x5236;&#x5668;&#x4F7F;&#x7528;SpringMVC&#x6846;&#x67B6;&#xFF0C;&#x6574;&#x5408;&#x5230;Spring&#x6846;&#x67B6;&#x4E2D;&#x540E;&#xFF0C;&#x53EF;&#x4EE5;&#x8C03;&#x7528;Spring&#x4E2D;&#x7684;service&#x7C7B;&#x5E76;&#x81EA;&#x52A8;&#x6CE8;&#x5165;&#x3002;</li>
+<li>&#x6267;&#x884C;service&#x5B9E;&#x73B0;&#x7C7B;&#x4E2D;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x5176;&#x4E2D;&#x8C03;&#x7528;&#x4E86;dao&#x7C7B;&#x7684;&#x65B9;&#x6CD5;&#x5E76;&#x81EA;&#x52A8;&#x6CE8;&#x5165;&#x3002;</li>
+<li>dao&#x7C7B;&#x91C7;&#x7528;MyBatis&#x7684;&#x914D;&#x7F6E;&#xFF0C;&#x914D;&#x7F6E;&#x9879;&#x653E;&#x5728;Spring&#x7684;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D;&#xFF0C;&#x5B9E;&#x73B0;&#x6574;&#x5408;&#x3002;</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+
+    <div align="center">
+        
+          <div>
+    
+        <div class="read-over">-------------------本文结束 <i class="fa fa-paw"></i> 感谢您的阅读-------------------</div>
+    
+</div>
+        
+      </div>
+    <div>
+        
+          
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/article/dca918a2.html/">JavaWeb之SSM</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 Hoshino汤包 的个人博客">Hoshino汤包</a></p>
+  <p><span>发布时间:</span>2020年12月05日 - 18:14:17</p>
+  <p><span>最后更新:</span>2020年12月05日 - 18:16:11</p>
+  <p><span>原始链接:</span><a href="/article/dca918a2.html/" title="JavaWeb之SSM">https://tangtangsama.github.io/article/dca918a2.html/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://tangtangsama.github.io/article/dca918a2.html/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p>非商业性使用-转载请保留原文链接及作者。</p>
+</div>
+<script>
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({
+          title: "",
+          text: '复制成功',
+          icon: "success",
+          showConfirmButton: true
+          });
+    });
+    });
+</script>
+
+        
+    </div>
+        <div class="reward-container">
+  <div>感谢您的支持和鼓励！</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="Hoshino汤包 WeChat">
+        <p>WeChat</p>
+      </div>
+
+  </div>
+</div>
+
+
+      
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/article/fcda4bbf.html/" rel="prev" title="JavaWeb之SpringMVC">
+      <i class="fa fa-chevron-left"></i> JavaWeb之SpringMVC
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/article/247a8755.html/" rel="next" title="JavaWeb之SpringBootJPA">
+      JavaWeb之SpringBootJPA <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Hoshino汤包"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">Hoshino汤包</p>
+  <div class="site-description" itemprop="description">醉后不知天在水，满船清梦压星河。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/tangtangsama" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;tangtangsama" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:sucre@nuaa.edu.com" title="E-Mail → mailto:sucre@nuaa.edu.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.baidu.com/" title="https:&#x2F;&#x2F;www.baidu.com&#x2F;" rel="noopener" target="_blank">Baidu</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://github.com/" title="https:&#x2F;&#x2F;github.com&#x2F;" rel="noopener" target="_blank">Github</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+      <div id="">
+  <canvas id="canvas" style="width:60%;">
+</div>
+
+<!--粒子时钟js-->
+<script type="text/javascript" src="/js/src/canvas-dance-time.js"></script>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">版权所属：sucre</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">544k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">8:15</span>
+</div>
+
+<div id="days"></div>
+<script>
+function show_date_time(){
+    window.setTimeout("show_date_time()", 1000);
+    BirthDay=new Date("05/20/2020 15:13:14");
+    today=new Date();
+    timeold=(today.getTime()-BirthDay.getTime());
+    sectimeold=timeold/1000
+    secondsold=Math.floor(sectimeold);
+    msPerDay=24*60*60*1000
+    e_daysold=timeold/msPerDay
+    daysold=Math.floor(e_daysold);
+    e_hrsold=(e_daysold-daysold)*24;
+    hrsold=setzero(Math.floor(e_hrsold));
+    e_minsold=(e_hrsold-hrsold)*60;
+    minsold=setzero(Math.floor((e_hrsold-hrsold)*60));
+    seconds=setzero(Math.floor((e_minsold-minsold)*60));
+    document.getElementById('days').innerHTML="本站点已运行 "+daysold+" 天 "+hrsold+" 小时 "+minsold+" 分 "+seconds+" 秒";
+}
+function setzero(i) {
+    if (i<10) {
+        i="0" + i
+    };
+    return i;
+}
+show_date_time();
+</script>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+   
+
+  <script async src="/js/cursor/love.min.js"></script>
+
+</body>
+
+</html>
+
