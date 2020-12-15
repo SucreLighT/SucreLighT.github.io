@@ -1,0 +1,1983 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/./images/apple-touch-icon-next1.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/./images/favicon-32x32-next1.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/./images/favicon-16x16-next1.png">
+  <link rel="mask-icon" href="/./images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-flash.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"tangtangsama.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="JavaWeb&amp;#x5B66;&amp;#x4E60;&amp;#x4E2D;&amp;#x5173;&amp;#x4E8E;SpringBootJPA&amp;#x7684;&amp;#x76F8;&amp;#x5173;&amp;#x77E5;&amp;#x8BC6; &amp;#x1F4AF;&amp;#x1F4A4;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaWeb之SpringBootJPA">
+<meta property="og:url" content="https://tangtangsama.github.io/article/247a8755.html/index.html">
+<meta property="og:site_name" content="Hoshino汤包">
+<meta property="og:description" content="JavaWeb&amp;#x5B66;&amp;#x4E60;&amp;#x4E2D;&amp;#x5173;&amp;#x4E8E;SpringBootJPA&amp;#x7684;&amp;#x76F8;&amp;#x5173;&amp;#x77E5;&amp;#x8BC6; &amp;#x1F4AF;&amp;#x1F4A4;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tangtangsama.github.io/article/247a8755.html/image-20201209150336552.png">
+<meta property="article:published_time" content="2020-12-07T14:00:26.000Z">
+<meta property="article:modified_time" content="2020-12-12T03:22:29.811Z">
+<meta property="article:author" content="Hoshino汤包">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tangtangsama.github.io/article/247a8755.html/image-20201209150336552.png">
+
+<link rel="canonical" href="https://tangtangsama.github.io/article/247a8755.html/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>JavaWeb之SpringBootJPA | Hoshino汤包</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css"/>
+    <script src="/live2d-widget/autoload.js"></script>
+
+    <!-- 引入网页奔溃效果 -->
+    <script type="text/javascript" src="/js/src/crash_cheat.js"></script>
+    
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Hoshino汤包</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Stay hungry. Stay foolish.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">5</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">27</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/tangtangsama" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://tangtangsama.github.io/article/247a8755.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hoshino汤包">
+      <meta itemprop="description" content="醉后不知天在水，满船清梦压星河。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hoshino汤包">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JavaWeb之SpringBootJPA
+        </h1>
+
+        <div class="post-meta">
+        
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-12-07 22:00:26" itemprop="dateCreated datePublished" datetime="2020-12-07T22:00:26+08:00">2020-12-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-12-12 11:22:29" itemprop="dateModified" datetime="2020-12-12T11:22:29+08:00">2020-12-12</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">Java开发笔记</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>75k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1:08</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>JavaWeb&#x5B66;&#x4E60;&#x4E2D;&#x5173;&#x4E8E;SpringBootJPA&#x7684;&#x76F8;&#x5173;&#x77E5;&#x8BC6; &#x1F4AF;&#x1F4A4;</p>
+<a id="more"></a>
+<h1>Spring Data JPA</h1>
+<h2 id="ORM"><a class="header-anchor" href="#ORM">&#xB6;</a>ORM</h2>
+<h3 id="1-ORM"><a class="header-anchor" href="#1-ORM">&#xB6;</a>1. ORM</h3>
+<p>ORM&#xFF08;Object-Relational Mapping&#xFF09;&#x5BF9;&#x8C61;&#x5173;&#x7CFB;&#x6620;&#x5C04;&#xFF0C;&#x5EFA;&#x7ACB;&#x5B9E;&#x4F53;&#x7C7B;&#x4E0E;&#x6570;&#x636E;&#x5E93;&#x8868;&#x4E4B;&#x95F4;&#x7684;&#x8054;&#x7CFB;&#xFF0C;&#x4ECE;&#x800C;&#x5B9E;&#x73B0;&#x64CD;&#x4F5C;&#x5B9E;&#x4F53;&#x7C7B;&#x5BF9;&#x8C61;&#x5C31;&#x7B49;&#x4E8E;&#x64CD;&#x4F5C;&#x6570;&#x636E;&#x5E93;&#x8868;&#x7684;&#x76EE;&#x7684;&#x3002;</p>
+<p>&#x5E94;&#x7528;&#x573A;&#x666F;&#x5206;&#x6790;&#xFF1A;</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">&#x5B9E;&#x4F53;&#x7C7B;</th>
+<th style="text-align:center">&#x6570;&#x636E;&#x5E93;&#x8868;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">User</td>
+<td style="text-align:center">t_user</td>
+</tr>
+<tr>
+<td style="text-align:center">Integer userId</td>
+<td style="text-align:center">id</td>
+</tr>
+<tr>
+<td style="text-align:center">String userName</td>
+<td style="text-align:center">name</td>
+</tr>
+<tr>
+<td style="text-align:center">String userAddress</td>
+<td style="text-align:center">address</td>
+</tr>
+</tbody>
+</table>
+<p>&#x5728;&#x5B9E;&#x73B0;&#x4E00;&#x4E2A;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x65F6;&#xFF0C;&#x5F80;&#x5F80;&#x4F1A;&#x8BBE;&#x8BA1;&#x5F88;&#x591A;&#x5173;&#x4E8E;&#x6570;&#x636E;&#x5E93;&#x6301;&#x4E45;&#x5C42;&#x7684;&#x4EE3;&#x7801;&#xFF0C;&#x4ECE;&#x6570;&#x636E;&#x5E93;&#x8FDB;&#x884C;&#x589E;&#x5220;&#x6539;&#x67E5;&#xFF0C;&#x8FD9;&#x4E9B;&#x4EE3;&#x7801;&#x5927;&#x591A;&#x91CD;&#x590D;&#x7E41;&#x7410;&#xFF0C;ORM&#x53EF;&#x4EE5;&#x5927;&#x5927;&#x51CF;&#x5C11;&#x91CD;&#x590D;&#x4EE3;&#x7801;&#x3002;</p>
+<p>&#x6BD4;&#x5982;&#xFF0C;&#x901A;&#x8FC7;<code>obj.save(user)</code>&#x7684;&#x64CD;&#x4F5C;&#x5B9E;&#x73B0;&#x5B58;&#x50A8;&#x7528;&#x6237;&#x7684;&#x529F;&#x80FD;&#x3002;&#x5728;&#x62FC;&#x63A5;Sql&#x65F6;&#xFF0C;<code>String  sql = insert into ____values____</code>&#xFF0C;&#x8FD9;&#x662F;&#x901A;&#x7528;&#x7684;Sql&#x6A21;&#x677F;&#xFF0C;&#x5F53;&#x5B9E;&#x4F53;&#x7C7B;&#x4E0E;&#x6570;&#x636E;&#x5E93;&#x8868;&#x5EFA;&#x7ACB;&#x8054;&#x7CFB;&#x65F6;&#xFF0C;user&#x4E2D;&#x5B58;&#x5728;&#x4E09;&#x4E2A;&#x5C5E;&#x6027;&#xFF0C;save&#x65B9;&#x6CD5;&#x83B7;&#x5F97;&#x5B9E;&#x4F53;&#x7C7B;&#x540D;user&#x548C;&#x5176;&#x4E2D;&#x7684;&#x5C5E;&#x6027;&#xFF0C;&#x540C;&#x65F6;&#x7531;ORM&#x6846;&#x67B6;&#x6620;&#x5C04;&#x5F97;&#x5230;&#x4E0E;&#x4E4B;&#x76F8;&#x5173;&#x8054;&#x7684;&#x6570;&#x636E;&#x5E93;&#x8868;&#xFF0C;&#x4ECE;&#x800C;&#x5728;&#x65B9;&#x6CD5;&#x4E2D;&#x5B9E;&#x73B0;Sql&#x7684;&#x81EA;&#x52A8;&#x62FC;&#x63A5;&#x3002;</p>
+<h3 id="2-Hibernate"><a class="header-anchor" href="#2-Hibernate">&#xB6;</a>2. Hibernate</h3>
+<p>Hibernate&#x662F;&#x4E00;&#x4E2A;&#x5F00;&#x6E90;&#x7684;ORM<strong>&#x6846;&#x67B6;</strong>&#xFF0C;&#x5B83;&#x5BF9;JDBC&#x8FDB;&#x884C;&#x4E86;&#x5BF9;&#x8C61;&#x5C01;&#x88C5;&#xFF0C;&#x5B83;&#x5C06;POJO&#x4E0E;&#x6570;&#x636E;&#x5E93;&#x8868;&#x5EFA;&#x7ACB;&#x6620;&#x5C04;&#x5173;&#x7CFB;&#xFF0C;&#x662F;&#x4E00;&#x4E2A;&#x5168;&#x81EA;&#x52A8;&#x7684;ORM&#x6846;&#x67B6;&#xFF0C;&#x53EF;&#x4EE5;&#x81EA;&#x52A8;&#x751F;&#x6210;SQL&#x8BED;&#x53E5;&#xFF0C;&#x81EA;&#x52A8;&#x6267;&#x884C;&#x3002;</p>
+<h3 id="3-JPA"><a class="header-anchor" href="#3-JPA">&#xB6;</a>3. JPA</h3>
+<ol>
+<li>JPA&#x7684;&#x5168;&#x79F0;&#x662F;Java Persistence API&#xFF0C; &#x5373;Java &#x6301;&#x4E45;&#x5316;API&#xFF0C;&#x662F;SUN&#x516C;&#x53F8;&#x63A8;&#x51FA;&#x7684;&#x4E00;&#x5957;&#x57FA;&#x4E8E;ORM&#x7684;<strong>&#x89C4;&#x8303;</strong>&#xFF0C;&#x5185;&#x90E8;&#x662F;&#x7531;&#x4E00;&#x7CFB;&#x5217;&#x7684;&#x63A5;&#x53E3;&#x548C;&#x62BD;&#x8C61;&#x7C7B;&#x6784;&#x6210;&#x3002;JPA&#x901A;&#x8FC7;&#x6CE8;&#x89E3;&#x63CF;&#x8FF0;&#x5BF9;&#x8C61;&#x548C;&#x8868;&#x7684;&#x6620;&#x5C04;&#x5173;&#x7CFB;&#xFF0C;&#x5E76;&#x5C06;&#x8FD0;&#x884C;&#x671F;&#x7684;&#x5B9E;&#x4F53;&#x5BF9;&#x8C61;&#x6301;&#x4E45;&#x5316;&#x5230;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x3002;</li>
+<li><strong>JPA&#x89C4;&#x8303;&#x672C;&#x8D28;&#x4E0A;&#x662F;&#x4E00;&#x79CD;ORM&#x89C4;&#x8303;</strong>&#xFF0C;&#x800C;&#x4E0D;&#x662F;ORM&#x6846;&#x67B6;&#xFF0C;&#x56E0;&#x4E3A;JPA&#x5E76;&#x672A;&#x63D0;&#x4F9B;ORM&#x5B9E;&#x73B0;&#xFF0C;&#x5B83;&#x53EA;&#x662F;&#x5236;&#x8BA2;&#x4E86;&#x4E00;&#x4E9B;&#x89C4;&#x8303;&#xFF0C;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x4E9B;&#x7F16;&#x7A0B;&#x7684;API&#x63A5;&#x53E3;&#xFF0C;&#x5177;&#x4F53;&#x5B9E;&#x73B0;&#x5219;&#x7531;&#x670D;&#x52A1;&#x5382;&#x5546;&#x6765;&#x63D0;&#x4F9B;&#x5B9E;&#x73B0;&#x3002;</li>
+<li>JPA&#x548C;Hibernate&#x7684;&#x5173;&#x7CFB;&#x5C31;&#x50CF;JDBC&#x548C;JDBC&#x9A71;&#x52A8;&#x7684;&#x5173;&#x7CFB;&#xFF0C;JPA&#x662F;&#x89C4;&#x8303;&#xFF0C;Hibernate&#x9664;&#x4E86;&#x4F5C;&#x4E3A;ORM&#x6846;&#x67B6;&#x4E4B;&#x5916;&#xFF0C;&#x5B83;&#x4E5F;&#x662F;&#x4E00;&#x79CD;JPA&#x5B9E;&#x73B0;&#x3002;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#xFF0C;&#x5982;&#x679C;&#x4F7F;&#x7528;JPA&#x89C4;&#x8303;&#x8FDB;&#x884C;&#x6570;&#x636E;&#x5E93;&#x64CD;&#x4F5C;&#xFF0C;&#x5E95;&#x5C42;&#x9700;&#x8981;Hibernate&#x4F5C;&#x4E3A;&#x5176;&#x5B9E;&#x73B0;&#x7C7B;&#x5B8C;&#x6210;&#x6570;&#x636E;&#x6301;&#x4E45;&#x5316;&#x5DE5;&#x4F5C;&#x3002;</li>
+</ol>
+<h2 id="JPA&#x5165;&#x95E8;&#x2013;&#x4FDD;&#x5B58;&#x7528;&#x6237;&#x4FE1;&#x606F;"><a class="header-anchor" href="#JPA&#x5165;&#x95E8;&#x2013;&#x4FDD;&#x5B58;&#x7528;&#x6237;&#x4FE1;&#x606F;">&#xB6;</a>JPA&#x5165;&#x95E8;&#x2013;&#x4FDD;&#x5B58;&#x7528;&#x6237;&#x4FE1;&#x606F;</h2>
+<h3 id="1-pom-xml&#x4E2D;&#x5BFC;&#x5165;&#x4F9D;&#x8D56;"><a class="header-anchor" href="#1-pom-xml&#x4E2D;&#x5BFC;&#x5165;&#x4F9D;&#x8D56;">&#xB6;</a>1. pom.xml&#x4E2D;&#x5BFC;&#x5165;&#x4F9D;&#x8D56;</h3>
+<pre><code class="language-xml">    &lt;properties&gt;
+        &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
+        &lt;project.hibernate.version&gt;5.0.7.Final&lt;/project.hibernate.version&gt;
+    &lt;/properties&gt;
+    &lt;dependencies&gt;
+        &lt;!-- junit --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;junit&lt;/groupId&gt;
+            &lt;artifactId&gt;junit&lt;/artifactId&gt;
+            &lt;version&gt;4.12&lt;/version&gt;
+            &lt;scope&gt;test&lt;/scope&gt;
+        &lt;/dependency&gt;
+        &lt;!-- hibernate&#x5BF9;jpa&#x7684;&#x652F;&#x6301;&#x5305; --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.hibernate&lt;/groupId&gt;
+            &lt;artifactId&gt;hibernate-entitymanager&lt;/artifactId&gt;
+            &lt;version&gt;${project.hibernate.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;!-- c3p0 --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.hibernate&lt;/groupId&gt;
+            &lt;artifactId&gt;hibernate-c3p0&lt;/artifactId&gt;
+            &lt;version&gt;${project.hibernate.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;!-- log&#x65E5;&#x5FD7; --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;log4j&lt;/groupId&gt;
+            &lt;artifactId&gt;log4j&lt;/artifactId&gt;
+            &lt;version&gt;1.2.17&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;!-- Mysql --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;mysql&lt;/groupId&gt;
+            &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+            &lt;version&gt;5.1.6&lt;/version&gt;
+        &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+&lt;/project&gt;
+</code></pre>
+<h3 id="2-&#x5728;&#x5B9E;&#x4F53;&#x7C7B;&#x4E2D;&#x4F7F;&#x7528;&#x6CE8;&#x89E3;&#x5EFA;&#x7ACB;&#x4E0E;&#x6570;&#x636E;&#x5E93;&#x8868;&#x7684;&#x6620;&#x5C04;"><a class="header-anchor" href="#2-&#x5728;&#x5B9E;&#x4F53;&#x7C7B;&#x4E2D;&#x4F7F;&#x7528;&#x6CE8;&#x89E3;&#x5EFA;&#x7ACB;&#x4E0E;&#x6570;&#x636E;&#x5E93;&#x8868;&#x7684;&#x6620;&#x5C04;">&#xB6;</a>2. &#x5728;&#x5B9E;&#x4F53;&#x7C7B;&#x4E2D;&#x4F7F;&#x7528;&#x6CE8;&#x89E3;&#x5EFA;&#x7ACB;&#x4E0E;&#x6570;&#x636E;&#x5E93;&#x8868;&#x7684;&#x6620;&#x5C04;</h3>
+<pre><code class="language-java">@Entity
+@Table(name = &quot;cst_customer&quot;)
+public class Customer {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = &quot;cust_id&quot;)
+    private Long custId; //&#x5BA2;&#x6237;&#x7684;&#x4E3B;&#x952E;
+    
+    @Column(name = &quot;cust_name&quot;)
+    private String custName;//&#x5BA2;&#x6237;&#x540D;&#x79F0;
+    @Column(name=&quot;cust_source&quot;)
+    private String custSource;//&#x5BA2;&#x6237;&#x6765;&#x6E90;
+    @Column(name=&quot;cust_level&quot;)
+    private String custLevel;//&#x5BA2;&#x6237;&#x7EA7;&#x522B;
+    @Column(name=&quot;cust_industry&quot;)
+    private String custIndustry;//&#x5BA2;&#x6237;&#x6240;&#x5C5E;&#x884C;&#x4E1A;
+    @Column(name=&quot;cust_phone&quot;)
+    private String custPhone;//&#x5BA2;&#x6237;&#x7684;&#x8054;&#x7CFB;&#x65B9;&#x5F0F;
+    @Column(name=&quot;cust_address&quot;)
+    private String custAddress;//&#x5BA2;&#x6237;&#x5730;&#x5740;
+    ...
+}
+</code></pre>
+<ul>
+<li>&#x5B9E;&#x4F53;&#x7C7B;&#x4E0E;&#x8868;&#x7684;&#x6620;&#x5C04;&#x5173;&#x7CFB;
+<ul>
+<li>@Entity&#xFF1A;&#x58F0;&#x660E;&#x5B9E;&#x4F53;&#x7C7B;&#x3002;</li>
+<li>@Table&#xFF1A;&#x914D;&#x7F6E;&#x5B9E;&#x4F53;&#x7C7B;&#x548C;&#x8868;&#x7684;&#x6620;&#x5C04;&#x5173;&#x7CFB;&#xFF0C;name&#x5C5E;&#x6027; : &#x914D;&#x7F6E;&#x6570;&#x636E;&#x5E93;&#x8868;&#x7684;&#x540D;&#x79F0;&#x3002;</li>
+</ul>
+</li>
+<li>&#x5B9E;&#x4F53;&#x7C7B;&#x4E2D;&#x5C5E;&#x6027;&#x548C;&#x8868;&#x4E2D;&#x5B57;&#x6BB5;&#x7684;&#x6620;&#x5C04;&#x5173;&#x7CFB;
+<ul>
+<li>@Id&#xFF1A;&#x58F0;&#x660E;&#x4E3B;&#x952E;</li>
+<li>@GeneratedValue&#xFF1A;&#x914D;&#x7F6E;&#x4E3B;&#x952E;&#x7684;&#x751F;&#x6210;&#x7B56;&#x7565;&#x3002;
+<ul>
+<li>strategy=GenerationType.IDENTITY &#xFF1A;&#x81EA;&#x589E;&#xFF0C;&#x5E95;&#x5C42;&#x6570;&#x636E;&#x5E93;&#x8981;&#x652F;&#x6301;&#x81EA;&#x589E;&#x957F;&#x7684;&#x65B9;&#x5F0F;&#xFF0C;&#x5982;mysql&#x3002;</li>
+<li>strategy=GenerationType.SEQUENCE : &#x5E8F;&#x5217;&#xFF0C;&#x5E95;&#x5C42;&#x6570;&#x636E;&#x5E93;&#x5FC5;&#x987B;&#x652F;&#x6301;&#x5E8F;&#x5217;&#xFF0C;&#x5982;oracle&#x3002;</li>
+<li>&#x5176;&#x4F59;&#x4E24;&#x79CD;&#x4E0D;&#x5E38;&#x7528;&#x3002;</li>
+</ul>
+</li>
+<li>@Column&#xFF1A;&#x914D;&#x7F6E;&#x5C5E;&#x6027;&#x548C;&#x5B57;&#x6BB5;&#x7684;&#x6620;&#x5C04;&#x5173;&#x7CFB;&#xFF0C;name&#x5C5E;&#x6027;&#xFF1A;&#x6570;&#x636E;&#x5E93;&#x8868;&#x4E2D;&#x5B57;&#x6BB5;&#x7684;&#x540D;&#x79F0;&#x3002;</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-&#x914D;&#x7F6E;JPA&#x7684;&#x6838;&#x5FC3;&#x914D;&#x7F6E;&#x6587;&#x4EF6;"><a class="header-anchor" href="#3-&#x914D;&#x7F6E;JPA&#x7684;&#x6838;&#x5FC3;&#x914D;&#x7F6E;&#x6587;&#x4EF6;">&#xB6;</a>3. &#x914D;&#x7F6E;JPA&#x7684;&#x6838;&#x5FC3;&#x914D;&#x7F6E;&#x6587;&#x4EF6;</h3>
+<p>&#x5728;java&#x5DE5;&#x7A0B;&#x7684;src&#x8DEF;&#x5F84;&#x4E0B;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x540D;&#x4E3A;META-INF&#x7684;&#x6587;&#x4EF6;&#x5939;&#xFF0C;&#x5728;&#x6B64;&#x6587;&#x4EF6;&#x5939;&#x4E0B;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x540D;&#x4E3A;persistence.xml&#x7684;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x3002;</p>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;persistence xmlns=&quot;http://java.sun.com/xml/ns/persistence&quot; version=&quot;2.0&quot;&gt;
+    &lt;persistence-unit name=&quot;myJpa&quot; transaction-type=&quot;RESOURCE_LOCAL&quot;&gt;
+        &lt;!--jpa&#x7684;&#x5B9E;&#x73B0;&#x65B9;&#x5F0F; --&gt;
+        &lt;provider&gt;org.hibernate.jpa.HibernatePersistenceProvider&lt;/provider&gt;
+
+        &lt;!--&#x914D;&#x7F6E;jpa&#x5B9E;&#x73B0;&#x65B9;&#x7684;&#x914D;&#x7F6E;&#x4FE1;&#x606F;--&gt;
+        &lt;properties&gt;
+            &lt;property name=&quot;javax.persistence.jdbc.user&quot; value=&quot;root&quot;/&gt;
+            &lt;property name=&quot;javax.persistence.jdbc.password&quot; value=&quot;111111&quot;/&gt;
+            &lt;property name=&quot;javax.persistence.jdbc.driver&quot; value=&quot;com.mysql.jdbc.Driver&quot;/&gt;
+            &lt;property name=&quot;javax.persistence.jdbc.url&quot; value=&quot;jdbc:mysql:///jpa&quot;/&gt;
+            &lt;property name=&quot;hibernate.show_sql&quot; value=&quot;true&quot; /&gt;
+            &lt;property name=&quot;hibernate.hbm2ddl.auto&quot; value=&quot;update&quot; /&gt;
+        &lt;/properties&gt;
+    &lt;/persistence-unit&gt;
+&lt;/persistence&gt;
+</code></pre>
+<ul>
+<li>persistence-unit&#x914D;&#x7F6E;&#x6301;&#x4E45;&#x5316;&#x5355;&#x5143;&#x3002;
+<ul>
+<li>name&#xFF1A;&#x6301;&#x4E45;&#x5316;&#x5355;&#x5143;&#x540D;&#x79F0;</li>
+<li>transaction-type&#xFF1A;&#x4E8B;&#x52A1;&#x7BA1;&#x7406;&#x7684;&#x65B9;&#x5F0F;
+<ul>
+<li>JTA&#xFF1A;&#x5206;&#x5E03;&#x5F0F;&#x4E8B;&#x52A1;&#x7BA1;&#x7406;</li>
+<li>RESOURCE_LOCAL&#xFF1A;&#x672C;&#x5730;&#x4E8B;&#x52A1;&#x7BA1;&#x7406;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>provider&#x6807;&#x7B7E;&#x7528;&#x4E8E;&#x914D;&#x7F6E;JPA&#x7684;&#x5B9E;&#x73B0;&#x65B9;&#x5F0F;&#xFF0C;&#x4F7F;&#x7528;&#x7684;Hibernate&#x7684;&#x5E95;&#x5C42;&#x5B9E;&#x73B0;&#x3002;</li>
+<li>properties&#x6807;&#x7B7E;&#x914D;&#x7F6E;&#x6570;&#x636E;&#x5E93;&#x548C;Hibernate&#x76F8;&#x5173;&#x4FE1;&#x606F;&#x3002;
+<ul>
+<li>hibernate.show_sql&#xFF1A;&#x663E;&#x793A;sql&#xFF0C;&#x53D6;&#x503C;&#x4E3A;true&#x65F6;&#x5728;&#x7A0B;&#x5E8F;&#x6267;&#x884C;&#x65F6;&#xFF0C;&#x63A7;&#x5236;&#x53F0;&#x5C06;&#x4F1A;&#x8F93;&#x51FA;Hibernate&#x62FC;&#x63A5;&#x7684;Sql&#x3002;</li>
+<li>hibernate.hbm2ddl.auto&#xFF1A;&#x81EA;&#x52A8;&#x521B;&#x5EFA;&#x6570;&#x636E;&#x5E93;&#x8868;
+<ul>
+<li>create&#xFF1A;&#x7A0B;&#x5E8F;&#x8FD0;&#x884C;&#x65F6;&#x521B;&#x5EFA;&#x6570;&#x636E;&#x5E93;&#x8868;&#xFF08;&#x5982;&#x679C;&#x6709;&#x8868;&#xFF0C;&#x5148;&#x5220;&#x9664;&#x8868;&#x518D;&#x521B;&#x5EFA;&#xFF09;&#x3002;</li>
+<li>update&#xFF1A;&#x7A0B;&#x5E8F;&#x8FD0;&#x884C;&#x65F6;&#x521B;&#x5EFA;&#x8868;&#xFF08;&#x5982;&#x679C;&#x6709;&#x8868;&#xFF0C;&#x4E0D;&#x4F1A;&#x521B;&#x5EFA;&#x8868;&#xFF09;&#x3002;</li>
+<li>none&#xFF1A;&#x4E0D;&#x4F1A;&#x521B;&#x5EFA;&#x8868;&#x3002;</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-&#x6D4B;&#x8BD5;JPA"><a class="header-anchor" href="#4-&#x6D4B;&#x8BD5;JPA">&#xB6;</a>4. &#x6D4B;&#x8BD5;JPA</h3>
+<pre><code class="language-java">public class JpaTest {
+
+    @Test
+    public void testSave() {
+		//1.&#x52A0;&#x8F7D;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x521B;&#x5EFA;&#x5DE5;&#x5382;&#xFF08;&#x5B9E;&#x4F53;&#x7BA1;&#x7406;&#x5668;&#x5DE5;&#x5382;&#xFF09;&#x5BF9;&#x8C61;
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory(&quot;myJpa&quot;);
+		//2.&#x901A;&#x8FC7;&#x5B9E;&#x4F53;&#x7BA1;&#x7406;&#x5668;&#x5DE5;&#x5382;&#x83B7;&#x53D6;&#x5B9E;&#x4F53;&#x7BA1;&#x7406;&#x5668;
+		EntityManager em = factory.createEntityManager();
+        //3.&#x83B7;&#x53D6;&#x4E8B;&#x52A1;&#x5BF9;&#x8C61;&#xFF0C;&#x5F00;&#x542F;&#x4E8B;&#x52A1;
+        EntityTransaction tx = em.getTransaction(); 
+        tx.begin();
+        //4.&#x5B8C;&#x6210;&#x589E;&#x5220;&#x6539;&#x67E5;&#x64CD;&#x4F5C;&#xFF1A;&#x4FDD;&#x5B58;&#x4E00;&#x4E2A;&#x5BA2;&#x6237;&#x5230;&#x6570;&#x636E;&#x5E93;&#x4E2D;
+        Customer customer = new Customer();
+        customer.setCustName(&quot;&#x5F20;&#x4E09;&quot;);
+        customer.setCustIndustry(&quot;&#x6559;&#x80B2;&quot;);
+        //&#x4FDD;&#x5B58;
+        em.persist(customer);
+        //5.&#x63D0;&#x4EA4;&#x4E8B;&#x52A1;
+        tx.commit();
+        //6.&#x91CA;&#x653E;&#x8D44;&#x6E90;&#xFF0C;&#x5148;&#x521B;&#x5EFA;&#x7684;&#x540E;&#x5173;&#x95ED;&#xFF0C;&#x540E;&#x521B;&#x5EFA;&#x7684;&#x5148;&#x5173;&#x95ED;
+        em.close();
+		factory.close();
+    }
+}
+</code></pre>
+<p>JPA&#x64CD;&#x4F5C;&#x7684;&#x64CD;&#x4F5C;&#x6B65;&#x9AA4;</p>
+<ol>
+<li>
+<p>&#x8C03;&#x7528;<code>Persisitence</code>&#x7C7B;&#x7684;&#x9759;&#x6001;&#x65B9;&#x6CD5;<code>createEntityMnagerFactory</code>&#xFF0C;&#x52A0;&#x8F7D;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x5E76;&#x521B;&#x5EFA;&#x5B9E;&#x4F53;&#x7BA1;&#x7406;&#x5668;&#x5DE5;&#x5382;<code>EntityManagerFactory</code> &#xFF0C;&#x5176;&#x4E2D;&#x53C2;&#x6570;&#x540D;&#x4E3A;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D;&#x914D;&#x7F6E;&#x7684;&#x6301;&#x4E45;&#x5316;&#x5355;&#x5143;&#x540D;&#x79F0;&#x3002;</p>
+<ul>
+<li>
+<p>&#x5728;&#x521B;&#x5EFA;<code>EntityManagerFactory</code>&#x7684;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x5185;&#x90E8;&#x7EF4;&#x62A4;&#x4E86;&#x6570;&#x636E;&#x5E93;&#x4FE1;&#x606F;&#x3001;&#x7F13;&#x5B58;&#x4FE1;&#x606F;&#x3001;&#x5B9E;&#x4F53;&#x7BA1;&#x7406;&#x5668;&#x5BF9;&#x8C61;&#x5E76;&#x6839;&#x636E;&#x914D;&#x7F6E;&#x521B;&#x5EFA;&#x6570;&#x636E;&#x5E93;&#x8868;&#x3002;&#x56E0;&#x6B64;&#xFF0C;&#x8BE5;&#x5BF9;&#x8C61;&#x6BD4;&#x8F83;&#x6D6A;&#x8D39;&#x8D44;&#x6E90;&#x3002;</p>
+</li>
+<li>
+<p><code>EntityManagerFactory</code>&#x5BF9;&#x8C61;&#x662F;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x7684;&#x5BF9;&#x8C61;&#xFF0C;&#x4E3A;&#x4E86;&#x89E3;&#x51B3;&#x5176;&#x8D44;&#x6E90;&#x5F00;&#x9500;&#x5927;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x53EF;&#x4EE5;<strong>&#x4F7F;&#x7528;&#x9759;&#x6001;&#x4EE3;&#x7801;&#x5757;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x516C;&#x7528;&#x7684;</strong><code>EntityManagerFactory</code>&#x5BF9;&#x8C61;&#x3002;</p>
+<pre><code class="language-java">public class JpaUtils {
+    private static EntityManagerFactory factory;
+    static  {
+        factory = Persistence.createEntityManagerFactory(&quot;myJpa&quot;);
+    }
+
+    public static EntityManager getEntityManager() {
+       return factory.createEntityManager();
+    }
+}
+</code></pre>
+<ul>
+<li>&#x901A;&#x8FC7;&#x9759;&#x6001;&#x4EE3;&#x7801;&#x5757;&#x7684;&#x5F62;&#x5F0F;&#xFF0C;&#x5F53;&#x7A0B;&#x5E8F;&#x7B2C;&#x4E00;&#x6B21;&#x8BBF;&#x95EE;&#x6B64;&#x5DE5;&#x5177;&#x7C7B;&#x65F6;&#xFF0C;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x516C;&#x5171;&#x7684;&#x5B9E;&#x4F53;&#x7BA1;&#x7406;&#x5668;&#x5DE5;&#x5382;&#x5BF9;&#x8C61;&#x3002;</li>
+<li>&#x7B2C;&#x4E00;&#x6B21;&#x8BBF;&#x95EE;getEntityManager&#x65B9;&#x6CD5;&#xFF1A;&#x7ECF;&#x8FC7;&#x9759;&#x6001;&#x4EE3;&#x7801;&#x5757;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;factory&#x5BF9;&#x8C61;&#xFF0C;&#x518D;&#x8C03;&#x7528;&#x65B9;&#x6CD5;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;EntityManager&#x5BF9;&#x8C61;&#x3002;</li>
+<li>&#x7B2C;&#x4E8C;&#x6B21;&#x65B9;&#x6CD5;getEntityManager&#x65B9;&#x6CD5;&#xFF1A;&#x76F4;&#x63A5;&#x901A;&#x8FC7;&#x4E00;&#x4E2A;&#x5DF2;&#x7ECF;&#x521B;&#x5EFA;&#x597D;&#x7684;factory&#x5BF9;&#x8C61;&#xFF0C;&#x521B;&#x5EFA;EntityManager&#x5BF9;&#x8C61;&#x3002;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>&#x6839;&#x636E;&#x5B9E;&#x4F53;&#x7BA1;&#x7406;&#x5668;&#x5DE5;&#x5382;<code>EntityManagerFactory</code> &#xFF0C;&#x8C03;&#x7528;&#x5176;&#x65B9;&#x6CD5;<code>createEntityManager</code>&#x521B;&#x5EFA;&#x5B9E;&#x4F53;&#x7BA1;&#x7406;&#x5668;<code>EntityManager</code>&#x3002;</p>
+</li>
+<li>
+<p><code>EntityManager</code>&#x5BF9;&#x8C61;&#x521B;&#x5EFA;&#x4E8B;&#x52A1;&#x5E76;&#x5F00;&#x542F;&#x4E8B;&#x52A1;&#x3002;</p>
+<ul>
+<li><code>EntityManager</code>&#x662F;&#x5B8C;&#x6210;&#x6301;&#x4E45;&#x5316;&#x64CD;&#x4F5C;&#x7684;&#x6838;&#x5FC3;&#x5BF9;&#x8C61;&#xFF0C;&#x5B9E;&#x4F53;&#x7C7B;&#x4F5C;&#x4E3A;&#x666E;&#x901A; java&#x5BF9;&#x8C61;&#xFF0C;&#x53EA;&#x6709;&#x5728;&#x8C03;&#x7528; <code>EntityManager</code>&#x5C06;&#x5176;&#x6301;&#x4E45;&#x5316;&#x540E;&#x624D;&#x4F1A;&#x53D8;&#x6210;&#x6301;&#x4E45;&#x5316;&#x5BF9;&#x8C61;&#x3002;</li>
+<li>&#x4E3B;&#x8981;&#x65B9;&#x6CD5;&#xFF1A;
+<ul>
+<li>persist&#xFF1A;&#x4FDD;&#x5B58;</li>
+<li>merge &#xFF1A; &#x66F4;&#x65B0;&#x64CD;&#x4F5C;</li>
+<li>remove &#xFF1A; &#x5220;&#x9664;&#x64CD;&#x4F5C;</li>
+<li>find/getReference &#xFF1A; &#x6839;&#x636E;id&#x67E5;&#x8BE2;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>&#x589E;&#x5220;&#x6539;&#x67E5;&#x64CD;&#x4F5C;</p>
+</li>
+<li>
+<p>&#x63D0;&#x4EA4;&#x4E8B;&#x52A1;</p>
+</li>
+<li>
+<p>&#x91CA;&#x653E;&#x8D44;&#x6E90;</p>
+</li>
+</ol>
+<h2 id="JPA&#x589E;&#x5220;&#x6539;&#x67E5;"><a class="header-anchor" href="#JPA&#x589E;&#x5220;&#x6539;&#x67E5;">&#xB6;</a>JPA&#x589E;&#x5220;&#x6539;&#x67E5;</h2>
+<p><code>EntityManager</code>&#x662F;&#x5B8C;&#x6210;&#x6301;&#x4E45;&#x5316;&#x64CD;&#x4F5C;&#x7684;&#x6838;&#x5FC3;&#x5BF9;&#x8C61;&#xFF0C;JPA&#x589E;&#x5220;&#x6539;&#x67E5;&#x7684;&#x64CD;&#x4F5C;&#x90FD;&#x662F;&#x901A;&#x8FC7;&#x8BE5;&#x5BF9;&#x8C61;&#x7684;&#x76F8;&#x5173;&#x65B9;&#x6CD5;&#x5B9E;&#x73B0;&#x7684;&#x3002;</p>
+<h3 id="1-&#x6839;&#x636E;id&#x67E5;&#x8BE2;"><a class="header-anchor" href="#1-&#x6839;&#x636E;id&#x67E5;&#x8BE2;">&#xB6;</a>1. &#x6839;&#x636E;id&#x67E5;&#x8BE2;</h3>
+<ul>
+<li>
+<p>&#x65B9;&#x6CD5;&#xFF1A;find(class&#xFF0C;id)&#xFF0C;getReference(class&#xFF0C;id)&#x3002;</p>
+</li>
+<li>
+<p>&#x53C2;&#x6570;&#xFF1A;class&#x8868;&#x793A;&#x67E5;&#x8BE2;&#x7ED3;&#x679C;&#x5C01;&#x88C5;&#x5BF9;&#x8C61;&#x5BF9;&#x5E94;&#x7684;&#x5B57;&#x8282;&#x7801;&#xFF0C;id&#x8868;&#x793A;&#x67E5;&#x8BE2;&#x7684;id&#x503C;&#x3002;</p>
+</li>
+<li>
+<p>find&#x65B9;&#x6CD5;&#x4E3A;&#x7ACB;&#x5373;&#x52A0;&#x8F7D;&#xFF0C;&#x5F53;&#x8C03;&#x7528;&#x8BE5;&#x65B9;&#x6CD5;&#x65F6;&#x5C31;&#x53BB;&#x67E5;&#x8BE2;&#x6570;&#x636E;&#x5E93;&#xFF0C;getReference&#x65B9;&#x6CD5;&#x4E3A;<strong>&#x5EF6;&#x8FDF;&#x52A0;&#x8F7D;&#xFF0C;&#x5F97;&#x5230;&#x7684;&#x67E5;&#x8BE2;&#x5BF9;&#x8C61;&#x662F;&#x4E00;&#x4E2A;&#x52A8;&#x6001;&#x4EE3;&#x7406;&#x5BF9;&#x8C61;</strong>&#xFF0C;&#x53EA;&#x6709;&#x5F53;&#x8C03;&#x7528;&#x67E5;&#x8BE2;&#x5BF9;&#x8C61;&#x7ED3;&#x679C;&#x65F6;&#x624D;&#x4F1A;&#x53BB;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x6267;&#x884C;&#x67E5;&#x8BE2;&#x3002;</p>
+<pre><code class="language-java">   @Test
+    public  void testFind() {
+        //1.&#x901A;&#x8FC7;&#x5DE5;&#x5177;&#x7C7B;&#x83B7;&#x53D6;entityManager
+        EntityManager entityManager = JpaUtils.getEntityManager();
+        //2.&#x5F00;&#x542F;&#x4E8B;&#x52A1;
+        EntityTransaction tx = entityManager.getTransaction();
+        tx.begin();
+        //3.&#x589E;&#x5220;&#x6539;&#x67E5; -- &#x6839;&#x636E;id&#x67E5;&#x8BE2;&#x5BA2;&#x6237;
+        Customer customer = entityManager.find(Customer.class, 1l);
+        //4.&#x63D0;&#x4EA4;&#x4E8B;&#x52A1;
+        tx.commit();
+        //5.&#x91CA;&#x653E;&#x8D44;&#x6E90;
+        entityManager.close();
+    }
+</code></pre>
+</li>
+</ul>
+<h3 id="2-&#x5220;&#x9664;&#x64CD;&#x4F5C;"><a class="header-anchor" href="#2-&#x5220;&#x9664;&#x64CD;&#x4F5C;">&#xB6;</a>2. &#x5220;&#x9664;&#x64CD;&#x4F5C;</h3>
+<ul>
+<li>
+<p>&#x65B9;&#x6CD5;&#xFF1A;find(class&#xFF0C;id)&#xFF0C;remove(obj)&#x3002;</p>
+</li>
+<li>
+<p>&#x53C2;&#x6570;&#xFF1A;obj&#x8868;&#x793A;&#x901A;&#x8FC7;find&#x67E5;&#x8BE2;&#x5230;&#x5BF9;&#x8C61;&#x3002;</p>
+</li>
+<li>
+<p>&#x5220;&#x9664;&#x64CD;&#x4F5C;&#x9996;&#x5148;&#x9700;&#x8981;&#x53BB;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x67E5;&#x8BE2;&#xFF0C;&#x7136;&#x540E;&#x8C03;&#x7528;remove&#x65B9;&#x6CD5;&#x5220;&#x9664;&#x67E5;&#x8BE2;&#x5230;&#x7684;&#x8BE5;&#x5BF9;&#x8C61;&#x3002;</p>
+<pre><code class="language-java">    @Test
+    public  void testRemove() {
+       	...
+        //3.&#x589E;&#x5220;&#x6539;&#x67E5; -- &#x5220;&#x9664;&#x5BA2;&#x6237;
+            
+        //i &#x6839;&#x636E;id&#x67E5;&#x8BE2;&#x5BA2;&#x6237;
+        Customer customer = entityManager.find(Customer.class,1l);
+        //ii &#x8C03;&#x7528;remove&#x65B9;&#x6CD5;&#x5B8C;&#x6210;&#x5220;&#x9664;&#x64CD;&#x4F5C;
+        entityManager.remove(customer);
+        ...
+    }
+</code></pre>
+</li>
+</ul>
+<h3 id="3-&#x4FEE;&#x6539;&#x66F4;&#x65B0;&#x64CD;&#x4F5C;"><a class="header-anchor" href="#3-&#x4FEE;&#x6539;&#x66F4;&#x65B0;&#x64CD;&#x4F5C;">&#xB6;</a>3. &#x4FEE;&#x6539;&#x66F4;&#x65B0;&#x64CD;&#x4F5C;</h3>
+<ul>
+<li>
+<p>&#x65B9;&#x6CD5;&#xFF1A;find(class&#xFF0C;id)&#xFF0C;merge(obj)&#x3002;</p>
+</li>
+<li>
+<p>&#x53C2;&#x6570;&#xFF1A;obj&#x8868;&#x793A;&#x901A;&#x8FC7;find&#x67E5;&#x8BE2;&#x5230;&#x5BF9;&#x8C61;&#x3002;</p>
+</li>
+<li>
+<p>&#x66F4;&#x65B0;&#x64CD;&#x4F5C;&#x9996;&#x5148;&#x9700;&#x8981;&#x53BB;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x67E5;&#x8BE2;&#xFF0C;&#x7136;&#x540E;&#x5BF9;&#x67E5;&#x8BE2;&#x5BF9;&#x8C61;&#x7684;&#x5C5E;&#x6027;&#x8FDB;&#x884C;&#x4FEE;&#x6539;&#xFF0C;&#x6700;&#x540E;&#x8C03;&#x7528;merge&#x65B9;&#x6CD5;&#x66F4;&#x65B0;&#x4FEE;&#x6539;&#x5185;&#x5BB9;&#x3002;</p>
+<pre><code class="language-java">    @Test
+    public  void testUpdate() {
+        ...
+        //3.&#x589E;&#x5220;&#x6539;&#x67E5; -- &#x66F4;&#x65B0;&#x64CD;&#x4F5C;
+
+        //i &#x67E5;&#x8BE2;&#x5BA2;&#x6237;
+        Customer customer = entityManager.find(Customer.class,1l);
+        //ii &#x66F4;&#x65B0;&#x5BA2;&#x6237;
+        customer.setCustIndustry(&quot;it&quot;);
+        entityManager.merge(customer);
+        ...
+    }
+</code></pre>
+</li>
+</ul>
+<h3 id="4-JPQL&#x8FDB;&#x884C;&#x590D;&#x6742;&#x67E5;&#x8BE2;"><a class="header-anchor" href="#4-JPQL&#x8FDB;&#x884C;&#x590D;&#x6742;&#x67E5;&#x8BE2;">&#xB6;</a>4. JPQL&#x8FDB;&#x884C;&#x590D;&#x6742;&#x67E5;&#x8BE2;</h3>
+<ol>
+<li>
+<p>JPQL&#x5168;&#x79F0;Java Persistence Query Language&#xFF0C;&#x5176;&#x7279;&#x5F81;&#x4E0E;SQL&#x8BED;&#x53E5;&#x7C7B;&#x4F3C;&#xFF0C;JPQL&#x5B8C;&#x5168;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#xFF0C;&#x901A;&#x8FC7;&#x7C7B;&#x540D;&#x548C;&#x5C5E;&#x6027;&#x8BBF;&#x95EE;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x8868;&#x540D;&#x548C;&#x8868;&#x7684;&#x5C5E;&#x6027;&#x3002;</p>
+</li>
+<li>
+<p>&#x67E5;&#x8BE2;&#x6D41;&#x7A0B;&#x4E0E;&#x57FA;&#x672C;&#x589E;&#x5220;&#x6539;&#x67E5;&#x64CD;&#x4F5C;&#x7C7B;&#x4F3C;&#xFF0C;&#x5176;&#x4E2D;&#x5728;&#x4E0A;&#x8FF0;&#x7B2C;&#x4E09;&#x6B65;&#x8FDB;&#x884C;&#x67E5;&#x8BE2;&#x65F6;&#xFF0C;&#x5305;&#x62EC;&#x4EE5;&#x4E0B;&#x6B65;&#x9AA4;&#xFF1A;</p>
+<ul>
+<li>&#x521B;&#x5EFA;query&#x67E5;&#x8BE2;&#x5BF9;&#x8C61;</li>
+<li>&#x5BF9;&#x53C2;&#x6570;&#x8FDB;&#x884C;&#x8D4B;&#x503C;</li>
+<li>&#x67E5;&#x8BE2;&#xFF0C;&#x5E76;&#x5F97;&#x5230;&#x8FD4;&#x56DE;&#x7ED3;&#x679C;</li>
+</ul>
+</li>
+<li>
+<p>&#x67E5;&#x8BE2;&#x5168;&#x90E8;</p>
+<ul>
+<li>sql&#xFF1A;SELECT * FROM cst_customer</li>
+<li>jqpl&#xFF1A;from cn.itcast.domain.Customer</li>
+</ul>
+</li>
+<li>
+<p>&#x5012;&#x5E8F;&#x67E5;&#x8BE2;</p>
+<ul>
+<li>sql&#xFF1A;SELECT * FROM cst_customer ORDER BY cust_id DESC</li>
+<li>jpql&#xFF1A;from Customer order by custId desc</li>
+</ul>
+</li>
+<li>
+<p>&#x7EDF;&#x8BA1;&#x6B21;&#x6570;</p>
+<ul>
+<li>sql&#xFF1A;SELECT COUNT(cust_id) FROM cst_customer</li>
+<li>jpql&#xFF1A;select count(custId) from Customer</li>
+</ul>
+</li>
+<li>
+<p>&#x6761;&#x4EF6;&#x67E5;&#x8BE2;</p>
+<ul>
+<li>sql&#xFF1A;SELECT * FROM cst_customer WHERE cust_name LIKE  ?</li>
+<li>jpql : from Customer where custName like ?</li>
+</ul>
+</li>
+<li>
+<p>&#x6848;&#x4F8B;&#xFF1A;&#x6761;&#x4EF6;&#x67E5;&#x8BE2;</p>
+<pre><code class="language-java">@Test
+    public void testCondition() {
+       	...
+        //3.&#x67E5;&#x8BE2;&#x5168;&#x90E8;
+        //i.&#x6839;&#x636E;jpql&#x8BED;&#x53E5;&#x521B;&#x5EFA;Query&#x67E5;&#x8BE2;&#x5BF9;&#x8C61;
+        String jpql = &quot;from Customer where custName like ? &quot;;
+        Query query = em.createQuery(jpql);
+        //ii.&#x5BF9;&#x53C2;&#x6570;&#x8D4B;&#x503C; -- &#x5360;&#x4F4D;&#x7B26;&#x53C2;&#x6570;
+        //&#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#xFF1A;&#x5360;&#x4F4D;&#x7B26;&#x7684;&#x7D22;&#x5F15;&#x4F4D;&#x7F6E;&#xFF08;&#x4ECE;1&#x5F00;&#x59CB;&#xFF09;&#xFF0C;&#x7B2C;&#x4E8C;&#x4E2A;&#x53C2;&#x6570;&#xFF1A;&#x53D6;&#x503C;
+        query.setParameter(1,&quot;zhang&quot;);
+        //iii.&#x53D1;&#x9001;&#x67E5;&#x8BE2;&#xFF0C;&#x5E76;&#x5C01;&#x88C5;&#x7ED3;&#x679C;
+        List list = query.getResultList();
+
+        for(Object obj : list) {
+            System.out.println(obj);
+        }
+        ...
+    }
+</code></pre>
+</li>
+</ol>
+<h2 id="Spring-Data-JPA&#x5165;&#x95E8;"><a class="header-anchor" href="#Spring-Data-JPA&#x5165;&#x95E8;">&#xB6;</a>Spring Data JPA&#x5165;&#x95E8;</h2>
+<p>Spring Data JPA &#x662F; Spring &#x57FA;&#x4E8E; ORM &#x6846;&#x67B6;&#x3001;JPA &#x89C4;&#x8303;&#x7684;&#x57FA;&#x7840;&#x4E0A;&#x5C01;&#x88C5;&#x7684;&#x4E00;&#x5957;JPA&#x5E94;&#x7528;&#x6846;&#x67B6;&#xFF0C;&#x53EF;&#x4F7F;&#x5F00;&#x53D1;&#x8005;&#x7528;&#x6781;&#x7B80;&#x7684;&#x4EE3;&#x7801;&#x5373;&#x53EF;&#x5B9E;&#x73B0;&#x5BF9;&#x6570;&#x636E;&#x5E93;&#x7684;&#x8BBF;&#x95EE;&#x548C;&#x64CD;&#x4F5C;&#x3002;&#x4F7F;&#x7528;&#x8BE5;&#x6846;&#x67B6;<strong>&#x53EA;&#x9700;&#x8981;&#x7F16;&#x5199;dao&#x5C42;&#x7684;&#x63A5;&#x53E3;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;CRUD&#x4EE5;&#x53CA;&#x590D;&#x6742;&#x67E5;&#x8BE2;&#x7684;&#x64CD;&#x4F5C;</strong>&#xFF0C;&#x5B83;&#x63D0;&#x4F9B;&#x7684;&#x4E00;&#x5957;&#x5BF9;JPA&#x64CD;&#x4F5C;&#x66F4;&#x52A0;&#x9AD8;&#x7EA7;&#x7684;&#x5C01;&#x88C5;&#xFF0C;&#x662F;&#x5728;JPA&#x89C4;&#x8303;&#x4E0B;&#x7684;&#x4E13;&#x95E8;&#x7528;&#x6765;&#x8FDB;&#x884C;&#x6570;&#x636E;&#x6301;&#x4E45;&#x5316;&#x7684;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#x3002;</p>
+<h3 id="1-&#x5BFC;&#x5165;&#x5750;&#x6807;"><a class="header-anchor" href="#1-&#x5BFC;&#x5165;&#x5750;&#x6807;">&#xB6;</a>1. &#x5BFC;&#x5165;&#x5750;&#x6807;</h3>
+<p><code>pom.xml</code></p>
+<p>SpringDataJPA&#x57FA;&#x4E8E;Spring&#x6846;&#x67B6;&#x5B9E;&#x73B0;&#xFF0C;&#x4E3B;&#x8981;&#x7684;&#x4F9D;&#x8D56;&#x5750;&#x6807;&#x5305;&#x62EC;&#xFF1A;Spring&#x3001;Hibernate&#x3001;JPA&#x76F8;&#x5173;&#x3001;&#x6570;&#x636E;&#x5E93;&#x76F8;&#x5173;&#x4EE5;&#x53CA;&#x65E5;&#x5FD7;&#x76F8;&#x5173;&#x3002;</p>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot;
+         xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+         xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
+    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+    &lt;groupId&gt;cn.sucrelt&lt;/groupId&gt;
+    &lt;artifactId&gt;SpringBoot-01-SpringDataJPA&lt;/artifactId&gt;
+    &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
+    &lt;properties&gt;
+        &lt;spring.version&gt;4.2.4.RELEASE&lt;/spring.version&gt;
+        &lt;hibernate.version&gt;5.0.7.Final&lt;/hibernate.version&gt;
+        &lt;slf4j.version&gt;1.6.6&lt;/slf4j.version&gt;
+        &lt;log4j.version&gt;1.2.12&lt;/log4j.version&gt;
+        &lt;c3p0.version&gt;0.9.1.2&lt;/c3p0.version&gt;
+        &lt;mysql.version&gt;5.1.6&lt;/mysql.version&gt;
+    &lt;/properties&gt;
+
+    &lt;dependencies&gt;
+        &lt;!-- junit&#x5355;&#x5143;&#x6D4B;&#x8BD5; --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;junit&lt;/groupId&gt;
+            &lt;artifactId&gt;junit&lt;/artifactId&gt;
+            &lt;version&gt;4.9&lt;/version&gt;
+            &lt;scope&gt;test&lt;/scope&gt;
+        &lt;/dependency&gt;
+        &lt;!-- spring begin --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.aspectj&lt;/groupId&gt;
+            &lt;artifactId&gt;aspectjweaver&lt;/artifactId&gt;
+            &lt;version&gt;1.6.8&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-aop&lt;/artifactId&gt;
+            &lt;version&gt;${spring.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-context&lt;/artifactId&gt;
+            &lt;version&gt;${spring.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-context-support&lt;/artifactId&gt;
+            &lt;version&gt;${spring.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;!-- spring&#x5BF9;orm&#x6846;&#x67B6;&#x7684;&#x652F;&#x6301;&#x5305;--&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-orm&lt;/artifactId&gt;
+            &lt;version&gt;${spring.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-beans&lt;/artifactId&gt;
+            &lt;version&gt;${spring.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-core&lt;/artifactId&gt;
+            &lt;version&gt;${spring.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;!-- spring end --&gt;
+        &lt;!-- hibernate begin --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.hibernate&lt;/groupId&gt;
+            &lt;artifactId&gt;hibernate-core&lt;/artifactId&gt;
+            &lt;version&gt;${hibernate.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.hibernate&lt;/groupId&gt;
+            &lt;artifactId&gt;hibernate-entitymanager&lt;/artifactId&gt;
+            &lt;version&gt;${hibernate.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.hibernate&lt;/groupId&gt;
+            &lt;artifactId&gt;hibernate-validator&lt;/artifactId&gt;
+            &lt;version&gt;5.2.1.Final&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;!-- hibernate end --&gt;
+        &lt;!-- c3p0 begin --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;c3p0&lt;/groupId&gt;
+            &lt;artifactId&gt;c3p0&lt;/artifactId&gt;
+            &lt;version&gt;${c3p0.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;!-- c3p0 end --&gt;
+        &lt;!-- log begin --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;log4j&lt;/groupId&gt;
+            &lt;artifactId&gt;log4j&lt;/artifactId&gt;
+            &lt;version&gt;${log4j.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.slf4j&lt;/groupId&gt;
+            &lt;artifactId&gt;slf4j-api&lt;/artifactId&gt;
+            &lt;version&gt;${slf4j.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.slf4j&lt;/groupId&gt;
+            &lt;artifactId&gt;slf4j-log4j12&lt;/artifactId&gt;
+            &lt;version&gt;${slf4j.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;!-- log end --&gt;
+        &lt;!-- mysql --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;mysql&lt;/groupId&gt;
+            &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+            &lt;version&gt;${mysql.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;!-- spring data jpa &#x7684;&#x5750;&#x6807; --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.data&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-data-jpa&lt;/artifactId&gt;
+            &lt;version&gt;1.9.0.RELEASE&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-test&lt;/artifactId&gt;
+            &lt;version&gt;${spring.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;!-- el begin &#x4F7F;&#x7528;spring data jpa &#x5FC5;&#x987B;&#x5F15;&#x5165; --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;javax.el&lt;/groupId&gt;
+            &lt;artifactId&gt;javax.el-api&lt;/artifactId&gt;
+            &lt;version&gt;2.2.4&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.glassfish.web&lt;/groupId&gt;
+            &lt;artifactId&gt;javax.el&lt;/artifactId&gt;
+            &lt;version&gt;2.2.4&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;!-- el end --&gt;
+    &lt;/dependencies&gt;
+&lt;/project&gt;
+</code></pre>
+<h3 id="2-&#x7F16;&#x5199;&#x914D;&#x7F6E;&#x6587;&#x4EF6;"><a class="header-anchor" href="#2-&#x7F16;&#x5199;&#x914D;&#x7F6E;&#x6587;&#x4EF6;">&#xB6;</a>2. &#x7F16;&#x5199;&#x914D;&#x7F6E;&#x6587;&#x4EF6;</h3>
+<p>Spring&#x7684;&#x914D;&#x7F6E;&#x6587;&#x4EF6;<code>applicationContext.xml</code></p>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+       xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:aop=&quot;http://www.springframework.org/schema/aop&quot;
+       xmlns:context=&quot;http://www.springframework.org/schema/context&quot;
+       xmlns:jdbc=&quot;http://www.springframework.org/schema/jdbc&quot; xmlns:tx=&quot;http://www.springframework.org/schema/tx&quot;
+       xmlns:jpa=&quot;http://www.springframework.org/schema/data/jpa&quot;
+       xmlns:task=&quot;http://www.springframework.org/schema/task&quot;
+       xsi:schemaLocation=&quot;
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/data/jpa
+		http://www.springframework.org/schema/data/jpa/spring-jpa.xsd&quot;&gt;
+    &lt;!--spring &#x548C; spring data jpa&#x7684;&#x914D;&#x7F6E;--&gt;
+    &lt;!-- 1.&#x521B;&#x5EFA;entityManagerFactory&#x5BF9;&#x8C61;&#x4EA4;&#x7ED9;spring&#x5BB9;&#x5668;&#x7BA1;&#x7406;--&gt;
+    &lt;bean id=&quot;entityManagerFactoty&quot; class=&quot;org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean&quot;&gt;
+        &lt;property name=&quot;dataSource&quot; ref=&quot;dataSource&quot;/&gt;
+        &lt;!--&#x914D;&#x7F6E;&#x7684;&#x626B;&#x63CF;&#x7684;&#x5305;&#xFF08;&#x5B9E;&#x4F53;&#x7C7B;&#x6240;&#x5728;&#x7684;&#x5305;&#xFF09; --&gt;
+        &lt;property name=&quot;packagesToScan&quot; value=&quot;cn.sucrelt.domain&quot;/&gt;
+        &lt;!-- jpa&#x7684;&#x5B9E;&#x73B0;&#x5382;&#x5BB6; --&gt;
+        &lt;property name=&quot;persistenceProvider&quot;&gt;
+            &lt;bean class=&quot;org.hibernate.jpa.HibernatePersistenceProvider&quot;/&gt;
+        &lt;/property&gt;
+        &lt;!--jpa&#x7684;&#x4F9B;&#x5E94;&#x5546;&#x9002;&#x914D;&#x5668; --&gt;
+        &lt;property name=&quot;jpaVendorAdapter&quot;&gt;
+            &lt;bean class=&quot;org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter&quot;&gt;
+                &lt;!--&#x914D;&#x7F6E;&#x662F;&#x5426;&#x81EA;&#x52A8;&#x521B;&#x5EFA;&#x6570;&#x636E;&#x5E93;&#x8868; --&gt;
+                &lt;property name=&quot;generateDdl&quot; value=&quot;false&quot;/&gt;
+                &lt;!--&#x6307;&#x5B9A;&#x6570;&#x636E;&#x5E93;&#x7C7B;&#x578B; --&gt;
+                &lt;property name=&quot;database&quot; value=&quot;MYSQL&quot;/&gt;
+                &lt;!--&#x6570;&#x636E;&#x5E93;&#x65B9;&#x8A00;&#xFF1A;&#x652F;&#x6301;&#x7684;&#x7279;&#x6709;&#x8BED;&#x6CD5; --&gt;
+                &lt;property name=&quot;databasePlatform&quot; value=&quot;org.hibernate.dialect.MySQLDialect&quot;/&gt;
+                &lt;!--&#x662F;&#x5426;&#x663E;&#x793A;sql --&gt;
+                &lt;property name=&quot;showSql&quot; value=&quot;true&quot;/&gt;
+            &lt;/bean&gt;
+        &lt;/property&gt;
+        &lt;!--jpa&#x7684;&#x65B9;&#x8A00; &#xFF1A;&#x9AD8;&#x7EA7;&#x7684;&#x7279;&#x6027; --&gt;
+        &lt;property name=&quot;jpaDialect&quot;&gt;
+            &lt;bean class=&quot;org.springframework.orm.jpa.vendor.HibernateJpaDialect&quot;/&gt;
+        &lt;/property&gt;
+    &lt;/bean&gt;
+    &lt;!--2.&#x521B;&#x5EFA;&#x6570;&#x636E;&#x5E93;&#x8FDE;&#x63A5;&#x6C60; --&gt;
+    &lt;bean id=&quot;dataSource&quot; class=&quot;com.mchange.v2.c3p0.ComboPooledDataSource&quot;&gt;
+        &lt;property name=&quot;user&quot; value=&quot;root&quot;&gt;&lt;/property&gt;
+        &lt;property name=&quot;password&quot; value=&quot;123456&quot;&gt;&lt;/property&gt;
+        &lt;property name=&quot;jdbcUrl&quot; value=&quot;jdbc:mysql:///jpa&quot;&gt;&lt;/property&gt;
+        &lt;property name=&quot;driverClass&quot; value=&quot;com.mysql.jdbc.Driver&quot;&gt;&lt;/property&gt;
+    &lt;/bean&gt;
+    &lt;!--3.&#x6574;&#x5408;spring dataJpa--&gt;
+    &lt;jpa:repositories base-package=&quot;cn.sucrelt.dao&quot; transaction-manager-ref=&quot;transactionManager&quot;
+                      entity-manager-factory-ref=&quot;entityManagerFactoty&quot;&gt;&lt;/jpa:repositories&gt;
+
+    &lt;!--4.&#x914D;&#x7F6E;&#x4E8B;&#x52A1;&#x7BA1;&#x7406;&#x5668; --&gt;
+    &lt;bean id=&quot;transactionManager&quot; class=&quot;org.springframework.orm.jpa.JpaTransactionManager&quot;&gt;
+        &lt;property name=&quot;entityManagerFactory&quot; ref=&quot;entityManagerFactoty&quot;&gt;&lt;/property&gt;
+    &lt;/bean&gt;
+    &lt;!-- 4. &#x58F0;&#x660E;&#x5F0F;&#x4E8B;&#x52A1;txAdvice--&gt;
+    &lt;tx:advice id=&quot;txAdvice&quot; transaction-manager=&quot;transactionManager&quot;&gt;
+        &lt;tx:attributes&gt;
+            &lt;tx:method name=&quot;save*&quot; propagation=&quot;REQUIRED&quot;/&gt;
+            &lt;tx:method name=&quot;insert*&quot; propagation=&quot;REQUIRED&quot;/&gt;
+            &lt;tx:method name=&quot;update*&quot; propagation=&quot;REQUIRED&quot;/&gt;
+            &lt;tx:method name=&quot;delete*&quot; propagation=&quot;REQUIRED&quot;/&gt;
+            &lt;tx:method name=&quot;get*&quot; read-only=&quot;true&quot;/&gt;
+            &lt;tx:method name=&quot;find*&quot; read-only=&quot;true&quot;/&gt;
+            &lt;tx:method name=&quot;*&quot; propagation=&quot;REQUIRED&quot;/&gt;
+        &lt;/tx:attributes&gt;
+    &lt;/tx:advice&gt;
+    &lt;!-- 5.aop--&gt;
+    &lt;aop:config&gt;
+        &lt;aop:pointcut id=&quot;pointcut&quot; expression=&quot;execution(* cn.sucrelt.service.*.*(..))&quot;/&gt;
+        &lt;aop:advisor advice-ref=&quot;txAdvice&quot; pointcut-ref=&quot;pointcut&quot;/&gt;
+    &lt;/aop:config&gt;
+    &lt;!-- 6. &#x914D;&#x7F6E;&#x5305;&#x626B;&#x63CF;--&gt;
+    &lt;context:component-scan base-package=&quot;cn.sucrelt&quot;&gt;&lt;/context:component-scan&gt;
+&lt;/beans&gt;
+</code></pre>
+<ol>
+<li>&#x4F7F;&#x7528;<code>entityManagerFactory</code>&#x6807;&#x7B7E;&#x5C06;&#x5B9E;&#x4F53;&#x7BA1;&#x7406;&#x5668;&#x4EA4;&#x7ED9;Spring&#x7BA1;&#x7406;&#xFF0C;&#x5176;&#x4E2D;&#x6700;&#x4E3B;&#x8981;&#x7684;&#x662F;&#x914D;&#x7F6E;&#x5B9E;&#x4F53;&#x7C7B;&#x626B;&#x63CF;&#x7684;&#x5305;&#x4EE5;&#x53CA;&#x914D;&#x7F6E;JPA&#x5E95;&#x5C42;&#x5B9E;&#x73B0;&#x7684;&#x5382;&#x5546;&#x3002;</li>
+<li>&#x4F7F;&#x7528;<code>jpa:repositories</code>&#x6807;&#x7B7E;&#x5C06;JPA&#x6574;&#x5408;&#x5230;Spring&#x4E2D;&#xFF0C;&#x5176;&#x4E2D;<code>base-package</code>&#x5C5E;&#x6027;&#x4E3A;dao&#x7C7B;&#x6240;&#x5728;&#x7684;&#x5305;&#x3002;</li>
+<li>&#x4F7F;&#x7528;<code>context:component-scan</code>&#x6807;&#x7B7E;&#x914D;&#x7F6E;Spring&#x7684;&#x6CE8;&#x89E3;&#x626B;&#x63CF;&#x3002;</li>
+<li>&#x5176;&#x4F59;&#x7684;&#x914D;&#x7F6E;&#x4E0E;Spring&#x4E2D;&#x7C7B;&#x4F3C;&#xFF0C;&#x6216;&#x4EC5;&#x9650;&#x4E86;&#x89E3;&#x5373;&#x53EF;&#x3002;</li>
+</ol>
+<h3 id="3-&#x7F16;&#x5199;&#x5B9E;&#x4F53;&#x7C7B;&#x5E76;&#x4F7F;&#x7528;&#x6CE8;&#x89E3;&#x914D;&#x7F6E;&#x6620;&#x5C04;&#x5173;&#x7CFB;"><a class="header-anchor" href="#3-&#x7F16;&#x5199;&#x5B9E;&#x4F53;&#x7C7B;&#x5E76;&#x4F7F;&#x7528;&#x6CE8;&#x89E3;&#x914D;&#x7F6E;&#x6620;&#x5C04;&#x5173;&#x7CFB;">&#xB6;</a>3. &#x7F16;&#x5199;&#x5B9E;&#x4F53;&#x7C7B;&#x5E76;&#x4F7F;&#x7528;&#x6CE8;&#x89E3;&#x914D;&#x7F6E;&#x6620;&#x5C04;&#x5173;&#x7CFB;</h3>
+<p>&#x6B64;&#x90E8;&#x5206;&#x4E0E;JPA&#x4E2D;&#x7684;&#x5B9E;&#x4F53;&#x7C7B;&#x4E00;&#x6837;&#xFF0C;&#x4E0D;&#x518D;&#x8D58;&#x8FF0;&#x3002;</p>
+<h3 id="4-&#x7F16;&#x5199;dao&#x63A5;&#x53E3;"><a class="header-anchor" href="#4-&#x7F16;&#x5199;dao&#x63A5;&#x53E3;">&#xB6;</a>4. &#x7F16;&#x5199;dao&#x63A5;&#x53E3;</h3>
+<ol>
+<li>Spring Data JPA&#x662F;spring&#x63D0;&#x4F9B;&#x7684;&#x4E00;&#x6B3E;&#x5BF9;&#x4E8E;&#x6570;&#x636E;&#x8BBF;&#x95EE;&#x5C42;&#xFF08;Dao&#x5C42;&#xFF09;&#x7684;&#x6846;&#x67B6;&#xFF0C;&#x4F7F;&#x7528;Spring Data JPA&#xFF0C;<strong>&#x53EA;&#x9700;&#x8981;&#x6309;&#x7167;&#x6846;&#x67B6;&#x7684;&#x89C4;&#x8303;&#x63D0;&#x4F9B;dao&#x63A5;&#x53E3;</strong>&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x5B9E;&#x73B0;&#x7C7B;&#x5C31;&#x53EF;&#x4EE5;&#x5B8C;&#x6210;&#x6570;&#x636E;&#x5E93;&#x7684;&#x589E;&#x5220;&#x6539;&#x67E5;&#x3001;&#x5206;&#x9875;&#x67E5;&#x8BE2;&#x7B49;&#x65B9;&#x6CD5;&#x7684;&#x5B9A;&#x4E49;&#xFF0C;&#x6781;&#x5927;&#x7684;&#x7B80;&#x5316;&#x4E86;&#x6211;&#x4EEC;&#x7684;&#x5F00;&#x53D1;&#x8FC7;&#x7A0B;&#x3002;</li>
+<li>&#x5728;Spring Data JPA&#x4E2D;&#xFF0C;&#x5BF9;&#x4E8E;&#x5B9A;&#x4E49;&#x7B26;&#x5408;&#x89C4;&#x8303;&#x7684;Dao&#x5C42;&#x63A5;&#x53E3;&#xFF0C;&#x9700;&#x8981;&#x9075;&#x5FAA;&#xFF1A;
+<ul>
+<li><strong>&#x521B;&#x5EFA;&#x4E00;&#x4E2A;Dao&#x5C42;&#x63A5;&#x53E3;&#xFF0C;&#x5E76;&#x7EE7;&#x627F;<code>JpaRepository</code>&#x548C;<code>JpaSpecificationExecutor</code>&#x7C7B;&#x3002;</strong></li>
+<li>&#x63D0;&#x4F9B;&#x76F8;&#x5E94;&#x7684;&#x6CDB;&#x578B;&#x3002;
+<ul>
+<li><code>JpaRepository</code>&#x4E2D;&#x7684;&#x4E24;&#x4E2A;&#x6CDB;&#x578B;&#x5206;&#x522B;&#x8868;&#x793A;&#xFF1A;&#x5B9E;&#x4F53;&#x7C7B;&#x7C7B;&#x578B;&#x4EE5;&#x53CA;&#x4E3B;&#x952E;&#x7C7B;&#x578B;&#x3002;</li>
+<li><code>JpaSpecificationExecutor</code>&#x4E2D;&#x7684;&#x6CDB;&#x578B;&#x8868;&#x793A;&#x5B9E;&#x4F53;&#x7C7B;&#x7C7B;&#x578B;&#x3002;</li>
+</ul>
+</li>
+<li><code>JpaRepository</code>&#x7528;&#x4E8E;&#x5B9E;&#x73B0;&#x57FA;&#x672C;&#x7684;CRUD&#x64CD;&#x4F5C;&#xFF0C;<code>JpaSpecificationExecutor</code>&#x7528;&#x4E8E;&#x5B9E;&#x73B0;&#x5206;&#x9875;&#x7B49;&#x590D;&#x6742;&#x67E5;&#x8BE2;&#x3002;</li>
+</ul>
+</li>
+</ol>
+<h3 id="5-&#x6D4B;&#x8BD5;CRUD&#x64CD;&#x4F5C;"><a class="header-anchor" href="#5-&#x6D4B;&#x8BD5;CRUD&#x64CD;&#x4F5C;">&#xB6;</a>5. &#x6D4B;&#x8BD5;CRUD&#x64CD;&#x4F5C;</h3>
+<p>&#x6D4B;&#x8BD5;&#x6587;&#x4EF6;&#x4E0E;Spring&#x4E2D;&#x6D4B;&#x8BD5;&#x6587;&#x4EF6;&#x7C7B;&#x4F3C;&#x3002;</p>
+<p>&#x81EA;&#x52A8;&#x6CE8;&#x5165;&#x5E76;&#x8C03;&#x7528;dao&#x63A5;&#x53E3;&#xFF0C;&#x7531;&#x4E8E;&#x5B9A;&#x4E49;&#x7684;&#x8BE5;&#x63A5;&#x53E3;&#x7EE7;&#x627F;&#x4E86;&#x4E0A;&#x8FF0;&#x7684;&#x4E24;&#x4E2A;&#x7C7B;&#xFF0C;&#x5176;&#x4E2D;&#x5305;&#x62EC;&#x5E38;&#x89C1;&#x7684;&#x6570;&#x636E;&#x5E93;&#x64CD;&#x4F5C;&#x65B9;&#x6CD5;&#xFF0C;&#x76F4;&#x63A5;&#x901A;&#x8FC7;&#x7C7B;&#x5BF9;&#x8C61;&#x8C03;&#x7528;&#x5373;&#x53EF;&#x3002;</p>
+<p>dao&#x4E2D;&#x7684;&#x65B9;&#x6CD5;&#x4E0E;JPA&#x7684;&#x65B9;&#x6CD5;&#x7C7B;&#x4F3C;&#xFF1A;</p>
+<ul>
+<li><strong>save&#x65B9;&#x6CD5;</strong>&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#x4FDD;&#x5B58;&#x548C;&#x66F4;&#x65B0;&#xFF1A;&#x6839;&#x636E;&#x4F20;&#x9012;&#x7684;&#x5BF9;&#x8C61;&#x662F;&#x5426;&#x5B58;&#x5728;&#x4E3B;&#x952E;id&#x8FDB;&#x884C;&#x5224;&#x65AD;&#xFF0C;&#x5982;&#x679C;&#x6CA1;&#x6709;id&#x4E3B;&#x952E;&#x5C5E;&#x6027;&#x6267;&#x884C;&#x4FDD;&#x5B58;&#x64CD;&#x4F5C;&#xFF0C;&#x5982;&#x679C;&#x5B58;&#x5728;&#x4E3B;&#x952E;&#x5219;&#x6839;&#x636E;id&#x67E5;&#x8BE2;&#x6570;&#x636E;&#xFF0C;&#x5E76;&#x66F4;&#x65B0;&#x6570;&#x636E;&#xFF0C;&#x66F4;&#x65B0;&#x6570;&#x636E;&#x65F6;&#x4F1A;&#x66F4;&#x65B0;&#x8868;&#x4E2D;&#x6240;&#x6709;&#x5B57;&#x6BB5;&#xFF0C;&#x672A;&#x63D0;&#x4F9B;&#x66F4;&#x65B0;&#x503C;&#x7684;&#x5B57;&#x6BB5;&#x4F1A;&#x88AB;&#x7F6E;&#x7A7A;&#x3002;</li>
+</ul>
+<pre><code class="language-java">@RunWith(SpringJUnit4ClassRunner.class) //&#x58F0;&#x660E;spring&#x63D0;&#x4F9B;&#x7684;&#x5355;&#x5143;&#x6D4B;&#x8BD5;&#x73AF;&#x5883;
+@ContextConfiguration(locations = &quot;classpath:applicationContext.xml&quot;)//&#x6307;&#x5B9A;spring&#x5BB9;&#x5668;&#x7684;&#x914D;&#x7F6E;&#x4FE1;&#x606F;
+public class CustomerDaoTest {
+    @Autowired
+    private CustomerDao customerDao;
+    @Test
+    public void testFindOne() {
+        Customer customer = customerDao.findOne(4l);
+        System.out.println(customer);
+    }
+    @Test
+    public void testSave() {
+        Customer customer = new Customer();
+        customer.setCustName(&quot;zhangsan&quot;);
+        customer.setCustIndustry(&quot;it&quot;);
+        customerDao.save(customer);
+    }
+    @Test
+    public void testUpdate() {
+        Customer customer = new Customer();
+        customer.setCustId(4l);
+        customer.setCustName(&quot;lisi&quot;);
+        customerDao.save(customer);
+    }
+    @Test
+    public void testDelete() {
+        customerDao.delete(3l);
+    }
+    @Test
+    public void testFindAll() {
+        List&lt;Customer&gt; list = customerDao.findAll();
+        for (Customer customer : list) {
+            System.out.println(customer);
+        }
+    }
+}
+</code></pre>
+<h2 id="&#x2B50;&#xFE0F;Spring-Data-JPA&#x8C03;&#x7528;&#x8FC7;&#x7A0B;&#x5206;&#x6790;"><a class="header-anchor" href="#&#x2B50;&#xFE0F;Spring-Data-JPA&#x8C03;&#x7528;&#x8FC7;&#x7A0B;&#x5206;&#x6790;">&#xB6;</a>&#x2B50;&#xFE0F;Spring Data JPA&#x8C03;&#x7528;&#x8FC7;&#x7A0B;&#x5206;&#x6790;</h2>
+<h3 id="1-&#x56FE;&#x793A;"><a class="header-anchor" href="#1-&#x56FE;&#x793A;">&#xB6;</a>1. &#x56FE;&#x793A;</h3>
+<p><img src="/article/247a8755.html/image-20201209150336552.png" alt="&#x8C03;&#x7528;&#x8FC7;&#x7A0B;"></p>
+<h3 id="2-&#x5206;&#x6790;"><a class="header-anchor" href="#2-&#x5206;&#x6790;">&#xB6;</a>2. &#x5206;&#x6790;</h3>
+<ol>
+<li>&#x901A;&#x8FC7;debug&#x65B9;&#x6CD5;&#x53EF;&#x4EE5;&#x67E5;&#x770B;&#x5230;&#xFF0C;&#x5F53;&#x8C03;&#x7528;&#x5B9E;&#x4F53;&#x7C7B;&#x7684;dao&#x5BF9;&#x8C61;&#x65F6;&#xFF0C;&#x5B9E;&#x9645;&#x4E0A;&#x662F;&#x901A;&#x8FC7;<code>JdkDynamicAopProxy</code>&#x7C7B;&#x4E2D;&#x7684;invoke&#x65B9;&#x6CD5;&#x521B;&#x5EFA;&#x4E86;&#x4E00;&#x4E2A;&#x52A8;&#x6001;&#x4EE3;&#x7406;&#x5BF9;&#x8C61;&#x3002;</li>
+<li>&#x5728;invoke&#x65B9;&#x6CD5;&#x4E2D;&#xFF0C;&#x751F;&#x6210;&#x7684;&#x52A8;&#x6001;&#x4EE3;&#x7406;&#x5BF9;&#x8C61;target&#x4E3A;<code>SimpleJpaRepository</code>&#x7C7B;&#x7684;&#x5BF9;&#x8C61;&#x3002;</li>
+<li>&#x67E5;&#x770B;<code>SimpleJpaRepository</code>&#x7C7B;&#xFF0C;&#x5176;&#x4E0E;&#x5B9E;&#x73B0;&#x7684;dao&#x63A5;&#x53E3;&#x4E00;&#x6837;&#xFF0C;&#x7EE7;&#x627F;&#x4E86;<code>JpaRepository</code>&#x548C;<code>JpaSpecificationExecutor</code>&#x5E76;&#x5B9E;&#x73B0;&#x4E86;&#x5176;&#x4E2D;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x5982;findOne&#x3002;</li>
+<li>&#x4EE5;findOne&#x65B9;&#x6CD5;&#x4E3A;&#x4F8B;&#xFF0C;<code>SimpleJpaRepository</code>&#x4E2D;&#x7684;&#x8BE5;&#x65B9;&#x6CD5;&#x5185;&#x90E8;&#x901A;&#x8FC7;<code>em.find()</code>&#x5B9E;&#x73B0;&#x5177;&#x4F53;&#x64CD;&#x4F5C;&#xFF0C;&#x800C;em&#x6B63;&#x662F;JPA&#x7684;&#x6838;&#x5FC3;&#x5BF9;&#x8C61;<code>EntityManager</code>&#x3002;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#xFF0C;<code>SimpleJpaRepository</code>&#x7C7B;&#x4E2D;&#x5C01;&#x88C5;&#x4E86;JPA&#x7684;&#x64CD;&#x4F5C;&#xFF0C;&#x501F;&#x52A9;JPA&#x7684;api&#x5B8C;&#x6210;&#x6570;&#x636E;&#x5E93;&#x7684;CRUD&#x3002;</li>
+<li>&#x6700;&#x540E;&#xFF0C;JPA&#x5E95;&#x5C42;&#x901A;&#x8FC7;Hibernate&#x5B8C;&#x6210;&#x6570;&#x636E;&#x5E93;&#x64CD;&#x4F5C;&#x3002;</li>
+<li>&#x56E0;&#x6B64;&#xFF0C;Spring Data JPA&#x53EA;&#x662F;&#x5BF9;&#x6807;&#x51C6;JPA&#x64CD;&#x4F5C;&#x8FDB;&#x884C;&#x4E86;&#x8FDB;&#x4E00;&#x6B65;&#x5C01;&#x88C5;&#xFF0C;&#x7B80;&#x5316;&#x4E86;Dao&#x5C42;&#x4EE3;&#x7801;&#x7684;&#x5F00;&#x53D1;&#x3002;</li>
+</ol>
+<h2 id="Spring-Data-JPA&#x67E5;&#x8BE2;&#x65B9;&#x5F0F;"><a class="header-anchor" href="#Spring-Data-JPA&#x67E5;&#x8BE2;&#x65B9;&#x5F0F;">&#xB6;</a>Spring Data JPA&#x67E5;&#x8BE2;&#x65B9;&#x5F0F;</h2>
+<h3 id="1-&#x63A5;&#x53E3;&#x81EA;&#x5E26;&#x65B9;&#x6CD5;"><a class="header-anchor" href="#1-&#x63A5;&#x53E3;&#x81EA;&#x5E26;&#x65B9;&#x6CD5;">&#xB6;</a>1. &#x63A5;&#x53E3;&#x81EA;&#x5E26;&#x65B9;&#x6CD5;</h3>
+<p>&#x9664;&#x4E86;&#x57FA;&#x672C;&#x7684;CRUD&#x64CD;&#x4F5C;&#x5916;&#xFF0C;dao&#x63A5;&#x53E3;&#x4E2D;&#x8FD8;&#x5305;&#x542B;&#x5176;&#x4ED6;&#x4E00;&#x4E9B;&#x65B9;&#x6CD5;&#x3002;</p>
+<ol>
+<li>count&#x65B9;&#x6CD5;&#xFF1A;&#x67E5;&#x8BE2;&#x603B;&#x7684;&#x8BB0;&#x5F55;&#x6761;&#x6570;&#xFF1B;</li>
+<li>exists&#x65B9;&#x6CD5;&#xFF1A;&#x53C2;&#x6570;&#x4E3A;id&#x503C;&#xFF0C;&#x67E5;&#x8BE2;&#x6307;&#x5B9A;id&#x503C;&#x7684;&#x7528;&#x6237;&#x662F;&#x5426;&#x5B58;&#x5728;&#xFF0C;&#x5177;&#x4F53;&#x6267;&#x884C;&#x7684;sql&#x65B9;&#x5F0F;&#x4E3A;&#x67E5;&#x627E;id&#x4E3A;4&#x7684;&#x5BF9;&#x8C61;&#x4E2A;&#x6570;&#xFF0C;&#x5224;&#x65AD;&#x4E2A;&#x6570;&#x662F;&#x5426;&#x4E3A;0&#xFF1B;</li>
+<li><strong>getOne&#x65B9;&#x6CD5;</strong>&#xFF1A;&#x6839;&#x636E;&#x6307;&#x5B9A;id&#x83B7;&#x53D6;&#x5BF9;&#x8C61;.
+<ul>
+<li>findOne&#x65B9;&#x6CD5;&#x5E95;&#x5C42;&#x5B9E;&#x73B0;&#x4F7F;&#x7528;em.find()&#xFF0C;&#x4E3A;&#x7ACB;&#x5373;&#x52A0;&#x8F7D;&#xFF1B;</li>
+<li>getOne&#x65B9;&#x6CD5;&#x5E95;&#x5C42;&#x5B9E;&#x73B0;&#x4F7F;&#x7528;em.getReference()&#xFF0C;&#x4E3A;&#x5EF6;&#x8FDF;&#x52A0;&#x8F7D;&#xFF0C;&#x5728;&#x8C03;&#x7528;&#x8BE5;&#x65B9;&#x6CD5;&#x65F6;&#xFF0C;&#x9700;&#x8981;&#x5728;&#x54CD;&#x5E94;&#x7684;&#x6267;&#x884C;&#x65B9;&#x6CD5;&#x4E0A;&#x52A0;&#x4E0A;<code>@Transactional</code>&#x6CE8;&#x89E3;&#xFF0C;&#x8868;&#x793A;&#x4E0E;&#x4E8B;&#x52A1;&#x76F8;&#x5173;&#x3002;</li>
+</ul>
+</li>
+</ol>
+<h3 id="2-JPQL&#x65B9;&#x5F0F;"><a class="header-anchor" href="#2-JPQL&#x65B9;&#x5F0F;">&#xB6;</a>2. JPQL&#x65B9;&#x5F0F;</h3>
+<p>&#x5728;Spring Data JPA&#x4E2D;&#x4F7F;&#x7528;JPQL&#x65B9;&#x5F0F;&#x8FDB;&#x884C;&#x67E5;&#x8BE2;&#xFF0C;&#x53EF;&#x4EE5;&#x81EA;&#x5B9A;&#x4E49;&#x4E00;&#x4E9B;&#x67E5;&#x8BE2;&#x65B9;&#x6CD5;&#xFF0C;&#x5C06;JPQL&#x8BED;&#x53E5;&#x914D;&#x7F6E;&#x5230;&#x63A5;&#x53E3;&#x65B9;&#x6CD5;&#x4E0A;&#x3002;</p>
+<ol>
+<li>
+<p>&#x7279;&#x6709;&#x7684;&#x67E5;&#x8BE2;&#xFF1A;&#x9700;&#x8981;&#x5728;dao&#x63A5;&#x53E3;&#x4E0A;&#x914D;&#x7F6E;&#x65B9;&#x6CD5;&#xFF1B;</p>
+</li>
+<li>
+<p>&#x5728;&#x65B0;&#x6DFB;&#x52A0;&#x7684;&#x65B9;&#x6CD5;&#x4E0A;&#xFF0C;&#x4F7F;&#x7528;<code>@Query</code>&#x6CE8;&#x89E3;&#x7684;&#x5F62;&#x5F0F;&#x914D;&#x7F6E;jpql&#x67E5;&#x8BE2;&#x8BED;&#x53E5;&#x3002;</p>
+</li>
+<li>
+<p>&#x4F8B;&#xFF1A;&#x6839;&#x636E;&#x7528;&#x6237;&#x540D;&#x548C;ID&#x8FDB;&#x884C;&#x67E5;&#x8BE2;</p>
+<ul>
+<li>
+<p>&#x63A5;&#x53E3;&#x6587;&#x4EF6;</p>
+<pre><code class="language-java">public interface CustomerDao extends JpaRepository&lt;Customer, Long&gt;, JpaSpecificationExecutor&lt;Customer&gt; {
+    @Query(value = &quot;from Customer where custName = ?2 and custId = ?1&quot;)
+    public Customer findCustNameAndId(Long id, String name);
+}
+</code></pre>
+</li>
+<li>
+<p>&#x6D4B;&#x8BD5;&#x6587;&#x4EF6;</p>
+<pre><code class="language-java">@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = &quot;classpath:applicationContext.xml&quot;)
+public class JpqlTest {
+    @Autowired
+    private CustomerDao customerDao;
+    
+    @Test
+    public void testFindCustNameAndId() {
+        Customer customer =  customerDao.findCustNameAndId(1l,&quot;&#x738B;&#x4E8C;&quot;);
+        System.out.println(customer);
+    }
+}
+</code></pre>
+</li>
+<li>
+<p>&#x2B50;&#xFE0F;<strong>&#x6CE8;&#x610F;</strong></p>
+<p>&#x5173;&#x4E8E;&#x591A;&#x53C2;&#x6570;&#x5360;&#x4F4D;&#x7B26;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x5728;&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;JPQL&#x8BED;&#x53E5;&#x4E2D;&#x7684;&#x5360;&#x4F4D;&#x7B26;&#x4E0E;&#x65B9;&#x6CD5;&#x4E2D;&#x53C2;&#x6570;&#x5217;&#x8868;&#x7684;&#x987A;&#x5E8F;&#x76F8;&#x4E00;&#x81F4;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;**&#xFF1F;+&#x7D22;&#x5F15;**&#x7684;&#x65B9;&#x5F0F;&#x5728;JPQL&#x8BED;&#x53E5;&#x4E2D;&#x6307;&#x5B9A;&#x5360;&#x4F4D;&#x7B26;&#x5BF9;&#x5E94;&#x7684;&#x53D6;&#x503C;&#x53C2;&#x6570;&#x3002;</p>
+</li>
+</ul>
+</li>
+<li>
+<p>&#x4F8B;&#xFF1A;&#x4F7F;&#x7528;JPQL&#x5B9E;&#x73B0;&#x66F4;&#x65B0;&#x7528;&#x6237;&#x7684;&#x64CD;&#x4F5C;</p>
+<ul>
+<li>
+<p>&#x63A5;&#x53E3;&#x6587;&#x4EF6;</p>
+<pre><code class="language-java">public interface CustomerDao extends JpaRepository&lt;Customer, Long&gt;, JpaSpecificationExecutor&lt;Customer&gt; {
+    @Query(value = &quot; update Customer set custName = ?2 where custId = ?1 &quot;)
+    @Modifying
+    public void updateCustomer(long custId, String custName);
+}
+</code></pre>
+</li>
+<li>
+<p>&#x6D4B;&#x8BD5;&#x6587;&#x4EF6;</p>
+<pre><code class="language-java">@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = &quot;classpath:applicationContext.xml&quot;)
+public class JpqlTest {
+    @Autowired
+    private CustomerDao customerDao;
+
+    @Test
+    @Transactional //&#x6DFB;&#x52A0;&#x4E8B;&#x52A1;&#x7684;&#x652F;&#x6301;
+    @Rollback(value = false)
+    public void testUpdateCustomer() {
+        customerDao.updateCustomer(4l,&quot;&#x9EBB;&#x5B50;&quot;);
+    }
+}
+</code></pre>
+</li>
+<li>
+<p>&#x2B50;&#xFE0F;<strong>&#x6CE8;&#x610F;</strong></p>
+<ul>
+<li>&#x5728;&#x63A5;&#x53E3;&#x6587;&#x4EF6;&#x4E2D;&#x5BF9;&#x65B9;&#x6CD5;&#x9700;&#x8981;&#x989D;&#x5916;&#x4F7F;&#x7528;<code>@Modifying</code>&#x6CE8;&#x89E3;&#x58F0;&#x660E;&#x8BE5;&#x65B9;&#x6CD5;&#x6267;&#x884C;&#x7684;&#x662F;&#x66F4;&#x65B0;&#x64CD;&#x4F5C;&#xFF1B;</li>
+<li>&#x5728;&#x6D4B;&#x8BD5;&#x8FC7;&#x7A0B;&#x4E2D;<strong>&#x5FC5;&#x987B;&#x6DFB;&#x52A0;&#x4E8B;&#x52A1;&#x652F;&#x6301;</strong>&#xFF0C;&#x540C;&#x65F6;&#xFF0C;SpringDataJpa&#x4E2D;&#x7684;&#x4E8B;&#x52A1;&#x9ED8;&#x8BA4;&#x4F1A;&#x8FDB;&#x884C;&#x56DE;&#x6EDA;&#xFF0C;&#x56E0;&#x6B64;<strong>&#x9700;&#x8981;&#x8BBE;&#x7F6E;<code>@Rollback(value = false)</code>&#x53D6;&#x6D88;&#x56DE;&#x6EDA;&#x3002;</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="3-SQL&#x65B9;&#x5F0F;"><a class="header-anchor" href="#3-SQL&#x65B9;&#x5F0F;">&#xB6;</a>3. SQL&#x65B9;&#x5F0F;</h3>
+<p>&#x5728;SpringDataJPA&#x4E2D;&#xFF0C;&#x540C;&#x6837;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;SQL&#x8BED;&#x53E5;&#x8FDB;&#x884C;&#x67E5;&#x8BE2;&#xFF0C;&#x4F7F;&#x7528;&#x65B9;&#x5F0F;&#x4E0E;&#x4E0A;&#x8FF0;&#x4F7F;&#x7528;JPQL&#x7684;&#x65B9;&#x5F0F;&#x7C7B;&#x4F3C;&#xFF0C;&#x5176;&#x4E2D;&#xFF0C;&#x9700;&#x8981;&#x5728;<code>@Query</code>&#x6CE8;&#x89E3;&#x4E2D;&#x4F7F;&#x7528;nativeQuery&#x5C5E;&#x6027;&#x53D6;&#x503C;&#x4E3A;true&#xFF0C;&#x8868;&#x793A;&#x91C7;&#x7528;&#x672C;&#x5730;&#x67E5;&#x8BE2;&#xFF0C;&#x5373;SQL&#x67E5;&#x8BE2;&#x3002;</p>
+<pre><code class="language-java">@Query(value=&quot;select * from cst_customer where cust_name like ?1&quot;,nativeQuery = true)
+public List&lt;Object [] &gt; findSql(String name);
+</code></pre>
+<h3 id="4-&#x65B9;&#x6CD5;&#x547D;&#x540D;&#x67E5;&#x8BE2;"><a class="header-anchor" href="#4-&#x65B9;&#x6CD5;&#x547D;&#x540D;&#x67E5;&#x8BE2;">&#xB6;</a>4. &#x65B9;&#x6CD5;&#x547D;&#x540D;&#x67E5;&#x8BE2;</h3>
+<ol>
+<li>
+<p>&#x4F7F;&#x7528;&#x65B9;&#x6CD5;&#x547D;&#x540D;&#x8FDB;&#x884C;&#x67E5;&#x8BE2;&#x662F;&#x5BF9;jpql&#x67E5;&#x8BE2;&#x7684;&#x66F4;&#x52A0;&#x6DF1;&#x5165;&#x4E00;&#x5C42;&#x7684;&#x5C01;&#x88C5;&#xFF0C;&#x53EA;&#x9700;&#x8981;&#x6309;&#x7167;SpringDataJPA&#x63D0;&#x4F9B;&#x7684;&#x65B9;&#x6CD5;&#x540D;&#x79F0;&#x89C4;&#x5219;&#x5B9A;&#x4E49;&#x65B9;&#x6CD5;&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x518D;&#x914D;&#x7F6E;jpql&#x8BED;&#x53E5;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x5B8C;&#x6210;&#x67E5;&#x8BE2;&#x3002;</p>
+</li>
+<li>
+<p>&#x4F8B;&#x5982;&#xFF1A;findBy&#x8868;&#x793A;&#x67E5;&#x8BE2;&#x65B9;&#x6CD5;&#xFF0C;&#x5176;&#x540E;&#x8DDF;&#x4E00;&#x4E2A;&#x9996;&#x5B57;&#x6BCD;&#x5927;&#x5199;&#x7684;&#x5C5E;&#x6027;&#x540D;&#x8868;&#x793A;&#x67E5;&#x8BE2;&#x6761;&#x4EF6;&#xFF0C;&#x5982;CustName&#xFF0C;&#x8BE5;&#x65B9;&#x6CD5;&#x540D;&#x4E3A;findByCustName&#xFF0C;&#x4E0D;&#x9700;&#x8981;JPQL&#x8BED;&#x53E5;&#x5C31;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x8C03;&#x7528;&#x5B9E;&#x73B0;&#x6839;&#x636E;&#x7528;&#x6237;&#x540D;&#x67E5;&#x8BE2;&#x3002;</p>
+</li>
+</ol>
+<h2 id="Spring-Data-JPA&#x52A8;&#x6001;&#x67E5;&#x8BE2;"><a class="header-anchor" href="#Spring-Data-JPA&#x52A8;&#x6001;&#x67E5;&#x8BE2;">&#xB6;</a>Spring Data JPA&#x52A8;&#x6001;&#x67E5;&#x8BE2;</h2>
+<h3 id="1-&#x539F;&#x7406;&#x5206;&#x6790;"><a class="header-anchor" href="#1-&#x539F;&#x7406;&#x5206;&#x6790;">&#xB6;</a>1. &#x539F;&#x7406;&#x5206;&#x6790;</h3>
+<ol>
+<li>
+<p>&#x5728;&#x5B9E;&#x9645;&#x67E5;&#x8BE2;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x6839;&#x636E;&#x524D;&#x7AEF;&#x4F20;&#x5165;&#x7684;&#x53C2;&#x6570;&#x5F97;&#x5230;&#x76F8;&#x5E94;&#x7684;&#x6761;&#x4EF6;&#x8FDB;&#x884C;&#x67E5;&#x8BE2;&#xFF0C;&#x6BD4;&#x5982;&#xFF0C;&#x67E5;&#x8BE2;&#x4E00;&#x4E2A;&#x7528;&#x6237;&#x7684;&#x65B9;&#x6CD5;findOne&#xFF0C;&#x6761;&#x4EF6;&#x53EF;&#x4EE5;&#x662F;&#x6839;&#x636E;&#x7528;&#x6237;&#x540D;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x662F;&#x6839;&#x636E;&#x884C;&#x4E1A;&#x3002;&#x56E0;&#x6B64;&#xFF0C;&#x53EF;&#x4EE5;&#x7F16;&#x5199;&#x4E00;&#x4E2A;&#x901A;&#x7528;&#x7684;&#x52A8;&#x6001;&#x67E5;&#x8BE2;&#x65B9;&#x6CD5;&#xFF0C;&#x5728;&#x6267;&#x884C;&#x67E5;&#x8BE2;&#x65F6;&#x6839;&#x636E;&#x5177;&#x4F53;&#x5B58;&#x5728;&#x7684;&#x6761;&#x4EF6;&#x52A8;&#x6001;&#x751F;&#x6210;JPQL&#x8BED;&#x53E5;&#x8FDB;&#x884C;&#x67E5;&#x8BE2;&#x3002;</p>
+</li>
+<li>
+<p>&#x52A8;&#x6001;&#x67E5;&#x8BE2;&#x4F7F;&#x7528;&#x7684;dao&#x63A5;&#x53E3;&#x4E2D;&#x7EE7;&#x627F;&#x7684;<code>JpaSpecificationExecutor</code>&#x7C7B;&#x4E2D;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x8BE5;&#x7C7B;&#x4E2D;&#x7684;&#x65B9;&#x6CD5;&#x5747;&#x5305;&#x542B;&#x4E00;&#x4E2A;Specification&#x53C2;&#x6570;&#xFF0C;&#x8868;&#x793A;&#x7684;&#x662F;&#x52A8;&#x6001;&#x67E5;&#x8BE2;&#x7684;&#x6761;&#x4EF6;&#x3002;</p>
+</li>
+<li>
+<p>&#x6267;&#x884C;&#x67E5;&#x8BE2;&#x524D;&#x9700;&#x8981;&#x751F;&#x6210;&#x4E00;&#x4E2A;<code>Specification</code>&#x7C7B;&#x7684;&#x5BF9;&#x8C61;&#x4F5C;&#x4E3A;&#x53C2;&#x6570;&#xFF0C;&#x8BE5;&#x7C7B;&#x5305;&#x542B;&#x4E00;&#x4E2A;<code>toPredicate</code>&#x65B9;&#x6CD5;&#xFF0C;&#x7528;&#x4E8E;&#x6784;&#x9020;&#x67E5;&#x8BE2;&#x6761;&#x4EF6;&#x3002;</p>
+</li>
+<li>
+<pre><code class="language-java">Predicate toPredicate(Root&lt;T&gt; var1, CriteriaQuery&lt;?&gt; var2, CriteriaBuilder var3);
+</code></pre>
+<ul>
+<li>
+<p>&#x5176;&#x4E2D;root&#x7528;&#x4E8E;&#x8BBE;&#x7F6E;&#x67E5;&#x8BE2;&#x6761;&#x4EF6;&#x4E2D;&#x7684;&#x5BF9;&#x8C61;&#x5C5E;&#x6027;&#xFF0C;CriteriaBuilder&#x7528;&#x4E8E;&#x8BBE;&#x7F6E;&#x67E5;&#x8BE2;&#x7684;&#x6BD4;&#x8F83;&#x65B9;&#x5F0F;&#xFF0C;CriteriaQuery&#x4E0D;&#x5E38;&#x7528;&#x3002;</p>
+</li>
+<li>
+<p>&#x4F8B;&#x5982;&#xFF1A;</p>
+<pre><code class="language-sql">select * from cst_customer where cust_name = &apos;&#x5F20;&#x4E09;&apos;
+</code></pre>
+<p>&#x67E5;&#x8BE2;&#x6761;&#x4EF6;&#x4E3A;<code>cust_name = &apos;&#x5F20;&#x4E09;&apos;</code>&#xFF0C;root&#x53C2;&#x6570;&#x7528;&#x4E8E;&#x8BBE;&#x7F6E;&#x7684;&#x4E3A;cust_name&#xFF0C;&#x5BF9;&#x5E94;&#x5BF9;&#x8C61;&#x5C5E;&#x6027;&#x4E3A;custName&#xFF0C;CB&#x53C2;&#x6570;&#x7528;&#x4E8E;&#x8BBE;&#x7F6E;<code>=&apos;&#x5F20;&#x4E09;&apos;</code>&#x3002;</p>
+</li>
+<li>
+<p>&#x5728;CB&#x4E2D;&#x5305;&#x542B;&#x5F88;&#x591A;&#x67E5;&#x8BE2;&#x5339;&#x914D;&#x65B9;&#x6CD5;&#xFF0C;&#x5982;equal&#x3001;like&#x3001;gt&#x3001;lt&#x3001;and&#x3001;or&#x7B49;&#xFF0C;&#x5BF9;&#x5E94;&#x6A21;&#x7CCA;&#x5339;&#x914D;&#x548C;&#x7CBE;&#x786E;&#x5339;&#x914D;&#x7684;&#x65B9;&#x5F0F;&#x3002;</p>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="2-&#x5355;&#x6761;&#x4EF6;&#x67E5;&#x8BE2;"><a class="header-anchor" href="#2-&#x5355;&#x6761;&#x4EF6;&#x67E5;&#x8BE2;">&#xB6;</a>2. &#x5355;&#x6761;&#x4EF6;&#x67E5;&#x8BE2;</h3>
+<ol>
+<li>
+<p>&#x4EE3;&#x7801;</p>
+<pre><code class="language-java">@Test
+public void testSpec() {
+   //&#x533F;&#x540D;&#x5185;&#x90E8;&#x7C7B;
+	Specification&lt;Customer&gt; spec = new Specification&lt;Customer&gt;() {
+        public Predicate toPredicate(Root&lt;Customer&gt; root, CriteriaQuery&lt;?&gt; query, CriteriaBuilder cb) {
+            //&#x6784;&#x9020;&#x67E5;&#x8BE2;&#x6761;&#x4EF6;
+            //1.&#x83B7;&#x53D6;&#x6BD4;&#x8F83;&#x7684;&#x5C5E;&#x6027;
+            Path&lt;Object&gt; custName = root.get(&quot;custName&quot;);
+            //2.&#x8BBE;&#x7F6E;&#x5339;&#x914D;&#x65B9;&#x5F0F;
+            Predicate predicate = cb.equal(custName, &quot;&#x5F20;&#x4E09;&quot;);
+            return predicate;
+    	}
+    };
+    Customer customer = customerDao.findOne(spec);
+    System.out.println(customer);
+}
+</code></pre>
+</li>
+<li>
+<p>&#x5728;&#x6267;&#x884C;&#x67E5;&#x8BE2;&#x65F6;&#xFF0C;&#x9996;&#x5148;&#x521B;&#x5EFA;Specification&#x5BF9;&#x8C61;&#xFF0C;&#x540C;&#x65F6;&#x901A;&#x8FC7;&#x533F;&#x540D;&#x5185;&#x90E8;&#x7C7B;&#x7684;&#x65B9;&#x5F0F;&#x8BBE;&#x7F6E;&#x5176;&#x4E2D;&#x7684;toPredicate&#x65B9;&#x6CD5;&#xFF0C;root&#x548C;cb&#x5BF9;&#x8C61;&#x8BBE;&#x7F6E;&#x7684;&#x6761;&#x4EF6;&#x76F8;&#x5F53;&#x4E8E;JPQL&#x8BED;&#x53E5;&#x4E2D;&#x7684;<code>custName=&quot;&#x5F20;&#x4E09;&quot;</code>&#xFF0C;&#x6700;&#x540E;&#x8C03;&#x7528;&#x67E5;&#x8BE2;&#x65B9;&#x6CD5;&#x5E76;&#x4F20;&#x5165;&#x53C2;&#x6570;&#x8FDB;&#x884C;&#x67E5;&#x8BE2;&#x3002;</p>
+</li>
+</ol>
+<h3 id="3-&#x591A;&#x6761;&#x4EF6;&#x67E5;&#x8BE2;"><a class="header-anchor" href="#3-&#x591A;&#x6761;&#x4EF6;&#x67E5;&#x8BE2;">&#xB6;</a>3. &#x591A;&#x6761;&#x4EF6;&#x67E5;&#x8BE2;</h3>
+<ol>
+<li>
+<p>&#x4EE3;&#x7801;</p>
+<pre><code class="language-java">@Test
+public void testSpec1() {
+    Specification&lt;Customer&gt; spec = new Specification&lt;Customer&gt;() {
+        public Predicate toPredicate(Root&lt;Customer&gt; root, CriteriaQuery&lt;?&gt; query, CriteriaBuilder cb) {
+            //1.&#x6784;&#x9020;&#x67E5;&#x8BE2;&#x6761;&#x4EF6;
+			//&#x5BA2;&#x6237;&#x540D;,&#x6A21;&#x7CCA;&#x67E5;&#x8BE2;
+            Path&lt;Object&gt; custName = root.get(&quot;custName&quot;);
+            Predicate p1 = cb.like(custName.as(String.class), &quot;&#x5F20;&quot;);
+            Path&lt;Object&gt; custIndustry = root.get(&quot;custIndustry&quot;);
+            Predicate p2 = cb.equal(custIndustry, &quot;it&quot;);
+
+            //2.&#x8054;&#x5408;&#x67E5;&#x8BE2;&#x6761;&#x4EF6;
+            Predicate predicates = cb.and(p1, p2);
+            return predicates;
+        }
+    };
+    List&lt;Customer&gt; customers = customerDao.findAll(spec);
+    for (Customer customer : customers) {
+        System.out.println(customer);
+    }
+}
+</code></pre>
+</li>
+<li>
+<p>&#x591A;&#x6761;&#x4EF6;&#x67E5;&#x8BE2;&#x65F6;&#x4E0E;&#x5355;&#x4E2A;&#x6761;&#x4EF6;&#x67E5;&#x8BE2;&#x8FC7;&#x7A0B;&#x7C7B;&#x4F3C;&#xFF0C;&#x5206;&#x522B;&#x8BBE;&#x7F6E;&#x6BCF;&#x4E2A;&#x67E5;&#x8840;&#x6761;&#x4EF6;&#xFF0C;&#x6700;&#x540E;&#x901A;&#x8FC7;CB&#x4E2D;&#x7684;and&#x6216;&#x8005;or&#x65B9;&#x6CD5;&#x5C06;&#x591A;&#x4E2A;&#x6761;&#x4EF6;&#x8054;&#x5408;&#x8D77;&#x6765;&#x3002;</p>
+</li>
+<li>
+<p>&#x5BF9;&#x4E8E;<strong>&#x6A21;&#x7CCA;&#x67E5;&#x8BE2;like</strong>&#x4EE5;&#x53CA;gt&#xFF0C;lt&#xFF0C;ge&#xFF0C;le&#x7B49;&#x67E5;&#x8BE2;&#x65B9;&#x5F0F;&#xFF0C;CB&#x5BF9;&#x8C61;&#x5728;&#x8C03;&#x7528;&#x5BF9;&#x5E94;&#x65B9;&#x6CD5;&#x65F6;&#xFF0C;&#x5176;&#x4E2D;&#x7684;&#x53C2;&#x6570;&#x4E0D;&#x80FD;&#x76F4;&#x63A5;&#x4F7F;&#x7528;&#x5BF9;&#x8C61;&#x5C5E;&#x6027;&#x8FDB;&#x884C;&#x6BD4;&#x8F83;&#xFF0C;&#x9700;&#x8981;&#x4F7F;&#x7528;<code>path.as(&#x6BD4;&#x8F83;&#x7C7B;&#x578B;&#x7684;&#x5B57;&#x8282;&#x7801;&#x5BF9;&#x8C61;)</code>&#x4F5C;&#x4E3A;&#x53C2;&#x6570;&#x3002;</p>
+</li>
+</ol>
+<h3 id="4-&#x6392;&#x5E8F;&#x548C;&#x5206;&#x9875;"><a class="header-anchor" href="#4-&#x6392;&#x5E8F;&#x548C;&#x5206;&#x9875;">&#xB6;</a>4. &#x6392;&#x5E8F;&#x548C;&#x5206;&#x9875;</h3>
+<ol>
+<li>
+<p>&#x6392;&#x5E8F;</p>
+<ul>
+<li>
+<p>&#x5728;&#x8C03;&#x7528;findAll&#x65B9;&#x6CD5;&#x65F6;&#xFF0C;&#x53EF;&#x4EE5;&#x9009;&#x62E9;&#x5E26;&#x6709;Sort&#x53C2;&#x6570;&#x7684;findAll&#x65B9;&#x6CD5;&#xFF0C;&#x8868;&#x793A;&#x67E5;&#x8BE2;&#x7684;&#x7ED3;&#x679C;&#x4F1A;&#x8FDB;&#x884C;&#x6392;&#x5E8F;&#x3002;</p>
+</li>
+<li>
+<p>Sort&#x5BF9;&#x8C61;&#x7528;&#x4E8E;&#x8868;&#x793A;&#x6392;&#x5E8F;&#xFF0C;&#x4F7F;&#x7528;&#x524D;&#x9700;&#x8981;&#x5B9E;&#x4F8B;&#x5316;&#x8BE5;&#x5BF9;&#x8C61;&#xFF0C;&#x9700;&#x8981;&#x8C03;&#x7528;&#x5176;&#x6784;&#x9020;&#x65B9;&#x6CD5;<code>public Sort(Sort.Direction direction, String... properties)</code>&#x5E76;&#x4F20;&#x5165;&#x53C2;&#x6570;&#x3002;</p>
+<ul>
+<li>&#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x8868;&#x793A;&#x6392;&#x5E8F;&#x7684;&#x987A;&#x5E8F;&#xFF1A;Sort.Direction.DESC&#x8868;&#x793A;&#x5012;&#x5E8F;&#xFF0C;Sort.Direction.ASC&#x8868;&#x793A;&#x5347;&#x5E8F;&#x3002;</li>
+<li>&#x7B2C;&#x4E8C;&#x4E2A;&#x53C2;&#x6570;&#x8868;&#x793A;&#x8FDB;&#x884C;&#x6392;&#x5E8F;&#x7684;&#x5C5E;&#x6027;&#x540D;&#x3002;</li>
+</ul>
+</li>
+<li>
+<p>&#x4EE3;&#x7801;</p>
+<pre><code class="language-java">@Test
+public void testSpec1() {
+    Specification&lt;Customer&gt; spec = new Specification&lt;Customer&gt;() {...};
+    //&#x521B;&#x5EFA;&#x6392;&#x5E8F;&#x5BF9;&#x8C61;,&#x9700;&#x8981;&#x8C03;&#x7528;&#x6784;&#x9020;&#x65B9;&#x6CD5;&#x5B9E;&#x4F8B;&#x5316;sort&#x5BF9;&#x8C61;
+    Sort sort = new Sort(Sort.Direction.DESC, &quot;custId&quot;);
+    List&lt;Customer&gt; customers = customerDao.findAll(spec, sort);
+    for (Customer customer : customers) {
+        System.out.println(customer);
+    }
+}
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>&#x5206;&#x9875;</p>
+<ul>
+<li>
+<p>&#x5728;&#x8C03;&#x7528;findAll&#x65B9;&#x6CD5;&#x65F6;&#xFF0C;&#x53EF;&#x4EE5;&#x9009;&#x62E9;&#x5E26;&#x6709;Pageable&#x53C2;&#x6570;&#x7684;findAll&#x65B9;&#x6CD5;&#xFF0C;&#x8868;&#x793A;&#x67E5;&#x8BE2;&#x7684;&#x7ED3;&#x679C;&#x4F1A;&#x8FDB;&#x884C;&#x5206;&#x9875;&#x3002;</p>
+</li>
+<li>
+<p>Pageable&#x5BF9;&#x8C61;&#x65F6;SpringDataJPA&#x4E2D;&#x7684;&#x5C01;&#x88C5;&#x597D;&#x7684;pageBean&#x5BF9;&#x8C61;&#xFF0C;&#x4F7F;&#x7528;&#x524D;&#x9700;&#x8981;&#x8C03;&#x7528;&#x5176;&#x5B9E;&#x73B0;&#x7C7B;<code>PageRequest</code>&#x5B9E;&#x4F8B;&#x5316;</p>
+</li>
+<li>
+<p><code>PageRequest(page&#xFF0C;size)</code></p>
+<ul>
+<li>&#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570;page&#x8868;&#x793A;&#x67E5;&#x8BE2;&#x7684;&#x9875;&#x6570;&#xFF0C;&#x4ECE;0&#x5F00;&#x59CB;&#x3002;</li>
+<li>&#x7B2C;&#x4E8C;&#x4E2A;&#x53C2;&#x6570;size&#x8868;&#x793A;&#x6BCF;&#x9875;&#x7684;&#x6570;&#x91CF;&#x3002;</li>
+</ul>
+</li>
+<li>
+<p>&#x8C03;&#x7528;&#x5E26;&#x6709;&#x5206;&#x9875;&#x67E5;&#x8BE2;&#x7684;&#x67E5;&#x8BE2;&#x65B9;&#x6CD5;findAll&#xFF0C;&#x6700;&#x7EC8;&#x7684;&#x8FD4;&#x56DE;&#x503C;&#x4E3A;&#x4E00;&#x4E2A;Page&#x7C7B;&#x578B;&#x7684;&#x5BF9;&#x8C61;&#x3002;&#x8BE5;&#x5BF9;&#x8C61;&#x5305;&#x542B;&#x4EE5;&#x4E0B;&#x65B9;&#x6CD5;&#xFF1A;</p>
+<ul>
+<li>getContent()&#xFF1A;&#x83B7;&#x53D6;&#x6570;&#x636E;&#x5217;&#x8868;&#x96C6;&#x5408;&#x3002;</li>
+<li>getTotalElements()&#xFF1A;&#x83B7;&#x53D6;&#x603B;&#x6761;&#x6570;&#x3002;</li>
+<li>getTotalPages()&#xFF1A;&#x5F97;&#x5230;&#x603B;&#x9875;&#x6570;&#x3002;</li>
+</ul>
+</li>
+<li>
+<p>&#x4EE3;&#x7801;</p>
+<pre><code class="language-java">@Test
+public void testSpec1() {
+    Specification&lt;Customer&gt; spec = new Specification&lt;Customer&gt;() {...};
+   
+    Pageable pageable = new PageRequest(0, 2);
+     Page&lt;Customer&gt; page = customerDao.findAll(spec, pageable);
+   	System.out.println(page.getContent()); //&#x5F97;&#x5230;&#x6570;&#x636E;&#x96C6;&#x5408;&#x5217;&#x8868;
+    System.out.println(page.getTotalElements());//&#x5F97;&#x5230;&#x603B;&#x6761;&#x6570;
+    System.out.println(page.getTotalPages());//&#x5F97;&#x5230;&#x603B;&#x9875;&#x6570;
+}
+</code></pre>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="Spring-Data-JPA&#x591A;&#x8868;&#x64CD;&#x4F5C;"><a class="header-anchor" href="#Spring-Data-JPA&#x591A;&#x8868;&#x64CD;&#x4F5C;">&#xB6;</a>Spring Data JPA&#x591A;&#x8868;&#x64CD;&#x4F5C;</h2>
+<h3 id="1-&#x591A;&#x8868;&#x5173;&#x7CFB;&#x5206;&#x6790;"><a class="header-anchor" href="#1-&#x591A;&#x8868;&#x5173;&#x7CFB;&#x5206;&#x6790;">&#xB6;</a>1. &#x591A;&#x8868;&#x5173;&#x7CFB;&#x5206;&#x6790;</h3>
+<ol>
+<li>&#x5728;&#x6570;&#x636E;&#x5E93;&#x7684;&#x591A;&#x8868;&#x5173;&#x7CFB;&#x4E2D;&#xFF0C;&#x4E3B;&#x8981;&#x4E3A;&#x4E00;&#x5BF9;&#x591A;&#x548C;&#x591A;&#x5BF9;&#x591A;&#x5173;&#x7CFB;&#x3002;
+<ol>
+<li>&#x4E00;&#x5BF9;&#x591A;&#xFF1A;&#x4E00;&#x7684;&#x4E00;&#x65B9;&#x4F5C;&#x4E3A;&#x4E3B;&#x8868;&#xFF0C;&#x591A;&#x7684;&#x4E00;&#x65B9;&#x4F5C;&#x4E3A;&#x4ECE;&#x8868;&#xFF0C;&#x5728;&#x4ECE;&#x8868;&#x4E2D;&#x8BBE;&#x7F6E;&#x4E00;&#x5217;&#x5916;&#x952E;&#x5C5E;&#x6027;&#xFF0C;&#x7B80;&#x5386;&#x4E3B;&#x4ECE;&#x8868;&#x7684;&#x8054;&#x7CFB;&#xFF0C;&#x53D6;&#x503C;&#x4E3A;&#x4E3B;&#x8868;&#x4E2D;&#x7684;&#x4E3B;&#x952E;&#x503C;&#x3002;</li>
+<li>&#x591A;&#x5BF9;&#x591A;&#xFF1A;&#x4F7F;&#x7528;&#x4E2D;&#x95F4;&#x8868;&#x63CF;&#x8FF0;&#x4E3B;&#x4ECE;&#x8868;&#x7684;&#x8054;&#x7CFB;&#xFF0C;&#x4E2D;&#x95F4;&#x8868;&#x81F3;&#x5C11;&#x5305;&#x62EC;&#x4E24;&#x4E2A;&#x5B57;&#x6BB5;&#xFF0C;&#x4F5C;&#x4E3A;&#x5916;&#x952E;&#xFF0C;&#x53D6;&#x503C;&#x5206;&#x522B;&#x4E3A;&#x4E3B;&#x4ECE;&#x8868;&#x7684;&#x4E3B;&#x952E;&#x503C;&#xFF0C;&#x8FD9;&#x4E8C;&#x8005;&#x53C8;&#x6784;&#x6210;&#x4E86;&#x8054;&#x5408;&#x4E3B;&#x952E;&#x3002;</li>
+</ol>
+</li>
+<li>&#x5728;ORM&#x6846;&#x67B6;&#x4E2D;&#xFF0C;&#x9700;&#x8981;&#x5C06;&#x5B9E;&#x4F53;&#x7C7B;&#x548C;&#x6570;&#x636E;&#x5E93;&#x8868;&#x6620;&#x5C04;&#x8D77;&#x6765;&#x3002;&#x5728;&#x5B9E;&#x4F53;&#x7C7B;&#x4E2D;&#xFF0C;&#x7C7B;&#x4E4B;&#x95F4;&#x53EF;&#x4EE5;&#x5B58;&#x5728;&#x5305;&#x542B;&#x5173;&#x7CFB;&#xFF0C;&#x56E0;&#x6B64;&#x53EF;&#x4EE5;&#x7528;&#x8FD9;&#x79CD;&#x5305;&#x542B;&#x5173;&#x7CFB;&#x63CF;&#x8FF0;&#x4E3B;&#x4ECE;&#x8868;&#x7684;&#x5173;&#x7CFB;&#x3002;</li>
+</ol>
+<h3 id="2-&#x4E00;&#x5BF9;&#x591A;"><a class="header-anchor" href="#2-&#x4E00;&#x5BF9;&#x591A;">&#xB6;</a>2. &#x4E00;&#x5BF9;&#x591A;</h3>
+<ol>
+<li>
+<p>&#x6848;&#x4F8B;&#xFF1A;&#x516C;&#x53F8;&#xFF08;Customer&#xFF09;&#x548C;&#x5458;&#x5DE5;&#xFF08;Linkman&#xFF09;</p>
+</li>
+<li>
+<p>&#x7F16;&#x5199;&#x5B9E;&#x4F53;&#x7C7B;</p>
+<ul>
+<li>
+<p>&#x5305;&#x542B;&#x5173;&#x7CFB;&#x63CF;&#x8FF0;&#x4E3B;&#x4ECE;&#x8868;&#x5173;&#x7CFB;&#xFF1A;&#x516C;&#x53F8;&#x5B9E;&#x4F53;&#x7C7B;&#x4E2D;&#x5305;&#x542B;&#x4E00;&#x4E2A;&#x5458;&#x5DE5;&#x7C7B;&#x7684;&#x96C6;&#x5408;&#xFF0C;&#x5458;&#x5DE5;&#x5B9E;&#x4F53;&#x7C7B;&#x4E2D;&#x5305;&#x542B;&#x4E00;&#x4E2A;&#x516C;&#x53F8;&#x7C7B;&#x7684;&#x5BF9;&#x8C61;</p>
+</li>
+<li>
+<p>&#x4E3B;&#x8868;&#x5B9E;&#x4F53;&#x7C7B;</p>
+<pre><code class="language-java">@Entity
+@Table(name=&quot;cst_customer&quot;)
+public class Customer implements Serializable {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name=&quot;cust_id&quot;)
+	private Long custId;
+	@Column(name=&quot;cust_name&quot;)
+	private String custName;
+	@Column(name=&quot;cust_source&quot;)
+	private String custSource;
+	@Column(name=&quot;cust_industry&quot;)
+	private String custIndustry;
+	@Column(name=&quot;cust_level&quot;)
+	private String custLevel;
+	@Column(name=&quot;cust_address&quot;)
+	private String custAddress;
+	@Column(name=&quot;cust_phone&quot;)
+	private String custPhone;
+	
+    //&#x4E00;&#x5BF9;&#x591A;&#x5173;&#x7CFB;&#x6620;&#x5C04;
+  	@OneToMany(targetEntity=LinkMan.class)
+	@JoinColumn(name=&quot;lkm_cust_id&quot;,referencedColumnName=&quot;cust_id&quot;)
+	private Set&lt;LinkMan&gt; linkmans = new HashSet&lt;LinkMan&gt;(0);
+	...//&#x7701;&#x7565;Setter&#x3001;Getter&#x3001;toString&#x65B9;&#x6CD5;
+}
+</code></pre>
+</li>
+<li>
+<p>&#x4ECE;&#x8868;&#x5B9E;&#x4F53;&#x7C7B;</p>
+<pre><code class="language-java">@Entity
+@Table(name=&quot;cst_linkman&quot;)
+public class LinkMan implements Serializable {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name=&quot;lkm_id&quot;)
+	private Long lkmId;
+	@Column(name=&quot;lkm_name&quot;)
+	private String lkmName;
+	@Column(name=&quot;lkm_gender&quot;)
+	private String lkmGender;
+	@Column(name=&quot;lkm_phone&quot;)
+	private String lkmPhone;
+	@Column(name=&quot;lkm_mobile&quot;)
+	private String lkmMobile;
+	@Column(name=&quot;lkm_email&quot;)
+	private String lkmEmail;
+	@Column(name=&quot;lkm_position&quot;)
+	private String lkmPosition;
+	@Column(name=&quot;lkm_memo&quot;)
+	private String lkmMemo;
+
+	//&#x591A;&#x5BF9;&#x4E00;&#x5173;&#x7CFB;&#x6620;&#x5C04;
+	@ManyToOne(targetEntity=Customer.class)
+	@JoinColumn(name=&quot;lkm_cust_id&quot;,referencedColumnName=&quot;cust_id&quot;)
+	private Customer customer;
+	...
+}
+</code></pre>
+</li>
+<li>
+<p>&#x5728;&#x4E3B;&#x8868;&#x548C;&#x4ECE;&#x8868;&#x5BF9;&#x5E94;&#x7684;&#x5B9E;&#x4F53;&#x7C7B;&#x4E2D;&#x5747;&#x4F7F;&#x7528;&#x4E86;JoinColumn&#x914D;&#x7F6E;&#x4E86;&#x5916;&#x952E;&#xFF0C;&#x5373;&#x4E00;&#x548C;&#x591A;&#x7684;&#x4E24;&#x65B9;&#x90FD;&#x4F1A;&#x7EF4;&#x62A4;&#x5916;&#x952E;&#x3002;</p>
+</li>
+</ul>
+</li>
+<li>
+<p>&#x6CE8;&#x89E3;&#x8BF4;&#x660E;</p>
+<ol>
+<li>
+<p><code>@OneToMany</code></p>
+<ul>
+<li>&#x4F5C;&#x7528;&#xFF1A;&#x5EFA;&#x7ACB;&#x4E00;&#x5BF9;&#x591A;&#x7684;&#x5173;&#x7CFB;&#x6620;&#x5C04;</li>
+<li>&#x5C5E;&#x6027;&#xFF1A;</li>
+</ul>
+<p>&#x200B;       <strong>targetEntity</strong>&#xFF1A;&#x5BF9;&#x5E94;&#x591A;&#x7684;&#x4E00;&#x65B9;&#x7684;&#x5B9E;&#x4F53;&#x7C7B;&#x5B57;&#x8282;&#x7801;</p>
+<p>&#x200B;       mappedBy&#xFF1A;&#x6307;&#x5B9A;&#x4ECE;&#x8868;&#x5B9E;&#x4F53;&#x7C7B;&#x4E2D;&#x5F15;&#x7528;&#x4E3B;&#x8868;&#x5BF9;&#x8C61;&#x7684;&#x540D;&#x79F0;</p>
+<p>&#x200B;       cascade&#xFF1A;&#x6307;&#x5B9A;&#x8981;&#x4F7F;&#x7528;&#x7684;&#x7EA7;&#x8054;&#x64CD;&#x4F5C;</p>
+<p>&#x200B;       fetch&#xFF1A;&#x6307;&#x5B9A;&#x91C7;&#x7528;&#x5EF6;&#x8FDF;&#x52A0;&#x8F7D;&#x6216;&#x7ACB;&#x5373;&#x52A0;&#x8F7D;</p>
+<p>&#x200B;       orphanRemoval&#xFF1A;&#x662F;&#x5426;&#x4F7F;&#x7528;&#x5B64;&#x513F;&#x5220;&#x9664;</p>
+</li>
+<li>
+<p><code>@ManyToOne</code></p>
+<ul>
+<li>
+<p>&#x4F5C;&#x7528;&#xFF1A;&#x5EFA;&#x7ACB;&#x591A;&#x5BF9;&#x4E00;&#x7684;&#x5173;&#x7CFB;&#x6620;&#x5C04;</p>
+</li>
+<li>
+<p>&#x5C5E;&#x6027;&#xFF1A;</p>
+</li>
+</ul>
+<p>&#x200B;       <strong>targetEntity</strong>&#xFF1A;&#x5BF9;&#x5E94;&#x4E00;&#x7684;&#x4E00;&#x65B9;&#x7684;&#x5B9E;&#x4F53;&#x7C7B;&#x5B57;&#x8282;&#x7801;</p>
+<p>&#x200B;       cascade&#xFF1A;&#x6307;&#x5B9A;&#x8981;&#x4F7F;&#x7528;&#x7684;&#x7EA7;&#x8054;&#x64CD;&#x4F5C;</p>
+<p>&#x200B;       fetch&#xFF1A;&#x6307;&#x5B9A;&#x91C7;&#x7528;&#x5EF6;&#x8FDF;&#x52A0;&#x8F7D;&#x6216;&#x7ACB;&#x5373;&#x52A0;&#x8F7D;</p>
+<p>&#x200B;       optional&#xFF1A;&#x5173;&#x8054;&#x662F;&#x5426;&#x53EF;&#x9009;&#x3002;&#x5982;&#x679C;&#x8BBE;&#x7F6E;&#x4E3A;false&#xFF0C;&#x5219;&#x5FC5;&#x987B;&#x59CB;&#x7EC8;&#x5B58;&#x5728;&#x975E;&#x7A7A;&#x5173;&#x7CFB;</p>
+</li>
+<li>
+<p><code>@JoinColumn</code></p>
+<ul>
+<li>
+<p>&#x4F5C;&#x7528;&#xFF1A;&#x7528;&#x4E8E;&#x5B9A;&#x4E49;&#x4E3B;&#x952E;&#x5B57;&#x6BB5;&#x548C;&#x5916;&#x952E;&#x5B57;&#x6BB5;&#x7684;&#x5BF9;&#x5E94;&#x5173;&#x7CFB;</p>
+</li>
+<li>
+<p>&#x5C5E;&#x6027;&#xFF1A;</p>
+</li>
+</ul>
+<p>&#x200B;       <strong>name</strong>&#xFF1A;&#x6307;&#x5B9A;&#x5916;&#x952E;&#x5B57;&#x6BB5;&#x7684;&#x540D;&#x79F0;</p>
+<p>&#x200B;       <strong>referencedColumnName</strong>&#xFF1A;&#x6307;&#x5B9A;&#x5F15;&#x7528;&#x4E3B;&#x8868;&#x7684;&#x4E3B;&#x952E;&#x5B57;&#x6BB5;&#x540D;&#x79F0;</p>
+<p>&#x200B;       unique&#xFF1A;&#x662F;&#x5426;&#x552F;&#x4E00;&#x3002;&#x9ED8;&#x8BA4;&#x503C;&#x4E0D;&#x552F;&#x4E00;&#x3002;</p>
+<p>&#x200B;       nullable&#xFF1A;&#x662F;&#x5426;&#x5141;&#x8BB8;&#x4E3A;&#x7A7A;&#x3002;&#x9ED8;&#x8BA4;&#x503C;&#x5141;&#x8BB8;&#x3002;</p>
+<p>&#x200B;       insertable&#xFF1A;&#x662F;&#x5426;&#x5141;&#x8BB8;&#x63D2;&#x5165;&#x3002;&#x9ED8;&#x8BA4;&#x503C;&#x5141;&#x8BB8;&#x3002;</p>
+<p>&#x200B;       updatable&#xFF1A;&#x662F;&#x5426;&#x5141;&#x8BB8;&#x66F4;&#x65B0;&#x3002;&#x9ED8;&#x8BA4;&#x503C;&#x5141;&#x8BB8;&#x3002;</p>
+<p>&#x200B;       columnDefinition&#xFF1A;&#x5217;&#x7684;&#x5B9A;&#x4E49;&#x4FE1;&#x606F;&#x3002;</p>
+</li>
+</ol>
+</li>
+<li>
+<p>&#x4E00;&#x5BF9;&#x591A;&#x7684;&#x4FDD;&#x5B58;&#x64CD;&#x4F5C;</p>
+<pre><code class="language-java">@Test
+@Transactional
+@Rollback(false) 
+public void testAdd() {
+    //1.&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x516C;&#x53F8;&#xFF0C;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x5458;&#x5DE5;
+    Customer customer = new Customer();
+    customer.setCustName(&quot;&#x534E;&#x4E3A;&quot;);
+    LinkMan linkMan = new LinkMan();
+    linkMan.setLkmName(&quot;&#x5C0F;&#x674E;&quot;);
+
+    //2.&#x6DFB;&#x52A0;&#x5305;&#x542B;&#x5173;&#x7CFB;&#x5EFA;&#x7ACB;&#x4E3B;&#x8868;&#x548C;&#x4ECE;&#x8868;&#x7684;&#x8054;&#x7CFB;
+    customer.getLinkMans().add(linkMan);
+    linkMan.setCustomer(customer);
+    
+    customerDao.save(customer);
+    linkManDao.save(linkMan);
+}
+</code></pre>
+<ul>
+<li>
+<p>&#x2B50;<strong>&#x6CE8;&#x610F;&#xFF1A;</strong></p>
+<p>&#x5728;&#x4E0A;&#x8FF0;&#x4EE3;&#x7801;&#x7684;&#x7B2C;2&#x6B65;&#x4E2D;&#xFF0C;&#x53EA;&#x4F7F;&#x7528;&#x7B2C;&#x4E00;&#x6761;&#x8BED;&#x53E5;&#xFF0C;&#x5728;&#x5EFA;&#x7ACB;&#x6570;&#x636E;&#x5E93;&#x8868;&#x65F6;&#x4F1A;&#x591A;&#x51FA;&#x4E00;&#x6761;update&#x8BED;&#x53E5;&#xFF0C;&#x7528;&#x4E8E;&#x4ECE;&#x4E3B;&#x8868;&#x7684;&#x89D2;&#x5EA6;&#x53BB;&#x7EF4;&#x62A4;&#x5916;&#x952E;&#xFF0C;&#x800C;&#x4EC5;&#x4F7F;&#x7528;&#x7B2C;&#x4E8C;&#x6761;&#x8BED;&#x53E5;&#x65F6;&#x4E0D;&#x4F1A;&#x51FA;&#x73B0;&#x6B64;&#x7C7B;&#x60C5;&#x51B5;&#x3002;</p>
+<p>&#x8FD9;&#x662F;&#x7531;&#x4E8E;&#x5728;&#x4E3B;&#x8868;&#x5B9E;&#x4F53;&#x7C7B;&#x548C;&#x4ECE;&#x8868;&#x5B9E;&#x4F53;&#x7C7B;&#x4E2D;&#x90FD;&#x4F7F;&#x7528;<code>JoinColumn</code>&#x914D;&#x7F6E;&#x4E86;&#x5916;&#x952E;&#xFF0C;&#x4E3A;&#x4E86;&#x89E3;&#x51B3;&#x4E3B;&#x8868;&#x5BF9;&#x5916;&#x952E;&#x7684;&#x91CD;&#x590D;&#x7EF4;&#x62A4;&#xFF0C;&#x53EF;&#x4EE5;&#x5728;<strong>&#x4E3B;&#x8868;&#x5B9E;&#x4F53;&#x7C7B;&#x4E2D;&#x653E;&#x5F03;&#x5916;&#x952E;&#x7684;&#x7EF4;&#x62A4;</strong>&#xFF0C;&#x5B9E;&#x4F53;&#x7C7B;&#x4EE3;&#x7801;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="language-java">@Entity
+@Table(name=&quot;cst_customer&quot;)
+public class Customer implements Serializable {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name=&quot;cust_id&quot;)
+	private Long custId;
+	...
+	
+    //&#x4E00;&#x5BF9;&#x591A;&#x5173;&#x7CFB;&#x6620;&#x5C04;
+  	@OneToMany(mappedBy = &quot;customer&quot;)
+	private Set&lt;LinkMan&gt; linkmans = new HashSet&lt;LinkMan&gt;(0);
+	...//&#x7701;&#x7565;Setter&#x3001;Getter&#x3001;toString&#x65B9;&#x6CD5;
+}
+</code></pre>
+<p>&#x53D6;&#x6D88;&#x4E86;<code>JoinColumn</code>&#x7684;&#x5916;&#x952E;&#x914D;&#x7F6E;&#xFF0C;<code>OneToMany</code>&#x6CE8;&#x89E3;&#x4E2D;&#x4F7F;&#x7528;mappedBy&#x5C5E;&#x6027;&#xFF0C;&#x53D6;&#x503C;&#x4E3A;&#x4ECE;&#x8868;&#x5B9E;&#x4F53;&#x7C7B;&#x4E2D;&#x5BF9;&#x5E94;&#x5916;&#x952E;&#x7684;&#x5C5E;&#x6027;&#x540D;&#xFF0C;&#x4EE5;&#x6B64;&#x5EFA;&#x7ACB;&#x4E3B;&#x4ECE;&#x8868;&#x7684;&#x8054;&#x7CFB;&#x3002;</p>
+</li>
+</ul>
+</li>
+<li>
+<p>&#x4E00;&#x5BF9;&#x591A;&#x7684;&#x5220;&#x9664;&#x64CD;&#x4F5C;</p>
+<ol>
+<li>
+<p>&#x5BF9;&#x4E8E;&#x5220;&#x9664;&#x4ECE;&#x8868;&#xFF0C;&#x76F4;&#x63A5;&#x8FDB;&#x884C;&#x5220;&#x9664;&#x5373;&#x53EF;</p>
+</li>
+<li>
+<p>&#x5BF9;&#x4E8E;&#x5220;&#x9664;&#x4E3B;&#x8868;&#xFF1A;</p>
+<ul>
+<li>&#x5982;&#x679C;&#x5220;&#x9664;&#x5B57;&#x6BB5;&#x6CA1;&#x6709;&#x5173;&#x8054;&#x7684;&#x4ECE;&#x8868;&#x5B57;&#x6BB5;&#xFF0C;&#x76F4;&#x63A5;&#x5220;&#x9664;&#x5373;&#x53EF;&#x3002;</li>
+<li>&#x5982;&#x679C;&#x6709;&#x5173;&#x8054;&#x7684;&#x4ECE;&#x8868;&#x5B57;&#x6BB5;&#xFF1A;
+<ul>
+<li>&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4F1A;&#x5728;&#x5220;&#x9664;&#x540E;&#x5C06;&#x4ECE;&#x8868;&#x4E2D;&#x7684;&#x5916;&#x952E;&#x503C;&#x8BBE;&#x7F6E;&#x4E3A;null&#xFF0C;&#x5982;&#x679C;&#x6570;&#x636E;&#x5E93;&#x8BBE;&#x7F6E;&#x4E86;&#x5916;&#x952E;&#x975E;&#x7A7A;&#xFF0C;&#x5219;&#x4F1A;&#x62A5;&#x9519;&#xFF1B;</li>
+<li>&#x5982;&#x679C;&#x914D;&#x7F6E;&#x4E86;&#x4E3B;&#x8868;&#x653E;&#x5F03;&#x7EF4;&#x62A4;&#x5916;&#x952E;&#xFF0C;&#x5219;&#x65E0;&#x6CD5;&#x5220;&#x9664;&#x3002;</li>
+<li>&#x5982;&#x679C;&#x9700;&#x8981;&#x6267;&#x884C;&#x5220;&#x9664;&#x64CD;&#x4F5C;&#xFF0C;&#x53EF;&#x4EE5;&#x5728;&#x4E3B;&#x8868;&#x4E2D;&#x8BBE;&#x7F6E;<strong>&#x7EA7;&#x8054;&#x64CD;&#x4F5C;</strong>&#x3002;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>&#x7EA7;&#x8054;&#x64CD;&#x4F5C;&#xFF1A;&#x5220;&#x9664;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x540C;&#x65F6;&#x5220;&#x9664;&#x4E0E;&#x4E4B;&#x5173;&#x8054;&#x7684;&#x5BF9;&#x8C61;&#x3002;</p>
+<ul>
+<li>&#x4F7F;&#x7528;&#x65B9;&#x6CD5;&#xFF1A;&#x5728;&#x4E3B;&#x8868;&#x5B9E;&#x4F53;&#x7C7B;&#x7684;<code>@OneToMany</code>&#x6CE8;&#x89E3;&#x4E2D;&#x8BBE;&#x7F6E;<code>cascade</code>&#x5C5E;&#x6027;&#x503C;</li>
+<li>CascadeType.MERGE  &#x7EA7;&#x8054;&#x66F4;&#x65B0;</li>
+<li>CascadeType.PERSIST &#x7EA7;&#x8054;&#x4FDD;&#x5B58;</li>
+<li>CascadeType.REFRESH &#x7EA7;&#x8054;&#x5237;&#x65B0;</li>
+<li>CascadeType.REMOVE &#x7EA7;&#x8054;&#x5220;&#x9664;</li>
+<li>CascadeType.ALL   &#x5305;&#x542B;&#x6240;&#x6709;</li>
+</ul>
+</li>
+<li>
+<p>&#x4E3B;&#x8868;&#x5B9E;&#x4F53;&#x7C7B;&#x4EE3;&#x7801;</p>
+<pre><code class="language-java">@Entity
+@Table(name=&quot;cst_customer&quot;)
+public class Customer implements Serializable {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name=&quot;cust_id&quot;)
+	private Long custId;
+	...
+    //&#x4E00;&#x5BF9;&#x591A;&#x5173;&#x7CFB;&#x6620;&#x5C04;
+  	 @OneToMany(mappedBy = &quot;customer&quot;,cascade = CascadeType.ALL)
+	private Set&lt;LinkMan&gt; linkmans = new HashSet&lt;LinkMan&gt;(0);
+	...//&#x7701;&#x7565;Setter&#x3001;Getter&#x3001;toString&#x65B9;&#x6CD5;
+}
+</code></pre>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="3-&#x591A;&#x5BF9;&#x591A;"><a class="header-anchor" href="#3-&#x591A;&#x5BF9;&#x591A;">&#xB6;</a>3. &#x591A;&#x5BF9;&#x591A;</h3>
+<ol>
+<li>
+<p>&#x6848;&#x4F8B;&#xFF1A;&#x7528;&#x6237;&#x4E0E;&#x89D2;&#x8272;</p>
+</li>
+<li>
+<p>&#x7F16;&#x5199;&#x5B9E;&#x4F53;&#x7C7B;</p>
+<ol>
+<li>
+<p>&#x7528;&#x6237;&#x8868;&#x5B9E;&#x4F53;&#x7C7B;</p>
+<pre><code class="language-java">@Entity
+@Table(name = &quot;sys_user&quot;)
+public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name=&quot;user_id&quot;)
+    private Long userId;
+    @Column(name=&quot;user_name&quot;)
+    private String userName;
+    @Column(name=&quot;age&quot;)
+    private Integer age;
+
+    // &#x914D;&#x7F6E;&#x7528;&#x6237;&#x5230;&#x89D2;&#x8272;&#x7684;&#x591A;&#x5BF9;&#x591A;&#x5173;&#x7CFB;
+    @ManyToMany(targetEntity = Role.class,cascade = CascadeType.ALL)
+    @JoinTable(name = &quot;sys_user_role&quot;,
+               joinColumns = {@JoinColumn(name = &quot;sys_user_id&quot;,referencedColumnName = &quot;user_id&quot;)},
+               inverseJoinColumns = {@JoinColumn(name = &quot;sys_role_id&quot;,referencedColumnName = &quot;role_id&quot;)}
+              )
+    private Set&lt;Role&gt; roles = new HashSet&lt;&gt;();
+    ...
+}
+</code></pre>
+</li>
+<li>
+<p>&#x89D2;&#x8272;&#x8868;&#x5B9E;&#x4F53;&#x7C7B;</p>
+<pre><code class="language-java">@Entity
+@Table(name = &quot;sys_role&quot;)
+public class Role {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = &quot;role_id&quot;)
+    private Long roleId;
+    @Column(name = &quot;role_name&quot;)
+    private String roleName;
+
+    //&#x914D;&#x7F6E;&#x591A;&#x5BF9;&#x591A;
+    @ManyToMany(mappedBy = &quot;roles&quot;)
+    private Set&lt;User&gt; users = new HashSet&lt;&gt;();
+    ...
+}
+</code></pre>
+</li>
+</ol>
+</li>
+<li>
+<p>&#x6CE8;&#x89E3;&#x8BF4;&#x660E;</p>
+<ol>
+<li>
+<p><code>@ManyToMany</code></p>
+<ul>
+<li>
+<p>&#x4F5C;&#x7528;&#xFF1A;&#x7528;&#x4E8E;&#x6620;&#x5C04;&#x591A;&#x5BF9;&#x591A;&#x5173;&#x7CFB;</p>
+</li>
+<li>
+<p>&#x5C5E;&#x6027;&#xFF1A;</p>
+<p>cascade&#xFF1A;&#x914D;&#x7F6E;&#x7EA7;&#x8054;&#x64CD;&#x4F5C;&#x3002;</p>
+<p>fetch&#xFF1A;&#x6307;&#x5B9A;&#x91C7;&#x7528;&#x5EF6;&#x8FDF;&#x52A0;&#x8F7D;&#x6216;&#x7ACB;&#x5373;&#x52A0;&#x8F7D;&#x3002;</p>
+<p>targetEntity&#xFF1A;&#x914D;&#x7F6E;&#x76EE;&#x6807;&#x7684;&#x5B9E;&#x4F53;&#x7C7B;&#x3002;</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><code>@JoinTable</code></strong></p>
+<ul>
+<li>
+<p>&#x4F5C;&#x7528;&#xFF1A;&#x9488;&#x5BF9;&#x4E2D;&#x95F4;&#x8868;&#x7684;&#x914D;&#x7F6E;</p>
+</li>
+<li>
+<p>&#x5C5E;&#x6027;&#xFF1A;</p>
+<p>name&#xFF1A;&#x914D;&#x7F6E;&#x4E2D;&#x95F4;&#x8868;&#x7684;&#x540D;&#x79F0;</p>
+<p><strong>joinColumns</strong>&#xFF1A;&#x5F53;&#x524D;&#x5BF9;&#x8C61;&#x5728;&#x4E2D;&#x95F4;&#x8868;&#x7684;&#x5916;&#x952E;</p>
+<p><strong>inverseJoinColumn</strong>&#xFF1A;&#x5BF9;&#x65B9;&#x5BF9;&#x8C61;&#x5728;&#x4E2D;&#x95F4;&#x8868;&#x7684;&#x5916;&#x952E;</p>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p>&#x4FDD;&#x5B58;&#x64CD;&#x4F5C;</p>
+<pre><code class="language-java">@Test
+@Transactional
+@Rollback(false)
+public void  testAdd() {
+    User user = new User();
+    user.setUserName(&quot;&#x5C0F;&#x674E;&quot;);
+    Role role = new Role();
+    role.setRoleName(&quot;java&#x7A0B;&#x5E8F;&#x5458;&quot;);
+
+    //2.&#x914D;&#x7F6E;&#x7528;&#x6237;&#x5230;&#x89D2;&#x8272;&#x5173;&#x7CFB;&#xFF0C;&#x53EF;&#x4EE5;&#x5BF9;&#x4E2D;&#x95F4;&#x8868;&#x4E2D;&#x7684;&#x6570;&#x636E;&#x8FDB;&#x884C;&#x7EF4;&#x62A4;     1-1
+    user.getRoles().add(role);
+    //2.&#x914D;&#x7F6E;&#x89D2;&#x8272;&#x5230;&#x7528;&#x6237;&#x7684;&#x5173;&#x7CFB;&#xFF0C;&#x53EF;&#x4EE5;&#x5BF9;&#x4E2D;&#x95F4;&#x8868;&#x7684;&#x6570;&#x636E;&#x8FDB;&#x884C;&#x7EF4;&#x62A4;     1-1
+    role.getUsers().add(user);
+
+    userDao.save(user);
+    roleDao.save(role);
+}
+</code></pre>
+<p>&#x2B50;&#xFE0F;**&#x6CE8;&#x610F;&#xFF1A;**&#x5728;&#x591A;&#x5BF9;&#x591A;&#xFF08;&#x4FDD;&#x5B58;&#xFF09;&#x4E2D;&#xFF0C;&#x5982;&#x679C;&#x53CC;&#x5411;&#x90FD;&#x8BBE;&#x7F6E;&#x5173;&#x7CFB;&#xFF0C;&#x610F;&#x5473;&#x7740;&#x53CC;&#x65B9;&#x90FD;&#x7EF4;&#x62A4;&#x4E2D;&#x95F4;&#x8868;&#xFF0C;&#x90FD;&#x4F1A;&#x5F80;&#x4E2D;&#x95F4;&#x8868;&#x63D2;&#x5165;&#x6570;&#x636E;&#xFF0C;&#x4E2D;&#x95F4;&#x8868;&#x7684;2&#x4E2A;&#x5B57;&#x6BB5;&#x53C8;&#x4F5C;&#x4E3A;&#x8054;&#x5408;&#x4E3B;&#x952E;&#xFF0C;&#x6240;&#x4EE5;&#x8FDB;&#x884C;&#x4E24;&#x6B21;&#x4E2D;&#x95F4;&#x8868;&#x7684;&#x63D2;&#x5165;&#x64CD;&#x4F5C;&#x4F1A;&#x5BFC;&#x81F4;&#x4E2D;&#x95F4;&#x8868;&#x4E3B;&#x952E;&#x91CD;&#x590D;&#x800C;&#x62A5;&#x9519;&#xFF0C;&#x89E3;&#x51B3;&#x529E;&#x6CD5;&#x662F;&#x5728;&#x4EFB;&#x610F;&#x4E00;&#x65B9;&#x653E;&#x5F03;&#x5BF9;&#x4E2D;&#x95F4;&#x8868;&#x7684;&#x7EF4;&#x62A4;&#x6743;&#x5373;&#x53EF;&#x3002;&#x6240;&#x4EE5;&#x5728;&#x89D2;&#x8272;&#x8868;&#x5B9E;&#x4F53;&#x7C7B;&#x4E2D;&#x4F7F;&#x7528;<code>@ManyToMany(mappedBy=&quot;roles&quot;)</code>&#x914D;&#x7F6E;&#x5373;&#x53EF;&#x3002;</p>
+</li>
+</ol>
+<h3 id="4-&#x5BF9;&#x8C61;&#x5BFC;&#x822A;&#x67E5;&#x8BE2;"><a class="header-anchor" href="#4-&#x5BF9;&#x8C61;&#x5BFC;&#x822A;&#x67E5;&#x8BE2;">&#xB6;</a>4. &#x5BF9;&#x8C61;&#x5BFC;&#x822A;&#x67E5;&#x8BE2;</h3>
+<ol>
+<li>
+<p>&#x67E5;&#x8BE2;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x7684;&#x540C;&#x65F6;&#xFF0C;&#x901A;&#x8FC7;&#x6B64;&#x5BF9;&#x8C61;&#x67E5;&#x8BE2;&#x4ED6;&#x7684;&#x5173;&#x8054;&#x5BF9;&#x8C61;&#x3002;</p>
+<ul>
+<li>&#x67E5;&#x8BE2;&#x65B9;&#x6CD5;&#xFF1A;&#x76F4;&#x63A5;&#x8C03;&#x7528;&#x76F8;&#x5E94;&#x7684;get&#x65B9;&#x6CD5;&#x5373;&#x53EF;&#x3002;</li>
+</ul>
+</li>
+<li>
+<p>&#x67E5;&#x8BE2;&#x516C;&#x53F8;&#x65F6;&#xFF0C;&#x83B7;&#x5F97;&#x5176;&#x4E0B;&#x7684;&#x6240;&#x6709;&#x5458;&#x5DE5;</p>
+<pre><code class="language-java">@Test
+//&#x7531;&#x4E8E;&#x662F;&#x5728;java&#x4EE3;&#x7801;&#x4E2D;&#x6D4B;&#x8BD5;&#xFF0C;&#x4E3A;&#x4E86;&#x89E3;&#x51B3;no session&#x95EE;&#x9898;&#xFF0C;&#x5C06;&#x64CD;&#x4F5C;&#x914D;&#x7F6E;&#x5230;&#x540C;&#x4E00;&#x4E2A;&#x4E8B;&#x52A1;&#x4E2D;
+@Transactional 
+public void testFind() {
+    Customer customer = customerDao.findOne(5l);
+    Set&lt;LinkMan&gt; linkMans = customer.getLinkMans();//&#x5BF9;&#x8C61;&#x5BFC;&#x822A;&#x67E5;&#x8BE2;
+    for(LinkMan linkMan : linkMans) {
+        System.out.println(linkMan);
+    }
+}
+</code></pre>
+</li>
+<li>
+<p>&#x67E5;&#x8BE2;&#x5458;&#x5DE5;&#x65F6;&#xFF0C;&#x83B7;&#x5F97;&#x5176;&#x6240;&#x5C5E;&#x516C;&#x53F8;</p>
+<pre><code class="language-java">@Test
+@Transactional // &#x89E3;&#x51B3;&#x5728;java&#x4EE3;&#x7801;&#x4E2D;&#x7684;no session&#x95EE;&#x9898;
+public void  testQuery3() {
+    LinkMan linkMan = linkManDao.findOne(2l);
+    //&#x5BF9;&#x8C61;&#x5BFC;&#x822A;&#x67E5;&#x8BE2;&#x6240;&#x5C5E;&#x7684;&#x516C;&#x53F8;
+    Customer customer = linkMan.getCustomer();
+    System.out.println(customer);
+}
+</code></pre>
+</li>
+<li>
+<p><strong>&#x6CE8;&#x610F;</strong></p>
+<ul>
+<li>
+<p>&#x4E00;&#x5230;&#x591A;&#x67E5;&#x8BE2;&#x65F6;&#xFF1A;&#x5F53;&#x67E5;&#x8BE2;&#x516C;&#x53F8;&#x65F6;&#xFF0C;&#x5176;&#x5BF9;&#x5E94;&#x7684;&#x5458;&#x5DE5;&#x6570;&#x636E;&#x8F83;&#x591A;&#xFF0C;&#x5982;&#x679C;&#x76F4;&#x63A5;&#x67E5;&#x51FA;&#x6765;&#x6D6A;&#x8D39;&#x670D;&#x52A1;&#x5668;&#x8D44;&#x6E90;&#xFF0C;&#x9ED8;&#x8BA4;&#x91C7;&#x7528;&#x7684;&#x662F;<strong>&#x5EF6;&#x8FDF;&#x52A0;&#x8F7D;</strong>&#x65B9;&#x5F0F;&#x3002;</p>
+</li>
+<li>
+<p>&#x591A;&#x5230;&#x4E00;&#x67E5;&#x8BE2;&#x65F6;&#xFF1A;&#x5F53;&#x67E5;&#x8BE2;&#x5458;&#x5DE5;&#x65F6;&#xFF0C;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x4E0D;&#x4F1A;&#x6D88;&#x8017;&#x592A;&#x591A;&#x5185;&#x5B58;&#xFF0C;&#x9ED8;&#x8BA4;&#x91C7;&#x7528;&#x7684;&#x662F;<strong>&#x7ACB;&#x5373;&#x52A0;&#x8F7D;</strong>&#x65B9;&#x5F0F;&#x3002;</p>
+</li>
+<li>
+<p>&#x5982;&#x679C;&#x9700;&#x8981;&#x4FEE;&#x6539;&#x52A0;&#x8F7D;&#x65B9;&#x5F0F;&#xFF0C;&#x5728;&#x76F8;&#x5E94;&#x7684;&#x5B9E;&#x4F53;&#x7C7B;&#x4E2D;&#x7684;&#x76F4;&#x63A5;&#x4E2D;&#x52A0;&#x5165;fetch&#x5C5E;&#x6027;&#x5373;&#x53EF;&#x3002;</p>
+<pre><code class="language-java">/**
+	 * &#x5728;&#x8054;&#x7CFB;&#x4EBA;&#x5BF9;&#x8C61;&#x7684;@ManyToOne&#x6CE8;&#x89E3;&#x4E2D;&#x6DFB;&#x52A0;fetch&#x5C5E;&#x6027;
+	 * 		FetchType.EAGER	&#xFF1A;&#x7ACB;&#x5373;&#x52A0;&#x8F7D;
+	 * 		FetchType.LAZY	&#xFF1A;&#x5EF6;&#x8FDF;&#x52A0;&#x8F7D;
+	 */
+@ManyToOne(targetEntity=Customer.class,fetch=FetchType.EAGER)
+@JoinColumn(name=&quot;cst_lkm_id&quot;,referencedColumnName=&quot;cust_id&quot;)
+private Customer customer;
+</code></pre>
+</li>
+</ul>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+
+    <div align="center">
+        
+          <div>
+    
+        <div class="read-over">-------------------本文结束 <i class="fa fa-paw"></i> 感谢您的阅读-------------------</div>
+    
+</div>
+        
+      </div>
+    <div>
+        
+          
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/article/247a8755.html/">JavaWeb之SpringBootJPA</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 Hoshino汤包 的个人博客">Hoshino汤包</a></p>
+  <p><span>发布时间:</span>2020年12月07日 - 22:00:26</p>
+  <p><span>最后更新:</span>2020年12月12日 - 11:22:29</p>
+  <p><span>原始链接:</span><a href="/article/247a8755.html/" title="JavaWeb之SpringBootJPA">https://tangtangsama.github.io/article/247a8755.html/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://tangtangsama.github.io/article/247a8755.html/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p>非商业性使用-转载请保留原文链接及作者。</p>
+</div>
+<script>
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({
+          title: "",
+          text: '复制成功',
+          icon: "success",
+          showConfirmButton: true
+          });
+    });
+    });
+</script>
+
+        
+    </div>
+        <div class="reward-container">
+  <div>感谢您的支持和鼓励！</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="Hoshino汤包 WeChat">
+        <p>WeChat</p>
+      </div>
+
+  </div>
+</div>
+
+
+      
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/article/dca918a2.html/" rel="prev" title="JavaWeb之SSM">
+      <i class="fa fa-chevron-left"></i> JavaWeb之SSM
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/article/754526f9.html/" rel="next" title="JavaWeb之SpringBoot基础">
+      JavaWeb之SpringBoot基础 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Hoshino汤包"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">Hoshino汤包</p>
+  <div class="site-description" itemprop="description">醉后不知天在水，满船清梦压星河。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/tangtangsama" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;tangtangsama" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:sucre@nuaa.edu.com" title="E-Mail → mailto:sucre@nuaa.edu.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.baidu.com/" title="https:&#x2F;&#x2F;www.baidu.com&#x2F;" rel="noopener" target="_blank">Baidu</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://github.com/" title="https:&#x2F;&#x2F;github.com&#x2F;" rel="noopener" target="_blank">Github</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+      <div id="">
+  <canvas id="canvas" style="width:60%;">
+</div>
+
+<!--粒子时钟js-->
+<script type="text/javascript" src="/js/src/canvas-dance-time.js"></script>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">版权所属：sucre</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">548k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">8:19</span>
+</div>
+
+<div id="days"></div>
+<script>
+function show_date_time(){
+    window.setTimeout("show_date_time()", 1000);
+    BirthDay=new Date("05/20/2020 15:13:14");
+    today=new Date();
+    timeold=(today.getTime()-BirthDay.getTime());
+    sectimeold=timeold/1000
+    secondsold=Math.floor(sectimeold);
+    msPerDay=24*60*60*1000
+    e_daysold=timeold/msPerDay
+    daysold=Math.floor(e_daysold);
+    e_hrsold=(e_daysold-daysold)*24;
+    hrsold=setzero(Math.floor(e_hrsold));
+    e_minsold=(e_hrsold-hrsold)*60;
+    minsold=setzero(Math.floor((e_hrsold-hrsold)*60));
+    seconds=setzero(Math.floor((e_minsold-minsold)*60));
+    document.getElementById('days').innerHTML="本站点已运行 "+daysold+" 天 "+hrsold+" 小时 "+minsold+" 分 "+seconds+" 秒";
+}
+function setzero(i) {
+    if (i<10) {
+        i="0" + i
+    };
+    return i;
+}
+show_date_time();
+</script>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+   
+
+  <script async src="/js/cursor/love.min.js"></script>
+
+</body>
+
+</html>
+
